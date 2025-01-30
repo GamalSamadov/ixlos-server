@@ -1,7 +1,7 @@
 version: '3.7'
 services:
     db:
-        container_name: ixlos-db
+        container_name: postgres
         image: postgres:15.2
         restart: always
         environment:
@@ -13,7 +13,19 @@ services:
             - postgres_data:/var/lib/postgresql/data
         networks:
             - ixlos-server
+    redis:
+        container_name: redis
+        image: redis:latest
+        restart: always
+        ports:
+            - 6379:6379
+        command: redis-server --requirepass ${REDIS_PASSWORD}
+        volumes:
+            - redis_data:/data
+        networks:
+            - ixlos-server
 volumes:
     postgres_data:
+    redis_data:
 networks:
     ixlos-server:
