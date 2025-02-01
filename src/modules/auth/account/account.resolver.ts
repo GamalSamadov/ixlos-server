@@ -1,6 +1,6 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 
-import { Authorization } from '@/src/shared/decorators/authorization.decorator'
+import { Auth } from '@/src/shared/decorators/authorization.decorator'
 import { Authorized } from '@/src/shared/decorators/authorized.decorator'
 
 import { AccountService } from './account.service'
@@ -11,7 +11,7 @@ import { UserModel } from './models/user.model'
 export class AccountResolver {
 	public constructor(private readonly accountService: AccountService) {}
 
-	@Authorization()
+	@Auth()
 	@Query(() => UserModel, { name: 'findProfile' })
 	public async me(@Authorized('id') id: string) {
 		return this.accountService.me(id)
