@@ -1,4 +1,4 @@
-import { ValidationPipe } from '@nestjs/common'
+import { Logger, ValidationPipe } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { NestFactory } from '@nestjs/core'
 import { RedisStore } from 'connect-redis'
@@ -51,5 +51,9 @@ async function bootstrap() {
 	})
 
 	await app.listen(process.env.PORT ?? 4200)
+
+	Logger.log(
+		`Server listening on: http://localhost:${process.env.PORT ?? 4200}`
+	)
 }
 bootstrap()

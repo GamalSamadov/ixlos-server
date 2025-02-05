@@ -1,31 +1,40 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql'
+import { Field, ID, ObjectType, registerEnumType } from '@nestjs/graphql'
+
+import { Role, type User } from '@/prisma/generated'
+
+registerEnumType(Role, {
+	name: 'Role'
+})
 
 @ObjectType()
-export class UserModel {
+export class UserModel implements User {
 	@Field(() => ID)
-	id: string
+	public id: string
 
 	@Field(() => String)
-	email: string
+	public email: string
 
 	@Field(() => String)
-	password: string
+	public password: string
 
 	@Field(() => String)
-	username: string
+	public username: string
 
 	@Field(() => String)
-	displayName: string
+	public displayName: string
 
 	@Field(() => String, { nullable: true })
-	avatar: string | null
+	public avatar: string | null
 
 	@Field(() => String, { nullable: true })
-	bio: string | null
+	public bio: string | null
+
+	@Field(() => [Role])
+	public rights: Role[]
 
 	@Field(() => Date)
-	createdAt: Date
+	public createdAt: Date
 
 	@Field(() => Date)
-	updatedAt: Date
+	public updatedAt: Date
 }
