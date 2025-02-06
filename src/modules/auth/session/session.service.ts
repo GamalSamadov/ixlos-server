@@ -57,11 +57,18 @@ export class SessionService {
 			`${this.configService.getOrThrow<string>('SESSION_FOLDER')}${sessionId}`
 		)
 
+		const userId = req.session.userId
+
+		const user = await this.prismaService.user.findUnique({
+			where: { id: userId }
+		})
+
 		const session = JSON.parse(sessionData)
 
 		return {
 			...session,
-			id: sessionId
+			id: sessionId,
+			rights: user.rights
 		}
 	}
 

@@ -60,6 +60,7 @@ type SessionModel {
   createdAt: String!
   id: ID!
   metadata: SessionMetadataModel!
+  rights: [Role!]!
   userId: String!
 }
 

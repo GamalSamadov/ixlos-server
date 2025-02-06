@@ -1,10 +1,15 @@
-import { Field, ID, ObjectType } from '@nestjs/graphql'
+import { Field, ID, ObjectType, registerEnumType } from '@nestjs/graphql'
 
+import { Role } from '@/prisma/generated'
 import {
 	DeviceInfo,
 	LocationInfo,
 	SessionMetadata
 } from '@/src/shared/types/session-metadata.types'
+
+registerEnumType(Role, {
+	name: 'Role'
+})
 
 @ObjectType()
 export class LocationModel implements LocationInfo {
@@ -53,9 +58,12 @@ export class SessionModel {
 	@Field(() => String)
 	public userId: string
 
-	@Field(() => String)
-	public createdAt: string
-
 	@Field(() => SessionMetadataModel)
 	public metadata: SessionMetadataModel
+
+	@Field(() => [Role])
+	public rights: Role[]
+
+	@Field(() => String)
+	public createdAt: string
 }
