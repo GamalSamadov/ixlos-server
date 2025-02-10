@@ -4,7 +4,9 @@ import { ConfigModule, ConfigService } from '@nestjs/config'
 import { GraphQLModule } from '@nestjs/graphql'
 
 import { AccountModule } from '../modules/auth/account/account.module'
+import { AuthorModule } from '../modules/auth/account/author/author.module'
 import { SessionModule } from '../modules/auth/session/session.module'
+import { TafseerModule } from '../modules/tafseer/tafseer.module'
 
 import { getGraphQLConfig } from './config/graphql.config'
 import { PrismaModule } from './prisma/prisma.module'
@@ -23,7 +25,10 @@ import { RedisModule } from './redis/redis.module'
 		RedisModule,
 
 		AccountModule,
-		SessionModule
+		AuthorModule,
+		SessionModule,
+
+		TafseerModule
 	]
 })
 export class CoreModule {}

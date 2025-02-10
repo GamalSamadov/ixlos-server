@@ -18,6 +18,31 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model Author
+ * 
+ */
+export type Author = $Result.DefaultSelection<Prisma.$AuthorPayload>
+/**
+ * Model Surah
+ * 
+ */
+export type Surah = $Result.DefaultSelection<Prisma.$SurahPayload>
+/**
+ * Model Ayah
+ * 
+ */
+export type Ayah = $Result.DefaultSelection<Prisma.$AyahPayload>
+/**
+ * Model TafseerAyah
+ * 
+ */
+export type TafseerAyah = $Result.DefaultSelection<Prisma.$TafseerAyahPayload>
+/**
+ * Model Tafseer
+ * 
+ */
+export type Tafseer = $Result.DefaultSelection<Prisma.$TafseerPayload>
 
 /**
  * Enums
@@ -25,16 +50,29 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
 export namespace $Enums {
   export const Role: {
   USER: 'USER',
-  ADMIN: 'ADMIN'
+  ADMIN: 'ADMIN',
+  AUTHOR: 'AUTHOR'
 };
 
 export type Role = (typeof Role)[keyof typeof Role]
+
+
+export const SurahRevelationType: {
+  MECCAN: 'MECCAN',
+  MEDINAN: 'MEDINAN'
+};
+
+export type SurahRevelationType = (typeof SurahRevelationType)[keyof typeof SurahRevelationType]
 
 }
 
 export type Role = $Enums.Role
 
 export const Role: typeof $Enums.Role
+
+export type SurahRevelationType = $Enums.SurahRevelationType
+
+export const SurahRevelationType: typeof $Enums.SurahRevelationType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -170,6 +208,56 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.author`: Exposes CRUD operations for the **Author** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Authors
+    * const authors = await prisma.author.findMany()
+    * ```
+    */
+  get author(): Prisma.AuthorDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.surah`: Exposes CRUD operations for the **Surah** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Surahs
+    * const surahs = await prisma.surah.findMany()
+    * ```
+    */
+  get surah(): Prisma.SurahDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.ayah`: Exposes CRUD operations for the **Ayah** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Ayahs
+    * const ayahs = await prisma.ayah.findMany()
+    * ```
+    */
+  get ayah(): Prisma.AyahDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.tafseerAyah`: Exposes CRUD operations for the **TafseerAyah** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more TafseerAyahs
+    * const tafseerAyahs = await prisma.tafseerAyah.findMany()
+    * ```
+    */
+  get tafseerAyah(): Prisma.TafseerAyahDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.tafseer`: Exposes CRUD operations for the **Tafseer** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Tafseers
+    * const tafseers = await prisma.tafseer.findMany()
+    * ```
+    */
+  get tafseer(): Prisma.TafseerDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -610,7 +698,12 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User'
+    User: 'User',
+    Author: 'Author',
+    Surah: 'Surah',
+    Ayah: 'Ayah',
+    TafseerAyah: 'TafseerAyah',
+    Tafseer: 'Tafseer'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -626,7 +719,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user"
+      modelProps: "user" | "author" | "surah" | "ayah" | "tafseerAyah" | "tafseer"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -701,6 +794,376 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Author: {
+        payload: Prisma.$AuthorPayload<ExtArgs>
+        fields: Prisma.AuthorFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AuthorFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AuthorFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
+          }
+          findFirst: {
+            args: Prisma.AuthorFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AuthorFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
+          }
+          findMany: {
+            args: Prisma.AuthorFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>[]
+          }
+          create: {
+            args: Prisma.AuthorCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
+          }
+          createMany: {
+            args: Prisma.AuthorCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AuthorCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>[]
+          }
+          delete: {
+            args: Prisma.AuthorDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
+          }
+          update: {
+            args: Prisma.AuthorUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
+          }
+          deleteMany: {
+            args: Prisma.AuthorDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AuthorUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AuthorUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>[]
+          }
+          upsert: {
+            args: Prisma.AuthorUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuthorPayload>
+          }
+          aggregate: {
+            args: Prisma.AuthorAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAuthor>
+          }
+          groupBy: {
+            args: Prisma.AuthorGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AuthorGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AuthorCountArgs<ExtArgs>
+            result: $Utils.Optional<AuthorCountAggregateOutputType> | number
+          }
+        }
+      }
+      Surah: {
+        payload: Prisma.$SurahPayload<ExtArgs>
+        fields: Prisma.SurahFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.SurahFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurahPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.SurahFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurahPayload>
+          }
+          findFirst: {
+            args: Prisma.SurahFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurahPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.SurahFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurahPayload>
+          }
+          findMany: {
+            args: Prisma.SurahFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurahPayload>[]
+          }
+          create: {
+            args: Prisma.SurahCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurahPayload>
+          }
+          createMany: {
+            args: Prisma.SurahCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.SurahCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurahPayload>[]
+          }
+          delete: {
+            args: Prisma.SurahDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurahPayload>
+          }
+          update: {
+            args: Prisma.SurahUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurahPayload>
+          }
+          deleteMany: {
+            args: Prisma.SurahDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.SurahUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.SurahUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurahPayload>[]
+          }
+          upsert: {
+            args: Prisma.SurahUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$SurahPayload>
+          }
+          aggregate: {
+            args: Prisma.SurahAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateSurah>
+          }
+          groupBy: {
+            args: Prisma.SurahGroupByArgs<ExtArgs>
+            result: $Utils.Optional<SurahGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.SurahCountArgs<ExtArgs>
+            result: $Utils.Optional<SurahCountAggregateOutputType> | number
+          }
+        }
+      }
+      Ayah: {
+        payload: Prisma.$AyahPayload<ExtArgs>
+        fields: Prisma.AyahFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AyahFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AyahPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AyahFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AyahPayload>
+          }
+          findFirst: {
+            args: Prisma.AyahFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AyahPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AyahFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AyahPayload>
+          }
+          findMany: {
+            args: Prisma.AyahFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AyahPayload>[]
+          }
+          create: {
+            args: Prisma.AyahCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AyahPayload>
+          }
+          createMany: {
+            args: Prisma.AyahCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AyahCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AyahPayload>[]
+          }
+          delete: {
+            args: Prisma.AyahDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AyahPayload>
+          }
+          update: {
+            args: Prisma.AyahUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AyahPayload>
+          }
+          deleteMany: {
+            args: Prisma.AyahDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AyahUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AyahUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AyahPayload>[]
+          }
+          upsert: {
+            args: Prisma.AyahUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AyahPayload>
+          }
+          aggregate: {
+            args: Prisma.AyahAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAyah>
+          }
+          groupBy: {
+            args: Prisma.AyahGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AyahGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AyahCountArgs<ExtArgs>
+            result: $Utils.Optional<AyahCountAggregateOutputType> | number
+          }
+        }
+      }
+      TafseerAyah: {
+        payload: Prisma.$TafseerAyahPayload<ExtArgs>
+        fields: Prisma.TafseerAyahFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TafseerAyahFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerAyahPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TafseerAyahFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerAyahPayload>
+          }
+          findFirst: {
+            args: Prisma.TafseerAyahFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerAyahPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TafseerAyahFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerAyahPayload>
+          }
+          findMany: {
+            args: Prisma.TafseerAyahFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerAyahPayload>[]
+          }
+          create: {
+            args: Prisma.TafseerAyahCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerAyahPayload>
+          }
+          createMany: {
+            args: Prisma.TafseerAyahCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TafseerAyahCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerAyahPayload>[]
+          }
+          delete: {
+            args: Prisma.TafseerAyahDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerAyahPayload>
+          }
+          update: {
+            args: Prisma.TafseerAyahUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerAyahPayload>
+          }
+          deleteMany: {
+            args: Prisma.TafseerAyahDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TafseerAyahUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TafseerAyahUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerAyahPayload>[]
+          }
+          upsert: {
+            args: Prisma.TafseerAyahUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerAyahPayload>
+          }
+          aggregate: {
+            args: Prisma.TafseerAyahAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTafseerAyah>
+          }
+          groupBy: {
+            args: Prisma.TafseerAyahGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TafseerAyahGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TafseerAyahCountArgs<ExtArgs>
+            result: $Utils.Optional<TafseerAyahCountAggregateOutputType> | number
+          }
+        }
+      }
+      Tafseer: {
+        payload: Prisma.$TafseerPayload<ExtArgs>
+        fields: Prisma.TafseerFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TafseerFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TafseerFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
+          }
+          findFirst: {
+            args: Prisma.TafseerFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TafseerFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
+          }
+          findMany: {
+            args: Prisma.TafseerFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>[]
+          }
+          create: {
+            args: Prisma.TafseerCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
+          }
+          createMany: {
+            args: Prisma.TafseerCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TafseerCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>[]
+          }
+          delete: {
+            args: Prisma.TafseerDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
+          }
+          update: {
+            args: Prisma.TafseerUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
+          }
+          deleteMany: {
+            args: Prisma.TafseerDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TafseerUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TafseerUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>[]
+          }
+          upsert: {
+            args: Prisma.TafseerUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
+          }
+          aggregate: {
+            args: Prisma.TafseerAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTafseer>
+          }
+          groupBy: {
+            args: Prisma.TafseerGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TafseerGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TafseerCountArgs<ExtArgs>
+            result: $Utils.Optional<TafseerCountAggregateOutputType> | number
           }
         }
       }
@@ -789,6 +1252,11 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    author?: AuthorOmit
+    surah?: SurahOmit
+    ayah?: AyahOmit
+    tafseerAyah?: TafseerAyahOmit
+    tafseer?: TafseerOmit
   }
 
   /* Types for Logging */
@@ -877,6 +1345,129 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type AuthorCountOutputType
+   */
+
+  export type AuthorCountOutputType = {
+    tafseers: number
+  }
+
+  export type AuthorCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tafseers?: boolean | AuthorCountOutputTypeCountTafseersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AuthorCountOutputType without action
+   */
+  export type AuthorCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuthorCountOutputType
+     */
+    select?: AuthorCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AuthorCountOutputType without action
+   */
+  export type AuthorCountOutputTypeCountTafseersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TafseerWhereInput
+  }
+
+
+  /**
+   * Count Type SurahCountOutputType
+   */
+
+  export type SurahCountOutputType = {
+    ayahs: number
+  }
+
+  export type SurahCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ayahs?: boolean | SurahCountOutputTypeCountAyahsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * SurahCountOutputType without action
+   */
+  export type SurahCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the SurahCountOutputType
+     */
+    select?: SurahCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * SurahCountOutputType without action
+   */
+  export type SurahCountOutputTypeCountAyahsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AyahWhereInput
+  }
+
+
+  /**
+   * Count Type AyahCountOutputType
+   */
+
+  export type AyahCountOutputType = {
+    tafseers: number
+  }
+
+  export type AyahCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tafseers?: boolean | AyahCountOutputTypeCountTafseersArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * AyahCountOutputType without action
+   */
+  export type AyahCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AyahCountOutputType
+     */
+    select?: AyahCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * AyahCountOutputType without action
+   */
+  export type AyahCountOutputTypeCountTafseersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TafseerAyahWhereInput
+  }
+
+
+  /**
+   * Count Type TafseerCountOutputType
+   */
+
+  export type TafseerCountOutputType = {
+    ayahs: number
+  }
+
+  export type TafseerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ayahs?: boolean | TafseerCountOutputTypeCountAyahsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TafseerCountOutputType without action
+   */
+  export type TafseerCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerCountOutputType
+     */
+    select?: TafseerCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TafseerCountOutputType without action
+   */
+  export type TafseerCountOutputTypeCountAyahsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TafseerAyahWhereInput
+  }
 
 
   /**
@@ -1083,6 +1674,7 @@ export namespace Prisma {
     rights?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    author?: boolean | User$authorArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1125,10 +1717,17 @@ export namespace Prisma {
   }
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "password" | "username" | "displayName" | "avatar" | "bio" | "rights" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | User$authorArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      author: Prisma.$AuthorPayload<ExtArgs> | null
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       email: string
@@ -1534,6 +2133,7 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    author<T extends User$authorArgs<ExtArgs> = {}>(args?: Subset<T, User$authorArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1590,6 +2190,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1608,6 +2212,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1625,6 +2233,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1674,6 +2286,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1722,6 +2338,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which Users to fetch.
      */
     where?: UserWhereInput
@@ -1764,6 +2384,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to create a User.
      */
@@ -1812,6 +2436,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -1879,6 +2507,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -1905,6 +2537,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -1925,6 +2561,25 @@ export namespace Prisma {
   }
 
   /**
+   * User.author
+   */
+  export type User$authorArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    where?: AuthorWhereInput
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1936,6 +2591,5605 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Author
+   */
+
+  export type AggregateAuthor = {
+    _count: AuthorCountAggregateOutputType | null
+    _min: AuthorMinAggregateOutputType | null
+    _max: AuthorMaxAggregateOutputType | null
+  }
+
+  export type AuthorMinAggregateOutputType = {
+    id: string | null
+    country: string | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AuthorMaxAggregateOutputType = {
+    id: string | null
+    country: string | null
+    userId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AuthorCountAggregateOutputType = {
+    id: number
+    country: number
+    userId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AuthorMinAggregateInputType = {
+    id?: true
+    country?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AuthorMaxAggregateInputType = {
+    id?: true
+    country?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AuthorCountAggregateInputType = {
+    id?: true
+    country?: true
+    userId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AuthorAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Author to aggregate.
+     */
+    where?: AuthorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Authors to fetch.
+     */
+    orderBy?: AuthorOrderByWithRelationInput | AuthorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AuthorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Authors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Authors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Authors
+    **/
+    _count?: true | AuthorCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AuthorMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AuthorMaxAggregateInputType
+  }
+
+  export type GetAuthorAggregateType<T extends AuthorAggregateArgs> = {
+        [P in keyof T & keyof AggregateAuthor]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAuthor[P]>
+      : GetScalarType<T[P], AggregateAuthor[P]>
+  }
+
+
+
+
+  export type AuthorGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AuthorWhereInput
+    orderBy?: AuthorOrderByWithAggregationInput | AuthorOrderByWithAggregationInput[]
+    by: AuthorScalarFieldEnum[] | AuthorScalarFieldEnum
+    having?: AuthorScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AuthorCountAggregateInputType | true
+    _min?: AuthorMinAggregateInputType
+    _max?: AuthorMaxAggregateInputType
+  }
+
+  export type AuthorGroupByOutputType = {
+    id: string
+    country: string | null
+    userId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: AuthorCountAggregateOutputType | null
+    _min: AuthorMinAggregateOutputType | null
+    _max: AuthorMaxAggregateOutputType | null
+  }
+
+  type GetAuthorGroupByPayload<T extends AuthorGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AuthorGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AuthorGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AuthorGroupByOutputType[P]>
+            : GetScalarType<T[P], AuthorGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AuthorSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    country?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    tafseers?: boolean | Author$tafseersArgs<ExtArgs>
+    _count?: boolean | AuthorCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["author"]>
+
+  export type AuthorSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    country?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["author"]>
+
+  export type AuthorSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    country?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["author"]>
+
+  export type AuthorSelectScalar = {
+    id?: boolean
+    country?: boolean
+    userId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AuthorOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "country" | "userId" | "createdAt" | "updatedAt", ExtArgs["result"]["author"]>
+  export type AuthorInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    tafseers?: boolean | Author$tafseersArgs<ExtArgs>
+    _count?: boolean | AuthorCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AuthorIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type AuthorIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $AuthorPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Author"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      tafseers: Prisma.$TafseerPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      country: string | null
+      userId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["author"]>
+    composites: {}
+  }
+
+  type AuthorGetPayload<S extends boolean | null | undefined | AuthorDefaultArgs> = $Result.GetResult<Prisma.$AuthorPayload, S>
+
+  type AuthorCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AuthorFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AuthorCountAggregateInputType | true
+    }
+
+  export interface AuthorDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Author'], meta: { name: 'Author' } }
+    /**
+     * Find zero or one Author that matches the filter.
+     * @param {AuthorFindUniqueArgs} args - Arguments to find a Author
+     * @example
+     * // Get one Author
+     * const author = await prisma.author.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AuthorFindUniqueArgs>(args: SelectSubset<T, AuthorFindUniqueArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one Author that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AuthorFindUniqueOrThrowArgs} args - Arguments to find a Author
+     * @example
+     * // Get one Author
+     * const author = await prisma.author.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AuthorFindUniqueOrThrowArgs>(args: SelectSubset<T, AuthorFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Author that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthorFindFirstArgs} args - Arguments to find a Author
+     * @example
+     * // Get one Author
+     * const author = await prisma.author.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AuthorFindFirstArgs>(args?: SelectSubset<T, AuthorFindFirstArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Author that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthorFindFirstOrThrowArgs} args - Arguments to find a Author
+     * @example
+     * // Get one Author
+     * const author = await prisma.author.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AuthorFindFirstOrThrowArgs>(args?: SelectSubset<T, AuthorFindFirstOrThrowArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more Authors that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthorFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Authors
+     * const authors = await prisma.author.findMany()
+     * 
+     * // Get first 10 Authors
+     * const authors = await prisma.author.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const authorWithIdOnly = await prisma.author.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AuthorFindManyArgs>(args?: SelectSubset<T, AuthorFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a Author.
+     * @param {AuthorCreateArgs} args - Arguments to create a Author.
+     * @example
+     * // Create one Author
+     * const Author = await prisma.author.create({
+     *   data: {
+     *     // ... data to create a Author
+     *   }
+     * })
+     * 
+     */
+    create<T extends AuthorCreateArgs>(args: SelectSubset<T, AuthorCreateArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many Authors.
+     * @param {AuthorCreateManyArgs} args - Arguments to create many Authors.
+     * @example
+     * // Create many Authors
+     * const author = await prisma.author.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AuthorCreateManyArgs>(args?: SelectSubset<T, AuthorCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Authors and returns the data saved in the database.
+     * @param {AuthorCreateManyAndReturnArgs} args - Arguments to create many Authors.
+     * @example
+     * // Create many Authors
+     * const author = await prisma.author.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Authors and only return the `id`
+     * const authorWithIdOnly = await prisma.author.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AuthorCreateManyAndReturnArgs>(args?: SelectSubset<T, AuthorCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a Author.
+     * @param {AuthorDeleteArgs} args - Arguments to delete one Author.
+     * @example
+     * // Delete one Author
+     * const Author = await prisma.author.delete({
+     *   where: {
+     *     // ... filter to delete one Author
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AuthorDeleteArgs>(args: SelectSubset<T, AuthorDeleteArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one Author.
+     * @param {AuthorUpdateArgs} args - Arguments to update one Author.
+     * @example
+     * // Update one Author
+     * const author = await prisma.author.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AuthorUpdateArgs>(args: SelectSubset<T, AuthorUpdateArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more Authors.
+     * @param {AuthorDeleteManyArgs} args - Arguments to filter Authors to delete.
+     * @example
+     * // Delete a few Authors
+     * const { count } = await prisma.author.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AuthorDeleteManyArgs>(args?: SelectSubset<T, AuthorDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Authors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthorUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Authors
+     * const author = await prisma.author.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AuthorUpdateManyArgs>(args: SelectSubset<T, AuthorUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Authors and returns the data updated in the database.
+     * @param {AuthorUpdateManyAndReturnArgs} args - Arguments to update many Authors.
+     * @example
+     * // Update many Authors
+     * const author = await prisma.author.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Authors and only return the `id`
+     * const authorWithIdOnly = await prisma.author.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AuthorUpdateManyAndReturnArgs>(args: SelectSubset<T, AuthorUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one Author.
+     * @param {AuthorUpsertArgs} args - Arguments to update or create a Author.
+     * @example
+     * // Update or create a Author
+     * const author = await prisma.author.upsert({
+     *   create: {
+     *     // ... data to create a Author
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Author we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AuthorUpsertArgs>(args: SelectSubset<T, AuthorUpsertArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of Authors.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthorCountArgs} args - Arguments to filter Authors to count.
+     * @example
+     * // Count the number of Authors
+     * const count = await prisma.author.count({
+     *   where: {
+     *     // ... the filter for the Authors we want to count
+     *   }
+     * })
+    **/
+    count<T extends AuthorCountArgs>(
+      args?: Subset<T, AuthorCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AuthorCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Author.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthorAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AuthorAggregateArgs>(args: Subset<T, AuthorAggregateArgs>): Prisma.PrismaPromise<GetAuthorAggregateType<T>>
+
+    /**
+     * Group by Author.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuthorGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AuthorGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AuthorGroupByArgs['orderBy'] }
+        : { orderBy?: AuthorGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AuthorGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAuthorGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Author model
+   */
+  readonly fields: AuthorFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Author.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AuthorClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    tafseers<T extends Author$tafseersArgs<ExtArgs> = {}>(args?: Subset<T, Author$tafseersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Author model
+   */ 
+  interface AuthorFieldRefs {
+    readonly id: FieldRef<"Author", 'String'>
+    readonly country: FieldRef<"Author", 'String'>
+    readonly userId: FieldRef<"Author", 'String'>
+    readonly createdAt: FieldRef<"Author", 'DateTime'>
+    readonly updatedAt: FieldRef<"Author", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Author findUnique
+   */
+  export type AuthorFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * Filter, which Author to fetch.
+     */
+    where: AuthorWhereUniqueInput
+  }
+
+  /**
+   * Author findUniqueOrThrow
+   */
+  export type AuthorFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * Filter, which Author to fetch.
+     */
+    where: AuthorWhereUniqueInput
+  }
+
+  /**
+   * Author findFirst
+   */
+  export type AuthorFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * Filter, which Author to fetch.
+     */
+    where?: AuthorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Authors to fetch.
+     */
+    orderBy?: AuthorOrderByWithRelationInput | AuthorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Authors.
+     */
+    cursor?: AuthorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Authors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Authors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Authors.
+     */
+    distinct?: AuthorScalarFieldEnum | AuthorScalarFieldEnum[]
+  }
+
+  /**
+   * Author findFirstOrThrow
+   */
+  export type AuthorFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * Filter, which Author to fetch.
+     */
+    where?: AuthorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Authors to fetch.
+     */
+    orderBy?: AuthorOrderByWithRelationInput | AuthorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Authors.
+     */
+    cursor?: AuthorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Authors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Authors.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Authors.
+     */
+    distinct?: AuthorScalarFieldEnum | AuthorScalarFieldEnum[]
+  }
+
+  /**
+   * Author findMany
+   */
+  export type AuthorFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * Filter, which Authors to fetch.
+     */
+    where?: AuthorWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Authors to fetch.
+     */
+    orderBy?: AuthorOrderByWithRelationInput | AuthorOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Authors.
+     */
+    cursor?: AuthorWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Authors from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Authors.
+     */
+    skip?: number
+    distinct?: AuthorScalarFieldEnum | AuthorScalarFieldEnum[]
+  }
+
+  /**
+   * Author create
+   */
+  export type AuthorCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Author.
+     */
+    data: XOR<AuthorCreateInput, AuthorUncheckedCreateInput>
+  }
+
+  /**
+   * Author createMany
+   */
+  export type AuthorCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Authors.
+     */
+    data: AuthorCreateManyInput | AuthorCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Author createManyAndReturn
+   */
+  export type AuthorCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * The data used to create many Authors.
+     */
+    data: AuthorCreateManyInput | AuthorCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Author update
+   */
+  export type AuthorUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Author.
+     */
+    data: XOR<AuthorUpdateInput, AuthorUncheckedUpdateInput>
+    /**
+     * Choose, which Author to update.
+     */
+    where: AuthorWhereUniqueInput
+  }
+
+  /**
+   * Author updateMany
+   */
+  export type AuthorUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Authors.
+     */
+    data: XOR<AuthorUpdateManyMutationInput, AuthorUncheckedUpdateManyInput>
+    /**
+     * Filter which Authors to update
+     */
+    where?: AuthorWhereInput
+    /**
+     * Limit how many Authors to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Author updateManyAndReturn
+   */
+  export type AuthorUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * The data used to update Authors.
+     */
+    data: XOR<AuthorUpdateManyMutationInput, AuthorUncheckedUpdateManyInput>
+    /**
+     * Filter which Authors to update
+     */
+    where?: AuthorWhereInput
+    /**
+     * Limit how many Authors to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Author upsert
+   */
+  export type AuthorUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Author to update in case it exists.
+     */
+    where: AuthorWhereUniqueInput
+    /**
+     * In case the Author found by the `where` argument doesn't exist, create a new Author with this data.
+     */
+    create: XOR<AuthorCreateInput, AuthorUncheckedCreateInput>
+    /**
+     * In case the Author was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AuthorUpdateInput, AuthorUncheckedUpdateInput>
+  }
+
+  /**
+   * Author delete
+   */
+  export type AuthorDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+    /**
+     * Filter which Author to delete.
+     */
+    where: AuthorWhereUniqueInput
+  }
+
+  /**
+   * Author deleteMany
+   */
+  export type AuthorDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Authors to delete
+     */
+    where?: AuthorWhereInput
+    /**
+     * Limit how many Authors to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Author.tafseers
+   */
+  export type Author$tafseersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    where?: TafseerWhereInput
+    orderBy?: TafseerOrderByWithRelationInput | TafseerOrderByWithRelationInput[]
+    cursor?: TafseerWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TafseerScalarFieldEnum | TafseerScalarFieldEnum[]
+  }
+
+  /**
+   * Author without action
+   */
+  export type AuthorDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Author
+     */
+    select?: AuthorSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Author
+     */
+    omit?: AuthorOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuthorInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Surah
+   */
+
+  export type AggregateSurah = {
+    _count: SurahCountAggregateOutputType | null
+    _avg: SurahAvgAggregateOutputType | null
+    _sum: SurahSumAggregateOutputType | null
+    _min: SurahMinAggregateOutputType | null
+    _max: SurahMaxAggregateOutputType | null
+  }
+
+  export type SurahAvgAggregateOutputType = {
+    number: number | null
+    totalAyahs: number | null
+  }
+
+  export type SurahSumAggregateOutputType = {
+    number: number | null
+    totalAyahs: number | null
+  }
+
+  export type SurahMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    arabicName: string | null
+    number: number | null
+    totalAyahs: number | null
+    revelationType: $Enums.SurahRevelationType | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SurahMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    arabicName: string | null
+    number: number | null
+    totalAyahs: number | null
+    revelationType: $Enums.SurahRevelationType | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type SurahCountAggregateOutputType = {
+    id: number
+    name: number
+    arabicName: number
+    number: number
+    totalAyahs: number
+    revelationType: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type SurahAvgAggregateInputType = {
+    number?: true
+    totalAyahs?: true
+  }
+
+  export type SurahSumAggregateInputType = {
+    number?: true
+    totalAyahs?: true
+  }
+
+  export type SurahMinAggregateInputType = {
+    id?: true
+    name?: true
+    arabicName?: true
+    number?: true
+    totalAyahs?: true
+    revelationType?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SurahMaxAggregateInputType = {
+    id?: true
+    name?: true
+    arabicName?: true
+    number?: true
+    totalAyahs?: true
+    revelationType?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type SurahCountAggregateInputType = {
+    id?: true
+    name?: true
+    arabicName?: true
+    number?: true
+    totalAyahs?: true
+    revelationType?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type SurahAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Surah to aggregate.
+     */
+    where?: SurahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Surahs to fetch.
+     */
+    orderBy?: SurahOrderByWithRelationInput | SurahOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: SurahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Surahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Surahs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Surahs
+    **/
+    _count?: true | SurahCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: SurahAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: SurahSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: SurahMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: SurahMaxAggregateInputType
+  }
+
+  export type GetSurahAggregateType<T extends SurahAggregateArgs> = {
+        [P in keyof T & keyof AggregateSurah]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateSurah[P]>
+      : GetScalarType<T[P], AggregateSurah[P]>
+  }
+
+
+
+
+  export type SurahGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SurahWhereInput
+    orderBy?: SurahOrderByWithAggregationInput | SurahOrderByWithAggregationInput[]
+    by: SurahScalarFieldEnum[] | SurahScalarFieldEnum
+    having?: SurahScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: SurahCountAggregateInputType | true
+    _avg?: SurahAvgAggregateInputType
+    _sum?: SurahSumAggregateInputType
+    _min?: SurahMinAggregateInputType
+    _max?: SurahMaxAggregateInputType
+  }
+
+  export type SurahGroupByOutputType = {
+    id: string
+    name: string
+    arabicName: string
+    number: number
+    totalAyahs: number
+    revelationType: $Enums.SurahRevelationType
+    createdAt: Date
+    updatedAt: Date
+    _count: SurahCountAggregateOutputType | null
+    _avg: SurahAvgAggregateOutputType | null
+    _sum: SurahSumAggregateOutputType | null
+    _min: SurahMinAggregateOutputType | null
+    _max: SurahMaxAggregateOutputType | null
+  }
+
+  type GetSurahGroupByPayload<T extends SurahGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<SurahGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof SurahGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], SurahGroupByOutputType[P]>
+            : GetScalarType<T[P], SurahGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type SurahSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    arabicName?: boolean
+    number?: boolean
+    totalAyahs?: boolean
+    revelationType?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    ayahs?: boolean | Surah$ayahsArgs<ExtArgs>
+    _count?: boolean | SurahCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["surah"]>
+
+  export type SurahSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    arabicName?: boolean
+    number?: boolean
+    totalAyahs?: boolean
+    revelationType?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["surah"]>
+
+  export type SurahSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    arabicName?: boolean
+    number?: boolean
+    totalAyahs?: boolean
+    revelationType?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }, ExtArgs["result"]["surah"]>
+
+  export type SurahSelectScalar = {
+    id?: boolean
+    name?: boolean
+    arabicName?: boolean
+    number?: boolean
+    totalAyahs?: boolean
+    revelationType?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type SurahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "arabicName" | "number" | "totalAyahs" | "revelationType" | "createdAt" | "updatedAt", ExtArgs["result"]["surah"]>
+  export type SurahInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ayahs?: boolean | Surah$ayahsArgs<ExtArgs>
+    _count?: boolean | SurahCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type SurahIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type SurahIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+
+  export type $SurahPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Surah"
+    objects: {
+      ayahs: Prisma.$AyahPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      arabicName: string
+      number: number
+      totalAyahs: number
+      revelationType: $Enums.SurahRevelationType
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["surah"]>
+    composites: {}
+  }
+
+  type SurahGetPayload<S extends boolean | null | undefined | SurahDefaultArgs> = $Result.GetResult<Prisma.$SurahPayload, S>
+
+  type SurahCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<SurahFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: SurahCountAggregateInputType | true
+    }
+
+  export interface SurahDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Surah'], meta: { name: 'Surah' } }
+    /**
+     * Find zero or one Surah that matches the filter.
+     * @param {SurahFindUniqueArgs} args - Arguments to find a Surah
+     * @example
+     * // Get one Surah
+     * const surah = await prisma.surah.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends SurahFindUniqueArgs>(args: SelectSubset<T, SurahFindUniqueArgs<ExtArgs>>): Prisma__SurahClient<$Result.GetResult<Prisma.$SurahPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one Surah that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {SurahFindUniqueOrThrowArgs} args - Arguments to find a Surah
+     * @example
+     * // Get one Surah
+     * const surah = await prisma.surah.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends SurahFindUniqueOrThrowArgs>(args: SelectSubset<T, SurahFindUniqueOrThrowArgs<ExtArgs>>): Prisma__SurahClient<$Result.GetResult<Prisma.$SurahPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Surah that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurahFindFirstArgs} args - Arguments to find a Surah
+     * @example
+     * // Get one Surah
+     * const surah = await prisma.surah.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends SurahFindFirstArgs>(args?: SelectSubset<T, SurahFindFirstArgs<ExtArgs>>): Prisma__SurahClient<$Result.GetResult<Prisma.$SurahPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Surah that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurahFindFirstOrThrowArgs} args - Arguments to find a Surah
+     * @example
+     * // Get one Surah
+     * const surah = await prisma.surah.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends SurahFindFirstOrThrowArgs>(args?: SelectSubset<T, SurahFindFirstOrThrowArgs<ExtArgs>>): Prisma__SurahClient<$Result.GetResult<Prisma.$SurahPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more Surahs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurahFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Surahs
+     * const surahs = await prisma.surah.findMany()
+     * 
+     * // Get first 10 Surahs
+     * const surahs = await prisma.surah.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const surahWithIdOnly = await prisma.surah.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends SurahFindManyArgs>(args?: SelectSubset<T, SurahFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurahPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a Surah.
+     * @param {SurahCreateArgs} args - Arguments to create a Surah.
+     * @example
+     * // Create one Surah
+     * const Surah = await prisma.surah.create({
+     *   data: {
+     *     // ... data to create a Surah
+     *   }
+     * })
+     * 
+     */
+    create<T extends SurahCreateArgs>(args: SelectSubset<T, SurahCreateArgs<ExtArgs>>): Prisma__SurahClient<$Result.GetResult<Prisma.$SurahPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many Surahs.
+     * @param {SurahCreateManyArgs} args - Arguments to create many Surahs.
+     * @example
+     * // Create many Surahs
+     * const surah = await prisma.surah.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends SurahCreateManyArgs>(args?: SelectSubset<T, SurahCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Surahs and returns the data saved in the database.
+     * @param {SurahCreateManyAndReturnArgs} args - Arguments to create many Surahs.
+     * @example
+     * // Create many Surahs
+     * const surah = await prisma.surah.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Surahs and only return the `id`
+     * const surahWithIdOnly = await prisma.surah.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends SurahCreateManyAndReturnArgs>(args?: SelectSubset<T, SurahCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurahPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a Surah.
+     * @param {SurahDeleteArgs} args - Arguments to delete one Surah.
+     * @example
+     * // Delete one Surah
+     * const Surah = await prisma.surah.delete({
+     *   where: {
+     *     // ... filter to delete one Surah
+     *   }
+     * })
+     * 
+     */
+    delete<T extends SurahDeleteArgs>(args: SelectSubset<T, SurahDeleteArgs<ExtArgs>>): Prisma__SurahClient<$Result.GetResult<Prisma.$SurahPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one Surah.
+     * @param {SurahUpdateArgs} args - Arguments to update one Surah.
+     * @example
+     * // Update one Surah
+     * const surah = await prisma.surah.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends SurahUpdateArgs>(args: SelectSubset<T, SurahUpdateArgs<ExtArgs>>): Prisma__SurahClient<$Result.GetResult<Prisma.$SurahPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more Surahs.
+     * @param {SurahDeleteManyArgs} args - Arguments to filter Surahs to delete.
+     * @example
+     * // Delete a few Surahs
+     * const { count } = await prisma.surah.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends SurahDeleteManyArgs>(args?: SelectSubset<T, SurahDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Surahs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurahUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Surahs
+     * const surah = await prisma.surah.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends SurahUpdateManyArgs>(args: SelectSubset<T, SurahUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Surahs and returns the data updated in the database.
+     * @param {SurahUpdateManyAndReturnArgs} args - Arguments to update many Surahs.
+     * @example
+     * // Update many Surahs
+     * const surah = await prisma.surah.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Surahs and only return the `id`
+     * const surahWithIdOnly = await prisma.surah.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends SurahUpdateManyAndReturnArgs>(args: SelectSubset<T, SurahUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurahPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one Surah.
+     * @param {SurahUpsertArgs} args - Arguments to update or create a Surah.
+     * @example
+     * // Update or create a Surah
+     * const surah = await prisma.surah.upsert({
+     *   create: {
+     *     // ... data to create a Surah
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Surah we want to update
+     *   }
+     * })
+     */
+    upsert<T extends SurahUpsertArgs>(args: SelectSubset<T, SurahUpsertArgs<ExtArgs>>): Prisma__SurahClient<$Result.GetResult<Prisma.$SurahPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of Surahs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurahCountArgs} args - Arguments to filter Surahs to count.
+     * @example
+     * // Count the number of Surahs
+     * const count = await prisma.surah.count({
+     *   where: {
+     *     // ... the filter for the Surahs we want to count
+     *   }
+     * })
+    **/
+    count<T extends SurahCountArgs>(
+      args?: Subset<T, SurahCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], SurahCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Surah.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurahAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends SurahAggregateArgs>(args: Subset<T, SurahAggregateArgs>): Prisma.PrismaPromise<GetSurahAggregateType<T>>
+
+    /**
+     * Group by Surah.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {SurahGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends SurahGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: SurahGroupByArgs['orderBy'] }
+        : { orderBy?: SurahGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, SurahGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetSurahGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Surah model
+   */
+  readonly fields: SurahFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Surah.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__SurahClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ayahs<T extends Surah$ayahsArgs<ExtArgs> = {}>(args?: Subset<T, Surah$ayahsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AyahPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Surah model
+   */ 
+  interface SurahFieldRefs {
+    readonly id: FieldRef<"Surah", 'String'>
+    readonly name: FieldRef<"Surah", 'String'>
+    readonly arabicName: FieldRef<"Surah", 'String'>
+    readonly number: FieldRef<"Surah", 'Int'>
+    readonly totalAyahs: FieldRef<"Surah", 'Int'>
+    readonly revelationType: FieldRef<"Surah", 'SurahRevelationType'>
+    readonly createdAt: FieldRef<"Surah", 'DateTime'>
+    readonly updatedAt: FieldRef<"Surah", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Surah findUnique
+   */
+  export type SurahFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Surah
+     */
+    select?: SurahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Surah
+     */
+    omit?: SurahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurahInclude<ExtArgs> | null
+    /**
+     * Filter, which Surah to fetch.
+     */
+    where: SurahWhereUniqueInput
+  }
+
+  /**
+   * Surah findUniqueOrThrow
+   */
+  export type SurahFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Surah
+     */
+    select?: SurahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Surah
+     */
+    omit?: SurahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurahInclude<ExtArgs> | null
+    /**
+     * Filter, which Surah to fetch.
+     */
+    where: SurahWhereUniqueInput
+  }
+
+  /**
+   * Surah findFirst
+   */
+  export type SurahFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Surah
+     */
+    select?: SurahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Surah
+     */
+    omit?: SurahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurahInclude<ExtArgs> | null
+    /**
+     * Filter, which Surah to fetch.
+     */
+    where?: SurahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Surahs to fetch.
+     */
+    orderBy?: SurahOrderByWithRelationInput | SurahOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Surahs.
+     */
+    cursor?: SurahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Surahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Surahs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Surahs.
+     */
+    distinct?: SurahScalarFieldEnum | SurahScalarFieldEnum[]
+  }
+
+  /**
+   * Surah findFirstOrThrow
+   */
+  export type SurahFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Surah
+     */
+    select?: SurahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Surah
+     */
+    omit?: SurahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurahInclude<ExtArgs> | null
+    /**
+     * Filter, which Surah to fetch.
+     */
+    where?: SurahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Surahs to fetch.
+     */
+    orderBy?: SurahOrderByWithRelationInput | SurahOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Surahs.
+     */
+    cursor?: SurahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Surahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Surahs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Surahs.
+     */
+    distinct?: SurahScalarFieldEnum | SurahScalarFieldEnum[]
+  }
+
+  /**
+   * Surah findMany
+   */
+  export type SurahFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Surah
+     */
+    select?: SurahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Surah
+     */
+    omit?: SurahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurahInclude<ExtArgs> | null
+    /**
+     * Filter, which Surahs to fetch.
+     */
+    where?: SurahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Surahs to fetch.
+     */
+    orderBy?: SurahOrderByWithRelationInput | SurahOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Surahs.
+     */
+    cursor?: SurahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Surahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Surahs.
+     */
+    skip?: number
+    distinct?: SurahScalarFieldEnum | SurahScalarFieldEnum[]
+  }
+
+  /**
+   * Surah create
+   */
+  export type SurahCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Surah
+     */
+    select?: SurahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Surah
+     */
+    omit?: SurahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurahInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Surah.
+     */
+    data: XOR<SurahCreateInput, SurahUncheckedCreateInput>
+  }
+
+  /**
+   * Surah createMany
+   */
+  export type SurahCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Surahs.
+     */
+    data: SurahCreateManyInput | SurahCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Surah createManyAndReturn
+   */
+  export type SurahCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Surah
+     */
+    select?: SurahSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Surah
+     */
+    omit?: SurahOmit<ExtArgs> | null
+    /**
+     * The data used to create many Surahs.
+     */
+    data: SurahCreateManyInput | SurahCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Surah update
+   */
+  export type SurahUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Surah
+     */
+    select?: SurahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Surah
+     */
+    omit?: SurahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurahInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Surah.
+     */
+    data: XOR<SurahUpdateInput, SurahUncheckedUpdateInput>
+    /**
+     * Choose, which Surah to update.
+     */
+    where: SurahWhereUniqueInput
+  }
+
+  /**
+   * Surah updateMany
+   */
+  export type SurahUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Surahs.
+     */
+    data: XOR<SurahUpdateManyMutationInput, SurahUncheckedUpdateManyInput>
+    /**
+     * Filter which Surahs to update
+     */
+    where?: SurahWhereInput
+    /**
+     * Limit how many Surahs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Surah updateManyAndReturn
+   */
+  export type SurahUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Surah
+     */
+    select?: SurahSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Surah
+     */
+    omit?: SurahOmit<ExtArgs> | null
+    /**
+     * The data used to update Surahs.
+     */
+    data: XOR<SurahUpdateManyMutationInput, SurahUncheckedUpdateManyInput>
+    /**
+     * Filter which Surahs to update
+     */
+    where?: SurahWhereInput
+    /**
+     * Limit how many Surahs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Surah upsert
+   */
+  export type SurahUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Surah
+     */
+    select?: SurahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Surah
+     */
+    omit?: SurahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurahInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Surah to update in case it exists.
+     */
+    where: SurahWhereUniqueInput
+    /**
+     * In case the Surah found by the `where` argument doesn't exist, create a new Surah with this data.
+     */
+    create: XOR<SurahCreateInput, SurahUncheckedCreateInput>
+    /**
+     * In case the Surah was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<SurahUpdateInput, SurahUncheckedUpdateInput>
+  }
+
+  /**
+   * Surah delete
+   */
+  export type SurahDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Surah
+     */
+    select?: SurahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Surah
+     */
+    omit?: SurahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurahInclude<ExtArgs> | null
+    /**
+     * Filter which Surah to delete.
+     */
+    where: SurahWhereUniqueInput
+  }
+
+  /**
+   * Surah deleteMany
+   */
+  export type SurahDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Surahs to delete
+     */
+    where?: SurahWhereInput
+    /**
+     * Limit how many Surahs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Surah.ayahs
+   */
+  export type Surah$ayahsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ayah
+     */
+    select?: AyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ayah
+     */
+    omit?: AyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AyahInclude<ExtArgs> | null
+    where?: AyahWhereInput
+    orderBy?: AyahOrderByWithRelationInput | AyahOrderByWithRelationInput[]
+    cursor?: AyahWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AyahScalarFieldEnum | AyahScalarFieldEnum[]
+  }
+
+  /**
+   * Surah without action
+   */
+  export type SurahDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Surah
+     */
+    select?: SurahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Surah
+     */
+    omit?: SurahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurahInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Ayah
+   */
+
+  export type AggregateAyah = {
+    _count: AyahCountAggregateOutputType | null
+    _avg: AyahAvgAggregateOutputType | null
+    _sum: AyahSumAggregateOutputType | null
+    _min: AyahMinAggregateOutputType | null
+    _max: AyahMaxAggregateOutputType | null
+  }
+
+  export type AyahAvgAggregateOutputType = {
+    number: number | null
+  }
+
+  export type AyahSumAggregateOutputType = {
+    number: number | null
+  }
+
+  export type AyahMinAggregateOutputType = {
+    id: string | null
+    number: number | null
+    arabicText: string | null
+    uzbekText: string | null
+    surahId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AyahMaxAggregateOutputType = {
+    id: string | null
+    number: number | null
+    arabicText: string | null
+    uzbekText: string | null
+    surahId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type AyahCountAggregateOutputType = {
+    id: number
+    number: number
+    arabicText: number
+    uzbekText: number
+    surahId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type AyahAvgAggregateInputType = {
+    number?: true
+  }
+
+  export type AyahSumAggregateInputType = {
+    number?: true
+  }
+
+  export type AyahMinAggregateInputType = {
+    id?: true
+    number?: true
+    arabicText?: true
+    uzbekText?: true
+    surahId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AyahMaxAggregateInputType = {
+    id?: true
+    number?: true
+    arabicText?: true
+    uzbekText?: true
+    surahId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type AyahCountAggregateInputType = {
+    id?: true
+    number?: true
+    arabicText?: true
+    uzbekText?: true
+    surahId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type AyahAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Ayah to aggregate.
+     */
+    where?: AyahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Ayahs to fetch.
+     */
+    orderBy?: AyahOrderByWithRelationInput | AyahOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AyahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Ayahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Ayahs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Ayahs
+    **/
+    _count?: true | AyahCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AyahAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AyahSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AyahMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AyahMaxAggregateInputType
+  }
+
+  export type GetAyahAggregateType<T extends AyahAggregateArgs> = {
+        [P in keyof T & keyof AggregateAyah]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAyah[P]>
+      : GetScalarType<T[P], AggregateAyah[P]>
+  }
+
+
+
+
+  export type AyahGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AyahWhereInput
+    orderBy?: AyahOrderByWithAggregationInput | AyahOrderByWithAggregationInput[]
+    by: AyahScalarFieldEnum[] | AyahScalarFieldEnum
+    having?: AyahScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AyahCountAggregateInputType | true
+    _avg?: AyahAvgAggregateInputType
+    _sum?: AyahSumAggregateInputType
+    _min?: AyahMinAggregateInputType
+    _max?: AyahMaxAggregateInputType
+  }
+
+  export type AyahGroupByOutputType = {
+    id: string
+    number: number
+    arabicText: string
+    uzbekText: string
+    surahId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: AyahCountAggregateOutputType | null
+    _avg: AyahAvgAggregateOutputType | null
+    _sum: AyahSumAggregateOutputType | null
+    _min: AyahMinAggregateOutputType | null
+    _max: AyahMaxAggregateOutputType | null
+  }
+
+  type GetAyahGroupByPayload<T extends AyahGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AyahGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AyahGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AyahGroupByOutputType[P]>
+            : GetScalarType<T[P], AyahGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AyahSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    number?: boolean
+    arabicText?: boolean
+    uzbekText?: boolean
+    surahId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    surah?: boolean | SurahDefaultArgs<ExtArgs>
+    tafseers?: boolean | Ayah$tafseersArgs<ExtArgs>
+    _count?: boolean | AyahCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["ayah"]>
+
+  export type AyahSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    number?: boolean
+    arabicText?: boolean
+    uzbekText?: boolean
+    surahId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    surah?: boolean | SurahDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["ayah"]>
+
+  export type AyahSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    number?: boolean
+    arabicText?: boolean
+    uzbekText?: boolean
+    surahId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    surah?: boolean | SurahDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["ayah"]>
+
+  export type AyahSelectScalar = {
+    id?: boolean
+    number?: boolean
+    arabicText?: boolean
+    uzbekText?: boolean
+    surahId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type AyahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "number" | "arabicText" | "uzbekText" | "surahId" | "createdAt" | "updatedAt", ExtArgs["result"]["ayah"]>
+  export type AyahInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    surah?: boolean | SurahDefaultArgs<ExtArgs>
+    tafseers?: boolean | Ayah$tafseersArgs<ExtArgs>
+    _count?: boolean | AyahCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type AyahIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    surah?: boolean | SurahDefaultArgs<ExtArgs>
+  }
+  export type AyahIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    surah?: boolean | SurahDefaultArgs<ExtArgs>
+  }
+
+  export type $AyahPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Ayah"
+    objects: {
+      surah: Prisma.$SurahPayload<ExtArgs>
+      tafseers: Prisma.$TafseerAyahPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      number: number
+      arabicText: string
+      uzbekText: string
+      surahId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["ayah"]>
+    composites: {}
+  }
+
+  type AyahGetPayload<S extends boolean | null | undefined | AyahDefaultArgs> = $Result.GetResult<Prisma.$AyahPayload, S>
+
+  type AyahCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AyahFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AyahCountAggregateInputType | true
+    }
+
+  export interface AyahDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Ayah'], meta: { name: 'Ayah' } }
+    /**
+     * Find zero or one Ayah that matches the filter.
+     * @param {AyahFindUniqueArgs} args - Arguments to find a Ayah
+     * @example
+     * // Get one Ayah
+     * const ayah = await prisma.ayah.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AyahFindUniqueArgs>(args: SelectSubset<T, AyahFindUniqueArgs<ExtArgs>>): Prisma__AyahClient<$Result.GetResult<Prisma.$AyahPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one Ayah that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AyahFindUniqueOrThrowArgs} args - Arguments to find a Ayah
+     * @example
+     * // Get one Ayah
+     * const ayah = await prisma.ayah.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AyahFindUniqueOrThrowArgs>(args: SelectSubset<T, AyahFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AyahClient<$Result.GetResult<Prisma.$AyahPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Ayah that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AyahFindFirstArgs} args - Arguments to find a Ayah
+     * @example
+     * // Get one Ayah
+     * const ayah = await prisma.ayah.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AyahFindFirstArgs>(args?: SelectSubset<T, AyahFindFirstArgs<ExtArgs>>): Prisma__AyahClient<$Result.GetResult<Prisma.$AyahPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Ayah that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AyahFindFirstOrThrowArgs} args - Arguments to find a Ayah
+     * @example
+     * // Get one Ayah
+     * const ayah = await prisma.ayah.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AyahFindFirstOrThrowArgs>(args?: SelectSubset<T, AyahFindFirstOrThrowArgs<ExtArgs>>): Prisma__AyahClient<$Result.GetResult<Prisma.$AyahPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more Ayahs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AyahFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Ayahs
+     * const ayahs = await prisma.ayah.findMany()
+     * 
+     * // Get first 10 Ayahs
+     * const ayahs = await prisma.ayah.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const ayahWithIdOnly = await prisma.ayah.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AyahFindManyArgs>(args?: SelectSubset<T, AyahFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AyahPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a Ayah.
+     * @param {AyahCreateArgs} args - Arguments to create a Ayah.
+     * @example
+     * // Create one Ayah
+     * const Ayah = await prisma.ayah.create({
+     *   data: {
+     *     // ... data to create a Ayah
+     *   }
+     * })
+     * 
+     */
+    create<T extends AyahCreateArgs>(args: SelectSubset<T, AyahCreateArgs<ExtArgs>>): Prisma__AyahClient<$Result.GetResult<Prisma.$AyahPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many Ayahs.
+     * @param {AyahCreateManyArgs} args - Arguments to create many Ayahs.
+     * @example
+     * // Create many Ayahs
+     * const ayah = await prisma.ayah.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AyahCreateManyArgs>(args?: SelectSubset<T, AyahCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Ayahs and returns the data saved in the database.
+     * @param {AyahCreateManyAndReturnArgs} args - Arguments to create many Ayahs.
+     * @example
+     * // Create many Ayahs
+     * const ayah = await prisma.ayah.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Ayahs and only return the `id`
+     * const ayahWithIdOnly = await prisma.ayah.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AyahCreateManyAndReturnArgs>(args?: SelectSubset<T, AyahCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AyahPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a Ayah.
+     * @param {AyahDeleteArgs} args - Arguments to delete one Ayah.
+     * @example
+     * // Delete one Ayah
+     * const Ayah = await prisma.ayah.delete({
+     *   where: {
+     *     // ... filter to delete one Ayah
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AyahDeleteArgs>(args: SelectSubset<T, AyahDeleteArgs<ExtArgs>>): Prisma__AyahClient<$Result.GetResult<Prisma.$AyahPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one Ayah.
+     * @param {AyahUpdateArgs} args - Arguments to update one Ayah.
+     * @example
+     * // Update one Ayah
+     * const ayah = await prisma.ayah.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AyahUpdateArgs>(args: SelectSubset<T, AyahUpdateArgs<ExtArgs>>): Prisma__AyahClient<$Result.GetResult<Prisma.$AyahPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more Ayahs.
+     * @param {AyahDeleteManyArgs} args - Arguments to filter Ayahs to delete.
+     * @example
+     * // Delete a few Ayahs
+     * const { count } = await prisma.ayah.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AyahDeleteManyArgs>(args?: SelectSubset<T, AyahDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Ayahs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AyahUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Ayahs
+     * const ayah = await prisma.ayah.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AyahUpdateManyArgs>(args: SelectSubset<T, AyahUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Ayahs and returns the data updated in the database.
+     * @param {AyahUpdateManyAndReturnArgs} args - Arguments to update many Ayahs.
+     * @example
+     * // Update many Ayahs
+     * const ayah = await prisma.ayah.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Ayahs and only return the `id`
+     * const ayahWithIdOnly = await prisma.ayah.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AyahUpdateManyAndReturnArgs>(args: SelectSubset<T, AyahUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AyahPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one Ayah.
+     * @param {AyahUpsertArgs} args - Arguments to update or create a Ayah.
+     * @example
+     * // Update or create a Ayah
+     * const ayah = await prisma.ayah.upsert({
+     *   create: {
+     *     // ... data to create a Ayah
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Ayah we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AyahUpsertArgs>(args: SelectSubset<T, AyahUpsertArgs<ExtArgs>>): Prisma__AyahClient<$Result.GetResult<Prisma.$AyahPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of Ayahs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AyahCountArgs} args - Arguments to filter Ayahs to count.
+     * @example
+     * // Count the number of Ayahs
+     * const count = await prisma.ayah.count({
+     *   where: {
+     *     // ... the filter for the Ayahs we want to count
+     *   }
+     * })
+    **/
+    count<T extends AyahCountArgs>(
+      args?: Subset<T, AyahCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AyahCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Ayah.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AyahAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AyahAggregateArgs>(args: Subset<T, AyahAggregateArgs>): Prisma.PrismaPromise<GetAyahAggregateType<T>>
+
+    /**
+     * Group by Ayah.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AyahGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AyahGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AyahGroupByArgs['orderBy'] }
+        : { orderBy?: AyahGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AyahGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAyahGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Ayah model
+   */
+  readonly fields: AyahFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Ayah.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AyahClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    surah<T extends SurahDefaultArgs<ExtArgs> = {}>(args?: Subset<T, SurahDefaultArgs<ExtArgs>>): Prisma__SurahClient<$Result.GetResult<Prisma.$SurahPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    tafseers<T extends Ayah$tafseersArgs<ExtArgs> = {}>(args?: Subset<T, Ayah$tafseersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerAyahPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Ayah model
+   */ 
+  interface AyahFieldRefs {
+    readonly id: FieldRef<"Ayah", 'String'>
+    readonly number: FieldRef<"Ayah", 'Int'>
+    readonly arabicText: FieldRef<"Ayah", 'String'>
+    readonly uzbekText: FieldRef<"Ayah", 'String'>
+    readonly surahId: FieldRef<"Ayah", 'String'>
+    readonly createdAt: FieldRef<"Ayah", 'DateTime'>
+    readonly updatedAt: FieldRef<"Ayah", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Ayah findUnique
+   */
+  export type AyahFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ayah
+     */
+    select?: AyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ayah
+     */
+    omit?: AyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AyahInclude<ExtArgs> | null
+    /**
+     * Filter, which Ayah to fetch.
+     */
+    where: AyahWhereUniqueInput
+  }
+
+  /**
+   * Ayah findUniqueOrThrow
+   */
+  export type AyahFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ayah
+     */
+    select?: AyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ayah
+     */
+    omit?: AyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AyahInclude<ExtArgs> | null
+    /**
+     * Filter, which Ayah to fetch.
+     */
+    where: AyahWhereUniqueInput
+  }
+
+  /**
+   * Ayah findFirst
+   */
+  export type AyahFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ayah
+     */
+    select?: AyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ayah
+     */
+    omit?: AyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AyahInclude<ExtArgs> | null
+    /**
+     * Filter, which Ayah to fetch.
+     */
+    where?: AyahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Ayahs to fetch.
+     */
+    orderBy?: AyahOrderByWithRelationInput | AyahOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Ayahs.
+     */
+    cursor?: AyahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Ayahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Ayahs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Ayahs.
+     */
+    distinct?: AyahScalarFieldEnum | AyahScalarFieldEnum[]
+  }
+
+  /**
+   * Ayah findFirstOrThrow
+   */
+  export type AyahFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ayah
+     */
+    select?: AyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ayah
+     */
+    omit?: AyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AyahInclude<ExtArgs> | null
+    /**
+     * Filter, which Ayah to fetch.
+     */
+    where?: AyahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Ayahs to fetch.
+     */
+    orderBy?: AyahOrderByWithRelationInput | AyahOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Ayahs.
+     */
+    cursor?: AyahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Ayahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Ayahs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Ayahs.
+     */
+    distinct?: AyahScalarFieldEnum | AyahScalarFieldEnum[]
+  }
+
+  /**
+   * Ayah findMany
+   */
+  export type AyahFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ayah
+     */
+    select?: AyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ayah
+     */
+    omit?: AyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AyahInclude<ExtArgs> | null
+    /**
+     * Filter, which Ayahs to fetch.
+     */
+    where?: AyahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Ayahs to fetch.
+     */
+    orderBy?: AyahOrderByWithRelationInput | AyahOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Ayahs.
+     */
+    cursor?: AyahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Ayahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Ayahs.
+     */
+    skip?: number
+    distinct?: AyahScalarFieldEnum | AyahScalarFieldEnum[]
+  }
+
+  /**
+   * Ayah create
+   */
+  export type AyahCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ayah
+     */
+    select?: AyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ayah
+     */
+    omit?: AyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AyahInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Ayah.
+     */
+    data: XOR<AyahCreateInput, AyahUncheckedCreateInput>
+  }
+
+  /**
+   * Ayah createMany
+   */
+  export type AyahCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Ayahs.
+     */
+    data: AyahCreateManyInput | AyahCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Ayah createManyAndReturn
+   */
+  export type AyahCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ayah
+     */
+    select?: AyahSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ayah
+     */
+    omit?: AyahOmit<ExtArgs> | null
+    /**
+     * The data used to create many Ayahs.
+     */
+    data: AyahCreateManyInput | AyahCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AyahIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Ayah update
+   */
+  export type AyahUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ayah
+     */
+    select?: AyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ayah
+     */
+    omit?: AyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AyahInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Ayah.
+     */
+    data: XOR<AyahUpdateInput, AyahUncheckedUpdateInput>
+    /**
+     * Choose, which Ayah to update.
+     */
+    where: AyahWhereUniqueInput
+  }
+
+  /**
+   * Ayah updateMany
+   */
+  export type AyahUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Ayahs.
+     */
+    data: XOR<AyahUpdateManyMutationInput, AyahUncheckedUpdateManyInput>
+    /**
+     * Filter which Ayahs to update
+     */
+    where?: AyahWhereInput
+    /**
+     * Limit how many Ayahs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Ayah updateManyAndReturn
+   */
+  export type AyahUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ayah
+     */
+    select?: AyahSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ayah
+     */
+    omit?: AyahOmit<ExtArgs> | null
+    /**
+     * The data used to update Ayahs.
+     */
+    data: XOR<AyahUpdateManyMutationInput, AyahUncheckedUpdateManyInput>
+    /**
+     * Filter which Ayahs to update
+     */
+    where?: AyahWhereInput
+    /**
+     * Limit how many Ayahs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AyahIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Ayah upsert
+   */
+  export type AyahUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ayah
+     */
+    select?: AyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ayah
+     */
+    omit?: AyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AyahInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Ayah to update in case it exists.
+     */
+    where: AyahWhereUniqueInput
+    /**
+     * In case the Ayah found by the `where` argument doesn't exist, create a new Ayah with this data.
+     */
+    create: XOR<AyahCreateInput, AyahUncheckedCreateInput>
+    /**
+     * In case the Ayah was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AyahUpdateInput, AyahUncheckedUpdateInput>
+  }
+
+  /**
+   * Ayah delete
+   */
+  export type AyahDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ayah
+     */
+    select?: AyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ayah
+     */
+    omit?: AyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AyahInclude<ExtArgs> | null
+    /**
+     * Filter which Ayah to delete.
+     */
+    where: AyahWhereUniqueInput
+  }
+
+  /**
+   * Ayah deleteMany
+   */
+  export type AyahDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Ayahs to delete
+     */
+    where?: AyahWhereInput
+    /**
+     * Limit how many Ayahs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Ayah.tafseers
+   */
+  export type Ayah$tafseersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerAyah
+     */
+    select?: TafseerAyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TafseerAyah
+     */
+    omit?: TafseerAyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerAyahInclude<ExtArgs> | null
+    where?: TafseerAyahWhereInput
+    orderBy?: TafseerAyahOrderByWithRelationInput | TafseerAyahOrderByWithRelationInput[]
+    cursor?: TafseerAyahWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TafseerAyahScalarFieldEnum | TafseerAyahScalarFieldEnum[]
+  }
+
+  /**
+   * Ayah without action
+   */
+  export type AyahDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Ayah
+     */
+    select?: AyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Ayah
+     */
+    omit?: AyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AyahInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model TafseerAyah
+   */
+
+  export type AggregateTafseerAyah = {
+    _count: TafseerAyahCountAggregateOutputType | null
+    _min: TafseerAyahMinAggregateOutputType | null
+    _max: TafseerAyahMaxAggregateOutputType | null
+  }
+
+  export type TafseerAyahMinAggregateOutputType = {
+    id: string | null
+    text: string | null
+    ayahId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    tafseerId: string | null
+  }
+
+  export type TafseerAyahMaxAggregateOutputType = {
+    id: string | null
+    text: string | null
+    ayahId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+    tafseerId: string | null
+  }
+
+  export type TafseerAyahCountAggregateOutputType = {
+    id: number
+    text: number
+    ayahId: number
+    createdAt: number
+    updatedAt: number
+    tafseerId: number
+    _all: number
+  }
+
+
+  export type TafseerAyahMinAggregateInputType = {
+    id?: true
+    text?: true
+    ayahId?: true
+    createdAt?: true
+    updatedAt?: true
+    tafseerId?: true
+  }
+
+  export type TafseerAyahMaxAggregateInputType = {
+    id?: true
+    text?: true
+    ayahId?: true
+    createdAt?: true
+    updatedAt?: true
+    tafseerId?: true
+  }
+
+  export type TafseerAyahCountAggregateInputType = {
+    id?: true
+    text?: true
+    ayahId?: true
+    createdAt?: true
+    updatedAt?: true
+    tafseerId?: true
+    _all?: true
+  }
+
+  export type TafseerAyahAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TafseerAyah to aggregate.
+     */
+    where?: TafseerAyahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TafseerAyahs to fetch.
+     */
+    orderBy?: TafseerAyahOrderByWithRelationInput | TafseerAyahOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TafseerAyahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TafseerAyahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TafseerAyahs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned TafseerAyahs
+    **/
+    _count?: true | TafseerAyahCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TafseerAyahMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TafseerAyahMaxAggregateInputType
+  }
+
+  export type GetTafseerAyahAggregateType<T extends TafseerAyahAggregateArgs> = {
+        [P in keyof T & keyof AggregateTafseerAyah]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTafseerAyah[P]>
+      : GetScalarType<T[P], AggregateTafseerAyah[P]>
+  }
+
+
+
+
+  export type TafseerAyahGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TafseerAyahWhereInput
+    orderBy?: TafseerAyahOrderByWithAggregationInput | TafseerAyahOrderByWithAggregationInput[]
+    by: TafseerAyahScalarFieldEnum[] | TafseerAyahScalarFieldEnum
+    having?: TafseerAyahScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TafseerAyahCountAggregateInputType | true
+    _min?: TafseerAyahMinAggregateInputType
+    _max?: TafseerAyahMaxAggregateInputType
+  }
+
+  export type TafseerAyahGroupByOutputType = {
+    id: string
+    text: string
+    ayahId: string
+    createdAt: Date
+    updatedAt: Date
+    tafseerId: string | null
+    _count: TafseerAyahCountAggregateOutputType | null
+    _min: TafseerAyahMinAggregateOutputType | null
+    _max: TafseerAyahMaxAggregateOutputType | null
+  }
+
+  type GetTafseerAyahGroupByPayload<T extends TafseerAyahGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TafseerAyahGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TafseerAyahGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TafseerAyahGroupByOutputType[P]>
+            : GetScalarType<T[P], TafseerAyahGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TafseerAyahSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    text?: boolean
+    ayahId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tafseerId?: boolean
+    ayah?: boolean | AyahDefaultArgs<ExtArgs>
+    tafseer?: boolean | TafseerAyah$tafseerArgs<ExtArgs>
+  }, ExtArgs["result"]["tafseerAyah"]>
+
+  export type TafseerAyahSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    text?: boolean
+    ayahId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tafseerId?: boolean
+    ayah?: boolean | AyahDefaultArgs<ExtArgs>
+    tafseer?: boolean | TafseerAyah$tafseerArgs<ExtArgs>
+  }, ExtArgs["result"]["tafseerAyah"]>
+
+  export type TafseerAyahSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    text?: boolean
+    ayahId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tafseerId?: boolean
+    ayah?: boolean | AyahDefaultArgs<ExtArgs>
+    tafseer?: boolean | TafseerAyah$tafseerArgs<ExtArgs>
+  }, ExtArgs["result"]["tafseerAyah"]>
+
+  export type TafseerAyahSelectScalar = {
+    id?: boolean
+    text?: boolean
+    ayahId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    tafseerId?: boolean
+  }
+
+  export type TafseerAyahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "text" | "ayahId" | "createdAt" | "updatedAt" | "tafseerId", ExtArgs["result"]["tafseerAyah"]>
+  export type TafseerAyahInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ayah?: boolean | AyahDefaultArgs<ExtArgs>
+    tafseer?: boolean | TafseerAyah$tafseerArgs<ExtArgs>
+  }
+  export type TafseerAyahIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ayah?: boolean | AyahDefaultArgs<ExtArgs>
+    tafseer?: boolean | TafseerAyah$tafseerArgs<ExtArgs>
+  }
+  export type TafseerAyahIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    ayah?: boolean | AyahDefaultArgs<ExtArgs>
+    tafseer?: boolean | TafseerAyah$tafseerArgs<ExtArgs>
+  }
+
+  export type $TafseerAyahPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "TafseerAyah"
+    objects: {
+      ayah: Prisma.$AyahPayload<ExtArgs>
+      tafseer: Prisma.$TafseerPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      text: string
+      ayahId: string
+      createdAt: Date
+      updatedAt: Date
+      tafseerId: string | null
+    }, ExtArgs["result"]["tafseerAyah"]>
+    composites: {}
+  }
+
+  type TafseerAyahGetPayload<S extends boolean | null | undefined | TafseerAyahDefaultArgs> = $Result.GetResult<Prisma.$TafseerAyahPayload, S>
+
+  type TafseerAyahCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TafseerAyahFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TafseerAyahCountAggregateInputType | true
+    }
+
+  export interface TafseerAyahDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['TafseerAyah'], meta: { name: 'TafseerAyah' } }
+    /**
+     * Find zero or one TafseerAyah that matches the filter.
+     * @param {TafseerAyahFindUniqueArgs} args - Arguments to find a TafseerAyah
+     * @example
+     * // Get one TafseerAyah
+     * const tafseerAyah = await prisma.tafseerAyah.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TafseerAyahFindUniqueArgs>(args: SelectSubset<T, TafseerAyahFindUniqueArgs<ExtArgs>>): Prisma__TafseerAyahClient<$Result.GetResult<Prisma.$TafseerAyahPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one TafseerAyah that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TafseerAyahFindUniqueOrThrowArgs} args - Arguments to find a TafseerAyah
+     * @example
+     * // Get one TafseerAyah
+     * const tafseerAyah = await prisma.tafseerAyah.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TafseerAyahFindUniqueOrThrowArgs>(args: SelectSubset<T, TafseerAyahFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TafseerAyahClient<$Result.GetResult<Prisma.$TafseerAyahPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first TafseerAyah that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerAyahFindFirstArgs} args - Arguments to find a TafseerAyah
+     * @example
+     * // Get one TafseerAyah
+     * const tafseerAyah = await prisma.tafseerAyah.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TafseerAyahFindFirstArgs>(args?: SelectSubset<T, TafseerAyahFindFirstArgs<ExtArgs>>): Prisma__TafseerAyahClient<$Result.GetResult<Prisma.$TafseerAyahPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first TafseerAyah that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerAyahFindFirstOrThrowArgs} args - Arguments to find a TafseerAyah
+     * @example
+     * // Get one TafseerAyah
+     * const tafseerAyah = await prisma.tafseerAyah.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TafseerAyahFindFirstOrThrowArgs>(args?: SelectSubset<T, TafseerAyahFindFirstOrThrowArgs<ExtArgs>>): Prisma__TafseerAyahClient<$Result.GetResult<Prisma.$TafseerAyahPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more TafseerAyahs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerAyahFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all TafseerAyahs
+     * const tafseerAyahs = await prisma.tafseerAyah.findMany()
+     * 
+     * // Get first 10 TafseerAyahs
+     * const tafseerAyahs = await prisma.tafseerAyah.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const tafseerAyahWithIdOnly = await prisma.tafseerAyah.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TafseerAyahFindManyArgs>(args?: SelectSubset<T, TafseerAyahFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerAyahPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a TafseerAyah.
+     * @param {TafseerAyahCreateArgs} args - Arguments to create a TafseerAyah.
+     * @example
+     * // Create one TafseerAyah
+     * const TafseerAyah = await prisma.tafseerAyah.create({
+     *   data: {
+     *     // ... data to create a TafseerAyah
+     *   }
+     * })
+     * 
+     */
+    create<T extends TafseerAyahCreateArgs>(args: SelectSubset<T, TafseerAyahCreateArgs<ExtArgs>>): Prisma__TafseerAyahClient<$Result.GetResult<Prisma.$TafseerAyahPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many TafseerAyahs.
+     * @param {TafseerAyahCreateManyArgs} args - Arguments to create many TafseerAyahs.
+     * @example
+     * // Create many TafseerAyahs
+     * const tafseerAyah = await prisma.tafseerAyah.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TafseerAyahCreateManyArgs>(args?: SelectSubset<T, TafseerAyahCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many TafseerAyahs and returns the data saved in the database.
+     * @param {TafseerAyahCreateManyAndReturnArgs} args - Arguments to create many TafseerAyahs.
+     * @example
+     * // Create many TafseerAyahs
+     * const tafseerAyah = await prisma.tafseerAyah.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many TafseerAyahs and only return the `id`
+     * const tafseerAyahWithIdOnly = await prisma.tafseerAyah.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TafseerAyahCreateManyAndReturnArgs>(args?: SelectSubset<T, TafseerAyahCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerAyahPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a TafseerAyah.
+     * @param {TafseerAyahDeleteArgs} args - Arguments to delete one TafseerAyah.
+     * @example
+     * // Delete one TafseerAyah
+     * const TafseerAyah = await prisma.tafseerAyah.delete({
+     *   where: {
+     *     // ... filter to delete one TafseerAyah
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TafseerAyahDeleteArgs>(args: SelectSubset<T, TafseerAyahDeleteArgs<ExtArgs>>): Prisma__TafseerAyahClient<$Result.GetResult<Prisma.$TafseerAyahPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one TafseerAyah.
+     * @param {TafseerAyahUpdateArgs} args - Arguments to update one TafseerAyah.
+     * @example
+     * // Update one TafseerAyah
+     * const tafseerAyah = await prisma.tafseerAyah.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TafseerAyahUpdateArgs>(args: SelectSubset<T, TafseerAyahUpdateArgs<ExtArgs>>): Prisma__TafseerAyahClient<$Result.GetResult<Prisma.$TafseerAyahPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more TafseerAyahs.
+     * @param {TafseerAyahDeleteManyArgs} args - Arguments to filter TafseerAyahs to delete.
+     * @example
+     * // Delete a few TafseerAyahs
+     * const { count } = await prisma.tafseerAyah.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TafseerAyahDeleteManyArgs>(args?: SelectSubset<T, TafseerAyahDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TafseerAyahs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerAyahUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many TafseerAyahs
+     * const tafseerAyah = await prisma.tafseerAyah.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TafseerAyahUpdateManyArgs>(args: SelectSubset<T, TafseerAyahUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more TafseerAyahs and returns the data updated in the database.
+     * @param {TafseerAyahUpdateManyAndReturnArgs} args - Arguments to update many TafseerAyahs.
+     * @example
+     * // Update many TafseerAyahs
+     * const tafseerAyah = await prisma.tafseerAyah.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more TafseerAyahs and only return the `id`
+     * const tafseerAyahWithIdOnly = await prisma.tafseerAyah.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TafseerAyahUpdateManyAndReturnArgs>(args: SelectSubset<T, TafseerAyahUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerAyahPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one TafseerAyah.
+     * @param {TafseerAyahUpsertArgs} args - Arguments to update or create a TafseerAyah.
+     * @example
+     * // Update or create a TafseerAyah
+     * const tafseerAyah = await prisma.tafseerAyah.upsert({
+     *   create: {
+     *     // ... data to create a TafseerAyah
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the TafseerAyah we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TafseerAyahUpsertArgs>(args: SelectSubset<T, TafseerAyahUpsertArgs<ExtArgs>>): Prisma__TafseerAyahClient<$Result.GetResult<Prisma.$TafseerAyahPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of TafseerAyahs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerAyahCountArgs} args - Arguments to filter TafseerAyahs to count.
+     * @example
+     * // Count the number of TafseerAyahs
+     * const count = await prisma.tafseerAyah.count({
+     *   where: {
+     *     // ... the filter for the TafseerAyahs we want to count
+     *   }
+     * })
+    **/
+    count<T extends TafseerAyahCountArgs>(
+      args?: Subset<T, TafseerAyahCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TafseerAyahCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a TafseerAyah.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerAyahAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TafseerAyahAggregateArgs>(args: Subset<T, TafseerAyahAggregateArgs>): Prisma.PrismaPromise<GetTafseerAyahAggregateType<T>>
+
+    /**
+     * Group by TafseerAyah.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerAyahGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TafseerAyahGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TafseerAyahGroupByArgs['orderBy'] }
+        : { orderBy?: TafseerAyahGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TafseerAyahGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTafseerAyahGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the TafseerAyah model
+   */
+  readonly fields: TafseerAyahFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for TafseerAyah.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TafseerAyahClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    ayah<T extends AyahDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AyahDefaultArgs<ExtArgs>>): Prisma__AyahClient<$Result.GetResult<Prisma.$AyahPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    tafseer<T extends TafseerAyah$tafseerArgs<ExtArgs> = {}>(args?: Subset<T, TafseerAyah$tafseerArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the TafseerAyah model
+   */ 
+  interface TafseerAyahFieldRefs {
+    readonly id: FieldRef<"TafseerAyah", 'String'>
+    readonly text: FieldRef<"TafseerAyah", 'String'>
+    readonly ayahId: FieldRef<"TafseerAyah", 'String'>
+    readonly createdAt: FieldRef<"TafseerAyah", 'DateTime'>
+    readonly updatedAt: FieldRef<"TafseerAyah", 'DateTime'>
+    readonly tafseerId: FieldRef<"TafseerAyah", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * TafseerAyah findUnique
+   */
+  export type TafseerAyahFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerAyah
+     */
+    select?: TafseerAyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TafseerAyah
+     */
+    omit?: TafseerAyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerAyahInclude<ExtArgs> | null
+    /**
+     * Filter, which TafseerAyah to fetch.
+     */
+    where: TafseerAyahWhereUniqueInput
+  }
+
+  /**
+   * TafseerAyah findUniqueOrThrow
+   */
+  export type TafseerAyahFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerAyah
+     */
+    select?: TafseerAyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TafseerAyah
+     */
+    omit?: TafseerAyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerAyahInclude<ExtArgs> | null
+    /**
+     * Filter, which TafseerAyah to fetch.
+     */
+    where: TafseerAyahWhereUniqueInput
+  }
+
+  /**
+   * TafseerAyah findFirst
+   */
+  export type TafseerAyahFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerAyah
+     */
+    select?: TafseerAyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TafseerAyah
+     */
+    omit?: TafseerAyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerAyahInclude<ExtArgs> | null
+    /**
+     * Filter, which TafseerAyah to fetch.
+     */
+    where?: TafseerAyahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TafseerAyahs to fetch.
+     */
+    orderBy?: TafseerAyahOrderByWithRelationInput | TafseerAyahOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TafseerAyahs.
+     */
+    cursor?: TafseerAyahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TafseerAyahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TafseerAyahs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TafseerAyahs.
+     */
+    distinct?: TafseerAyahScalarFieldEnum | TafseerAyahScalarFieldEnum[]
+  }
+
+  /**
+   * TafseerAyah findFirstOrThrow
+   */
+  export type TafseerAyahFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerAyah
+     */
+    select?: TafseerAyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TafseerAyah
+     */
+    omit?: TafseerAyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerAyahInclude<ExtArgs> | null
+    /**
+     * Filter, which TafseerAyah to fetch.
+     */
+    where?: TafseerAyahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TafseerAyahs to fetch.
+     */
+    orderBy?: TafseerAyahOrderByWithRelationInput | TafseerAyahOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for TafseerAyahs.
+     */
+    cursor?: TafseerAyahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TafseerAyahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TafseerAyahs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of TafseerAyahs.
+     */
+    distinct?: TafseerAyahScalarFieldEnum | TafseerAyahScalarFieldEnum[]
+  }
+
+  /**
+   * TafseerAyah findMany
+   */
+  export type TafseerAyahFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerAyah
+     */
+    select?: TafseerAyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TafseerAyah
+     */
+    omit?: TafseerAyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerAyahInclude<ExtArgs> | null
+    /**
+     * Filter, which TafseerAyahs to fetch.
+     */
+    where?: TafseerAyahWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of TafseerAyahs to fetch.
+     */
+    orderBy?: TafseerAyahOrderByWithRelationInput | TafseerAyahOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing TafseerAyahs.
+     */
+    cursor?: TafseerAyahWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` TafseerAyahs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` TafseerAyahs.
+     */
+    skip?: number
+    distinct?: TafseerAyahScalarFieldEnum | TafseerAyahScalarFieldEnum[]
+  }
+
+  /**
+   * TafseerAyah create
+   */
+  export type TafseerAyahCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerAyah
+     */
+    select?: TafseerAyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TafseerAyah
+     */
+    omit?: TafseerAyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerAyahInclude<ExtArgs> | null
+    /**
+     * The data needed to create a TafseerAyah.
+     */
+    data: XOR<TafseerAyahCreateInput, TafseerAyahUncheckedCreateInput>
+  }
+
+  /**
+   * TafseerAyah createMany
+   */
+  export type TafseerAyahCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many TafseerAyahs.
+     */
+    data: TafseerAyahCreateManyInput | TafseerAyahCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * TafseerAyah createManyAndReturn
+   */
+  export type TafseerAyahCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerAyah
+     */
+    select?: TafseerAyahSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TafseerAyah
+     */
+    omit?: TafseerAyahOmit<ExtArgs> | null
+    /**
+     * The data used to create many TafseerAyahs.
+     */
+    data: TafseerAyahCreateManyInput | TafseerAyahCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerAyahIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TafseerAyah update
+   */
+  export type TafseerAyahUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerAyah
+     */
+    select?: TafseerAyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TafseerAyah
+     */
+    omit?: TafseerAyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerAyahInclude<ExtArgs> | null
+    /**
+     * The data needed to update a TafseerAyah.
+     */
+    data: XOR<TafseerAyahUpdateInput, TafseerAyahUncheckedUpdateInput>
+    /**
+     * Choose, which TafseerAyah to update.
+     */
+    where: TafseerAyahWhereUniqueInput
+  }
+
+  /**
+   * TafseerAyah updateMany
+   */
+  export type TafseerAyahUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update TafseerAyahs.
+     */
+    data: XOR<TafseerAyahUpdateManyMutationInput, TafseerAyahUncheckedUpdateManyInput>
+    /**
+     * Filter which TafseerAyahs to update
+     */
+    where?: TafseerAyahWhereInput
+    /**
+     * Limit how many TafseerAyahs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * TafseerAyah updateManyAndReturn
+   */
+  export type TafseerAyahUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerAyah
+     */
+    select?: TafseerAyahSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the TafseerAyah
+     */
+    omit?: TafseerAyahOmit<ExtArgs> | null
+    /**
+     * The data used to update TafseerAyahs.
+     */
+    data: XOR<TafseerAyahUpdateManyMutationInput, TafseerAyahUncheckedUpdateManyInput>
+    /**
+     * Filter which TafseerAyahs to update
+     */
+    where?: TafseerAyahWhereInput
+    /**
+     * Limit how many TafseerAyahs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerAyahIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * TafseerAyah upsert
+   */
+  export type TafseerAyahUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerAyah
+     */
+    select?: TafseerAyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TafseerAyah
+     */
+    omit?: TafseerAyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerAyahInclude<ExtArgs> | null
+    /**
+     * The filter to search for the TafseerAyah to update in case it exists.
+     */
+    where: TafseerAyahWhereUniqueInput
+    /**
+     * In case the TafseerAyah found by the `where` argument doesn't exist, create a new TafseerAyah with this data.
+     */
+    create: XOR<TafseerAyahCreateInput, TafseerAyahUncheckedCreateInput>
+    /**
+     * In case the TafseerAyah was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TafseerAyahUpdateInput, TafseerAyahUncheckedUpdateInput>
+  }
+
+  /**
+   * TafseerAyah delete
+   */
+  export type TafseerAyahDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerAyah
+     */
+    select?: TafseerAyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TafseerAyah
+     */
+    omit?: TafseerAyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerAyahInclude<ExtArgs> | null
+    /**
+     * Filter which TafseerAyah to delete.
+     */
+    where: TafseerAyahWhereUniqueInput
+  }
+
+  /**
+   * TafseerAyah deleteMany
+   */
+  export type TafseerAyahDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which TafseerAyahs to delete
+     */
+    where?: TafseerAyahWhereInput
+    /**
+     * Limit how many TafseerAyahs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * TafseerAyah.tafseer
+   */
+  export type TafseerAyah$tafseerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    where?: TafseerWhereInput
+  }
+
+  /**
+   * TafseerAyah without action
+   */
+  export type TafseerAyahDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerAyah
+     */
+    select?: TafseerAyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TafseerAyah
+     */
+    omit?: TafseerAyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerAyahInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Tafseer
+   */
+
+  export type AggregateTafseer = {
+    _count: TafseerCountAggregateOutputType | null
+    _min: TafseerMinAggregateOutputType | null
+    _max: TafseerMaxAggregateOutputType | null
+  }
+
+  export type TafseerMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    text: string | null
+    file: string | null
+    authorId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TafseerMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    text: string | null
+    file: string | null
+    authorId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TafseerCountAggregateOutputType = {
+    id: number
+    name: number
+    text: number
+    file: number
+    authorId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TafseerMinAggregateInputType = {
+    id?: true
+    name?: true
+    text?: true
+    file?: true
+    authorId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TafseerMaxAggregateInputType = {
+    id?: true
+    name?: true
+    text?: true
+    file?: true
+    authorId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TafseerCountAggregateInputType = {
+    id?: true
+    name?: true
+    text?: true
+    file?: true
+    authorId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TafseerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Tafseer to aggregate.
+     */
+    where?: TafseerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tafseers to fetch.
+     */
+    orderBy?: TafseerOrderByWithRelationInput | TafseerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TafseerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tafseers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tafseers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Tafseers
+    **/
+    _count?: true | TafseerCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TafseerMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TafseerMaxAggregateInputType
+  }
+
+  export type GetTafseerAggregateType<T extends TafseerAggregateArgs> = {
+        [P in keyof T & keyof AggregateTafseer]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTafseer[P]>
+      : GetScalarType<T[P], AggregateTafseer[P]>
+  }
+
+
+
+
+  export type TafseerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TafseerWhereInput
+    orderBy?: TafseerOrderByWithAggregationInput | TafseerOrderByWithAggregationInput[]
+    by: TafseerScalarFieldEnum[] | TafseerScalarFieldEnum
+    having?: TafseerScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TafseerCountAggregateInputType | true
+    _min?: TafseerMinAggregateInputType
+    _max?: TafseerMaxAggregateInputType
+  }
+
+  export type TafseerGroupByOutputType = {
+    id: string
+    name: string
+    text: string
+    file: string | null
+    authorId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: TafseerCountAggregateOutputType | null
+    _min: TafseerMinAggregateOutputType | null
+    _max: TafseerMaxAggregateOutputType | null
+  }
+
+  type GetTafseerGroupByPayload<T extends TafseerGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TafseerGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TafseerGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TafseerGroupByOutputType[P]>
+            : GetScalarType<T[P], TafseerGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TafseerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    text?: boolean
+    file?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+    ayahs?: boolean | Tafseer$ayahsArgs<ExtArgs>
+    _count?: boolean | TafseerCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tafseer"]>
+
+  export type TafseerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    text?: boolean
+    file?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tafseer"]>
+
+  export type TafseerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    text?: boolean
+    file?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tafseer"]>
+
+  export type TafseerSelectScalar = {
+    id?: boolean
+    name?: boolean
+    text?: boolean
+    file?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TafseerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "text" | "file" | "authorId" | "createdAt" | "updatedAt", ExtArgs["result"]["tafseer"]>
+  export type TafseerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+    ayahs?: boolean | Tafseer$ayahsArgs<ExtArgs>
+    _count?: boolean | TafseerCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type TafseerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+  }
+  export type TafseerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+  }
+
+  export type $TafseerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Tafseer"
+    objects: {
+      author: Prisma.$AuthorPayload<ExtArgs>
+      ayahs: Prisma.$TafseerAyahPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      text: string
+      file: string | null
+      authorId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["tafseer"]>
+    composites: {}
+  }
+
+  type TafseerGetPayload<S extends boolean | null | undefined | TafseerDefaultArgs> = $Result.GetResult<Prisma.$TafseerPayload, S>
+
+  type TafseerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TafseerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TafseerCountAggregateInputType | true
+    }
+
+  export interface TafseerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Tafseer'], meta: { name: 'Tafseer' } }
+    /**
+     * Find zero or one Tafseer that matches the filter.
+     * @param {TafseerFindUniqueArgs} args - Arguments to find a Tafseer
+     * @example
+     * // Get one Tafseer
+     * const tafseer = await prisma.tafseer.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TafseerFindUniqueArgs>(args: SelectSubset<T, TafseerFindUniqueArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one Tafseer that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TafseerFindUniqueOrThrowArgs} args - Arguments to find a Tafseer
+     * @example
+     * // Get one Tafseer
+     * const tafseer = await prisma.tafseer.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TafseerFindUniqueOrThrowArgs>(args: SelectSubset<T, TafseerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Tafseer that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerFindFirstArgs} args - Arguments to find a Tafseer
+     * @example
+     * // Get one Tafseer
+     * const tafseer = await prisma.tafseer.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TafseerFindFirstArgs>(args?: SelectSubset<T, TafseerFindFirstArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Tafseer that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerFindFirstOrThrowArgs} args - Arguments to find a Tafseer
+     * @example
+     * // Get one Tafseer
+     * const tafseer = await prisma.tafseer.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TafseerFindFirstOrThrowArgs>(args?: SelectSubset<T, TafseerFindFirstOrThrowArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more Tafseers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Tafseers
+     * const tafseers = await prisma.tafseer.findMany()
+     * 
+     * // Get first 10 Tafseers
+     * const tafseers = await prisma.tafseer.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const tafseerWithIdOnly = await prisma.tafseer.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TafseerFindManyArgs>(args?: SelectSubset<T, TafseerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a Tafseer.
+     * @param {TafseerCreateArgs} args - Arguments to create a Tafseer.
+     * @example
+     * // Create one Tafseer
+     * const Tafseer = await prisma.tafseer.create({
+     *   data: {
+     *     // ... data to create a Tafseer
+     *   }
+     * })
+     * 
+     */
+    create<T extends TafseerCreateArgs>(args: SelectSubset<T, TafseerCreateArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many Tafseers.
+     * @param {TafseerCreateManyArgs} args - Arguments to create many Tafseers.
+     * @example
+     * // Create many Tafseers
+     * const tafseer = await prisma.tafseer.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TafseerCreateManyArgs>(args?: SelectSubset<T, TafseerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Tafseers and returns the data saved in the database.
+     * @param {TafseerCreateManyAndReturnArgs} args - Arguments to create many Tafseers.
+     * @example
+     * // Create many Tafseers
+     * const tafseer = await prisma.tafseer.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Tafseers and only return the `id`
+     * const tafseerWithIdOnly = await prisma.tafseer.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TafseerCreateManyAndReturnArgs>(args?: SelectSubset<T, TafseerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a Tafseer.
+     * @param {TafseerDeleteArgs} args - Arguments to delete one Tafseer.
+     * @example
+     * // Delete one Tafseer
+     * const Tafseer = await prisma.tafseer.delete({
+     *   where: {
+     *     // ... filter to delete one Tafseer
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TafseerDeleteArgs>(args: SelectSubset<T, TafseerDeleteArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one Tafseer.
+     * @param {TafseerUpdateArgs} args - Arguments to update one Tafseer.
+     * @example
+     * // Update one Tafseer
+     * const tafseer = await prisma.tafseer.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TafseerUpdateArgs>(args: SelectSubset<T, TafseerUpdateArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more Tafseers.
+     * @param {TafseerDeleteManyArgs} args - Arguments to filter Tafseers to delete.
+     * @example
+     * // Delete a few Tafseers
+     * const { count } = await prisma.tafseer.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TafseerDeleteManyArgs>(args?: SelectSubset<T, TafseerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tafseers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Tafseers
+     * const tafseer = await prisma.tafseer.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TafseerUpdateManyArgs>(args: SelectSubset<T, TafseerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tafseers and returns the data updated in the database.
+     * @param {TafseerUpdateManyAndReturnArgs} args - Arguments to update many Tafseers.
+     * @example
+     * // Update many Tafseers
+     * const tafseer = await prisma.tafseer.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Tafseers and only return the `id`
+     * const tafseerWithIdOnly = await prisma.tafseer.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TafseerUpdateManyAndReturnArgs>(args: SelectSubset<T, TafseerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one Tafseer.
+     * @param {TafseerUpsertArgs} args - Arguments to update or create a Tafseer.
+     * @example
+     * // Update or create a Tafseer
+     * const tafseer = await prisma.tafseer.upsert({
+     *   create: {
+     *     // ... data to create a Tafseer
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Tafseer we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TafseerUpsertArgs>(args: SelectSubset<T, TafseerUpsertArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of Tafseers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerCountArgs} args - Arguments to filter Tafseers to count.
+     * @example
+     * // Count the number of Tafseers
+     * const count = await prisma.tafseer.count({
+     *   where: {
+     *     // ... the filter for the Tafseers we want to count
+     *   }
+     * })
+    **/
+    count<T extends TafseerCountArgs>(
+      args?: Subset<T, TafseerCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TafseerCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Tafseer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TafseerAggregateArgs>(args: Subset<T, TafseerAggregateArgs>): Prisma.PrismaPromise<GetTafseerAggregateType<T>>
+
+    /**
+     * Group by Tafseer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TafseerGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TafseerGroupByArgs['orderBy'] }
+        : { orderBy?: TafseerGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TafseerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTafseerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Tafseer model
+   */
+  readonly fields: TafseerFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Tafseer.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TafseerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    author<T extends AuthorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AuthorDefaultArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    ayahs<T extends Tafseer$ayahsArgs<ExtArgs> = {}>(args?: Subset<T, Tafseer$ayahsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerAyahPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Tafseer model
+   */ 
+  interface TafseerFieldRefs {
+    readonly id: FieldRef<"Tafseer", 'String'>
+    readonly name: FieldRef<"Tafseer", 'String'>
+    readonly text: FieldRef<"Tafseer", 'String'>
+    readonly file: FieldRef<"Tafseer", 'String'>
+    readonly authorId: FieldRef<"Tafseer", 'String'>
+    readonly createdAt: FieldRef<"Tafseer", 'DateTime'>
+    readonly updatedAt: FieldRef<"Tafseer", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Tafseer findUnique
+   */
+  export type TafseerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * Filter, which Tafseer to fetch.
+     */
+    where: TafseerWhereUniqueInput
+  }
+
+  /**
+   * Tafseer findUniqueOrThrow
+   */
+  export type TafseerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * Filter, which Tafseer to fetch.
+     */
+    where: TafseerWhereUniqueInput
+  }
+
+  /**
+   * Tafseer findFirst
+   */
+  export type TafseerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * Filter, which Tafseer to fetch.
+     */
+    where?: TafseerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tafseers to fetch.
+     */
+    orderBy?: TafseerOrderByWithRelationInput | TafseerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tafseers.
+     */
+    cursor?: TafseerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tafseers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tafseers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tafseers.
+     */
+    distinct?: TafseerScalarFieldEnum | TafseerScalarFieldEnum[]
+  }
+
+  /**
+   * Tafseer findFirstOrThrow
+   */
+  export type TafseerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * Filter, which Tafseer to fetch.
+     */
+    where?: TafseerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tafseers to fetch.
+     */
+    orderBy?: TafseerOrderByWithRelationInput | TafseerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tafseers.
+     */
+    cursor?: TafseerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tafseers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tafseers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tafseers.
+     */
+    distinct?: TafseerScalarFieldEnum | TafseerScalarFieldEnum[]
+  }
+
+  /**
+   * Tafseer findMany
+   */
+  export type TafseerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * Filter, which Tafseers to fetch.
+     */
+    where?: TafseerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tafseers to fetch.
+     */
+    orderBy?: TafseerOrderByWithRelationInput | TafseerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Tafseers.
+     */
+    cursor?: TafseerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tafseers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tafseers.
+     */
+    skip?: number
+    distinct?: TafseerScalarFieldEnum | TafseerScalarFieldEnum[]
+  }
+
+  /**
+   * Tafseer create
+   */
+  export type TafseerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Tafseer.
+     */
+    data: XOR<TafseerCreateInput, TafseerUncheckedCreateInput>
+  }
+
+  /**
+   * Tafseer createMany
+   */
+  export type TafseerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Tafseers.
+     */
+    data: TafseerCreateManyInput | TafseerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Tafseer createManyAndReturn
+   */
+  export type TafseerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * The data used to create many Tafseers.
+     */
+    data: TafseerCreateManyInput | TafseerCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Tafseer update
+   */
+  export type TafseerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Tafseer.
+     */
+    data: XOR<TafseerUpdateInput, TafseerUncheckedUpdateInput>
+    /**
+     * Choose, which Tafseer to update.
+     */
+    where: TafseerWhereUniqueInput
+  }
+
+  /**
+   * Tafseer updateMany
+   */
+  export type TafseerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Tafseers.
+     */
+    data: XOR<TafseerUpdateManyMutationInput, TafseerUncheckedUpdateManyInput>
+    /**
+     * Filter which Tafseers to update
+     */
+    where?: TafseerWhereInput
+    /**
+     * Limit how many Tafseers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Tafseer updateManyAndReturn
+   */
+  export type TafseerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * The data used to update Tafseers.
+     */
+    data: XOR<TafseerUpdateManyMutationInput, TafseerUncheckedUpdateManyInput>
+    /**
+     * Filter which Tafseers to update
+     */
+    where?: TafseerWhereInput
+    /**
+     * Limit how many Tafseers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Tafseer upsert
+   */
+  export type TafseerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Tafseer to update in case it exists.
+     */
+    where: TafseerWhereUniqueInput
+    /**
+     * In case the Tafseer found by the `where` argument doesn't exist, create a new Tafseer with this data.
+     */
+    create: XOR<TafseerCreateInput, TafseerUncheckedCreateInput>
+    /**
+     * In case the Tafseer was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TafseerUpdateInput, TafseerUncheckedUpdateInput>
+  }
+
+  /**
+   * Tafseer delete
+   */
+  export type TafseerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * Filter which Tafseer to delete.
+     */
+    where: TafseerWhereUniqueInput
+  }
+
+  /**
+   * Tafseer deleteMany
+   */
+  export type TafseerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Tafseers to delete
+     */
+    where?: TafseerWhereInput
+    /**
+     * Limit how many Tafseers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Tafseer.ayahs
+   */
+  export type Tafseer$ayahsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerAyah
+     */
+    select?: TafseerAyahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the TafseerAyah
+     */
+    omit?: TafseerAyahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerAyahInclude<ExtArgs> | null
+    where?: TafseerAyahWhereInput
+    orderBy?: TafseerAyahOrderByWithRelationInput | TafseerAyahOrderByWithRelationInput[]
+    cursor?: TafseerAyahWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TafseerAyahScalarFieldEnum | TafseerAyahScalarFieldEnum[]
+  }
+
+  /**
+   * Tafseer without action
+   */
+  export type TafseerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
   }
 
 
@@ -1967,6 +8221,69 @@ export namespace Prisma {
   };
 
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const AuthorScalarFieldEnum: {
+    id: 'id',
+    country: 'country',
+    userId: 'userId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AuthorScalarFieldEnum = (typeof AuthorScalarFieldEnum)[keyof typeof AuthorScalarFieldEnum]
+
+
+  export const SurahScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    arabicName: 'arabicName',
+    number: 'number',
+    totalAyahs: 'totalAyahs',
+    revelationType: 'revelationType',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type SurahScalarFieldEnum = (typeof SurahScalarFieldEnum)[keyof typeof SurahScalarFieldEnum]
+
+
+  export const AyahScalarFieldEnum: {
+    id: 'id',
+    number: 'number',
+    arabicText: 'arabicText',
+    uzbekText: 'uzbekText',
+    surahId: 'surahId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type AyahScalarFieldEnum = (typeof AyahScalarFieldEnum)[keyof typeof AyahScalarFieldEnum]
+
+
+  export const TafseerAyahScalarFieldEnum: {
+    id: 'id',
+    text: 'text',
+    ayahId: 'ayahId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt',
+    tafseerId: 'tafseerId'
+  };
+
+  export type TafseerAyahScalarFieldEnum = (typeof TafseerAyahScalarFieldEnum)[keyof typeof TafseerAyahScalarFieldEnum]
+
+
+  export const TafseerScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    text: 'text',
+    file: 'file',
+    authorId: 'authorId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TafseerScalarFieldEnum = (typeof TafseerScalarFieldEnum)[keyof typeof TafseerScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -2052,6 +8369,34 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
+
+
+  /**
+   * Reference to a field of type 'SurahRevelationType'
+   */
+  export type EnumSurahRevelationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurahRevelationType'>
+    
+
+
+  /**
+   * Reference to a field of type 'SurahRevelationType[]'
+   */
+  export type ListEnumSurahRevelationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'SurahRevelationType[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
@@ -2071,6 +8416,7 @@ export namespace Prisma {
     rights?: EnumRoleNullableListFilter<"User">
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    author?: XOR<AuthorNullableScalarRelationFilter, AuthorWhereInput> | null
   }
 
   export type UserOrderByWithRelationInput = {
@@ -2084,6 +8430,7 @@ export namespace Prisma {
     rights?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    author?: AuthorOrderByWithRelationInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -2100,6 +8447,7 @@ export namespace Prisma {
     rights?: EnumRoleNullableListFilter<"User">
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
+    author?: XOR<AuthorNullableScalarRelationFilter, AuthorWhereInput> | null
   }, "id" | "email" | "username">
 
   export type UserOrderByWithAggregationInput = {
@@ -2134,6 +8482,337 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
+  export type AuthorWhereInput = {
+    AND?: AuthorWhereInput | AuthorWhereInput[]
+    OR?: AuthorWhereInput[]
+    NOT?: AuthorWhereInput | AuthorWhereInput[]
+    id?: StringFilter<"Author"> | string
+    country?: StringNullableFilter<"Author"> | string | null
+    userId?: StringFilter<"Author"> | string
+    createdAt?: DateTimeFilter<"Author"> | Date | string
+    updatedAt?: DateTimeFilter<"Author"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    tafseers?: TafseerListRelationFilter
+  }
+
+  export type AuthorOrderByWithRelationInput = {
+    id?: SortOrder
+    country?: SortOrderInput | SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+    tafseers?: TafseerOrderByRelationAggregateInput
+  }
+
+  export type AuthorWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    userId?: string
+    AND?: AuthorWhereInput | AuthorWhereInput[]
+    OR?: AuthorWhereInput[]
+    NOT?: AuthorWhereInput | AuthorWhereInput[]
+    country?: StringNullableFilter<"Author"> | string | null
+    createdAt?: DateTimeFilter<"Author"> | Date | string
+    updatedAt?: DateTimeFilter<"Author"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    tafseers?: TafseerListRelationFilter
+  }, "id" | "userId">
+
+  export type AuthorOrderByWithAggregationInput = {
+    id?: SortOrder
+    country?: SortOrderInput | SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AuthorCountOrderByAggregateInput
+    _max?: AuthorMaxOrderByAggregateInput
+    _min?: AuthorMinOrderByAggregateInput
+  }
+
+  export type AuthorScalarWhereWithAggregatesInput = {
+    AND?: AuthorScalarWhereWithAggregatesInput | AuthorScalarWhereWithAggregatesInput[]
+    OR?: AuthorScalarWhereWithAggregatesInput[]
+    NOT?: AuthorScalarWhereWithAggregatesInput | AuthorScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Author"> | string
+    country?: StringNullableWithAggregatesFilter<"Author"> | string | null
+    userId?: StringWithAggregatesFilter<"Author"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Author"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Author"> | Date | string
+  }
+
+  export type SurahWhereInput = {
+    AND?: SurahWhereInput | SurahWhereInput[]
+    OR?: SurahWhereInput[]
+    NOT?: SurahWhereInput | SurahWhereInput[]
+    id?: StringFilter<"Surah"> | string
+    name?: StringFilter<"Surah"> | string
+    arabicName?: StringFilter<"Surah"> | string
+    number?: IntFilter<"Surah"> | number
+    totalAyahs?: IntFilter<"Surah"> | number
+    revelationType?: EnumSurahRevelationTypeFilter<"Surah"> | $Enums.SurahRevelationType
+    createdAt?: DateTimeFilter<"Surah"> | Date | string
+    updatedAt?: DateTimeFilter<"Surah"> | Date | string
+    ayahs?: AyahListRelationFilter
+  }
+
+  export type SurahOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    arabicName?: SortOrder
+    number?: SortOrder
+    totalAyahs?: SortOrder
+    revelationType?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    ayahs?: AyahOrderByRelationAggregateInput
+  }
+
+  export type SurahWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: SurahWhereInput | SurahWhereInput[]
+    OR?: SurahWhereInput[]
+    NOT?: SurahWhereInput | SurahWhereInput[]
+    name?: StringFilter<"Surah"> | string
+    arabicName?: StringFilter<"Surah"> | string
+    number?: IntFilter<"Surah"> | number
+    totalAyahs?: IntFilter<"Surah"> | number
+    revelationType?: EnumSurahRevelationTypeFilter<"Surah"> | $Enums.SurahRevelationType
+    createdAt?: DateTimeFilter<"Surah"> | Date | string
+    updatedAt?: DateTimeFilter<"Surah"> | Date | string
+    ayahs?: AyahListRelationFilter
+  }, "id">
+
+  export type SurahOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    arabicName?: SortOrder
+    number?: SortOrder
+    totalAyahs?: SortOrder
+    revelationType?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: SurahCountOrderByAggregateInput
+    _avg?: SurahAvgOrderByAggregateInput
+    _max?: SurahMaxOrderByAggregateInput
+    _min?: SurahMinOrderByAggregateInput
+    _sum?: SurahSumOrderByAggregateInput
+  }
+
+  export type SurahScalarWhereWithAggregatesInput = {
+    AND?: SurahScalarWhereWithAggregatesInput | SurahScalarWhereWithAggregatesInput[]
+    OR?: SurahScalarWhereWithAggregatesInput[]
+    NOT?: SurahScalarWhereWithAggregatesInput | SurahScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Surah"> | string
+    name?: StringWithAggregatesFilter<"Surah"> | string
+    arabicName?: StringWithAggregatesFilter<"Surah"> | string
+    number?: IntWithAggregatesFilter<"Surah"> | number
+    totalAyahs?: IntWithAggregatesFilter<"Surah"> | number
+    revelationType?: EnumSurahRevelationTypeWithAggregatesFilter<"Surah"> | $Enums.SurahRevelationType
+    createdAt?: DateTimeWithAggregatesFilter<"Surah"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Surah"> | Date | string
+  }
+
+  export type AyahWhereInput = {
+    AND?: AyahWhereInput | AyahWhereInput[]
+    OR?: AyahWhereInput[]
+    NOT?: AyahWhereInput | AyahWhereInput[]
+    id?: StringFilter<"Ayah"> | string
+    number?: IntFilter<"Ayah"> | number
+    arabicText?: StringFilter<"Ayah"> | string
+    uzbekText?: StringFilter<"Ayah"> | string
+    surahId?: StringFilter<"Ayah"> | string
+    createdAt?: DateTimeFilter<"Ayah"> | Date | string
+    updatedAt?: DateTimeFilter<"Ayah"> | Date | string
+    surah?: XOR<SurahScalarRelationFilter, SurahWhereInput>
+    tafseers?: TafseerAyahListRelationFilter
+  }
+
+  export type AyahOrderByWithRelationInput = {
+    id?: SortOrder
+    number?: SortOrder
+    arabicText?: SortOrder
+    uzbekText?: SortOrder
+    surahId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    surah?: SurahOrderByWithRelationInput
+    tafseers?: TafseerAyahOrderByRelationAggregateInput
+  }
+
+  export type AyahWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AyahWhereInput | AyahWhereInput[]
+    OR?: AyahWhereInput[]
+    NOT?: AyahWhereInput | AyahWhereInput[]
+    number?: IntFilter<"Ayah"> | number
+    arabicText?: StringFilter<"Ayah"> | string
+    uzbekText?: StringFilter<"Ayah"> | string
+    surahId?: StringFilter<"Ayah"> | string
+    createdAt?: DateTimeFilter<"Ayah"> | Date | string
+    updatedAt?: DateTimeFilter<"Ayah"> | Date | string
+    surah?: XOR<SurahScalarRelationFilter, SurahWhereInput>
+    tafseers?: TafseerAyahListRelationFilter
+  }, "id">
+
+  export type AyahOrderByWithAggregationInput = {
+    id?: SortOrder
+    number?: SortOrder
+    arabicText?: SortOrder
+    uzbekText?: SortOrder
+    surahId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: AyahCountOrderByAggregateInput
+    _avg?: AyahAvgOrderByAggregateInput
+    _max?: AyahMaxOrderByAggregateInput
+    _min?: AyahMinOrderByAggregateInput
+    _sum?: AyahSumOrderByAggregateInput
+  }
+
+  export type AyahScalarWhereWithAggregatesInput = {
+    AND?: AyahScalarWhereWithAggregatesInput | AyahScalarWhereWithAggregatesInput[]
+    OR?: AyahScalarWhereWithAggregatesInput[]
+    NOT?: AyahScalarWhereWithAggregatesInput | AyahScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Ayah"> | string
+    number?: IntWithAggregatesFilter<"Ayah"> | number
+    arabicText?: StringWithAggregatesFilter<"Ayah"> | string
+    uzbekText?: StringWithAggregatesFilter<"Ayah"> | string
+    surahId?: StringWithAggregatesFilter<"Ayah"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Ayah"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Ayah"> | Date | string
+  }
+
+  export type TafseerAyahWhereInput = {
+    AND?: TafseerAyahWhereInput | TafseerAyahWhereInput[]
+    OR?: TafseerAyahWhereInput[]
+    NOT?: TafseerAyahWhereInput | TafseerAyahWhereInput[]
+    id?: StringFilter<"TafseerAyah"> | string
+    text?: StringFilter<"TafseerAyah"> | string
+    ayahId?: StringFilter<"TafseerAyah"> | string
+    createdAt?: DateTimeFilter<"TafseerAyah"> | Date | string
+    updatedAt?: DateTimeFilter<"TafseerAyah"> | Date | string
+    tafseerId?: StringNullableFilter<"TafseerAyah"> | string | null
+    ayah?: XOR<AyahScalarRelationFilter, AyahWhereInput>
+    tafseer?: XOR<TafseerNullableScalarRelationFilter, TafseerWhereInput> | null
+  }
+
+  export type TafseerAyahOrderByWithRelationInput = {
+    id?: SortOrder
+    text?: SortOrder
+    ayahId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tafseerId?: SortOrderInput | SortOrder
+    ayah?: AyahOrderByWithRelationInput
+    tafseer?: TafseerOrderByWithRelationInput
+  }
+
+  export type TafseerAyahWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TafseerAyahWhereInput | TafseerAyahWhereInput[]
+    OR?: TafseerAyahWhereInput[]
+    NOT?: TafseerAyahWhereInput | TafseerAyahWhereInput[]
+    text?: StringFilter<"TafseerAyah"> | string
+    ayahId?: StringFilter<"TafseerAyah"> | string
+    createdAt?: DateTimeFilter<"TafseerAyah"> | Date | string
+    updatedAt?: DateTimeFilter<"TafseerAyah"> | Date | string
+    tafseerId?: StringNullableFilter<"TafseerAyah"> | string | null
+    ayah?: XOR<AyahScalarRelationFilter, AyahWhereInput>
+    tafseer?: XOR<TafseerNullableScalarRelationFilter, TafseerWhereInput> | null
+  }, "id">
+
+  export type TafseerAyahOrderByWithAggregationInput = {
+    id?: SortOrder
+    text?: SortOrder
+    ayahId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tafseerId?: SortOrderInput | SortOrder
+    _count?: TafseerAyahCountOrderByAggregateInput
+    _max?: TafseerAyahMaxOrderByAggregateInput
+    _min?: TafseerAyahMinOrderByAggregateInput
+  }
+
+  export type TafseerAyahScalarWhereWithAggregatesInput = {
+    AND?: TafseerAyahScalarWhereWithAggregatesInput | TafseerAyahScalarWhereWithAggregatesInput[]
+    OR?: TafseerAyahScalarWhereWithAggregatesInput[]
+    NOT?: TafseerAyahScalarWhereWithAggregatesInput | TafseerAyahScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"TafseerAyah"> | string
+    text?: StringWithAggregatesFilter<"TafseerAyah"> | string
+    ayahId?: StringWithAggregatesFilter<"TafseerAyah"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"TafseerAyah"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"TafseerAyah"> | Date | string
+    tafseerId?: StringNullableWithAggregatesFilter<"TafseerAyah"> | string | null
+  }
+
+  export type TafseerWhereInput = {
+    AND?: TafseerWhereInput | TafseerWhereInput[]
+    OR?: TafseerWhereInput[]
+    NOT?: TafseerWhereInput | TafseerWhereInput[]
+    id?: StringFilter<"Tafseer"> | string
+    name?: StringFilter<"Tafseer"> | string
+    text?: StringFilter<"Tafseer"> | string
+    file?: StringNullableFilter<"Tafseer"> | string | null
+    authorId?: StringFilter<"Tafseer"> | string
+    createdAt?: DateTimeFilter<"Tafseer"> | Date | string
+    updatedAt?: DateTimeFilter<"Tafseer"> | Date | string
+    author?: XOR<AuthorScalarRelationFilter, AuthorWhereInput>
+    ayahs?: TafseerAyahListRelationFilter
+  }
+
+  export type TafseerOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    text?: SortOrder
+    file?: SortOrderInput | SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    author?: AuthorOrderByWithRelationInput
+    ayahs?: TafseerAyahOrderByRelationAggregateInput
+  }
+
+  export type TafseerWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TafseerWhereInput | TafseerWhereInput[]
+    OR?: TafseerWhereInput[]
+    NOT?: TafseerWhereInput | TafseerWhereInput[]
+    name?: StringFilter<"Tafseer"> | string
+    text?: StringFilter<"Tafseer"> | string
+    file?: StringNullableFilter<"Tafseer"> | string | null
+    authorId?: StringFilter<"Tafseer"> | string
+    createdAt?: DateTimeFilter<"Tafseer"> | Date | string
+    updatedAt?: DateTimeFilter<"Tafseer"> | Date | string
+    author?: XOR<AuthorScalarRelationFilter, AuthorWhereInput>
+    ayahs?: TafseerAyahListRelationFilter
+  }, "id">
+
+  export type TafseerOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    text?: SortOrder
+    file?: SortOrderInput | SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TafseerCountOrderByAggregateInput
+    _max?: TafseerMaxOrderByAggregateInput
+    _min?: TafseerMinOrderByAggregateInput
+  }
+
+  export type TafseerScalarWhereWithAggregatesInput = {
+    AND?: TafseerScalarWhereWithAggregatesInput | TafseerScalarWhereWithAggregatesInput[]
+    OR?: TafseerScalarWhereWithAggregatesInput[]
+    NOT?: TafseerScalarWhereWithAggregatesInput | TafseerScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Tafseer"> | string
+    name?: StringWithAggregatesFilter<"Tafseer"> | string
+    text?: StringWithAggregatesFilter<"Tafseer"> | string
+    file?: StringNullableWithAggregatesFilter<"Tafseer"> | string | null
+    authorId?: StringWithAggregatesFilter<"Tafseer"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Tafseer"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Tafseer"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     email: string
@@ -2145,6 +8824,7 @@ export namespace Prisma {
     rights?: UserCreaterightsInput | $Enums.Role[]
     createdAt?: Date | string
     updatedAt?: Date | string
+    author?: AuthorCreateNestedOneWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -2158,6 +8838,7 @@ export namespace Prisma {
     rights?: UserCreaterightsInput | $Enums.Role[]
     createdAt?: Date | string
     updatedAt?: Date | string
+    author?: AuthorUncheckedCreateNestedOneWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -2171,6 +8852,7 @@ export namespace Prisma {
     rights?: UserUpdaterightsInput | $Enums.Role[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: AuthorUpdateOneWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -2184,6 +8866,7 @@ export namespace Prisma {
     rights?: UserUpdaterightsInput | $Enums.Role[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: AuthorUncheckedUpdateOneWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -2221,6 +8904,353 @@ export namespace Prisma {
     avatar?: NullableStringFieldUpdateOperationsInput | string | null
     bio?: NullableStringFieldUpdateOperationsInput | string | null
     rights?: UserUpdaterightsInput | $Enums.Role[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuthorCreateInput = {
+    id?: string
+    country?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutAuthorInput
+    tafseers?: TafseerCreateNestedManyWithoutAuthorInput
+  }
+
+  export type AuthorUncheckedCreateInput = {
+    id?: string
+    country?: string | null
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tafseers?: TafseerUncheckedCreateNestedManyWithoutAuthorInput
+  }
+
+  export type AuthorUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutAuthorNestedInput
+    tafseers?: TafseerUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type AuthorUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tafseers?: TafseerUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type AuthorCreateManyInput = {
+    id?: string
+    country?: string | null
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AuthorUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuthorUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SurahCreateInput = {
+    id?: string
+    name: string
+    arabicName: string
+    number: number
+    totalAyahs: number
+    revelationType: $Enums.SurahRevelationType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ayahs?: AyahCreateNestedManyWithoutSurahInput
+  }
+
+  export type SurahUncheckedCreateInput = {
+    id?: string
+    name: string
+    arabicName: string
+    number: number
+    totalAyahs: number
+    revelationType: $Enums.SurahRevelationType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ayahs?: AyahUncheckedCreateNestedManyWithoutSurahInput
+  }
+
+  export type SurahUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    totalAyahs?: IntFieldUpdateOperationsInput | number
+    revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ayahs?: AyahUpdateManyWithoutSurahNestedInput
+  }
+
+  export type SurahUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    totalAyahs?: IntFieldUpdateOperationsInput | number
+    revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ayahs?: AyahUncheckedUpdateManyWithoutSurahNestedInput
+  }
+
+  export type SurahCreateManyInput = {
+    id?: string
+    name: string
+    arabicName: string
+    number: number
+    totalAyahs: number
+    revelationType: $Enums.SurahRevelationType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SurahUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    totalAyahs?: IntFieldUpdateOperationsInput | number
+    revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SurahUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    totalAyahs?: IntFieldUpdateOperationsInput | number
+    revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AyahCreateInput = {
+    id?: string
+    number: number
+    arabicText: string
+    uzbekText: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    surah: SurahCreateNestedOneWithoutAyahsInput
+    tafseers?: TafseerAyahCreateNestedManyWithoutAyahInput
+  }
+
+  export type AyahUncheckedCreateInput = {
+    id?: string
+    number: number
+    arabicText: string
+    uzbekText: string
+    surahId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tafseers?: TafseerAyahUncheckedCreateNestedManyWithoutAyahInput
+  }
+
+  export type AyahUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    arabicText?: StringFieldUpdateOperationsInput | string
+    uzbekText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    surah?: SurahUpdateOneRequiredWithoutAyahsNestedInput
+    tafseers?: TafseerAyahUpdateManyWithoutAyahNestedInput
+  }
+
+  export type AyahUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    arabicText?: StringFieldUpdateOperationsInput | string
+    uzbekText?: StringFieldUpdateOperationsInput | string
+    surahId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tafseers?: TafseerAyahUncheckedUpdateManyWithoutAyahNestedInput
+  }
+
+  export type AyahCreateManyInput = {
+    id?: string
+    number: number
+    arabicText: string
+    uzbekText: string
+    surahId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AyahUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    arabicText?: StringFieldUpdateOperationsInput | string
+    uzbekText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AyahUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    arabicText?: StringFieldUpdateOperationsInput | string
+    uzbekText?: StringFieldUpdateOperationsInput | string
+    surahId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TafseerAyahCreateInput = {
+    id?: string
+    text: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ayah: AyahCreateNestedOneWithoutTafseersInput
+    tafseer?: TafseerCreateNestedOneWithoutAyahsInput
+  }
+
+  export type TafseerAyahUncheckedCreateInput = {
+    id?: string
+    text: string
+    ayahId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tafseerId?: string | null
+  }
+
+  export type TafseerAyahUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ayah?: AyahUpdateOneRequiredWithoutTafseersNestedInput
+    tafseer?: TafseerUpdateOneWithoutAyahsNestedInput
+  }
+
+  export type TafseerAyahUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    ayahId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tafseerId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TafseerAyahCreateManyInput = {
+    id?: string
+    text: string
+    ayahId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tafseerId?: string | null
+  }
+
+  export type TafseerAyahUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TafseerAyahUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    ayahId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tafseerId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TafseerCreateInput = {
+    id?: string
+    name: string
+    text: string
+    file?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    author: AuthorCreateNestedOneWithoutTafseersInput
+    ayahs?: TafseerAyahCreateNestedManyWithoutTafseerInput
+  }
+
+  export type TafseerUncheckedCreateInput = {
+    id?: string
+    name: string
+    text: string
+    file?: string | null
+    authorId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ayahs?: TafseerAyahUncheckedCreateNestedManyWithoutTafseerInput
+  }
+
+  export type TafseerUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    file?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: AuthorUpdateOneRequiredWithoutTafseersNestedInput
+    ayahs?: TafseerAyahUpdateManyWithoutTafseerNestedInput
+  }
+
+  export type TafseerUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    file?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ayahs?: TafseerAyahUncheckedUpdateManyWithoutTafseerNestedInput
+  }
+
+  export type TafseerCreateManyInput = {
+    id?: string
+    name: string
+    text: string
+    file?: string | null
+    authorId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TafseerUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    file?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TafseerUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    file?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -2272,6 +9302,11 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type AuthorNullableScalarRelationFilter = {
+    is?: AuthorWhereInput | null
+    isNot?: AuthorWhereInput | null
   }
 
   export type SortOrderInput = {
@@ -2366,8 +9401,281 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type TafseerListRelationFilter = {
+    every?: TafseerWhereInput
+    some?: TafseerWhereInput
+    none?: TafseerWhereInput
+  }
+
+  export type TafseerOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AuthorCountOrderByAggregateInput = {
+    id?: SortOrder
+    country?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AuthorMaxOrderByAggregateInput = {
+    id?: SortOrder
+    country?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AuthorMinOrderByAggregateInput = {
+    id?: SortOrder
+    country?: SortOrder
+    userId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type EnumSurahRevelationTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurahRevelationType | EnumSurahRevelationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SurahRevelationType[] | ListEnumSurahRevelationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurahRevelationType[] | ListEnumSurahRevelationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurahRevelationTypeFilter<$PrismaModel> | $Enums.SurahRevelationType
+  }
+
+  export type AyahListRelationFilter = {
+    every?: AyahWhereInput
+    some?: AyahWhereInput
+    none?: AyahWhereInput
+  }
+
+  export type AyahOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type SurahCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    arabicName?: SortOrder
+    number?: SortOrder
+    totalAyahs?: SortOrder
+    revelationType?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SurahAvgOrderByAggregateInput = {
+    number?: SortOrder
+    totalAyahs?: SortOrder
+  }
+
+  export type SurahMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    arabicName?: SortOrder
+    number?: SortOrder
+    totalAyahs?: SortOrder
+    revelationType?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SurahMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    arabicName?: SortOrder
+    number?: SortOrder
+    totalAyahs?: SortOrder
+    revelationType?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type SurahSumOrderByAggregateInput = {
+    number?: SortOrder
+    totalAyahs?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type EnumSurahRevelationTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurahRevelationType | EnumSurahRevelationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SurahRevelationType[] | ListEnumSurahRevelationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurahRevelationType[] | ListEnumSurahRevelationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurahRevelationTypeWithAggregatesFilter<$PrismaModel> | $Enums.SurahRevelationType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSurahRevelationTypeFilter<$PrismaModel>
+    _max?: NestedEnumSurahRevelationTypeFilter<$PrismaModel>
+  }
+
+  export type SurahScalarRelationFilter = {
+    is?: SurahWhereInput
+    isNot?: SurahWhereInput
+  }
+
+  export type TafseerAyahListRelationFilter = {
+    every?: TafseerAyahWhereInput
+    some?: TafseerAyahWhereInput
+    none?: TafseerAyahWhereInput
+  }
+
+  export type TafseerAyahOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type AyahCountOrderByAggregateInput = {
+    id?: SortOrder
+    number?: SortOrder
+    arabicText?: SortOrder
+    uzbekText?: SortOrder
+    surahId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AyahAvgOrderByAggregateInput = {
+    number?: SortOrder
+  }
+
+  export type AyahMaxOrderByAggregateInput = {
+    id?: SortOrder
+    number?: SortOrder
+    arabicText?: SortOrder
+    uzbekText?: SortOrder
+    surahId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AyahMinOrderByAggregateInput = {
+    id?: SortOrder
+    number?: SortOrder
+    arabicText?: SortOrder
+    uzbekText?: SortOrder
+    surahId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type AyahSumOrderByAggregateInput = {
+    number?: SortOrder
+  }
+
+  export type AyahScalarRelationFilter = {
+    is?: AyahWhereInput
+    isNot?: AyahWhereInput
+  }
+
+  export type TafseerNullableScalarRelationFilter = {
+    is?: TafseerWhereInput | null
+    isNot?: TafseerWhereInput | null
+  }
+
+  export type TafseerAyahCountOrderByAggregateInput = {
+    id?: SortOrder
+    text?: SortOrder
+    ayahId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tafseerId?: SortOrder
+  }
+
+  export type TafseerAyahMaxOrderByAggregateInput = {
+    id?: SortOrder
+    text?: SortOrder
+    ayahId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tafseerId?: SortOrder
+  }
+
+  export type TafseerAyahMinOrderByAggregateInput = {
+    id?: SortOrder
+    text?: SortOrder
+    ayahId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    tafseerId?: SortOrder
+  }
+
+  export type AuthorScalarRelationFilter = {
+    is?: AuthorWhereInput
+    isNot?: AuthorWhereInput
+  }
+
+  export type TafseerCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    text?: SortOrder
+    file?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TafseerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    text?: SortOrder
+    file?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TafseerMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    text?: SortOrder
+    file?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
   export type UserCreaterightsInput = {
     set: $Enums.Role[]
+  }
+
+  export type AuthorCreateNestedOneWithoutUserInput = {
+    create?: XOR<AuthorCreateWithoutUserInput, AuthorUncheckedCreateWithoutUserInput>
+    connectOrCreate?: AuthorCreateOrConnectWithoutUserInput
+    connect?: AuthorWhereUniqueInput
+  }
+
+  export type AuthorUncheckedCreateNestedOneWithoutUserInput = {
+    create?: XOR<AuthorCreateWithoutUserInput, AuthorUncheckedCreateWithoutUserInput>
+    connectOrCreate?: AuthorCreateOrConnectWithoutUserInput
+    connect?: AuthorWhereUniqueInput
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -2385,6 +9693,278 @@ export namespace Prisma {
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type AuthorUpdateOneWithoutUserNestedInput = {
+    create?: XOR<AuthorCreateWithoutUserInput, AuthorUncheckedCreateWithoutUserInput>
+    connectOrCreate?: AuthorCreateOrConnectWithoutUserInput
+    upsert?: AuthorUpsertWithoutUserInput
+    disconnect?: AuthorWhereInput | boolean
+    delete?: AuthorWhereInput | boolean
+    connect?: AuthorWhereUniqueInput
+    update?: XOR<XOR<AuthorUpdateToOneWithWhereWithoutUserInput, AuthorUpdateWithoutUserInput>, AuthorUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AuthorUncheckedUpdateOneWithoutUserNestedInput = {
+    create?: XOR<AuthorCreateWithoutUserInput, AuthorUncheckedCreateWithoutUserInput>
+    connectOrCreate?: AuthorCreateOrConnectWithoutUserInput
+    upsert?: AuthorUpsertWithoutUserInput
+    disconnect?: AuthorWhereInput | boolean
+    delete?: AuthorWhereInput | boolean
+    connect?: AuthorWhereUniqueInput
+    update?: XOR<XOR<AuthorUpdateToOneWithWhereWithoutUserInput, AuthorUpdateWithoutUserInput>, AuthorUncheckedUpdateWithoutUserInput>
+  }
+
+  export type UserCreateNestedOneWithoutAuthorInput = {
+    create?: XOR<UserCreateWithoutAuthorInput, UserUncheckedCreateWithoutAuthorInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAuthorInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type TafseerCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<TafseerCreateWithoutAuthorInput, TafseerUncheckedCreateWithoutAuthorInput> | TafseerCreateWithoutAuthorInput[] | TafseerUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: TafseerCreateOrConnectWithoutAuthorInput | TafseerCreateOrConnectWithoutAuthorInput[]
+    createMany?: TafseerCreateManyAuthorInputEnvelope
+    connect?: TafseerWhereUniqueInput | TafseerWhereUniqueInput[]
+  }
+
+  export type TafseerUncheckedCreateNestedManyWithoutAuthorInput = {
+    create?: XOR<TafseerCreateWithoutAuthorInput, TafseerUncheckedCreateWithoutAuthorInput> | TafseerCreateWithoutAuthorInput[] | TafseerUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: TafseerCreateOrConnectWithoutAuthorInput | TafseerCreateOrConnectWithoutAuthorInput[]
+    createMany?: TafseerCreateManyAuthorInputEnvelope
+    connect?: TafseerWhereUniqueInput | TafseerWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutAuthorNestedInput = {
+    create?: XOR<UserCreateWithoutAuthorInput, UserUncheckedCreateWithoutAuthorInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAuthorInput
+    upsert?: UserUpsertWithoutAuthorInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAuthorInput, UserUpdateWithoutAuthorInput>, UserUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type TafseerUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<TafseerCreateWithoutAuthorInput, TafseerUncheckedCreateWithoutAuthorInput> | TafseerCreateWithoutAuthorInput[] | TafseerUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: TafseerCreateOrConnectWithoutAuthorInput | TafseerCreateOrConnectWithoutAuthorInput[]
+    upsert?: TafseerUpsertWithWhereUniqueWithoutAuthorInput | TafseerUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: TafseerCreateManyAuthorInputEnvelope
+    set?: TafseerWhereUniqueInput | TafseerWhereUniqueInput[]
+    disconnect?: TafseerWhereUniqueInput | TafseerWhereUniqueInput[]
+    delete?: TafseerWhereUniqueInput | TafseerWhereUniqueInput[]
+    connect?: TafseerWhereUniqueInput | TafseerWhereUniqueInput[]
+    update?: TafseerUpdateWithWhereUniqueWithoutAuthorInput | TafseerUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: TafseerUpdateManyWithWhereWithoutAuthorInput | TafseerUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: TafseerScalarWhereInput | TafseerScalarWhereInput[]
+  }
+
+  export type TafseerUncheckedUpdateManyWithoutAuthorNestedInput = {
+    create?: XOR<TafseerCreateWithoutAuthorInput, TafseerUncheckedCreateWithoutAuthorInput> | TafseerCreateWithoutAuthorInput[] | TafseerUncheckedCreateWithoutAuthorInput[]
+    connectOrCreate?: TafseerCreateOrConnectWithoutAuthorInput | TafseerCreateOrConnectWithoutAuthorInput[]
+    upsert?: TafseerUpsertWithWhereUniqueWithoutAuthorInput | TafseerUpsertWithWhereUniqueWithoutAuthorInput[]
+    createMany?: TafseerCreateManyAuthorInputEnvelope
+    set?: TafseerWhereUniqueInput | TafseerWhereUniqueInput[]
+    disconnect?: TafseerWhereUniqueInput | TafseerWhereUniqueInput[]
+    delete?: TafseerWhereUniqueInput | TafseerWhereUniqueInput[]
+    connect?: TafseerWhereUniqueInput | TafseerWhereUniqueInput[]
+    update?: TafseerUpdateWithWhereUniqueWithoutAuthorInput | TafseerUpdateWithWhereUniqueWithoutAuthorInput[]
+    updateMany?: TafseerUpdateManyWithWhereWithoutAuthorInput | TafseerUpdateManyWithWhereWithoutAuthorInput[]
+    deleteMany?: TafseerScalarWhereInput | TafseerScalarWhereInput[]
+  }
+
+  export type AyahCreateNestedManyWithoutSurahInput = {
+    create?: XOR<AyahCreateWithoutSurahInput, AyahUncheckedCreateWithoutSurahInput> | AyahCreateWithoutSurahInput[] | AyahUncheckedCreateWithoutSurahInput[]
+    connectOrCreate?: AyahCreateOrConnectWithoutSurahInput | AyahCreateOrConnectWithoutSurahInput[]
+    createMany?: AyahCreateManySurahInputEnvelope
+    connect?: AyahWhereUniqueInput | AyahWhereUniqueInput[]
+  }
+
+  export type AyahUncheckedCreateNestedManyWithoutSurahInput = {
+    create?: XOR<AyahCreateWithoutSurahInput, AyahUncheckedCreateWithoutSurahInput> | AyahCreateWithoutSurahInput[] | AyahUncheckedCreateWithoutSurahInput[]
+    connectOrCreate?: AyahCreateOrConnectWithoutSurahInput | AyahCreateOrConnectWithoutSurahInput[]
+    createMany?: AyahCreateManySurahInputEnvelope
+    connect?: AyahWhereUniqueInput | AyahWhereUniqueInput[]
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type EnumSurahRevelationTypeFieldUpdateOperationsInput = {
+    set?: $Enums.SurahRevelationType
+  }
+
+  export type AyahUpdateManyWithoutSurahNestedInput = {
+    create?: XOR<AyahCreateWithoutSurahInput, AyahUncheckedCreateWithoutSurahInput> | AyahCreateWithoutSurahInput[] | AyahUncheckedCreateWithoutSurahInput[]
+    connectOrCreate?: AyahCreateOrConnectWithoutSurahInput | AyahCreateOrConnectWithoutSurahInput[]
+    upsert?: AyahUpsertWithWhereUniqueWithoutSurahInput | AyahUpsertWithWhereUniqueWithoutSurahInput[]
+    createMany?: AyahCreateManySurahInputEnvelope
+    set?: AyahWhereUniqueInput | AyahWhereUniqueInput[]
+    disconnect?: AyahWhereUniqueInput | AyahWhereUniqueInput[]
+    delete?: AyahWhereUniqueInput | AyahWhereUniqueInput[]
+    connect?: AyahWhereUniqueInput | AyahWhereUniqueInput[]
+    update?: AyahUpdateWithWhereUniqueWithoutSurahInput | AyahUpdateWithWhereUniqueWithoutSurahInput[]
+    updateMany?: AyahUpdateManyWithWhereWithoutSurahInput | AyahUpdateManyWithWhereWithoutSurahInput[]
+    deleteMany?: AyahScalarWhereInput | AyahScalarWhereInput[]
+  }
+
+  export type AyahUncheckedUpdateManyWithoutSurahNestedInput = {
+    create?: XOR<AyahCreateWithoutSurahInput, AyahUncheckedCreateWithoutSurahInput> | AyahCreateWithoutSurahInput[] | AyahUncheckedCreateWithoutSurahInput[]
+    connectOrCreate?: AyahCreateOrConnectWithoutSurahInput | AyahCreateOrConnectWithoutSurahInput[]
+    upsert?: AyahUpsertWithWhereUniqueWithoutSurahInput | AyahUpsertWithWhereUniqueWithoutSurahInput[]
+    createMany?: AyahCreateManySurahInputEnvelope
+    set?: AyahWhereUniqueInput | AyahWhereUniqueInput[]
+    disconnect?: AyahWhereUniqueInput | AyahWhereUniqueInput[]
+    delete?: AyahWhereUniqueInput | AyahWhereUniqueInput[]
+    connect?: AyahWhereUniqueInput | AyahWhereUniqueInput[]
+    update?: AyahUpdateWithWhereUniqueWithoutSurahInput | AyahUpdateWithWhereUniqueWithoutSurahInput[]
+    updateMany?: AyahUpdateManyWithWhereWithoutSurahInput | AyahUpdateManyWithWhereWithoutSurahInput[]
+    deleteMany?: AyahScalarWhereInput | AyahScalarWhereInput[]
+  }
+
+  export type SurahCreateNestedOneWithoutAyahsInput = {
+    create?: XOR<SurahCreateWithoutAyahsInput, SurahUncheckedCreateWithoutAyahsInput>
+    connectOrCreate?: SurahCreateOrConnectWithoutAyahsInput
+    connect?: SurahWhereUniqueInput
+  }
+
+  export type TafseerAyahCreateNestedManyWithoutAyahInput = {
+    create?: XOR<TafseerAyahCreateWithoutAyahInput, TafseerAyahUncheckedCreateWithoutAyahInput> | TafseerAyahCreateWithoutAyahInput[] | TafseerAyahUncheckedCreateWithoutAyahInput[]
+    connectOrCreate?: TafseerAyahCreateOrConnectWithoutAyahInput | TafseerAyahCreateOrConnectWithoutAyahInput[]
+    createMany?: TafseerAyahCreateManyAyahInputEnvelope
+    connect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+  }
+
+  export type TafseerAyahUncheckedCreateNestedManyWithoutAyahInput = {
+    create?: XOR<TafseerAyahCreateWithoutAyahInput, TafseerAyahUncheckedCreateWithoutAyahInput> | TafseerAyahCreateWithoutAyahInput[] | TafseerAyahUncheckedCreateWithoutAyahInput[]
+    connectOrCreate?: TafseerAyahCreateOrConnectWithoutAyahInput | TafseerAyahCreateOrConnectWithoutAyahInput[]
+    createMany?: TafseerAyahCreateManyAyahInputEnvelope
+    connect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+  }
+
+  export type SurahUpdateOneRequiredWithoutAyahsNestedInput = {
+    create?: XOR<SurahCreateWithoutAyahsInput, SurahUncheckedCreateWithoutAyahsInput>
+    connectOrCreate?: SurahCreateOrConnectWithoutAyahsInput
+    upsert?: SurahUpsertWithoutAyahsInput
+    connect?: SurahWhereUniqueInput
+    update?: XOR<XOR<SurahUpdateToOneWithWhereWithoutAyahsInput, SurahUpdateWithoutAyahsInput>, SurahUncheckedUpdateWithoutAyahsInput>
+  }
+
+  export type TafseerAyahUpdateManyWithoutAyahNestedInput = {
+    create?: XOR<TafseerAyahCreateWithoutAyahInput, TafseerAyahUncheckedCreateWithoutAyahInput> | TafseerAyahCreateWithoutAyahInput[] | TafseerAyahUncheckedCreateWithoutAyahInput[]
+    connectOrCreate?: TafseerAyahCreateOrConnectWithoutAyahInput | TafseerAyahCreateOrConnectWithoutAyahInput[]
+    upsert?: TafseerAyahUpsertWithWhereUniqueWithoutAyahInput | TafseerAyahUpsertWithWhereUniqueWithoutAyahInput[]
+    createMany?: TafseerAyahCreateManyAyahInputEnvelope
+    set?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    disconnect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    delete?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    connect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    update?: TafseerAyahUpdateWithWhereUniqueWithoutAyahInput | TafseerAyahUpdateWithWhereUniqueWithoutAyahInput[]
+    updateMany?: TafseerAyahUpdateManyWithWhereWithoutAyahInput | TafseerAyahUpdateManyWithWhereWithoutAyahInput[]
+    deleteMany?: TafseerAyahScalarWhereInput | TafseerAyahScalarWhereInput[]
+  }
+
+  export type TafseerAyahUncheckedUpdateManyWithoutAyahNestedInput = {
+    create?: XOR<TafseerAyahCreateWithoutAyahInput, TafseerAyahUncheckedCreateWithoutAyahInput> | TafseerAyahCreateWithoutAyahInput[] | TafseerAyahUncheckedCreateWithoutAyahInput[]
+    connectOrCreate?: TafseerAyahCreateOrConnectWithoutAyahInput | TafseerAyahCreateOrConnectWithoutAyahInput[]
+    upsert?: TafseerAyahUpsertWithWhereUniqueWithoutAyahInput | TafseerAyahUpsertWithWhereUniqueWithoutAyahInput[]
+    createMany?: TafseerAyahCreateManyAyahInputEnvelope
+    set?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    disconnect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    delete?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    connect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    update?: TafseerAyahUpdateWithWhereUniqueWithoutAyahInput | TafseerAyahUpdateWithWhereUniqueWithoutAyahInput[]
+    updateMany?: TafseerAyahUpdateManyWithWhereWithoutAyahInput | TafseerAyahUpdateManyWithWhereWithoutAyahInput[]
+    deleteMany?: TafseerAyahScalarWhereInput | TafseerAyahScalarWhereInput[]
+  }
+
+  export type AyahCreateNestedOneWithoutTafseersInput = {
+    create?: XOR<AyahCreateWithoutTafseersInput, AyahUncheckedCreateWithoutTafseersInput>
+    connectOrCreate?: AyahCreateOrConnectWithoutTafseersInput
+    connect?: AyahWhereUniqueInput
+  }
+
+  export type TafseerCreateNestedOneWithoutAyahsInput = {
+    create?: XOR<TafseerCreateWithoutAyahsInput, TafseerUncheckedCreateWithoutAyahsInput>
+    connectOrCreate?: TafseerCreateOrConnectWithoutAyahsInput
+    connect?: TafseerWhereUniqueInput
+  }
+
+  export type AyahUpdateOneRequiredWithoutTafseersNestedInput = {
+    create?: XOR<AyahCreateWithoutTafseersInput, AyahUncheckedCreateWithoutTafseersInput>
+    connectOrCreate?: AyahCreateOrConnectWithoutTafseersInput
+    upsert?: AyahUpsertWithoutTafseersInput
+    connect?: AyahWhereUniqueInput
+    update?: XOR<XOR<AyahUpdateToOneWithWhereWithoutTafseersInput, AyahUpdateWithoutTafseersInput>, AyahUncheckedUpdateWithoutTafseersInput>
+  }
+
+  export type TafseerUpdateOneWithoutAyahsNestedInput = {
+    create?: XOR<TafseerCreateWithoutAyahsInput, TafseerUncheckedCreateWithoutAyahsInput>
+    connectOrCreate?: TafseerCreateOrConnectWithoutAyahsInput
+    upsert?: TafseerUpsertWithoutAyahsInput
+    disconnect?: TafseerWhereInput | boolean
+    delete?: TafseerWhereInput | boolean
+    connect?: TafseerWhereUniqueInput
+    update?: XOR<XOR<TafseerUpdateToOneWithWhereWithoutAyahsInput, TafseerUpdateWithoutAyahsInput>, TafseerUncheckedUpdateWithoutAyahsInput>
+  }
+
+  export type AuthorCreateNestedOneWithoutTafseersInput = {
+    create?: XOR<AuthorCreateWithoutTafseersInput, AuthorUncheckedCreateWithoutTafseersInput>
+    connectOrCreate?: AuthorCreateOrConnectWithoutTafseersInput
+    connect?: AuthorWhereUniqueInput
+  }
+
+  export type TafseerAyahCreateNestedManyWithoutTafseerInput = {
+    create?: XOR<TafseerAyahCreateWithoutTafseerInput, TafseerAyahUncheckedCreateWithoutTafseerInput> | TafseerAyahCreateWithoutTafseerInput[] | TafseerAyahUncheckedCreateWithoutTafseerInput[]
+    connectOrCreate?: TafseerAyahCreateOrConnectWithoutTafseerInput | TafseerAyahCreateOrConnectWithoutTafseerInput[]
+    createMany?: TafseerAyahCreateManyTafseerInputEnvelope
+    connect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+  }
+
+  export type TafseerAyahUncheckedCreateNestedManyWithoutTafseerInput = {
+    create?: XOR<TafseerAyahCreateWithoutTafseerInput, TafseerAyahUncheckedCreateWithoutTafseerInput> | TafseerAyahCreateWithoutTafseerInput[] | TafseerAyahUncheckedCreateWithoutTafseerInput[]
+    connectOrCreate?: TafseerAyahCreateOrConnectWithoutTafseerInput | TafseerAyahCreateOrConnectWithoutTafseerInput[]
+    createMany?: TafseerAyahCreateManyTafseerInputEnvelope
+    connect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+  }
+
+  export type AuthorUpdateOneRequiredWithoutTafseersNestedInput = {
+    create?: XOR<AuthorCreateWithoutTafseersInput, AuthorUncheckedCreateWithoutTafseersInput>
+    connectOrCreate?: AuthorCreateOrConnectWithoutTafseersInput
+    upsert?: AuthorUpsertWithoutTafseersInput
+    connect?: AuthorWhereUniqueInput
+    update?: XOR<XOR<AuthorUpdateToOneWithWhereWithoutTafseersInput, AuthorUpdateWithoutTafseersInput>, AuthorUncheckedUpdateWithoutTafseersInput>
+  }
+
+  export type TafseerAyahUpdateManyWithoutTafseerNestedInput = {
+    create?: XOR<TafseerAyahCreateWithoutTafseerInput, TafseerAyahUncheckedCreateWithoutTafseerInput> | TafseerAyahCreateWithoutTafseerInput[] | TafseerAyahUncheckedCreateWithoutTafseerInput[]
+    connectOrCreate?: TafseerAyahCreateOrConnectWithoutTafseerInput | TafseerAyahCreateOrConnectWithoutTafseerInput[]
+    upsert?: TafseerAyahUpsertWithWhereUniqueWithoutTafseerInput | TafseerAyahUpsertWithWhereUniqueWithoutTafseerInput[]
+    createMany?: TafseerAyahCreateManyTafseerInputEnvelope
+    set?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    disconnect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    delete?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    connect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    update?: TafseerAyahUpdateWithWhereUniqueWithoutTafseerInput | TafseerAyahUpdateWithWhereUniqueWithoutTafseerInput[]
+    updateMany?: TafseerAyahUpdateManyWithWhereWithoutTafseerInput | TafseerAyahUpdateManyWithWhereWithoutTafseerInput[]
+    deleteMany?: TafseerAyahScalarWhereInput | TafseerAyahScalarWhereInput[]
+  }
+
+  export type TafseerAyahUncheckedUpdateManyWithoutTafseerNestedInput = {
+    create?: XOR<TafseerAyahCreateWithoutTafseerInput, TafseerAyahUncheckedCreateWithoutTafseerInput> | TafseerAyahCreateWithoutTafseerInput[] | TafseerAyahUncheckedCreateWithoutTafseerInput[]
+    connectOrCreate?: TafseerAyahCreateOrConnectWithoutTafseerInput | TafseerAyahCreateOrConnectWithoutTafseerInput[]
+    upsert?: TafseerAyahUpsertWithWhereUniqueWithoutTafseerInput | TafseerAyahUpsertWithWhereUniqueWithoutTafseerInput[]
+    createMany?: TafseerAyahCreateManyTafseerInputEnvelope
+    set?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    disconnect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    delete?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    connect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
+    update?: TafseerAyahUpdateWithWhereUniqueWithoutTafseerInput | TafseerAyahUpdateWithWhereUniqueWithoutTafseerInput[]
+    updateMany?: TafseerAyahUpdateManyWithWhereWithoutTafseerInput | TafseerAyahUpdateManyWithWhereWithoutTafseerInput[]
+    deleteMany?: TafseerAyahScalarWhereInput | TafseerAyahScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2494,6 +10074,740 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumSurahRevelationTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurahRevelationType | EnumSurahRevelationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SurahRevelationType[] | ListEnumSurahRevelationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurahRevelationType[] | ListEnumSurahRevelationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurahRevelationTypeFilter<$PrismaModel> | $Enums.SurahRevelationType
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedEnumSurahRevelationTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.SurahRevelationType | EnumSurahRevelationTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.SurahRevelationType[] | ListEnumSurahRevelationTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.SurahRevelationType[] | ListEnumSurahRevelationTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumSurahRevelationTypeWithAggregatesFilter<$PrismaModel> | $Enums.SurahRevelationType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumSurahRevelationTypeFilter<$PrismaModel>
+    _max?: NestedEnumSurahRevelationTypeFilter<$PrismaModel>
+  }
+
+  export type AuthorCreateWithoutUserInput = {
+    id?: string
+    country?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tafseers?: TafseerCreateNestedManyWithoutAuthorInput
+  }
+
+  export type AuthorUncheckedCreateWithoutUserInput = {
+    id?: string
+    country?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tafseers?: TafseerUncheckedCreateNestedManyWithoutAuthorInput
+  }
+
+  export type AuthorCreateOrConnectWithoutUserInput = {
+    where: AuthorWhereUniqueInput
+    create: XOR<AuthorCreateWithoutUserInput, AuthorUncheckedCreateWithoutUserInput>
+  }
+
+  export type AuthorUpsertWithoutUserInput = {
+    update: XOR<AuthorUpdateWithoutUserInput, AuthorUncheckedUpdateWithoutUserInput>
+    create: XOR<AuthorCreateWithoutUserInput, AuthorUncheckedCreateWithoutUserInput>
+    where?: AuthorWhereInput
+  }
+
+  export type AuthorUpdateToOneWithWhereWithoutUserInput = {
+    where?: AuthorWhereInput
+    data: XOR<AuthorUpdateWithoutUserInput, AuthorUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AuthorUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tafseers?: TafseerUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type AuthorUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tafseers?: TafseerUncheckedUpdateManyWithoutAuthorNestedInput
+  }
+
+  export type UserCreateWithoutAuthorInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    displayName: string
+    avatar?: string | null
+    bio?: string | null
+    rights?: UserCreaterightsInput | $Enums.Role[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserUncheckedCreateWithoutAuthorInput = {
+    id?: string
+    email: string
+    password: string
+    username: string
+    displayName: string
+    avatar?: string | null
+    bio?: string | null
+    rights?: UserCreaterightsInput | $Enums.Role[]
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type UserCreateOrConnectWithoutAuthorInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAuthorInput, UserUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type TafseerCreateWithoutAuthorInput = {
+    id?: string
+    name: string
+    text: string
+    file?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ayahs?: TafseerAyahCreateNestedManyWithoutTafseerInput
+  }
+
+  export type TafseerUncheckedCreateWithoutAuthorInput = {
+    id?: string
+    name: string
+    text: string
+    file?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ayahs?: TafseerAyahUncheckedCreateNestedManyWithoutTafseerInput
+  }
+
+  export type TafseerCreateOrConnectWithoutAuthorInput = {
+    where: TafseerWhereUniqueInput
+    create: XOR<TafseerCreateWithoutAuthorInput, TafseerUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type TafseerCreateManyAuthorInputEnvelope = {
+    data: TafseerCreateManyAuthorInput | TafseerCreateManyAuthorInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutAuthorInput = {
+    update: XOR<UserUpdateWithoutAuthorInput, UserUncheckedUpdateWithoutAuthorInput>
+    create: XOR<UserCreateWithoutAuthorInput, UserUncheckedCreateWithoutAuthorInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAuthorInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAuthorInput, UserUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type UserUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    rights?: UserUpdaterightsInput | $Enums.Role[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    username?: StringFieldUpdateOperationsInput | string
+    displayName?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    bio?: NullableStringFieldUpdateOperationsInput | string | null
+    rights?: UserUpdaterightsInput | $Enums.Role[]
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TafseerUpsertWithWhereUniqueWithoutAuthorInput = {
+    where: TafseerWhereUniqueInput
+    update: XOR<TafseerUpdateWithoutAuthorInput, TafseerUncheckedUpdateWithoutAuthorInput>
+    create: XOR<TafseerCreateWithoutAuthorInput, TafseerUncheckedCreateWithoutAuthorInput>
+  }
+
+  export type TafseerUpdateWithWhereUniqueWithoutAuthorInput = {
+    where: TafseerWhereUniqueInput
+    data: XOR<TafseerUpdateWithoutAuthorInput, TafseerUncheckedUpdateWithoutAuthorInput>
+  }
+
+  export type TafseerUpdateManyWithWhereWithoutAuthorInput = {
+    where: TafseerScalarWhereInput
+    data: XOR<TafseerUpdateManyMutationInput, TafseerUncheckedUpdateManyWithoutAuthorInput>
+  }
+
+  export type TafseerScalarWhereInput = {
+    AND?: TafseerScalarWhereInput | TafseerScalarWhereInput[]
+    OR?: TafseerScalarWhereInput[]
+    NOT?: TafseerScalarWhereInput | TafseerScalarWhereInput[]
+    id?: StringFilter<"Tafseer"> | string
+    name?: StringFilter<"Tafseer"> | string
+    text?: StringFilter<"Tafseer"> | string
+    file?: StringNullableFilter<"Tafseer"> | string | null
+    authorId?: StringFilter<"Tafseer"> | string
+    createdAt?: DateTimeFilter<"Tafseer"> | Date | string
+    updatedAt?: DateTimeFilter<"Tafseer"> | Date | string
+  }
+
+  export type AyahCreateWithoutSurahInput = {
+    id?: string
+    number: number
+    arabicText: string
+    uzbekText: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tafseers?: TafseerAyahCreateNestedManyWithoutAyahInput
+  }
+
+  export type AyahUncheckedCreateWithoutSurahInput = {
+    id?: string
+    number: number
+    arabicText: string
+    uzbekText: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tafseers?: TafseerAyahUncheckedCreateNestedManyWithoutAyahInput
+  }
+
+  export type AyahCreateOrConnectWithoutSurahInput = {
+    where: AyahWhereUniqueInput
+    create: XOR<AyahCreateWithoutSurahInput, AyahUncheckedCreateWithoutSurahInput>
+  }
+
+  export type AyahCreateManySurahInputEnvelope = {
+    data: AyahCreateManySurahInput | AyahCreateManySurahInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AyahUpsertWithWhereUniqueWithoutSurahInput = {
+    where: AyahWhereUniqueInput
+    update: XOR<AyahUpdateWithoutSurahInput, AyahUncheckedUpdateWithoutSurahInput>
+    create: XOR<AyahCreateWithoutSurahInput, AyahUncheckedCreateWithoutSurahInput>
+  }
+
+  export type AyahUpdateWithWhereUniqueWithoutSurahInput = {
+    where: AyahWhereUniqueInput
+    data: XOR<AyahUpdateWithoutSurahInput, AyahUncheckedUpdateWithoutSurahInput>
+  }
+
+  export type AyahUpdateManyWithWhereWithoutSurahInput = {
+    where: AyahScalarWhereInput
+    data: XOR<AyahUpdateManyMutationInput, AyahUncheckedUpdateManyWithoutSurahInput>
+  }
+
+  export type AyahScalarWhereInput = {
+    AND?: AyahScalarWhereInput | AyahScalarWhereInput[]
+    OR?: AyahScalarWhereInput[]
+    NOT?: AyahScalarWhereInput | AyahScalarWhereInput[]
+    id?: StringFilter<"Ayah"> | string
+    number?: IntFilter<"Ayah"> | number
+    arabicText?: StringFilter<"Ayah"> | string
+    uzbekText?: StringFilter<"Ayah"> | string
+    surahId?: StringFilter<"Ayah"> | string
+    createdAt?: DateTimeFilter<"Ayah"> | Date | string
+    updatedAt?: DateTimeFilter<"Ayah"> | Date | string
+  }
+
+  export type SurahCreateWithoutAyahsInput = {
+    id?: string
+    name: string
+    arabicName: string
+    number: number
+    totalAyahs: number
+    revelationType: $Enums.SurahRevelationType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SurahUncheckedCreateWithoutAyahsInput = {
+    id?: string
+    name: string
+    arabicName: string
+    number: number
+    totalAyahs: number
+    revelationType: $Enums.SurahRevelationType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SurahCreateOrConnectWithoutAyahsInput = {
+    where: SurahWhereUniqueInput
+    create: XOR<SurahCreateWithoutAyahsInput, SurahUncheckedCreateWithoutAyahsInput>
+  }
+
+  export type TafseerAyahCreateWithoutAyahInput = {
+    id?: string
+    text: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tafseer?: TafseerCreateNestedOneWithoutAyahsInput
+  }
+
+  export type TafseerAyahUncheckedCreateWithoutAyahInput = {
+    id?: string
+    text: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tafseerId?: string | null
+  }
+
+  export type TafseerAyahCreateOrConnectWithoutAyahInput = {
+    where: TafseerAyahWhereUniqueInput
+    create: XOR<TafseerAyahCreateWithoutAyahInput, TafseerAyahUncheckedCreateWithoutAyahInput>
+  }
+
+  export type TafseerAyahCreateManyAyahInputEnvelope = {
+    data: TafseerAyahCreateManyAyahInput | TafseerAyahCreateManyAyahInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type SurahUpsertWithoutAyahsInput = {
+    update: XOR<SurahUpdateWithoutAyahsInput, SurahUncheckedUpdateWithoutAyahsInput>
+    create: XOR<SurahCreateWithoutAyahsInput, SurahUncheckedCreateWithoutAyahsInput>
+    where?: SurahWhereInput
+  }
+
+  export type SurahUpdateToOneWithWhereWithoutAyahsInput = {
+    where?: SurahWhereInput
+    data: XOR<SurahUpdateWithoutAyahsInput, SurahUncheckedUpdateWithoutAyahsInput>
+  }
+
+  export type SurahUpdateWithoutAyahsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    totalAyahs?: IntFieldUpdateOperationsInput | number
+    revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SurahUncheckedUpdateWithoutAyahsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    totalAyahs?: IntFieldUpdateOperationsInput | number
+    revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TafseerAyahUpsertWithWhereUniqueWithoutAyahInput = {
+    where: TafseerAyahWhereUniqueInput
+    update: XOR<TafseerAyahUpdateWithoutAyahInput, TafseerAyahUncheckedUpdateWithoutAyahInput>
+    create: XOR<TafseerAyahCreateWithoutAyahInput, TafseerAyahUncheckedCreateWithoutAyahInput>
+  }
+
+  export type TafseerAyahUpdateWithWhereUniqueWithoutAyahInput = {
+    where: TafseerAyahWhereUniqueInput
+    data: XOR<TafseerAyahUpdateWithoutAyahInput, TafseerAyahUncheckedUpdateWithoutAyahInput>
+  }
+
+  export type TafseerAyahUpdateManyWithWhereWithoutAyahInput = {
+    where: TafseerAyahScalarWhereInput
+    data: XOR<TafseerAyahUpdateManyMutationInput, TafseerAyahUncheckedUpdateManyWithoutAyahInput>
+  }
+
+  export type TafseerAyahScalarWhereInput = {
+    AND?: TafseerAyahScalarWhereInput | TafseerAyahScalarWhereInput[]
+    OR?: TafseerAyahScalarWhereInput[]
+    NOT?: TafseerAyahScalarWhereInput | TafseerAyahScalarWhereInput[]
+    id?: StringFilter<"TafseerAyah"> | string
+    text?: StringFilter<"TafseerAyah"> | string
+    ayahId?: StringFilter<"TafseerAyah"> | string
+    createdAt?: DateTimeFilter<"TafseerAyah"> | Date | string
+    updatedAt?: DateTimeFilter<"TafseerAyah"> | Date | string
+    tafseerId?: StringNullableFilter<"TafseerAyah"> | string | null
+  }
+
+  export type AyahCreateWithoutTafseersInput = {
+    id?: string
+    number: number
+    arabicText: string
+    uzbekText: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    surah: SurahCreateNestedOneWithoutAyahsInput
+  }
+
+  export type AyahUncheckedCreateWithoutTafseersInput = {
+    id?: string
+    number: number
+    arabicText: string
+    uzbekText: string
+    surahId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AyahCreateOrConnectWithoutTafseersInput = {
+    where: AyahWhereUniqueInput
+    create: XOR<AyahCreateWithoutTafseersInput, AyahUncheckedCreateWithoutTafseersInput>
+  }
+
+  export type TafseerCreateWithoutAyahsInput = {
+    id?: string
+    name: string
+    text: string
+    file?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    author: AuthorCreateNestedOneWithoutTafseersInput
+  }
+
+  export type TafseerUncheckedCreateWithoutAyahsInput = {
+    id?: string
+    name: string
+    text: string
+    file?: string | null
+    authorId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TafseerCreateOrConnectWithoutAyahsInput = {
+    where: TafseerWhereUniqueInput
+    create: XOR<TafseerCreateWithoutAyahsInput, TafseerUncheckedCreateWithoutAyahsInput>
+  }
+
+  export type AyahUpsertWithoutTafseersInput = {
+    update: XOR<AyahUpdateWithoutTafseersInput, AyahUncheckedUpdateWithoutTafseersInput>
+    create: XOR<AyahCreateWithoutTafseersInput, AyahUncheckedCreateWithoutTafseersInput>
+    where?: AyahWhereInput
+  }
+
+  export type AyahUpdateToOneWithWhereWithoutTafseersInput = {
+    where?: AyahWhereInput
+    data: XOR<AyahUpdateWithoutTafseersInput, AyahUncheckedUpdateWithoutTafseersInput>
+  }
+
+  export type AyahUpdateWithoutTafseersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    arabicText?: StringFieldUpdateOperationsInput | string
+    uzbekText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    surah?: SurahUpdateOneRequiredWithoutAyahsNestedInput
+  }
+
+  export type AyahUncheckedUpdateWithoutTafseersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    arabicText?: StringFieldUpdateOperationsInput | string
+    uzbekText?: StringFieldUpdateOperationsInput | string
+    surahId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TafseerUpsertWithoutAyahsInput = {
+    update: XOR<TafseerUpdateWithoutAyahsInput, TafseerUncheckedUpdateWithoutAyahsInput>
+    create: XOR<TafseerCreateWithoutAyahsInput, TafseerUncheckedCreateWithoutAyahsInput>
+    where?: TafseerWhereInput
+  }
+
+  export type TafseerUpdateToOneWithWhereWithoutAyahsInput = {
+    where?: TafseerWhereInput
+    data: XOR<TafseerUpdateWithoutAyahsInput, TafseerUncheckedUpdateWithoutAyahsInput>
+  }
+
+  export type TafseerUpdateWithoutAyahsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    file?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: AuthorUpdateOneRequiredWithoutTafseersNestedInput
+  }
+
+  export type TafseerUncheckedUpdateWithoutAyahsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    file?: NullableStringFieldUpdateOperationsInput | string | null
+    authorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuthorCreateWithoutTafseersInput = {
+    id?: string
+    country?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutAuthorInput
+  }
+
+  export type AuthorUncheckedCreateWithoutTafseersInput = {
+    id?: string
+    country?: string | null
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AuthorCreateOrConnectWithoutTafseersInput = {
+    where: AuthorWhereUniqueInput
+    create: XOR<AuthorCreateWithoutTafseersInput, AuthorUncheckedCreateWithoutTafseersInput>
+  }
+
+  export type TafseerAyahCreateWithoutTafseerInput = {
+    id?: string
+    text: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ayah: AyahCreateNestedOneWithoutTafseersInput
+  }
+
+  export type TafseerAyahUncheckedCreateWithoutTafseerInput = {
+    id?: string
+    text: string
+    ayahId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TafseerAyahCreateOrConnectWithoutTafseerInput = {
+    where: TafseerAyahWhereUniqueInput
+    create: XOR<TafseerAyahCreateWithoutTafseerInput, TafseerAyahUncheckedCreateWithoutTafseerInput>
+  }
+
+  export type TafseerAyahCreateManyTafseerInputEnvelope = {
+    data: TafseerAyahCreateManyTafseerInput | TafseerAyahCreateManyTafseerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AuthorUpsertWithoutTafseersInput = {
+    update: XOR<AuthorUpdateWithoutTafseersInput, AuthorUncheckedUpdateWithoutTafseersInput>
+    create: XOR<AuthorCreateWithoutTafseersInput, AuthorUncheckedCreateWithoutTafseersInput>
+    where?: AuthorWhereInput
+  }
+
+  export type AuthorUpdateToOneWithWhereWithoutTafseersInput = {
+    where?: AuthorWhereInput
+    data: XOR<AuthorUpdateWithoutTafseersInput, AuthorUncheckedUpdateWithoutTafseersInput>
+  }
+
+  export type AuthorUpdateWithoutTafseersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutAuthorNestedInput
+  }
+
+  export type AuthorUncheckedUpdateWithoutTafseersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TafseerAyahUpsertWithWhereUniqueWithoutTafseerInput = {
+    where: TafseerAyahWhereUniqueInput
+    update: XOR<TafseerAyahUpdateWithoutTafseerInput, TafseerAyahUncheckedUpdateWithoutTafseerInput>
+    create: XOR<TafseerAyahCreateWithoutTafseerInput, TafseerAyahUncheckedCreateWithoutTafseerInput>
+  }
+
+  export type TafseerAyahUpdateWithWhereUniqueWithoutTafseerInput = {
+    where: TafseerAyahWhereUniqueInput
+    data: XOR<TafseerAyahUpdateWithoutTafseerInput, TafseerAyahUncheckedUpdateWithoutTafseerInput>
+  }
+
+  export type TafseerAyahUpdateManyWithWhereWithoutTafseerInput = {
+    where: TafseerAyahScalarWhereInput
+    data: XOR<TafseerAyahUpdateManyMutationInput, TafseerAyahUncheckedUpdateManyWithoutTafseerInput>
+  }
+
+  export type TafseerCreateManyAuthorInput = {
+    id?: string
+    name: string
+    text: string
+    file?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TafseerUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    file?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ayahs?: TafseerAyahUpdateManyWithoutTafseerNestedInput
+  }
+
+  export type TafseerUncheckedUpdateWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    file?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ayahs?: TafseerAyahUncheckedUpdateManyWithoutTafseerNestedInput
+  }
+
+  export type TafseerUncheckedUpdateManyWithoutAuthorInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    file?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AyahCreateManySurahInput = {
+    id?: string
+    number: number
+    arabicText: string
+    uzbekText: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AyahUpdateWithoutSurahInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    arabicText?: StringFieldUpdateOperationsInput | string
+    uzbekText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tafseers?: TafseerAyahUpdateManyWithoutAyahNestedInput
+  }
+
+  export type AyahUncheckedUpdateWithoutSurahInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    arabicText?: StringFieldUpdateOperationsInput | string
+    uzbekText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tafseers?: TafseerAyahUncheckedUpdateManyWithoutAyahNestedInput
+  }
+
+  export type AyahUncheckedUpdateManyWithoutSurahInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    arabicText?: StringFieldUpdateOperationsInput | string
+    uzbekText?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TafseerAyahCreateManyAyahInput = {
+    id?: string
+    text: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    tafseerId?: string | null
+  }
+
+  export type TafseerAyahUpdateWithoutAyahInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tafseer?: TafseerUpdateOneWithoutAyahsNestedInput
+  }
+
+  export type TafseerAyahUncheckedUpdateWithoutAyahInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tafseerId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TafseerAyahUncheckedUpdateManyWithoutAyahInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tafseerId?: NullableStringFieldUpdateOperationsInput | string | null
+  }
+
+  export type TafseerAyahCreateManyTafseerInput = {
+    id?: string
+    text: string
+    ayahId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TafseerAyahUpdateWithoutTafseerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ayah?: AyahUpdateOneRequiredWithoutTafseersNestedInput
+  }
+
+  export type TafseerAyahUncheckedUpdateWithoutTafseerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    ayahId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TafseerAyahUncheckedUpdateManyWithoutTafseerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    ayahId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
 

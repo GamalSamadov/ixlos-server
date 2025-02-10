@@ -2,7 +2,27 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type AuthorModel {
+  country: String!
+  createdAt: DateTime!
+  id: ID!
+  updatedAt: DateTime!
+  user: UserModel!
+  userId: String!
+}
+
+input CreateAuthorInput {
+  bio: String!
+  country: String
+  displayName: String
+  email: String!
+  password: String!
+  username: String!
+}
+
 input CreateUserInput {
+  bio: String
+  displayName: String
   email: String!
   password: String!
   username: String!
@@ -33,13 +53,16 @@ input LoginInput {
 
 type Mutation {
   clearSessionCookie: Boolean!
+  createAuthor(data: CreateAuthorInput!): Boolean!
   createUser(data: CreateUserInput!): Boolean!
   loginUser(data: LoginInput!): UserModel!
   logoutUser: Boolean!
   removeSession(id: String!): Boolean!
+  updateAuthor(id: String!): Boolean!
 }
 
 type Query {
+  findAuthors: [AuthorModel!]!
   findCurrentSession: SessionModel!
   findProfile: UserModel!
   findSessionsByUser: [SessionModel!]!
@@ -47,6 +70,7 @@ type Query {
 
 enum Role {
   ADMIN
+  AUTHOR
   USER
 }
 

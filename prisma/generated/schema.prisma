@@ -9,23 +9,95 @@ datasource db {
 }
 
 model User {
-  id          String  @id @default(uuid())
-  email       String  @unique
+  id          String   @id @default(uuid())
+  email       String   @unique
   password    String
-  username    String  @unique
-  displayName String  @map("display_name")
+  username    String   @unique
+  displayName String   @map("display_name")
   avatar      String?
   bio         String?
-
-  rights Role[] @default([USER])
-
-  createdAt DateTime @default(now()) @map("created_at")
-  updatedAt DateTime @updatedAt @map("updated_at")
+  rights      Role[]   @default([USER])
+  author      Author?
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
 
   @@map("users")
+}
+
+model Author {
+  id        String    @id @default(uuid())
+  country   String?
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String    @unique @map("user_id")
+  tafseers  Tafseer[]
+  createdAt DateTime  @default(now()) @map("created_at")
+  updatedAt DateTime  @updatedAt @map("updated_at")
+
+  @@map("authors")
+}
+
+model Surah {
+  id             String              @id @default(uuid())
+  name           String
+  arabicName     String
+  number         Int
+  totalAyahs     Int                 @map("total_ayahs")
+  revelationType SurahRevelationType @map("revelation_type")
+  ayahs          Ayah[]
+  createdAt      DateTime            @default(now()) @map("created_at")
+  updatedAt      DateTime            @updatedAt @map("updated_at")
+
+  @@map("surahs")
+}
+
+model Ayah {
+  id         String        @id @default(uuid())
+  number     Int
+  arabicText String
+  uzbekText  String
+  surah      Surah         @relation(fields: [surahId], references: [id], onDelete: Cascade)
+  surahId    String        @map("surah_id")
+  tafseers   TafseerAyah[]
+  createdAt  DateTime      @default(now()) @map("created_at")
+  updatedAt  DateTime      @updatedAt @map("updated_at")
+
+  @@map("ayahs")
+}
+
+model TafseerAyah {
+  id        String   @id @default(uuid())
+  text      String
+  ayah      Ayah     @relation(fields: [ayahId], references: [id], onDelete: Cascade)
+  ayahId    String   @map("ayah_id")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+  tafseer   Tafseer? @relation(fields: [tafseerId], references: [id])
+  tafseerId String?
+
+  @@map("tafseer_ayahs")
+}
+
+model Tafseer {
+  id        String        @id @default(uuid())
+  name      String
+  text      String
+  file      String?
+  author    Author        @relation(fields: [authorId], references: [id])
+  authorId  String        @map("author_id")
+  ayahs     TafseerAyah[]
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
+
+  @@map("tafseers")
 }
 
 enum Role {
   USER
   ADMIN
+  AUTHOR
+}
+
+enum SurahRevelationType {
+  MECCAN
+  MEDINAN
 }

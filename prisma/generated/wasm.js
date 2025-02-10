@@ -130,6 +130,54 @@ exports.Prisma.UserScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.AuthorScalarFieldEnum = {
+  id: 'id',
+  country: 'country',
+  userId: 'userId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.SurahScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  arabicName: 'arabicName',
+  number: 'number',
+  totalAyahs: 'totalAyahs',
+  revelationType: 'revelationType',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.AyahScalarFieldEnum = {
+  id: 'id',
+  number: 'number',
+  arabicText: 'arabicText',
+  uzbekText: 'uzbekText',
+  surahId: 'surahId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.TafseerAyahScalarFieldEnum = {
+  id: 'id',
+  text: 'text',
+  ayahId: 'ayahId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt',
+  tafseerId: 'tafseerId'
+};
+
+exports.Prisma.TafseerScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  text: 'text',
+  file: 'file',
+  authorId: 'authorId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -146,11 +194,22 @@ exports.Prisma.NullsOrder = {
 };
 exports.Role = exports.$Enums.Role = {
   USER: 'USER',
-  ADMIN: 'ADMIN'
+  ADMIN: 'ADMIN',
+  AUTHOR: 'AUTHOR'
+};
+
+exports.SurahRevelationType = exports.$Enums.SurahRevelationType = {
+  MECCAN: 'MECCAN',
+  MEDINAN: 'MEDINAN'
 };
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Author: 'Author',
+  Surah: 'Surah',
+  Ayah: 'Ayah',
+  TafseerAyah: 'TafseerAyah',
+  Tafseer: 'Tafseer'
 };
 
 /**

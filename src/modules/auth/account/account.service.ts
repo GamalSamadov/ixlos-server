@@ -3,13 +3,13 @@ import { hash } from 'argon2'
 
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 
-import { CreateUserInput } from './input/create-user.input'
+import { CreateUserInput } from './inputs/create-user.input'
 
 @Injectable()
 export class AccountService {
 	public constructor(private readonly prismaService: PrismaService) {}
 
-	public async me(id: string) {
+	public async getById(id: string) {
 		const user = await this.prismaService.user.findUnique({
 			where: {
 				id
@@ -19,9 +19,25 @@ export class AccountService {
 		return user
 	}
 
-	public async createUser(input: CreateUserInput) {
-		const { email, username, password } = input
+	public async create(input: CreateUserInput) {
+		const { email, username, password, displayName, bio } = input
 
+		await this.throwIfUserExist(username, email)
+
+		await this.prismaService.user.create({
+			data: {
+				username,
+				email,
+				password: await this.hashPassword(password),
+				displayName: displayName ? displayName : username,
+				bio: bio ? bio : ''
+			}
+		})
+
+		return true
+	}
+
+	public async throwIfUserExist(username: string, email: string) {
 		const isUsernameExist = await this.prismaService.user.findUnique({
 			where: {
 				username
@@ -41,16 +57,9 @@ export class AccountService {
 		if (isEmailExist) {
 			throw new ConflictException('Email already exist')
 		}
+	}
 
-		await this.prismaService.user.create({
-			data: {
-				username,
-				email,
-				password: await hash(password),
-				displayName: username
-			}
-		})
-
-		return true
+	public async hashPassword(password: string) {
+		return await hash(password)
 	}
 }
