@@ -27,16 +27,14 @@ export class UpdateUserInput {
 	@IsEmail()
 	public email?: string
 
-	@Field({ nullable: true })
+	@Field(() => String, { nullable: true })
 	@IsString()
-	@IsOptional()
-	@MinLength(1, {
-		message:
-			"Foydalavunchi haqida bio ma'lumot kami bilan 1 belgi bo'lishi kerak"
-	})
 	@MaxLength(255, {
-		message:
-			"Foydalavunchi haqida bio ma'lumot ko'pi bilan 255 belgi bo'lishi kerak"
+		message: "Bio juda ham uzun ekan. Ko'pi bilan 255 belgi bo'lishi shart."
 	})
+	@MinLength(1, {
+		message: "Bio juda ham kalta ekan. Kami bilan 1 belgi bo'lishi shart."
+	})
+	@IsOptional()
 	public bio?: string
 }

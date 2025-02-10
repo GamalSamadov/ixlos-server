@@ -24,6 +24,11 @@ export type User = $Result.DefaultSelection<Prisma.$UserPayload>
  */
 export type Author = $Result.DefaultSelection<Prisma.$AuthorPayload>
 /**
+ * Model Tafseer
+ * 
+ */
+export type Tafseer = $Result.DefaultSelection<Prisma.$TafseerPayload>
+/**
  * Model Surah
  * 
  */
@@ -38,11 +43,6 @@ export type Ayah = $Result.DefaultSelection<Prisma.$AyahPayload>
  * 
  */
 export type TafseerAyah = $Result.DefaultSelection<Prisma.$TafseerAyahPayload>
-/**
- * Model Tafseer
- * 
- */
-export type Tafseer = $Result.DefaultSelection<Prisma.$TafseerPayload>
 
 /**
  * Enums
@@ -64,6 +64,14 @@ export const SurahRevelationType: {
 
 export type SurahRevelationType = (typeof SurahRevelationType)[keyof typeof SurahRevelationType]
 
+
+export const TafseerLanguage: {
+  UZBEK: 'UZBEK',
+  ARABIC: 'ARABIC'
+};
+
+export type TafseerLanguage = (typeof TafseerLanguage)[keyof typeof TafseerLanguage]
+
 }
 
 export type Role = $Enums.Role
@@ -73,6 +81,10 @@ export const Role: typeof $Enums.Role
 export type SurahRevelationType = $Enums.SurahRevelationType
 
 export const SurahRevelationType: typeof $Enums.SurahRevelationType
+
+export type TafseerLanguage = $Enums.TafseerLanguage
+
+export const TafseerLanguage: typeof $Enums.TafseerLanguage
 
 /**
  * ##  Prisma Client ʲˢ
@@ -220,6 +232,16 @@ export class PrismaClient<
   get author(): Prisma.AuthorDelegate<ExtArgs, ClientOptions>;
 
   /**
+   * `prisma.tafseer`: Exposes CRUD operations for the **Tafseer** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Tafseers
+    * const tafseers = await prisma.tafseer.findMany()
+    * ```
+    */
+  get tafseer(): Prisma.TafseerDelegate<ExtArgs, ClientOptions>;
+
+  /**
    * `prisma.surah`: Exposes CRUD operations for the **Surah** model.
     * Example usage:
     * ```ts
@@ -248,16 +270,6 @@ export class PrismaClient<
     * ```
     */
   get tafseerAyah(): Prisma.TafseerAyahDelegate<ExtArgs, ClientOptions>;
-
-  /**
-   * `prisma.tafseer`: Exposes CRUD operations for the **Tafseer** model.
-    * Example usage:
-    * ```ts
-    * // Fetch zero or more Tafseers
-    * const tafseers = await prisma.tafseer.findMany()
-    * ```
-    */
-  get tafseer(): Prisma.TafseerDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -700,10 +712,10 @@ export namespace Prisma {
   export const ModelName: {
     User: 'User',
     Author: 'Author',
+    Tafseer: 'Tafseer',
     Surah: 'Surah',
     Ayah: 'Ayah',
-    TafseerAyah: 'TafseerAyah',
-    Tafseer: 'Tafseer'
+    TafseerAyah: 'TafseerAyah'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -719,7 +731,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> = {
     meta: {
-      modelProps: "user" | "author" | "surah" | "ayah" | "tafseerAyah" | "tafseer"
+      modelProps: "user" | "author" | "tafseer" | "surah" | "ayah" | "tafseerAyah"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -868,6 +880,80 @@ export namespace Prisma {
           count: {
             args: Prisma.AuthorCountArgs<ExtArgs>
             result: $Utils.Optional<AuthorCountAggregateOutputType> | number
+          }
+        }
+      }
+      Tafseer: {
+        payload: Prisma.$TafseerPayload<ExtArgs>
+        fields: Prisma.TafseerFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TafseerFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TafseerFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
+          }
+          findFirst: {
+            args: Prisma.TafseerFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TafseerFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
+          }
+          findMany: {
+            args: Prisma.TafseerFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>[]
+          }
+          create: {
+            args: Prisma.TafseerCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
+          }
+          createMany: {
+            args: Prisma.TafseerCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.TafseerCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>[]
+          }
+          delete: {
+            args: Prisma.TafseerDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
+          }
+          update: {
+            args: Prisma.TafseerUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
+          }
+          deleteMany: {
+            args: Prisma.TafseerDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TafseerUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.TafseerUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>[]
+          }
+          upsert: {
+            args: Prisma.TafseerUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
+          }
+          aggregate: {
+            args: Prisma.TafseerAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTafseer>
+          }
+          groupBy: {
+            args: Prisma.TafseerGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TafseerGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TafseerCountArgs<ExtArgs>
+            result: $Utils.Optional<TafseerCountAggregateOutputType> | number
           }
         }
       }
@@ -1093,80 +1179,6 @@ export namespace Prisma {
           }
         }
       }
-      Tafseer: {
-        payload: Prisma.$TafseerPayload<ExtArgs>
-        fields: Prisma.TafseerFieldRefs
-        operations: {
-          findUnique: {
-            args: Prisma.TafseerFindUniqueArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TafseerPayload> | null
-          }
-          findUniqueOrThrow: {
-            args: Prisma.TafseerFindUniqueOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
-          }
-          findFirst: {
-            args: Prisma.TafseerFindFirstArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TafseerPayload> | null
-          }
-          findFirstOrThrow: {
-            args: Prisma.TafseerFindFirstOrThrowArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
-          }
-          findMany: {
-            args: Prisma.TafseerFindManyArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>[]
-          }
-          create: {
-            args: Prisma.TafseerCreateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
-          }
-          createMany: {
-            args: Prisma.TafseerCreateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          createManyAndReturn: {
-            args: Prisma.TafseerCreateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>[]
-          }
-          delete: {
-            args: Prisma.TafseerDeleteArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
-          }
-          update: {
-            args: Prisma.TafseerUpdateArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
-          }
-          deleteMany: {
-            args: Prisma.TafseerDeleteManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateMany: {
-            args: Prisma.TafseerUpdateManyArgs<ExtArgs>
-            result: BatchPayload
-          }
-          updateManyAndReturn: {
-            args: Prisma.TafseerUpdateManyAndReturnArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>[]
-          }
-          upsert: {
-            args: Prisma.TafseerUpsertArgs<ExtArgs>
-            result: $Utils.PayloadToResult<Prisma.$TafseerPayload>
-          }
-          aggregate: {
-            args: Prisma.TafseerAggregateArgs<ExtArgs>
-            result: $Utils.Optional<AggregateTafseer>
-          }
-          groupBy: {
-            args: Prisma.TafseerGroupByArgs<ExtArgs>
-            result: $Utils.Optional<TafseerGroupByOutputType>[]
-          }
-          count: {
-            args: Prisma.TafseerCountArgs<ExtArgs>
-            result: $Utils.Optional<TafseerCountAggregateOutputType> | number
-          }
-        }
-      }
     }
   } & {
     other: {
@@ -1253,10 +1265,10 @@ export namespace Prisma {
   export type GlobalOmitConfig = {
     user?: UserOmit
     author?: AuthorOmit
+    tafseer?: TafseerOmit
     surah?: SurahOmit
     ayah?: AyahOmit
     tafseerAyah?: TafseerAyahOmit
-    tafseer?: TafseerOmit
   }
 
   /* Types for Logging */
@@ -1378,6 +1390,37 @@ export namespace Prisma {
 
 
   /**
+   * Count Type TafseerCountOutputType
+   */
+
+  export type TafseerCountOutputType = {
+    surah: number
+  }
+
+  export type TafseerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    surah?: boolean | TafseerCountOutputTypeCountSurahArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * TafseerCountOutputType without action
+   */
+  export type TafseerCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the TafseerCountOutputType
+     */
+    select?: TafseerCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * TafseerCountOutputType without action
+   */
+  export type TafseerCountOutputTypeCountSurahArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: SurahWhereInput
+  }
+
+
+  /**
    * Count Type SurahCountOutputType
    */
 
@@ -1435,37 +1478,6 @@ export namespace Prisma {
    * AyahCountOutputType without action
    */
   export type AyahCountOutputTypeCountTafseersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TafseerAyahWhereInput
-  }
-
-
-  /**
-   * Count Type TafseerCountOutputType
-   */
-
-  export type TafseerCountOutputType = {
-    ayahs: number
-  }
-
-  export type TafseerCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    ayahs?: boolean | TafseerCountOutputTypeCountAyahsArgs
-  }
-
-  // Custom InputTypes
-  /**
-   * TafseerCountOutputType without action
-   */
-  export type TafseerCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TafseerCountOutputType
-     */
-    select?: TafseerCountOutputTypeSelect<ExtArgs> | null
-  }
-
-  /**
-   * TafseerCountOutputType without action
-   */
-  export type TafseerCountOutputTypeCountAyahsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: TafseerAyahWhereInput
   }
 
@@ -3687,6 +3699,1146 @@ export namespace Prisma {
 
 
   /**
+   * Model Tafseer
+   */
+
+  export type AggregateTafseer = {
+    _count: TafseerCountAggregateOutputType | null
+    _min: TafseerMinAggregateOutputType | null
+    _max: TafseerMaxAggregateOutputType | null
+  }
+
+  export type TafseerMinAggregateOutputType = {
+    id: string | null
+    name: string | null
+    arabicName: string | null
+    text: string | null
+    filePath: string | null
+    language: $Enums.TafseerLanguage | null
+    authorId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TafseerMaxAggregateOutputType = {
+    id: string | null
+    name: string | null
+    arabicName: string | null
+    text: string | null
+    filePath: string | null
+    language: $Enums.TafseerLanguage | null
+    authorId: string | null
+    createdAt: Date | null
+    updatedAt: Date | null
+  }
+
+  export type TafseerCountAggregateOutputType = {
+    id: number
+    name: number
+    arabicName: number
+    text: number
+    filePath: number
+    language: number
+    authorId: number
+    createdAt: number
+    updatedAt: number
+    _all: number
+  }
+
+
+  export type TafseerMinAggregateInputType = {
+    id?: true
+    name?: true
+    arabicName?: true
+    text?: true
+    filePath?: true
+    language?: true
+    authorId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TafseerMaxAggregateInputType = {
+    id?: true
+    name?: true
+    arabicName?: true
+    text?: true
+    filePath?: true
+    language?: true
+    authorId?: true
+    createdAt?: true
+    updatedAt?: true
+  }
+
+  export type TafseerCountAggregateInputType = {
+    id?: true
+    name?: true
+    arabicName?: true
+    text?: true
+    filePath?: true
+    language?: true
+    authorId?: true
+    createdAt?: true
+    updatedAt?: true
+    _all?: true
+  }
+
+  export type TafseerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Tafseer to aggregate.
+     */
+    where?: TafseerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tafseers to fetch.
+     */
+    orderBy?: TafseerOrderByWithRelationInput | TafseerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TafseerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tafseers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tafseers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Tafseers
+    **/
+    _count?: true | TafseerCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TafseerMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TafseerMaxAggregateInputType
+  }
+
+  export type GetTafseerAggregateType<T extends TafseerAggregateArgs> = {
+        [P in keyof T & keyof AggregateTafseer]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTafseer[P]>
+      : GetScalarType<T[P], AggregateTafseer[P]>
+  }
+
+
+
+
+  export type TafseerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TafseerWhereInput
+    orderBy?: TafseerOrderByWithAggregationInput | TafseerOrderByWithAggregationInput[]
+    by: TafseerScalarFieldEnum[] | TafseerScalarFieldEnum
+    having?: TafseerScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TafseerCountAggregateInputType | true
+    _min?: TafseerMinAggregateInputType
+    _max?: TafseerMaxAggregateInputType
+  }
+
+  export type TafseerGroupByOutputType = {
+    id: string
+    name: string
+    arabicName: string
+    text: string
+    filePath: string | null
+    language: $Enums.TafseerLanguage
+    authorId: string
+    createdAt: Date
+    updatedAt: Date
+    _count: TafseerCountAggregateOutputType | null
+    _min: TafseerMinAggregateOutputType | null
+    _max: TafseerMaxAggregateOutputType | null
+  }
+
+  type GetTafseerGroupByPayload<T extends TafseerGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TafseerGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TafseerGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TafseerGroupByOutputType[P]>
+            : GetScalarType<T[P], TafseerGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TafseerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    arabicName?: boolean
+    text?: boolean
+    filePath?: boolean
+    language?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+    surah?: boolean | Tafseer$surahArgs<ExtArgs>
+    _count?: boolean | TafseerCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tafseer"]>
+
+  export type TafseerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    arabicName?: boolean
+    text?: boolean
+    filePath?: boolean
+    language?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tafseer"]>
+
+  export type TafseerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    arabicName?: boolean
+    text?: boolean
+    filePath?: boolean
+    language?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["tafseer"]>
+
+  export type TafseerSelectScalar = {
+    id?: boolean
+    name?: boolean
+    arabicName?: boolean
+    text?: boolean
+    filePath?: boolean
+    language?: boolean
+    authorId?: boolean
+    createdAt?: boolean
+    updatedAt?: boolean
+  }
+
+  export type TafseerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "arabicName" | "text" | "filePath" | "language" | "authorId" | "createdAt" | "updatedAt", ExtArgs["result"]["tafseer"]>
+  export type TafseerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+    surah?: boolean | Tafseer$surahArgs<ExtArgs>
+    _count?: boolean | TafseerCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type TafseerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+  }
+  export type TafseerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    author?: boolean | AuthorDefaultArgs<ExtArgs>
+  }
+
+  export type $TafseerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Tafseer"
+    objects: {
+      author: Prisma.$AuthorPayload<ExtArgs>
+      surah: Prisma.$SurahPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      name: string
+      arabicName: string
+      text: string
+      filePath: string | null
+      language: $Enums.TafseerLanguage
+      authorId: string
+      createdAt: Date
+      updatedAt: Date
+    }, ExtArgs["result"]["tafseer"]>
+    composites: {}
+  }
+
+  type TafseerGetPayload<S extends boolean | null | undefined | TafseerDefaultArgs> = $Result.GetResult<Prisma.$TafseerPayload, S>
+
+  type TafseerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TafseerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TafseerCountAggregateInputType | true
+    }
+
+  export interface TafseerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Tafseer'], meta: { name: 'Tafseer' } }
+    /**
+     * Find zero or one Tafseer that matches the filter.
+     * @param {TafseerFindUniqueArgs} args - Arguments to find a Tafseer
+     * @example
+     * // Get one Tafseer
+     * const tafseer = await prisma.tafseer.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TafseerFindUniqueArgs>(args: SelectSubset<T, TafseerFindUniqueArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find one Tafseer that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TafseerFindUniqueOrThrowArgs} args - Arguments to find a Tafseer
+     * @example
+     * // Get one Tafseer
+     * const tafseer = await prisma.tafseer.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TafseerFindUniqueOrThrowArgs>(args: SelectSubset<T, TafseerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Tafseer that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerFindFirstArgs} args - Arguments to find a Tafseer
+     * @example
+     * // Get one Tafseer
+     * const tafseer = await prisma.tafseer.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TafseerFindFirstArgs>(args?: SelectSubset<T, TafseerFindFirstArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
+
+    /**
+     * Find the first Tafseer that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerFindFirstOrThrowArgs} args - Arguments to find a Tafseer
+     * @example
+     * // Get one Tafseer
+     * const tafseer = await prisma.tafseer.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TafseerFindFirstOrThrowArgs>(args?: SelectSubset<T, TafseerFindFirstOrThrowArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Find zero or more Tafseers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Tafseers
+     * const tafseers = await prisma.tafseer.findMany()
+     * 
+     * // Get first 10 Tafseers
+     * const tafseers = await prisma.tafseer.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const tafseerWithIdOnly = await prisma.tafseer.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TafseerFindManyArgs>(args?: SelectSubset<T, TafseerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findMany", ClientOptions>>
+
+    /**
+     * Create a Tafseer.
+     * @param {TafseerCreateArgs} args - Arguments to create a Tafseer.
+     * @example
+     * // Create one Tafseer
+     * const Tafseer = await prisma.tafseer.create({
+     *   data: {
+     *     // ... data to create a Tafseer
+     *   }
+     * })
+     * 
+     */
+    create<T extends TafseerCreateArgs>(args: SelectSubset<T, TafseerCreateArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Create many Tafseers.
+     * @param {TafseerCreateManyArgs} args - Arguments to create many Tafseers.
+     * @example
+     * // Create many Tafseers
+     * const tafseer = await prisma.tafseer.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TafseerCreateManyArgs>(args?: SelectSubset<T, TafseerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Tafseers and returns the data saved in the database.
+     * @param {TafseerCreateManyAndReturnArgs} args - Arguments to create many Tafseers.
+     * @example
+     * // Create many Tafseers
+     * const tafseer = await prisma.tafseer.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Tafseers and only return the `id`
+     * const tafseerWithIdOnly = await prisma.tafseer.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends TafseerCreateManyAndReturnArgs>(args?: SelectSubset<T, TafseerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
+
+    /**
+     * Delete a Tafseer.
+     * @param {TafseerDeleteArgs} args - Arguments to delete one Tafseer.
+     * @example
+     * // Delete one Tafseer
+     * const Tafseer = await prisma.tafseer.delete({
+     *   where: {
+     *     // ... filter to delete one Tafseer
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TafseerDeleteArgs>(args: SelectSubset<T, TafseerDeleteArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Update one Tafseer.
+     * @param {TafseerUpdateArgs} args - Arguments to update one Tafseer.
+     * @example
+     * // Update one Tafseer
+     * const tafseer = await prisma.tafseer.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TafseerUpdateArgs>(args: SelectSubset<T, TafseerUpdateArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
+
+    /**
+     * Delete zero or more Tafseers.
+     * @param {TafseerDeleteManyArgs} args - Arguments to filter Tafseers to delete.
+     * @example
+     * // Delete a few Tafseers
+     * const { count } = await prisma.tafseer.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TafseerDeleteManyArgs>(args?: SelectSubset<T, TafseerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tafseers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Tafseers
+     * const tafseer = await prisma.tafseer.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TafseerUpdateManyArgs>(args: SelectSubset<T, TafseerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Tafseers and returns the data updated in the database.
+     * @param {TafseerUpdateManyAndReturnArgs} args - Arguments to update many Tafseers.
+     * @example
+     * // Update many Tafseers
+     * const tafseer = await prisma.tafseer.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Tafseers and only return the `id`
+     * const tafseerWithIdOnly = await prisma.tafseer.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends TafseerUpdateManyAndReturnArgs>(args: SelectSubset<T, TafseerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
+
+    /**
+     * Create or update one Tafseer.
+     * @param {TafseerUpsertArgs} args - Arguments to update or create a Tafseer.
+     * @example
+     * // Update or create a Tafseer
+     * const tafseer = await prisma.tafseer.upsert({
+     *   create: {
+     *     // ... data to create a Tafseer
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Tafseer we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TafseerUpsertArgs>(args: SelectSubset<T, TafseerUpsertArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
+
+
+    /**
+     * Count the number of Tafseers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerCountArgs} args - Arguments to filter Tafseers to count.
+     * @example
+     * // Count the number of Tafseers
+     * const count = await prisma.tafseer.count({
+     *   where: {
+     *     // ... the filter for the Tafseers we want to count
+     *   }
+     * })
+    **/
+    count<T extends TafseerCountArgs>(
+      args?: Subset<T, TafseerCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TafseerCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Tafseer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TafseerAggregateArgs>(args: Subset<T, TafseerAggregateArgs>): Prisma.PrismaPromise<GetTafseerAggregateType<T>>
+
+    /**
+     * Group by Tafseer.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TafseerGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TafseerGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TafseerGroupByArgs['orderBy'] }
+        : { orderBy?: TafseerGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TafseerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTafseerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Tafseer model
+   */
+  readonly fields: TafseerFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Tafseer.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TafseerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    author<T extends AuthorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AuthorDefaultArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
+    surah<T extends Tafseer$surahArgs<ExtArgs> = {}>(args?: Subset<T, Tafseer$surahArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$SurahPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Tafseer model
+   */ 
+  interface TafseerFieldRefs {
+    readonly id: FieldRef<"Tafseer", 'String'>
+    readonly name: FieldRef<"Tafseer", 'String'>
+    readonly arabicName: FieldRef<"Tafseer", 'String'>
+    readonly text: FieldRef<"Tafseer", 'String'>
+    readonly filePath: FieldRef<"Tafseer", 'String'>
+    readonly language: FieldRef<"Tafseer", 'TafseerLanguage'>
+    readonly authorId: FieldRef<"Tafseer", 'String'>
+    readonly createdAt: FieldRef<"Tafseer", 'DateTime'>
+    readonly updatedAt: FieldRef<"Tafseer", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Tafseer findUnique
+   */
+  export type TafseerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * Filter, which Tafseer to fetch.
+     */
+    where: TafseerWhereUniqueInput
+  }
+
+  /**
+   * Tafseer findUniqueOrThrow
+   */
+  export type TafseerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * Filter, which Tafseer to fetch.
+     */
+    where: TafseerWhereUniqueInput
+  }
+
+  /**
+   * Tafseer findFirst
+   */
+  export type TafseerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * Filter, which Tafseer to fetch.
+     */
+    where?: TafseerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tafseers to fetch.
+     */
+    orderBy?: TafseerOrderByWithRelationInput | TafseerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tafseers.
+     */
+    cursor?: TafseerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tafseers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tafseers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tafseers.
+     */
+    distinct?: TafseerScalarFieldEnum | TafseerScalarFieldEnum[]
+  }
+
+  /**
+   * Tafseer findFirstOrThrow
+   */
+  export type TafseerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * Filter, which Tafseer to fetch.
+     */
+    where?: TafseerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tafseers to fetch.
+     */
+    orderBy?: TafseerOrderByWithRelationInput | TafseerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Tafseers.
+     */
+    cursor?: TafseerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tafseers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tafseers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Tafseers.
+     */
+    distinct?: TafseerScalarFieldEnum | TafseerScalarFieldEnum[]
+  }
+
+  /**
+   * Tafseer findMany
+   */
+  export type TafseerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * Filter, which Tafseers to fetch.
+     */
+    where?: TafseerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Tafseers to fetch.
+     */
+    orderBy?: TafseerOrderByWithRelationInput | TafseerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Tafseers.
+     */
+    cursor?: TafseerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Tafseers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Tafseers.
+     */
+    skip?: number
+    distinct?: TafseerScalarFieldEnum | TafseerScalarFieldEnum[]
+  }
+
+  /**
+   * Tafseer create
+   */
+  export type TafseerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Tafseer.
+     */
+    data: XOR<TafseerCreateInput, TafseerUncheckedCreateInput>
+  }
+
+  /**
+   * Tafseer createMany
+   */
+  export type TafseerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Tafseers.
+     */
+    data: TafseerCreateManyInput | TafseerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Tafseer createManyAndReturn
+   */
+  export type TafseerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * The data used to create many Tafseers.
+     */
+    data: TafseerCreateManyInput | TafseerCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Tafseer update
+   */
+  export type TafseerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Tafseer.
+     */
+    data: XOR<TafseerUpdateInput, TafseerUncheckedUpdateInput>
+    /**
+     * Choose, which Tafseer to update.
+     */
+    where: TafseerWhereUniqueInput
+  }
+
+  /**
+   * Tafseer updateMany
+   */
+  export type TafseerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Tafseers.
+     */
+    data: XOR<TafseerUpdateManyMutationInput, TafseerUncheckedUpdateManyInput>
+    /**
+     * Filter which Tafseers to update
+     */
+    where?: TafseerWhereInput
+    /**
+     * Limit how many Tafseers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Tafseer updateManyAndReturn
+   */
+  export type TafseerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * The data used to update Tafseers.
+     */
+    data: XOR<TafseerUpdateManyMutationInput, TafseerUncheckedUpdateManyInput>
+    /**
+     * Filter which Tafseers to update
+     */
+    where?: TafseerWhereInput
+    /**
+     * Limit how many Tafseers to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Tafseer upsert
+   */
+  export type TafseerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Tafseer to update in case it exists.
+     */
+    where: TafseerWhereUniqueInput
+    /**
+     * In case the Tafseer found by the `where` argument doesn't exist, create a new Tafseer with this data.
+     */
+    create: XOR<TafseerCreateInput, TafseerUncheckedCreateInput>
+    /**
+     * In case the Tafseer was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TafseerUpdateInput, TafseerUncheckedUpdateInput>
+  }
+
+  /**
+   * Tafseer delete
+   */
+  export type TafseerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    /**
+     * Filter which Tafseer to delete.
+     */
+    where: TafseerWhereUniqueInput
+  }
+
+  /**
+   * Tafseer deleteMany
+   */
+  export type TafseerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Tafseers to delete
+     */
+    where?: TafseerWhereInput
+    /**
+     * Limit how many Tafseers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Tafseer.surah
+   */
+  export type Tafseer$surahArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Surah
+     */
+    select?: SurahSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Surah
+     */
+    omit?: SurahOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurahInclude<ExtArgs> | null
+    where?: SurahWhereInput
+    orderBy?: SurahOrderByWithRelationInput | SurahOrderByWithRelationInput[]
+    cursor?: SurahWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: SurahScalarFieldEnum | SurahScalarFieldEnum[]
+  }
+
+  /**
+   * Tafseer without action
+   */
+  export type TafseerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model Surah
    */
 
@@ -3714,6 +4866,7 @@ export namespace Prisma {
     arabicName: string | null
     number: number | null
     totalAyahs: number | null
+    tafseerId: string | null
     revelationType: $Enums.SurahRevelationType | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -3725,6 +4878,7 @@ export namespace Prisma {
     arabicName: string | null
     number: number | null
     totalAyahs: number | null
+    tafseerId: string | null
     revelationType: $Enums.SurahRevelationType | null
     createdAt: Date | null
     updatedAt: Date | null
@@ -3736,6 +4890,7 @@ export namespace Prisma {
     arabicName: number
     number: number
     totalAyahs: number
+    tafseerId: number
     revelationType: number
     createdAt: number
     updatedAt: number
@@ -3759,6 +4914,7 @@ export namespace Prisma {
     arabicName?: true
     number?: true
     totalAyahs?: true
+    tafseerId?: true
     revelationType?: true
     createdAt?: true
     updatedAt?: true
@@ -3770,6 +4926,7 @@ export namespace Prisma {
     arabicName?: true
     number?: true
     totalAyahs?: true
+    tafseerId?: true
     revelationType?: true
     createdAt?: true
     updatedAt?: true
@@ -3781,6 +4938,7 @@ export namespace Prisma {
     arabicName?: true
     number?: true
     totalAyahs?: true
+    tafseerId?: true
     revelationType?: true
     createdAt?: true
     updatedAt?: true
@@ -3879,6 +5037,7 @@ export namespace Prisma {
     arabicName: string
     number: number
     totalAyahs: number
+    tafseerId: string | null
     revelationType: $Enums.SurahRevelationType
     createdAt: Date
     updatedAt: Date
@@ -3909,9 +5068,11 @@ export namespace Prisma {
     arabicName?: boolean
     number?: boolean
     totalAyahs?: boolean
+    tafseerId?: boolean
     revelationType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    tafseer?: boolean | Surah$tafseerArgs<ExtArgs>
     ayahs?: boolean | Surah$ayahsArgs<ExtArgs>
     _count?: boolean | SurahCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["surah"]>
@@ -3922,9 +5083,11 @@ export namespace Prisma {
     arabicName?: boolean
     number?: boolean
     totalAyahs?: boolean
+    tafseerId?: boolean
     revelationType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    tafseer?: boolean | Surah$tafseerArgs<ExtArgs>
   }, ExtArgs["result"]["surah"]>
 
   export type SurahSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -3933,9 +5096,11 @@ export namespace Prisma {
     arabicName?: boolean
     number?: boolean
     totalAyahs?: boolean
+    tafseerId?: boolean
     revelationType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
+    tafseer?: boolean | Surah$tafseerArgs<ExtArgs>
   }, ExtArgs["result"]["surah"]>
 
   export type SurahSelectScalar = {
@@ -3944,22 +5109,29 @@ export namespace Prisma {
     arabicName?: boolean
     number?: boolean
     totalAyahs?: boolean
+    tafseerId?: boolean
     revelationType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type SurahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "arabicName" | "number" | "totalAyahs" | "revelationType" | "createdAt" | "updatedAt", ExtArgs["result"]["surah"]>
+  export type SurahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "arabicName" | "number" | "totalAyahs" | "tafseerId" | "revelationType" | "createdAt" | "updatedAt", ExtArgs["result"]["surah"]>
   export type SurahInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tafseer?: boolean | Surah$tafseerArgs<ExtArgs>
     ayahs?: boolean | Surah$ayahsArgs<ExtArgs>
     _count?: boolean | SurahCountOutputTypeDefaultArgs<ExtArgs>
   }
-  export type SurahIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
-  export type SurahIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type SurahIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tafseer?: boolean | Surah$tafseerArgs<ExtArgs>
+  }
+  export type SurahIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    tafseer?: boolean | Surah$tafseerArgs<ExtArgs>
+  }
 
   export type $SurahPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Surah"
     objects: {
+      tafseer: Prisma.$TafseerPayload<ExtArgs> | null
       ayahs: Prisma.$AyahPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
@@ -3968,6 +5140,7 @@ export namespace Prisma {
       arabicName: string
       number: number
       totalAyahs: number
+      tafseerId: string | null
       revelationType: $Enums.SurahRevelationType
       createdAt: Date
       updatedAt: Date
@@ -4365,6 +5538,7 @@ export namespace Prisma {
    */
   export interface Prisma__SurahClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    tafseer<T extends Surah$tafseerArgs<ExtArgs> = {}>(args?: Subset<T, Surah$tafseerArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     ayahs<T extends Surah$ayahsArgs<ExtArgs> = {}>(args?: Subset<T, Surah$ayahsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AyahPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -4400,6 +5574,7 @@ export namespace Prisma {
     readonly arabicName: FieldRef<"Surah", 'String'>
     readonly number: FieldRef<"Surah", 'Int'>
     readonly totalAyahs: FieldRef<"Surah", 'Int'>
+    readonly tafseerId: FieldRef<"Surah", 'String'>
     readonly revelationType: FieldRef<"Surah", 'SurahRevelationType'>
     readonly createdAt: FieldRef<"Surah", 'DateTime'>
     readonly updatedAt: FieldRef<"Surah", 'DateTime'>
@@ -4652,6 +5827,10 @@ export namespace Prisma {
      */
     data: SurahCreateManyInput | SurahCreateManyInput[]
     skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurahIncludeCreateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4722,6 +5901,10 @@ export namespace Prisma {
      * Limit how many Surahs to update.
      */
     limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: SurahIncludeUpdateManyAndReturn<ExtArgs> | null
   }
 
   /**
@@ -4788,6 +5971,25 @@ export namespace Prisma {
      * Limit how many Surahs to delete.
      */
     limit?: number
+  }
+
+  /**
+   * Surah.tafseer
+   */
+  export type Surah$tafseerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Tafseer
+     */
+    select?: TafseerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Tafseer
+     */
+    omit?: TafseerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TafseerInclude<ExtArgs> | null
+    where?: TafseerWhereInput
   }
 
   /**
@@ -5997,7 +7199,6 @@ export namespace Prisma {
     ayahId: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    tafseerId: string | null
   }
 
   export type TafseerAyahMaxAggregateOutputType = {
@@ -6006,7 +7207,6 @@ export namespace Prisma {
     ayahId: string | null
     createdAt: Date | null
     updatedAt: Date | null
-    tafseerId: string | null
   }
 
   export type TafseerAyahCountAggregateOutputType = {
@@ -6015,7 +7215,6 @@ export namespace Prisma {
     ayahId: number
     createdAt: number
     updatedAt: number
-    tafseerId: number
     _all: number
   }
 
@@ -6026,7 +7225,6 @@ export namespace Prisma {
     ayahId?: true
     createdAt?: true
     updatedAt?: true
-    tafseerId?: true
   }
 
   export type TafseerAyahMaxAggregateInputType = {
@@ -6035,7 +7233,6 @@ export namespace Prisma {
     ayahId?: true
     createdAt?: true
     updatedAt?: true
-    tafseerId?: true
   }
 
   export type TafseerAyahCountAggregateInputType = {
@@ -6044,7 +7241,6 @@ export namespace Prisma {
     ayahId?: true
     createdAt?: true
     updatedAt?: true
-    tafseerId?: true
     _all?: true
   }
 
@@ -6126,7 +7322,6 @@ export namespace Prisma {
     ayahId: string
     createdAt: Date
     updatedAt: Date
-    tafseerId: string | null
     _count: TafseerAyahCountAggregateOutputType | null
     _min: TafseerAyahMinAggregateOutputType | null
     _max: TafseerAyahMaxAggregateOutputType | null
@@ -6152,9 +7347,7 @@ export namespace Prisma {
     ayahId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    tafseerId?: boolean
     ayah?: boolean | AyahDefaultArgs<ExtArgs>
-    tafseer?: boolean | TafseerAyah$tafseerArgs<ExtArgs>
   }, ExtArgs["result"]["tafseerAyah"]>
 
   export type TafseerAyahSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6163,9 +7356,7 @@ export namespace Prisma {
     ayahId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    tafseerId?: boolean
     ayah?: boolean | AyahDefaultArgs<ExtArgs>
-    tafseer?: boolean | TafseerAyah$tafseerArgs<ExtArgs>
   }, ExtArgs["result"]["tafseerAyah"]>
 
   export type TafseerAyahSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -6174,9 +7365,7 @@ export namespace Prisma {
     ayahId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    tafseerId?: boolean
     ayah?: boolean | AyahDefaultArgs<ExtArgs>
-    tafseer?: boolean | TafseerAyah$tafseerArgs<ExtArgs>
   }, ExtArgs["result"]["tafseerAyah"]>
 
   export type TafseerAyahSelectScalar = {
@@ -6185,28 +7374,23 @@ export namespace Prisma {
     ayahId?: boolean
     createdAt?: boolean
     updatedAt?: boolean
-    tafseerId?: boolean
   }
 
-  export type TafseerAyahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "text" | "ayahId" | "createdAt" | "updatedAt" | "tafseerId", ExtArgs["result"]["tafseerAyah"]>
+  export type TafseerAyahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "text" | "ayahId" | "createdAt" | "updatedAt", ExtArgs["result"]["tafseerAyah"]>
   export type TafseerAyahInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ayah?: boolean | AyahDefaultArgs<ExtArgs>
-    tafseer?: boolean | TafseerAyah$tafseerArgs<ExtArgs>
   }
   export type TafseerAyahIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ayah?: boolean | AyahDefaultArgs<ExtArgs>
-    tafseer?: boolean | TafseerAyah$tafseerArgs<ExtArgs>
   }
   export type TafseerAyahIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ayah?: boolean | AyahDefaultArgs<ExtArgs>
-    tafseer?: boolean | TafseerAyah$tafseerArgs<ExtArgs>
   }
 
   export type $TafseerAyahPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "TafseerAyah"
     objects: {
       ayah: Prisma.$AyahPayload<ExtArgs>
-      tafseer: Prisma.$TafseerPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -6214,7 +7398,6 @@ export namespace Prisma {
       ayahId: string
       createdAt: Date
       updatedAt: Date
-      tafseerId: string | null
     }, ExtArgs["result"]["tafseerAyah"]>
     composites: {}
   }
@@ -6610,7 +7793,6 @@ export namespace Prisma {
   export interface Prisma__TafseerAyahClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
     ayah<T extends AyahDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AyahDefaultArgs<ExtArgs>>): Prisma__AyahClient<$Result.GetResult<Prisma.$AyahPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
-    tafseer<T extends TafseerAyah$tafseerArgs<ExtArgs> = {}>(args?: Subset<T, TafseerAyah$tafseerArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | null, null, ExtArgs, ClientOptions>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -6645,7 +7827,6 @@ export namespace Prisma {
     readonly ayahId: FieldRef<"TafseerAyah", 'String'>
     readonly createdAt: FieldRef<"TafseerAyah", 'DateTime'>
     readonly updatedAt: FieldRef<"TafseerAyah", 'DateTime'>
-    readonly tafseerId: FieldRef<"TafseerAyah", 'String'>
   }
     
 
@@ -7042,25 +8223,6 @@ export namespace Prisma {
   }
 
   /**
-   * TafseerAyah.tafseer
-   */
-  export type TafseerAyah$tafseerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tafseer
-     */
-    select?: TafseerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tafseer
-     */
-    omit?: TafseerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TafseerInclude<ExtArgs> | null
-    where?: TafseerWhereInput
-  }
-
-  /**
    * TafseerAyah without action
    */
   export type TafseerAyahDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -7076,1120 +8238,6 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: TafseerAyahInclude<ExtArgs> | null
-  }
-
-
-  /**
-   * Model Tafseer
-   */
-
-  export type AggregateTafseer = {
-    _count: TafseerCountAggregateOutputType | null
-    _min: TafseerMinAggregateOutputType | null
-    _max: TafseerMaxAggregateOutputType | null
-  }
-
-  export type TafseerMinAggregateOutputType = {
-    id: string | null
-    name: string | null
-    text: string | null
-    file: string | null
-    authorId: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type TafseerMaxAggregateOutputType = {
-    id: string | null
-    name: string | null
-    text: string | null
-    file: string | null
-    authorId: string | null
-    createdAt: Date | null
-    updatedAt: Date | null
-  }
-
-  export type TafseerCountAggregateOutputType = {
-    id: number
-    name: number
-    text: number
-    file: number
-    authorId: number
-    createdAt: number
-    updatedAt: number
-    _all: number
-  }
-
-
-  export type TafseerMinAggregateInputType = {
-    id?: true
-    name?: true
-    text?: true
-    file?: true
-    authorId?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type TafseerMaxAggregateInputType = {
-    id?: true
-    name?: true
-    text?: true
-    file?: true
-    authorId?: true
-    createdAt?: true
-    updatedAt?: true
-  }
-
-  export type TafseerCountAggregateInputType = {
-    id?: true
-    name?: true
-    text?: true
-    file?: true
-    authorId?: true
-    createdAt?: true
-    updatedAt?: true
-    _all?: true
-  }
-
-  export type TafseerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Tafseer to aggregate.
-     */
-    where?: TafseerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Tafseers to fetch.
-     */
-    orderBy?: TafseerOrderByWithRelationInput | TafseerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the start position
-     */
-    cursor?: TafseerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Tafseers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Tafseers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Count returned Tafseers
-    **/
-    _count?: true | TafseerCountAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the minimum value
-    **/
-    _min?: TafseerMinAggregateInputType
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
-     * 
-     * Select which fields to find the maximum value
-    **/
-    _max?: TafseerMaxAggregateInputType
-  }
-
-  export type GetTafseerAggregateType<T extends TafseerAggregateArgs> = {
-        [P in keyof T & keyof AggregateTafseer]: P extends '_count' | 'count'
-      ? T[P] extends true
-        ? number
-        : GetScalarType<T[P], AggregateTafseer[P]>
-      : GetScalarType<T[P], AggregateTafseer[P]>
-  }
-
-
-
-
-  export type TafseerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    where?: TafseerWhereInput
-    orderBy?: TafseerOrderByWithAggregationInput | TafseerOrderByWithAggregationInput[]
-    by: TafseerScalarFieldEnum[] | TafseerScalarFieldEnum
-    having?: TafseerScalarWhereWithAggregatesInput
-    take?: number
-    skip?: number
-    _count?: TafseerCountAggregateInputType | true
-    _min?: TafseerMinAggregateInputType
-    _max?: TafseerMaxAggregateInputType
-  }
-
-  export type TafseerGroupByOutputType = {
-    id: string
-    name: string
-    text: string
-    file: string | null
-    authorId: string
-    createdAt: Date
-    updatedAt: Date
-    _count: TafseerCountAggregateOutputType | null
-    _min: TafseerMinAggregateOutputType | null
-    _max: TafseerMaxAggregateOutputType | null
-  }
-
-  type GetTafseerGroupByPayload<T extends TafseerGroupByArgs> = Prisma.PrismaPromise<
-    Array<
-      PickEnumerable<TafseerGroupByOutputType, T['by']> &
-        {
-          [P in ((keyof T) & (keyof TafseerGroupByOutputType))]: P extends '_count'
-            ? T[P] extends boolean
-              ? number
-              : GetScalarType<T[P], TafseerGroupByOutputType[P]>
-            : GetScalarType<T[P], TafseerGroupByOutputType[P]>
-        }
-      >
-    >
-
-
-  export type TafseerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    text?: boolean
-    file?: boolean
-    authorId?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    author?: boolean | AuthorDefaultArgs<ExtArgs>
-    ayahs?: boolean | Tafseer$ayahsArgs<ExtArgs>
-    _count?: boolean | TafseerCountOutputTypeDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["tafseer"]>
-
-  export type TafseerSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    text?: boolean
-    file?: boolean
-    authorId?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    author?: boolean | AuthorDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["tafseer"]>
-
-  export type TafseerSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    id?: boolean
-    name?: boolean
-    text?: boolean
-    file?: boolean
-    authorId?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-    author?: boolean | AuthorDefaultArgs<ExtArgs>
-  }, ExtArgs["result"]["tafseer"]>
-
-  export type TafseerSelectScalar = {
-    id?: boolean
-    name?: boolean
-    text?: boolean
-    file?: boolean
-    authorId?: boolean
-    createdAt?: boolean
-    updatedAt?: boolean
-  }
-
-  export type TafseerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "text" | "file" | "authorId" | "createdAt" | "updatedAt", ExtArgs["result"]["tafseer"]>
-  export type TafseerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    author?: boolean | AuthorDefaultArgs<ExtArgs>
-    ayahs?: boolean | Tafseer$ayahsArgs<ExtArgs>
-    _count?: boolean | TafseerCountOutputTypeDefaultArgs<ExtArgs>
-  }
-  export type TafseerIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    author?: boolean | AuthorDefaultArgs<ExtArgs>
-  }
-  export type TafseerIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    author?: boolean | AuthorDefaultArgs<ExtArgs>
-  }
-
-  export type $TafseerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    name: "Tafseer"
-    objects: {
-      author: Prisma.$AuthorPayload<ExtArgs>
-      ayahs: Prisma.$TafseerAyahPayload<ExtArgs>[]
-    }
-    scalars: $Extensions.GetPayloadResult<{
-      id: string
-      name: string
-      text: string
-      file: string | null
-      authorId: string
-      createdAt: Date
-      updatedAt: Date
-    }, ExtArgs["result"]["tafseer"]>
-    composites: {}
-  }
-
-  type TafseerGetPayload<S extends boolean | null | undefined | TafseerDefaultArgs> = $Result.GetResult<Prisma.$TafseerPayload, S>
-
-  type TafseerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
-    Omit<TafseerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
-      select?: TafseerCountAggregateInputType | true
-    }
-
-  export interface TafseerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> {
-    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Tafseer'], meta: { name: 'Tafseer' } }
-    /**
-     * Find zero or one Tafseer that matches the filter.
-     * @param {TafseerFindUniqueArgs} args - Arguments to find a Tafseer
-     * @example
-     * // Get one Tafseer
-     * const tafseer = await prisma.tafseer.findUnique({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUnique<T extends TafseerFindUniqueArgs>(args: SelectSubset<T, TafseerFindUniqueArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findUnique", ClientOptions> | null, null, ExtArgs, ClientOptions>
-
-    /**
-     * Find one Tafseer that matches the filter or throw an error with `error.code='P2025'`
-     * if no matches were found.
-     * @param {TafseerFindUniqueOrThrowArgs} args - Arguments to find a Tafseer
-     * @example
-     * // Get one Tafseer
-     * const tafseer = await prisma.tafseer.findUniqueOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findUniqueOrThrow<T extends TafseerFindUniqueOrThrowArgs>(args: SelectSubset<T, TafseerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
-
-    /**
-     * Find the first Tafseer that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TafseerFindFirstArgs} args - Arguments to find a Tafseer
-     * @example
-     * // Get one Tafseer
-     * const tafseer = await prisma.tafseer.findFirst({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirst<T extends TafseerFindFirstArgs>(args?: SelectSubset<T, TafseerFindFirstArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findFirst", ClientOptions> | null, null, ExtArgs, ClientOptions>
-
-    /**
-     * Find the first Tafseer that matches the filter or
-     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TafseerFindFirstOrThrowArgs} args - Arguments to find a Tafseer
-     * @example
-     * // Get one Tafseer
-     * const tafseer = await prisma.tafseer.findFirstOrThrow({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     */
-    findFirstOrThrow<T extends TafseerFindFirstOrThrowArgs>(args?: SelectSubset<T, TafseerFindFirstOrThrowArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findFirstOrThrow", ClientOptions>, never, ExtArgs, ClientOptions>
-
-    /**
-     * Find zero or more Tafseers that matches the filter.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TafseerFindManyArgs} args - Arguments to filter and select certain fields only.
-     * @example
-     * // Get all Tafseers
-     * const tafseers = await prisma.tafseer.findMany()
-     * 
-     * // Get first 10 Tafseers
-     * const tafseers = await prisma.tafseer.findMany({ take: 10 })
-     * 
-     * // Only select the `id`
-     * const tafseerWithIdOnly = await prisma.tafseer.findMany({ select: { id: true } })
-     * 
-     */
-    findMany<T extends TafseerFindManyArgs>(args?: SelectSubset<T, TafseerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "findMany", ClientOptions>>
-
-    /**
-     * Create a Tafseer.
-     * @param {TafseerCreateArgs} args - Arguments to create a Tafseer.
-     * @example
-     * // Create one Tafseer
-     * const Tafseer = await prisma.tafseer.create({
-     *   data: {
-     *     // ... data to create a Tafseer
-     *   }
-     * })
-     * 
-     */
-    create<T extends TafseerCreateArgs>(args: SelectSubset<T, TafseerCreateArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "create", ClientOptions>, never, ExtArgs, ClientOptions>
-
-    /**
-     * Create many Tafseers.
-     * @param {TafseerCreateManyArgs} args - Arguments to create many Tafseers.
-     * @example
-     * // Create many Tafseers
-     * const tafseer = await prisma.tafseer.createMany({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     *     
-     */
-    createMany<T extends TafseerCreateManyArgs>(args?: SelectSubset<T, TafseerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Create many Tafseers and returns the data saved in the database.
-     * @param {TafseerCreateManyAndReturnArgs} args - Arguments to create many Tafseers.
-     * @example
-     * // Create many Tafseers
-     * const tafseer = await prisma.tafseer.createManyAndReturn({
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Create many Tafseers and only return the `id`
-     * const tafseerWithIdOnly = await prisma.tafseer.createManyAndReturn({
-     *   select: { id: true },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    createManyAndReturn<T extends TafseerCreateManyAndReturnArgs>(args?: SelectSubset<T, TafseerCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "createManyAndReturn", ClientOptions>>
-
-    /**
-     * Delete a Tafseer.
-     * @param {TafseerDeleteArgs} args - Arguments to delete one Tafseer.
-     * @example
-     * // Delete one Tafseer
-     * const Tafseer = await prisma.tafseer.delete({
-     *   where: {
-     *     // ... filter to delete one Tafseer
-     *   }
-     * })
-     * 
-     */
-    delete<T extends TafseerDeleteArgs>(args: SelectSubset<T, TafseerDeleteArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "delete", ClientOptions>, never, ExtArgs, ClientOptions>
-
-    /**
-     * Update one Tafseer.
-     * @param {TafseerUpdateArgs} args - Arguments to update one Tafseer.
-     * @example
-     * // Update one Tafseer
-     * const tafseer = await prisma.tafseer.update({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    update<T extends TafseerUpdateArgs>(args: SelectSubset<T, TafseerUpdateArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "update", ClientOptions>, never, ExtArgs, ClientOptions>
-
-    /**
-     * Delete zero or more Tafseers.
-     * @param {TafseerDeleteManyArgs} args - Arguments to filter Tafseers to delete.
-     * @example
-     * // Delete a few Tafseers
-     * const { count } = await prisma.tafseer.deleteMany({
-     *   where: {
-     *     // ... provide filter here
-     *   }
-     * })
-     * 
-     */
-    deleteMany<T extends TafseerDeleteManyArgs>(args?: SelectSubset<T, TafseerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Tafseers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TafseerUpdateManyArgs} args - Arguments to update one or more rows.
-     * @example
-     * // Update many Tafseers
-     * const tafseer = await prisma.tafseer.updateMany({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: {
-     *     // ... provide data here
-     *   }
-     * })
-     * 
-     */
-    updateMany<T extends TafseerUpdateManyArgs>(args: SelectSubset<T, TafseerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
-
-    /**
-     * Update zero or more Tafseers and returns the data updated in the database.
-     * @param {TafseerUpdateManyAndReturnArgs} args - Arguments to update many Tafseers.
-     * @example
-     * // Update many Tafseers
-     * const tafseer = await prisma.tafseer.updateManyAndReturn({
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * 
-     * // Update zero or more Tafseers and only return the `id`
-     * const tafseerWithIdOnly = await prisma.tafseer.updateManyAndReturn({
-     *   select: { id: true },
-     *   where: {
-     *     // ... provide filter here
-     *   },
-     *   data: [
-     *     // ... provide data here
-     *   ]
-     * })
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * 
-     */
-    updateManyAndReturn<T extends TafseerUpdateManyAndReturnArgs>(args: SelectSubset<T, TafseerUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "updateManyAndReturn", ClientOptions>>
-
-    /**
-     * Create or update one Tafseer.
-     * @param {TafseerUpsertArgs} args - Arguments to update or create a Tafseer.
-     * @example
-     * // Update or create a Tafseer
-     * const tafseer = await prisma.tafseer.upsert({
-     *   create: {
-     *     // ... data to create a Tafseer
-     *   },
-     *   update: {
-     *     // ... in case it already exists, update
-     *   },
-     *   where: {
-     *     // ... the filter for the Tafseer we want to update
-     *   }
-     * })
-     */
-    upsert<T extends TafseerUpsertArgs>(args: SelectSubset<T, TafseerUpsertArgs<ExtArgs>>): Prisma__TafseerClient<$Result.GetResult<Prisma.$TafseerPayload<ExtArgs>, T, "upsert", ClientOptions>, never, ExtArgs, ClientOptions>
-
-
-    /**
-     * Count the number of Tafseers.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TafseerCountArgs} args - Arguments to filter Tafseers to count.
-     * @example
-     * // Count the number of Tafseers
-     * const count = await prisma.tafseer.count({
-     *   where: {
-     *     // ... the filter for the Tafseers we want to count
-     *   }
-     * })
-    **/
-    count<T extends TafseerCountArgs>(
-      args?: Subset<T, TafseerCountArgs>,
-    ): Prisma.PrismaPromise<
-      T extends $Utils.Record<'select', any>
-        ? T['select'] extends true
-          ? number
-          : GetScalarType<T['select'], TafseerCountAggregateOutputType>
-        : number
-    >
-
-    /**
-     * Allows you to perform aggregations operations on a Tafseer.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TafseerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
-     * @example
-     * // Ordered by age ascending
-     * // Where email contains prisma.io
-     * // Limited to the 10 users
-     * const aggregations = await prisma.user.aggregate({
-     *   _avg: {
-     *     age: true,
-     *   },
-     *   where: {
-     *     email: {
-     *       contains: "prisma.io",
-     *     },
-     *   },
-     *   orderBy: {
-     *     age: "asc",
-     *   },
-     *   take: 10,
-     * })
-    **/
-    aggregate<T extends TafseerAggregateArgs>(args: Subset<T, TafseerAggregateArgs>): Prisma.PrismaPromise<GetTafseerAggregateType<T>>
-
-    /**
-     * Group by Tafseer.
-     * Note, that providing `undefined` is treated as the value not being there.
-     * Read more here: https://pris.ly/d/null-undefined
-     * @param {TafseerGroupByArgs} args - Group by arguments.
-     * @example
-     * // Group by city, order by createdAt, get count
-     * const result = await prisma.user.groupBy({
-     *   by: ['city', 'createdAt'],
-     *   orderBy: {
-     *     createdAt: true
-     *   },
-     *   _count: {
-     *     _all: true
-     *   },
-     * })
-     * 
-    **/
-    groupBy<
-      T extends TafseerGroupByArgs,
-      HasSelectOrTake extends Or<
-        Extends<'skip', Keys<T>>,
-        Extends<'take', Keys<T>>
-      >,
-      OrderByArg extends True extends HasSelectOrTake
-        ? { orderBy: TafseerGroupByArgs['orderBy'] }
-        : { orderBy?: TafseerGroupByArgs['orderBy'] },
-      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
-      ByFields extends MaybeTupleToUnion<T['by']>,
-      ByValid extends Has<ByFields, OrderFields>,
-      HavingFields extends GetHavingFields<T['having']>,
-      HavingValid extends Has<ByFields, HavingFields>,
-      ByEmpty extends T['by'] extends never[] ? True : False,
-      InputErrors extends ByEmpty extends True
-      ? `Error: "by" must not be empty.`
-      : HavingValid extends False
-      ? {
-          [P in HavingFields]: P extends ByFields
-            ? never
-            : P extends string
-            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
-            : [
-                Error,
-                'Field ',
-                P,
-                ` in "having" needs to be provided in "by"`,
-              ]
-        }[HavingFields]
-      : 'take' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "take", you also need to provide "orderBy"'
-      : 'skip' extends Keys<T>
-      ? 'orderBy' extends Keys<T>
-        ? ByValid extends True
-          ? {}
-          : {
-              [P in OrderFields]: P extends ByFields
-                ? never
-                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-            }[OrderFields]
-        : 'Error: If you provide "skip", you also need to provide "orderBy"'
-      : ByValid extends True
-      ? {}
-      : {
-          [P in OrderFields]: P extends ByFields
-            ? never
-            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
-        }[OrderFields]
-    >(args: SubsetIntersection<T, TafseerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTafseerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
-  /**
-   * Fields of the Tafseer model
-   */
-  readonly fields: TafseerFieldRefs;
-  }
-
-  /**
-   * The delegate class that acts as a "Promise-like" for Tafseer.
-   * Why is this prefixed with `Prisma__`?
-   * Because we want to prevent naming conflicts as mentioned in
-   * https://github.com/prisma/prisma-client-js/issues/707
-   */
-  export interface Prisma__TafseerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, ClientOptions = {}> extends Prisma.PrismaPromise<T> {
-    readonly [Symbol.toStringTag]: "PrismaPromise"
-    author<T extends AuthorDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AuthorDefaultArgs<ExtArgs>>): Prisma__AuthorClient<$Result.GetResult<Prisma.$AuthorPayload<ExtArgs>, T, "findUniqueOrThrow", ClientOptions> | Null, Null, ExtArgs, ClientOptions>
-    ayahs<T extends Tafseer$ayahsArgs<ExtArgs> = {}>(args?: Subset<T, Tafseer$ayahsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TafseerAyahPayload<ExtArgs>, T, "findMany", ClientOptions> | Null>
-    /**
-     * Attaches callbacks for the resolution and/or rejection of the Promise.
-     * @param onfulfilled The callback to execute when the Promise is resolved.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of which ever callback is executed.
-     */
-    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
-    /**
-     * Attaches a callback for only the rejection of the Promise.
-     * @param onrejected The callback to execute when the Promise is rejected.
-     * @returns A Promise for the completion of the callback.
-     */
-    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
-    /**
-     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
-     * resolved value cannot be modified from the callback.
-     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
-     * @returns A Promise for the completion of the callback.
-     */
-    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
-  }
-
-
-
-
-  /**
-   * Fields of the Tafseer model
-   */ 
-  interface TafseerFieldRefs {
-    readonly id: FieldRef<"Tafseer", 'String'>
-    readonly name: FieldRef<"Tafseer", 'String'>
-    readonly text: FieldRef<"Tafseer", 'String'>
-    readonly file: FieldRef<"Tafseer", 'String'>
-    readonly authorId: FieldRef<"Tafseer", 'String'>
-    readonly createdAt: FieldRef<"Tafseer", 'DateTime'>
-    readonly updatedAt: FieldRef<"Tafseer", 'DateTime'>
-  }
-    
-
-  // Custom InputTypes
-  /**
-   * Tafseer findUnique
-   */
-  export type TafseerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tafseer
-     */
-    select?: TafseerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tafseer
-     */
-    omit?: TafseerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TafseerInclude<ExtArgs> | null
-    /**
-     * Filter, which Tafseer to fetch.
-     */
-    where: TafseerWhereUniqueInput
-  }
-
-  /**
-   * Tafseer findUniqueOrThrow
-   */
-  export type TafseerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tafseer
-     */
-    select?: TafseerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tafseer
-     */
-    omit?: TafseerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TafseerInclude<ExtArgs> | null
-    /**
-     * Filter, which Tafseer to fetch.
-     */
-    where: TafseerWhereUniqueInput
-  }
-
-  /**
-   * Tafseer findFirst
-   */
-  export type TafseerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tafseer
-     */
-    select?: TafseerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tafseer
-     */
-    omit?: TafseerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TafseerInclude<ExtArgs> | null
-    /**
-     * Filter, which Tafseer to fetch.
-     */
-    where?: TafseerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Tafseers to fetch.
-     */
-    orderBy?: TafseerOrderByWithRelationInput | TafseerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Tafseers.
-     */
-    cursor?: TafseerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Tafseers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Tafseers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Tafseers.
-     */
-    distinct?: TafseerScalarFieldEnum | TafseerScalarFieldEnum[]
-  }
-
-  /**
-   * Tafseer findFirstOrThrow
-   */
-  export type TafseerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tafseer
-     */
-    select?: TafseerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tafseer
-     */
-    omit?: TafseerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TafseerInclude<ExtArgs> | null
-    /**
-     * Filter, which Tafseer to fetch.
-     */
-    where?: TafseerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Tafseers to fetch.
-     */
-    orderBy?: TafseerOrderByWithRelationInput | TafseerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for searching for Tafseers.
-     */
-    cursor?: TafseerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Tafseers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Tafseers.
-     */
-    skip?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
-     * 
-     * Filter by unique combinations of Tafseers.
-     */
-    distinct?: TafseerScalarFieldEnum | TafseerScalarFieldEnum[]
-  }
-
-  /**
-   * Tafseer findMany
-   */
-  export type TafseerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tafseer
-     */
-    select?: TafseerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tafseer
-     */
-    omit?: TafseerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TafseerInclude<ExtArgs> | null
-    /**
-     * Filter, which Tafseers to fetch.
-     */
-    where?: TafseerWhereInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
-     * 
-     * Determine the order of Tafseers to fetch.
-     */
-    orderBy?: TafseerOrderByWithRelationInput | TafseerOrderByWithRelationInput[]
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
-     * 
-     * Sets the position for listing Tafseers.
-     */
-    cursor?: TafseerWhereUniqueInput
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Take `±n` Tafseers from the position of the cursor.
-     */
-    take?: number
-    /**
-     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
-     * 
-     * Skip the first `n` Tafseers.
-     */
-    skip?: number
-    distinct?: TafseerScalarFieldEnum | TafseerScalarFieldEnum[]
-  }
-
-  /**
-   * Tafseer create
-   */
-  export type TafseerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tafseer
-     */
-    select?: TafseerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tafseer
-     */
-    omit?: TafseerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TafseerInclude<ExtArgs> | null
-    /**
-     * The data needed to create a Tafseer.
-     */
-    data: XOR<TafseerCreateInput, TafseerUncheckedCreateInput>
-  }
-
-  /**
-   * Tafseer createMany
-   */
-  export type TafseerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to create many Tafseers.
-     */
-    data: TafseerCreateManyInput | TafseerCreateManyInput[]
-    skipDuplicates?: boolean
-  }
-
-  /**
-   * Tafseer createManyAndReturn
-   */
-  export type TafseerCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tafseer
-     */
-    select?: TafseerSelectCreateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tafseer
-     */
-    omit?: TafseerOmit<ExtArgs> | null
-    /**
-     * The data used to create many Tafseers.
-     */
-    data: TafseerCreateManyInput | TafseerCreateManyInput[]
-    skipDuplicates?: boolean
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TafseerIncludeCreateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Tafseer update
-   */
-  export type TafseerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tafseer
-     */
-    select?: TafseerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tafseer
-     */
-    omit?: TafseerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TafseerInclude<ExtArgs> | null
-    /**
-     * The data needed to update a Tafseer.
-     */
-    data: XOR<TafseerUpdateInput, TafseerUncheckedUpdateInput>
-    /**
-     * Choose, which Tafseer to update.
-     */
-    where: TafseerWhereUniqueInput
-  }
-
-  /**
-   * Tafseer updateMany
-   */
-  export type TafseerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * The data used to update Tafseers.
-     */
-    data: XOR<TafseerUpdateManyMutationInput, TafseerUncheckedUpdateManyInput>
-    /**
-     * Filter which Tafseers to update
-     */
-    where?: TafseerWhereInput
-    /**
-     * Limit how many Tafseers to update.
-     */
-    limit?: number
-  }
-
-  /**
-   * Tafseer updateManyAndReturn
-   */
-  export type TafseerUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tafseer
-     */
-    select?: TafseerSelectUpdateManyAndReturn<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tafseer
-     */
-    omit?: TafseerOmit<ExtArgs> | null
-    /**
-     * The data used to update Tafseers.
-     */
-    data: XOR<TafseerUpdateManyMutationInput, TafseerUncheckedUpdateManyInput>
-    /**
-     * Filter which Tafseers to update
-     */
-    where?: TafseerWhereInput
-    /**
-     * Limit how many Tafseers to update.
-     */
-    limit?: number
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TafseerIncludeUpdateManyAndReturn<ExtArgs> | null
-  }
-
-  /**
-   * Tafseer upsert
-   */
-  export type TafseerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tafseer
-     */
-    select?: TafseerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tafseer
-     */
-    omit?: TafseerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TafseerInclude<ExtArgs> | null
-    /**
-     * The filter to search for the Tafseer to update in case it exists.
-     */
-    where: TafseerWhereUniqueInput
-    /**
-     * In case the Tafseer found by the `where` argument doesn't exist, create a new Tafseer with this data.
-     */
-    create: XOR<TafseerCreateInput, TafseerUncheckedCreateInput>
-    /**
-     * In case the Tafseer was found with the provided `where` argument, update it with this data.
-     */
-    update: XOR<TafseerUpdateInput, TafseerUncheckedUpdateInput>
-  }
-
-  /**
-   * Tafseer delete
-   */
-  export type TafseerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tafseer
-     */
-    select?: TafseerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tafseer
-     */
-    omit?: TafseerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TafseerInclude<ExtArgs> | null
-    /**
-     * Filter which Tafseer to delete.
-     */
-    where: TafseerWhereUniqueInput
-  }
-
-  /**
-   * Tafseer deleteMany
-   */
-  export type TafseerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Filter which Tafseers to delete
-     */
-    where?: TafseerWhereInput
-    /**
-     * Limit how many Tafseers to delete.
-     */
-    limit?: number
-  }
-
-  /**
-   * Tafseer.ayahs
-   */
-  export type Tafseer$ayahsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the TafseerAyah
-     */
-    select?: TafseerAyahSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the TafseerAyah
-     */
-    omit?: TafseerAyahOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TafseerAyahInclude<ExtArgs> | null
-    where?: TafseerAyahWhereInput
-    orderBy?: TafseerAyahOrderByWithRelationInput | TafseerAyahOrderByWithRelationInput[]
-    cursor?: TafseerAyahWhereUniqueInput
-    take?: number
-    skip?: number
-    distinct?: TafseerAyahScalarFieldEnum | TafseerAyahScalarFieldEnum[]
-  }
-
-  /**
-   * Tafseer without action
-   */
-  export type TafseerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    /**
-     * Select specific fields to fetch from the Tafseer
-     */
-    select?: TafseerSelect<ExtArgs> | null
-    /**
-     * Omit specific fields from the Tafseer
-     */
-    omit?: TafseerOmit<ExtArgs> | null
-    /**
-     * Choose, which related nodes to fetch as well
-     */
-    include?: TafseerInclude<ExtArgs> | null
   }
 
 
@@ -8234,12 +8282,28 @@ export namespace Prisma {
   export type AuthorScalarFieldEnum = (typeof AuthorScalarFieldEnum)[keyof typeof AuthorScalarFieldEnum]
 
 
+  export const TafseerScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    arabicName: 'arabicName',
+    text: 'text',
+    filePath: 'filePath',
+    language: 'language',
+    authorId: 'authorId',
+    createdAt: 'createdAt',
+    updatedAt: 'updatedAt'
+  };
+
+  export type TafseerScalarFieldEnum = (typeof TafseerScalarFieldEnum)[keyof typeof TafseerScalarFieldEnum]
+
+
   export const SurahScalarFieldEnum: {
     id: 'id',
     name: 'name',
     arabicName: 'arabicName',
     number: 'number',
     totalAyahs: 'totalAyahs',
+    tafseerId: 'tafseerId',
     revelationType: 'revelationType',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
@@ -8266,24 +8330,10 @@ export namespace Prisma {
     text: 'text',
     ayahId: 'ayahId',
     createdAt: 'createdAt',
-    updatedAt: 'updatedAt',
-    tafseerId: 'tafseerId'
-  };
-
-  export type TafseerAyahScalarFieldEnum = (typeof TafseerAyahScalarFieldEnum)[keyof typeof TafseerAyahScalarFieldEnum]
-
-
-  export const TafseerScalarFieldEnum: {
-    id: 'id',
-    name: 'name',
-    text: 'text',
-    file: 'file',
-    authorId: 'authorId',
-    createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
 
-  export type TafseerScalarFieldEnum = (typeof TafseerScalarFieldEnum)[keyof typeof TafseerScalarFieldEnum]
+  export type TafseerAyahScalarFieldEnum = (typeof TafseerAyahScalarFieldEnum)[keyof typeof TafseerAyahScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -8354,6 +8404,20 @@ export namespace Prisma {
    * Reference to a field of type 'DateTime[]'
    */
   export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'TafseerLanguage'
+   */
+  export type EnumTafseerLanguageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TafseerLanguage'>
+    
+
+
+  /**
+   * Reference to a field of type 'TafseerLanguage[]'
+   */
+  export type ListEnumTafseerLanguageFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TafseerLanguage[]'>
     
 
 
@@ -8540,6 +8604,84 @@ export namespace Prisma {
     updatedAt?: DateTimeWithAggregatesFilter<"Author"> | Date | string
   }
 
+  export type TafseerWhereInput = {
+    AND?: TafseerWhereInput | TafseerWhereInput[]
+    OR?: TafseerWhereInput[]
+    NOT?: TafseerWhereInput | TafseerWhereInput[]
+    id?: StringFilter<"Tafseer"> | string
+    name?: StringFilter<"Tafseer"> | string
+    arabicName?: StringFilter<"Tafseer"> | string
+    text?: StringFilter<"Tafseer"> | string
+    filePath?: StringNullableFilter<"Tafseer"> | string | null
+    language?: EnumTafseerLanguageFilter<"Tafseer"> | $Enums.TafseerLanguage
+    authorId?: StringFilter<"Tafseer"> | string
+    createdAt?: DateTimeFilter<"Tafseer"> | Date | string
+    updatedAt?: DateTimeFilter<"Tafseer"> | Date | string
+    author?: XOR<AuthorScalarRelationFilter, AuthorWhereInput>
+    surah?: SurahListRelationFilter
+  }
+
+  export type TafseerOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    arabicName?: SortOrder
+    text?: SortOrder
+    filePath?: SortOrderInput | SortOrder
+    language?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    author?: AuthorOrderByWithRelationInput
+    surah?: SurahOrderByRelationAggregateInput
+  }
+
+  export type TafseerWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: TafseerWhereInput | TafseerWhereInput[]
+    OR?: TafseerWhereInput[]
+    NOT?: TafseerWhereInput | TafseerWhereInput[]
+    name?: StringFilter<"Tafseer"> | string
+    arabicName?: StringFilter<"Tafseer"> | string
+    text?: StringFilter<"Tafseer"> | string
+    filePath?: StringNullableFilter<"Tafseer"> | string | null
+    language?: EnumTafseerLanguageFilter<"Tafseer"> | $Enums.TafseerLanguage
+    authorId?: StringFilter<"Tafseer"> | string
+    createdAt?: DateTimeFilter<"Tafseer"> | Date | string
+    updatedAt?: DateTimeFilter<"Tafseer"> | Date | string
+    author?: XOR<AuthorScalarRelationFilter, AuthorWhereInput>
+    surah?: SurahListRelationFilter
+  }, "id">
+
+  export type TafseerOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    arabicName?: SortOrder
+    text?: SortOrder
+    filePath?: SortOrderInput | SortOrder
+    language?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+    _count?: TafseerCountOrderByAggregateInput
+    _max?: TafseerMaxOrderByAggregateInput
+    _min?: TafseerMinOrderByAggregateInput
+  }
+
+  export type TafseerScalarWhereWithAggregatesInput = {
+    AND?: TafseerScalarWhereWithAggregatesInput | TafseerScalarWhereWithAggregatesInput[]
+    OR?: TafseerScalarWhereWithAggregatesInput[]
+    NOT?: TafseerScalarWhereWithAggregatesInput | TafseerScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Tafseer"> | string
+    name?: StringWithAggregatesFilter<"Tafseer"> | string
+    arabicName?: StringWithAggregatesFilter<"Tafseer"> | string
+    text?: StringWithAggregatesFilter<"Tafseer"> | string
+    filePath?: StringNullableWithAggregatesFilter<"Tafseer"> | string | null
+    language?: EnumTafseerLanguageWithAggregatesFilter<"Tafseer"> | $Enums.TafseerLanguage
+    authorId?: StringWithAggregatesFilter<"Tafseer"> | string
+    createdAt?: DateTimeWithAggregatesFilter<"Tafseer"> | Date | string
+    updatedAt?: DateTimeWithAggregatesFilter<"Tafseer"> | Date | string
+  }
+
   export type SurahWhereInput = {
     AND?: SurahWhereInput | SurahWhereInput[]
     OR?: SurahWhereInput[]
@@ -8549,9 +8691,11 @@ export namespace Prisma {
     arabicName?: StringFilter<"Surah"> | string
     number?: IntFilter<"Surah"> | number
     totalAyahs?: IntFilter<"Surah"> | number
+    tafseerId?: StringNullableFilter<"Surah"> | string | null
     revelationType?: EnumSurahRevelationTypeFilter<"Surah"> | $Enums.SurahRevelationType
     createdAt?: DateTimeFilter<"Surah"> | Date | string
     updatedAt?: DateTimeFilter<"Surah"> | Date | string
+    tafseer?: XOR<TafseerNullableScalarRelationFilter, TafseerWhereInput> | null
     ayahs?: AyahListRelationFilter
   }
 
@@ -8561,9 +8705,11 @@ export namespace Prisma {
     arabicName?: SortOrder
     number?: SortOrder
     totalAyahs?: SortOrder
+    tafseerId?: SortOrderInput | SortOrder
     revelationType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
+    tafseer?: TafseerOrderByWithRelationInput
     ayahs?: AyahOrderByRelationAggregateInput
   }
 
@@ -8576,9 +8722,11 @@ export namespace Prisma {
     arabicName?: StringFilter<"Surah"> | string
     number?: IntFilter<"Surah"> | number
     totalAyahs?: IntFilter<"Surah"> | number
+    tafseerId?: StringNullableFilter<"Surah"> | string | null
     revelationType?: EnumSurahRevelationTypeFilter<"Surah"> | $Enums.SurahRevelationType
     createdAt?: DateTimeFilter<"Surah"> | Date | string
     updatedAt?: DateTimeFilter<"Surah"> | Date | string
+    tafseer?: XOR<TafseerNullableScalarRelationFilter, TafseerWhereInput> | null
     ayahs?: AyahListRelationFilter
   }, "id">
 
@@ -8588,6 +8736,7 @@ export namespace Prisma {
     arabicName?: SortOrder
     number?: SortOrder
     totalAyahs?: SortOrder
+    tafseerId?: SortOrderInput | SortOrder
     revelationType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -8607,6 +8756,7 @@ export namespace Prisma {
     arabicName?: StringWithAggregatesFilter<"Surah"> | string
     number?: IntWithAggregatesFilter<"Surah"> | number
     totalAyahs?: IntWithAggregatesFilter<"Surah"> | number
+    tafseerId?: StringNullableWithAggregatesFilter<"Surah"> | string | null
     revelationType?: EnumSurahRevelationTypeWithAggregatesFilter<"Surah"> | $Enums.SurahRevelationType
     createdAt?: DateTimeWithAggregatesFilter<"Surah"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Surah"> | Date | string
@@ -8691,9 +8841,7 @@ export namespace Prisma {
     ayahId?: StringFilter<"TafseerAyah"> | string
     createdAt?: DateTimeFilter<"TafseerAyah"> | Date | string
     updatedAt?: DateTimeFilter<"TafseerAyah"> | Date | string
-    tafseerId?: StringNullableFilter<"TafseerAyah"> | string | null
     ayah?: XOR<AyahScalarRelationFilter, AyahWhereInput>
-    tafseer?: XOR<TafseerNullableScalarRelationFilter, TafseerWhereInput> | null
   }
 
   export type TafseerAyahOrderByWithRelationInput = {
@@ -8702,9 +8850,7 @@ export namespace Prisma {
     ayahId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    tafseerId?: SortOrderInput | SortOrder
     ayah?: AyahOrderByWithRelationInput
-    tafseer?: TafseerOrderByWithRelationInput
   }
 
   export type TafseerAyahWhereUniqueInput = Prisma.AtLeast<{
@@ -8716,9 +8862,7 @@ export namespace Prisma {
     ayahId?: StringFilter<"TafseerAyah"> | string
     createdAt?: DateTimeFilter<"TafseerAyah"> | Date | string
     updatedAt?: DateTimeFilter<"TafseerAyah"> | Date | string
-    tafseerId?: StringNullableFilter<"TafseerAyah"> | string | null
     ayah?: XOR<AyahScalarRelationFilter, AyahWhereInput>
-    tafseer?: XOR<TafseerNullableScalarRelationFilter, TafseerWhereInput> | null
   }, "id">
 
   export type TafseerAyahOrderByWithAggregationInput = {
@@ -8727,7 +8871,6 @@ export namespace Prisma {
     ayahId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    tafseerId?: SortOrderInput | SortOrder
     _count?: TafseerAyahCountOrderByAggregateInput
     _max?: TafseerAyahMaxOrderByAggregateInput
     _min?: TafseerAyahMinOrderByAggregateInput
@@ -8742,75 +8885,6 @@ export namespace Prisma {
     ayahId?: StringWithAggregatesFilter<"TafseerAyah"> | string
     createdAt?: DateTimeWithAggregatesFilter<"TafseerAyah"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"TafseerAyah"> | Date | string
-    tafseerId?: StringNullableWithAggregatesFilter<"TafseerAyah"> | string | null
-  }
-
-  export type TafseerWhereInput = {
-    AND?: TafseerWhereInput | TafseerWhereInput[]
-    OR?: TafseerWhereInput[]
-    NOT?: TafseerWhereInput | TafseerWhereInput[]
-    id?: StringFilter<"Tafseer"> | string
-    name?: StringFilter<"Tafseer"> | string
-    text?: StringFilter<"Tafseer"> | string
-    file?: StringNullableFilter<"Tafseer"> | string | null
-    authorId?: StringFilter<"Tafseer"> | string
-    createdAt?: DateTimeFilter<"Tafseer"> | Date | string
-    updatedAt?: DateTimeFilter<"Tafseer"> | Date | string
-    author?: XOR<AuthorScalarRelationFilter, AuthorWhereInput>
-    ayahs?: TafseerAyahListRelationFilter
-  }
-
-  export type TafseerOrderByWithRelationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    text?: SortOrder
-    file?: SortOrderInput | SortOrder
-    authorId?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    author?: AuthorOrderByWithRelationInput
-    ayahs?: TafseerAyahOrderByRelationAggregateInput
-  }
-
-  export type TafseerWhereUniqueInput = Prisma.AtLeast<{
-    id?: string
-    AND?: TafseerWhereInput | TafseerWhereInput[]
-    OR?: TafseerWhereInput[]
-    NOT?: TafseerWhereInput | TafseerWhereInput[]
-    name?: StringFilter<"Tafseer"> | string
-    text?: StringFilter<"Tafseer"> | string
-    file?: StringNullableFilter<"Tafseer"> | string | null
-    authorId?: StringFilter<"Tafseer"> | string
-    createdAt?: DateTimeFilter<"Tafseer"> | Date | string
-    updatedAt?: DateTimeFilter<"Tafseer"> | Date | string
-    author?: XOR<AuthorScalarRelationFilter, AuthorWhereInput>
-    ayahs?: TafseerAyahListRelationFilter
-  }, "id">
-
-  export type TafseerOrderByWithAggregationInput = {
-    id?: SortOrder
-    name?: SortOrder
-    text?: SortOrder
-    file?: SortOrderInput | SortOrder
-    authorId?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    _count?: TafseerCountOrderByAggregateInput
-    _max?: TafseerMaxOrderByAggregateInput
-    _min?: TafseerMinOrderByAggregateInput
-  }
-
-  export type TafseerScalarWhereWithAggregatesInput = {
-    AND?: TafseerScalarWhereWithAggregatesInput | TafseerScalarWhereWithAggregatesInput[]
-    OR?: TafseerScalarWhereWithAggregatesInput[]
-    NOT?: TafseerScalarWhereWithAggregatesInput | TafseerScalarWhereWithAggregatesInput[]
-    id?: StringWithAggregatesFilter<"Tafseer"> | string
-    name?: StringWithAggregatesFilter<"Tafseer"> | string
-    text?: StringWithAggregatesFilter<"Tafseer"> | string
-    file?: StringNullableWithAggregatesFilter<"Tafseer"> | string | null
-    authorId?: StringWithAggregatesFilter<"Tafseer"> | string
-    createdAt?: DateTimeWithAggregatesFilter<"Tafseer"> | Date | string
-    updatedAt?: DateTimeWithAggregatesFilter<"Tafseer"> | Date | string
   }
 
   export type UserCreateInput = {
@@ -8967,6 +9041,93 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type TafseerCreateInput = {
+    id?: string
+    name: string
+    arabicName: string
+    text: string
+    filePath?: string | null
+    language?: $Enums.TafseerLanguage
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    author: AuthorCreateNestedOneWithoutTafseersInput
+    surah?: SurahCreateNestedManyWithoutTafseerInput
+  }
+
+  export type TafseerUncheckedCreateInput = {
+    id?: string
+    name: string
+    arabicName: string
+    text: string
+    filePath?: string | null
+    language?: $Enums.TafseerLanguage
+    authorId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    surah?: SurahUncheckedCreateNestedManyWithoutTafseerInput
+  }
+
+  export type TafseerUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: EnumTafseerLanguageFieldUpdateOperationsInput | $Enums.TafseerLanguage
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: AuthorUpdateOneRequiredWithoutTafseersNestedInput
+    surah?: SurahUpdateManyWithoutTafseerNestedInput
+  }
+
+  export type TafseerUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: EnumTafseerLanguageFieldUpdateOperationsInput | $Enums.TafseerLanguage
+    authorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    surah?: SurahUncheckedUpdateManyWithoutTafseerNestedInput
+  }
+
+  export type TafseerCreateManyInput = {
+    id?: string
+    name: string
+    arabicName: string
+    text: string
+    filePath?: string | null
+    language?: $Enums.TafseerLanguage
+    authorId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TafseerUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: EnumTafseerLanguageFieldUpdateOperationsInput | $Enums.TafseerLanguage
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TafseerUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: EnumTafseerLanguageFieldUpdateOperationsInput | $Enums.TafseerLanguage
+    authorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type SurahCreateInput = {
     id?: string
     name: string
@@ -8976,6 +9137,7 @@ export namespace Prisma {
     revelationType: $Enums.SurahRevelationType
     createdAt?: Date | string
     updatedAt?: Date | string
+    tafseer?: TafseerCreateNestedOneWithoutSurahInput
     ayahs?: AyahCreateNestedManyWithoutSurahInput
   }
 
@@ -8985,6 +9147,7 @@ export namespace Prisma {
     arabicName: string
     number: number
     totalAyahs: number
+    tafseerId?: string | null
     revelationType: $Enums.SurahRevelationType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9000,6 +9163,7 @@ export namespace Prisma {
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tafseer?: TafseerUpdateOneWithoutSurahNestedInput
     ayahs?: AyahUpdateManyWithoutSurahNestedInput
   }
 
@@ -9009,6 +9173,7 @@ export namespace Prisma {
     arabicName?: StringFieldUpdateOperationsInput | string
     number?: IntFieldUpdateOperationsInput | number
     totalAyahs?: IntFieldUpdateOperationsInput | number
+    tafseerId?: NullableStringFieldUpdateOperationsInput | string | null
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9021,6 +9186,7 @@ export namespace Prisma {
     arabicName: string
     number: number
     totalAyahs: number
+    tafseerId?: string | null
     revelationType: $Enums.SurahRevelationType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -9043,6 +9209,7 @@ export namespace Prisma {
     arabicName?: StringFieldUpdateOperationsInput | string
     number?: IntFieldUpdateOperationsInput | number
     totalAyahs?: IntFieldUpdateOperationsInput | number
+    tafseerId?: NullableStringFieldUpdateOperationsInput | string | null
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9127,7 +9294,6 @@ export namespace Prisma {
     createdAt?: Date | string
     updatedAt?: Date | string
     ayah: AyahCreateNestedOneWithoutTafseersInput
-    tafseer?: TafseerCreateNestedOneWithoutAyahsInput
   }
 
   export type TafseerAyahUncheckedCreateInput = {
@@ -9136,7 +9302,6 @@ export namespace Prisma {
     ayahId: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    tafseerId?: string | null
   }
 
   export type TafseerAyahUpdateInput = {
@@ -9145,7 +9310,6 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     ayah?: AyahUpdateOneRequiredWithoutTafseersNestedInput
-    tafseer?: TafseerUpdateOneWithoutAyahsNestedInput
   }
 
   export type TafseerAyahUncheckedUpdateInput = {
@@ -9154,7 +9318,6 @@ export namespace Prisma {
     ayahId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    tafseerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TafseerAyahCreateManyInput = {
@@ -9163,7 +9326,6 @@ export namespace Prisma {
     ayahId: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    tafseerId?: string | null
   }
 
   export type TafseerAyahUpdateManyMutationInput = {
@@ -9177,80 +9339,6 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
     ayahId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    tafseerId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type TafseerCreateInput = {
-    id?: string
-    name: string
-    text: string
-    file?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    author: AuthorCreateNestedOneWithoutTafseersInput
-    ayahs?: TafseerAyahCreateNestedManyWithoutTafseerInput
-  }
-
-  export type TafseerUncheckedCreateInput = {
-    id?: string
-    name: string
-    text: string
-    file?: string | null
-    authorId: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    ayahs?: TafseerAyahUncheckedCreateNestedManyWithoutTafseerInput
-  }
-
-  export type TafseerUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
-    file?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: AuthorUpdateOneRequiredWithoutTafseersNestedInput
-    ayahs?: TafseerAyahUpdateManyWithoutTafseerNestedInput
-  }
-
-  export type TafseerUncheckedUpdateInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
-    file?: NullableStringFieldUpdateOperationsInput | string | null
-    authorId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ayahs?: TafseerAyahUncheckedUpdateManyWithoutTafseerNestedInput
-  }
-
-  export type TafseerCreateManyInput = {
-    id?: string
-    name: string
-    text: string
-    file?: string | null
-    authorId: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type TafseerUpdateManyMutationInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
-    file?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type TafseerUncheckedUpdateManyInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
-    file?: NullableStringFieldUpdateOperationsInput | string | null
-    authorId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9440,6 +9528,74 @@ export namespace Prisma {
     updatedAt?: SortOrder
   }
 
+  export type EnumTafseerLanguageFilter<$PrismaModel = never> = {
+    equals?: $Enums.TafseerLanguage | EnumTafseerLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.TafseerLanguage[] | ListEnumTafseerLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TafseerLanguage[] | ListEnumTafseerLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumTafseerLanguageFilter<$PrismaModel> | $Enums.TafseerLanguage
+  }
+
+  export type AuthorScalarRelationFilter = {
+    is?: AuthorWhereInput
+    isNot?: AuthorWhereInput
+  }
+
+  export type SurahListRelationFilter = {
+    every?: SurahWhereInput
+    some?: SurahWhereInput
+    none?: SurahWhereInput
+  }
+
+  export type SurahOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type TafseerCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    arabicName?: SortOrder
+    text?: SortOrder
+    filePath?: SortOrder
+    language?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TafseerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    arabicName?: SortOrder
+    text?: SortOrder
+    filePath?: SortOrder
+    language?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type TafseerMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    arabicName?: SortOrder
+    text?: SortOrder
+    filePath?: SortOrder
+    language?: SortOrder
+    authorId?: SortOrder
+    createdAt?: SortOrder
+    updatedAt?: SortOrder
+  }
+
+  export type EnumTafseerLanguageWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TafseerLanguage | EnumTafseerLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.TafseerLanguage[] | ListEnumTafseerLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TafseerLanguage[] | ListEnumTafseerLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumTafseerLanguageWithAggregatesFilter<$PrismaModel> | $Enums.TafseerLanguage
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTafseerLanguageFilter<$PrismaModel>
+    _max?: NestedEnumTafseerLanguageFilter<$PrismaModel>
+  }
+
   export type IntFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -9458,6 +9614,11 @@ export namespace Prisma {
     not?: NestedEnumSurahRevelationTypeFilter<$PrismaModel> | $Enums.SurahRevelationType
   }
 
+  export type TafseerNullableScalarRelationFilter = {
+    is?: TafseerWhereInput | null
+    isNot?: TafseerWhereInput | null
+  }
+
   export type AyahListRelationFilter = {
     every?: AyahWhereInput
     some?: AyahWhereInput
@@ -9474,6 +9635,7 @@ export namespace Prisma {
     arabicName?: SortOrder
     number?: SortOrder
     totalAyahs?: SortOrder
+    tafseerId?: SortOrder
     revelationType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9490,6 +9652,7 @@ export namespace Prisma {
     arabicName?: SortOrder
     number?: SortOrder
     totalAyahs?: SortOrder
+    tafseerId?: SortOrder
     revelationType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9501,6 +9664,7 @@ export namespace Prisma {
     arabicName?: SortOrder
     number?: SortOrder
     totalAyahs?: SortOrder
+    tafseerId?: SortOrder
     revelationType?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
@@ -9595,18 +9759,12 @@ export namespace Prisma {
     isNot?: AyahWhereInput
   }
 
-  export type TafseerNullableScalarRelationFilter = {
-    is?: TafseerWhereInput | null
-    isNot?: TafseerWhereInput | null
-  }
-
   export type TafseerAyahCountOrderByAggregateInput = {
     id?: SortOrder
     text?: SortOrder
     ayahId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    tafseerId?: SortOrder
   }
 
   export type TafseerAyahMaxOrderByAggregateInput = {
@@ -9615,49 +9773,12 @@ export namespace Prisma {
     ayahId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
-    tafseerId?: SortOrder
   }
 
   export type TafseerAyahMinOrderByAggregateInput = {
     id?: SortOrder
     text?: SortOrder
     ayahId?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-    tafseerId?: SortOrder
-  }
-
-  export type AuthorScalarRelationFilter = {
-    is?: AuthorWhereInput
-    isNot?: AuthorWhereInput
-  }
-
-  export type TafseerCountOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    text?: SortOrder
-    file?: SortOrder
-    authorId?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type TafseerMaxOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    text?: SortOrder
-    file?: SortOrder
-    authorId?: SortOrder
-    createdAt?: SortOrder
-    updatedAt?: SortOrder
-  }
-
-  export type TafseerMinOrderByAggregateInput = {
-    id?: SortOrder
-    name?: SortOrder
-    text?: SortOrder
-    file?: SortOrder
-    authorId?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9771,6 +9892,72 @@ export namespace Prisma {
     deleteMany?: TafseerScalarWhereInput | TafseerScalarWhereInput[]
   }
 
+  export type AuthorCreateNestedOneWithoutTafseersInput = {
+    create?: XOR<AuthorCreateWithoutTafseersInput, AuthorUncheckedCreateWithoutTafseersInput>
+    connectOrCreate?: AuthorCreateOrConnectWithoutTafseersInput
+    connect?: AuthorWhereUniqueInput
+  }
+
+  export type SurahCreateNestedManyWithoutTafseerInput = {
+    create?: XOR<SurahCreateWithoutTafseerInput, SurahUncheckedCreateWithoutTafseerInput> | SurahCreateWithoutTafseerInput[] | SurahUncheckedCreateWithoutTafseerInput[]
+    connectOrCreate?: SurahCreateOrConnectWithoutTafseerInput | SurahCreateOrConnectWithoutTafseerInput[]
+    createMany?: SurahCreateManyTafseerInputEnvelope
+    connect?: SurahWhereUniqueInput | SurahWhereUniqueInput[]
+  }
+
+  export type SurahUncheckedCreateNestedManyWithoutTafseerInput = {
+    create?: XOR<SurahCreateWithoutTafseerInput, SurahUncheckedCreateWithoutTafseerInput> | SurahCreateWithoutTafseerInput[] | SurahUncheckedCreateWithoutTafseerInput[]
+    connectOrCreate?: SurahCreateOrConnectWithoutTafseerInput | SurahCreateOrConnectWithoutTafseerInput[]
+    createMany?: SurahCreateManyTafseerInputEnvelope
+    connect?: SurahWhereUniqueInput | SurahWhereUniqueInput[]
+  }
+
+  export type EnumTafseerLanguageFieldUpdateOperationsInput = {
+    set?: $Enums.TafseerLanguage
+  }
+
+  export type AuthorUpdateOneRequiredWithoutTafseersNestedInput = {
+    create?: XOR<AuthorCreateWithoutTafseersInput, AuthorUncheckedCreateWithoutTafseersInput>
+    connectOrCreate?: AuthorCreateOrConnectWithoutTafseersInput
+    upsert?: AuthorUpsertWithoutTafseersInput
+    connect?: AuthorWhereUniqueInput
+    update?: XOR<XOR<AuthorUpdateToOneWithWhereWithoutTafseersInput, AuthorUpdateWithoutTafseersInput>, AuthorUncheckedUpdateWithoutTafseersInput>
+  }
+
+  export type SurahUpdateManyWithoutTafseerNestedInput = {
+    create?: XOR<SurahCreateWithoutTafseerInput, SurahUncheckedCreateWithoutTafseerInput> | SurahCreateWithoutTafseerInput[] | SurahUncheckedCreateWithoutTafseerInput[]
+    connectOrCreate?: SurahCreateOrConnectWithoutTafseerInput | SurahCreateOrConnectWithoutTafseerInput[]
+    upsert?: SurahUpsertWithWhereUniqueWithoutTafseerInput | SurahUpsertWithWhereUniqueWithoutTafseerInput[]
+    createMany?: SurahCreateManyTafseerInputEnvelope
+    set?: SurahWhereUniqueInput | SurahWhereUniqueInput[]
+    disconnect?: SurahWhereUniqueInput | SurahWhereUniqueInput[]
+    delete?: SurahWhereUniqueInput | SurahWhereUniqueInput[]
+    connect?: SurahWhereUniqueInput | SurahWhereUniqueInput[]
+    update?: SurahUpdateWithWhereUniqueWithoutTafseerInput | SurahUpdateWithWhereUniqueWithoutTafseerInput[]
+    updateMany?: SurahUpdateManyWithWhereWithoutTafseerInput | SurahUpdateManyWithWhereWithoutTafseerInput[]
+    deleteMany?: SurahScalarWhereInput | SurahScalarWhereInput[]
+  }
+
+  export type SurahUncheckedUpdateManyWithoutTafseerNestedInput = {
+    create?: XOR<SurahCreateWithoutTafseerInput, SurahUncheckedCreateWithoutTafseerInput> | SurahCreateWithoutTafseerInput[] | SurahUncheckedCreateWithoutTafseerInput[]
+    connectOrCreate?: SurahCreateOrConnectWithoutTafseerInput | SurahCreateOrConnectWithoutTafseerInput[]
+    upsert?: SurahUpsertWithWhereUniqueWithoutTafseerInput | SurahUpsertWithWhereUniqueWithoutTafseerInput[]
+    createMany?: SurahCreateManyTafseerInputEnvelope
+    set?: SurahWhereUniqueInput | SurahWhereUniqueInput[]
+    disconnect?: SurahWhereUniqueInput | SurahWhereUniqueInput[]
+    delete?: SurahWhereUniqueInput | SurahWhereUniqueInput[]
+    connect?: SurahWhereUniqueInput | SurahWhereUniqueInput[]
+    update?: SurahUpdateWithWhereUniqueWithoutTafseerInput | SurahUpdateWithWhereUniqueWithoutTafseerInput[]
+    updateMany?: SurahUpdateManyWithWhereWithoutTafseerInput | SurahUpdateManyWithWhereWithoutTafseerInput[]
+    deleteMany?: SurahScalarWhereInput | SurahScalarWhereInput[]
+  }
+
+  export type TafseerCreateNestedOneWithoutSurahInput = {
+    create?: XOR<TafseerCreateWithoutSurahInput, TafseerUncheckedCreateWithoutSurahInput>
+    connectOrCreate?: TafseerCreateOrConnectWithoutSurahInput
+    connect?: TafseerWhereUniqueInput
+  }
+
   export type AyahCreateNestedManyWithoutSurahInput = {
     create?: XOR<AyahCreateWithoutSurahInput, AyahUncheckedCreateWithoutSurahInput> | AyahCreateWithoutSurahInput[] | AyahUncheckedCreateWithoutSurahInput[]
     connectOrCreate?: AyahCreateOrConnectWithoutSurahInput | AyahCreateOrConnectWithoutSurahInput[]
@@ -9795,6 +9982,16 @@ export namespace Prisma {
 
   export type EnumSurahRevelationTypeFieldUpdateOperationsInput = {
     set?: $Enums.SurahRevelationType
+  }
+
+  export type TafseerUpdateOneWithoutSurahNestedInput = {
+    create?: XOR<TafseerCreateWithoutSurahInput, TafseerUncheckedCreateWithoutSurahInput>
+    connectOrCreate?: TafseerCreateOrConnectWithoutSurahInput
+    upsert?: TafseerUpsertWithoutSurahInput
+    disconnect?: TafseerWhereInput | boolean
+    delete?: TafseerWhereInput | boolean
+    connect?: TafseerWhereUniqueInput
+    update?: XOR<XOR<TafseerUpdateToOneWithWhereWithoutSurahInput, TafseerUpdateWithoutSurahInput>, TafseerUncheckedUpdateWithoutSurahInput>
   }
 
   export type AyahUpdateManyWithoutSurahNestedInput = {
@@ -9887,84 +10084,12 @@ export namespace Prisma {
     connect?: AyahWhereUniqueInput
   }
 
-  export type TafseerCreateNestedOneWithoutAyahsInput = {
-    create?: XOR<TafseerCreateWithoutAyahsInput, TafseerUncheckedCreateWithoutAyahsInput>
-    connectOrCreate?: TafseerCreateOrConnectWithoutAyahsInput
-    connect?: TafseerWhereUniqueInput
-  }
-
   export type AyahUpdateOneRequiredWithoutTafseersNestedInput = {
     create?: XOR<AyahCreateWithoutTafseersInput, AyahUncheckedCreateWithoutTafseersInput>
     connectOrCreate?: AyahCreateOrConnectWithoutTafseersInput
     upsert?: AyahUpsertWithoutTafseersInput
     connect?: AyahWhereUniqueInput
     update?: XOR<XOR<AyahUpdateToOneWithWhereWithoutTafseersInput, AyahUpdateWithoutTafseersInput>, AyahUncheckedUpdateWithoutTafseersInput>
-  }
-
-  export type TafseerUpdateOneWithoutAyahsNestedInput = {
-    create?: XOR<TafseerCreateWithoutAyahsInput, TafseerUncheckedCreateWithoutAyahsInput>
-    connectOrCreate?: TafseerCreateOrConnectWithoutAyahsInput
-    upsert?: TafseerUpsertWithoutAyahsInput
-    disconnect?: TafseerWhereInput | boolean
-    delete?: TafseerWhereInput | boolean
-    connect?: TafseerWhereUniqueInput
-    update?: XOR<XOR<TafseerUpdateToOneWithWhereWithoutAyahsInput, TafseerUpdateWithoutAyahsInput>, TafseerUncheckedUpdateWithoutAyahsInput>
-  }
-
-  export type AuthorCreateNestedOneWithoutTafseersInput = {
-    create?: XOR<AuthorCreateWithoutTafseersInput, AuthorUncheckedCreateWithoutTafseersInput>
-    connectOrCreate?: AuthorCreateOrConnectWithoutTafseersInput
-    connect?: AuthorWhereUniqueInput
-  }
-
-  export type TafseerAyahCreateNestedManyWithoutTafseerInput = {
-    create?: XOR<TafseerAyahCreateWithoutTafseerInput, TafseerAyahUncheckedCreateWithoutTafseerInput> | TafseerAyahCreateWithoutTafseerInput[] | TafseerAyahUncheckedCreateWithoutTafseerInput[]
-    connectOrCreate?: TafseerAyahCreateOrConnectWithoutTafseerInput | TafseerAyahCreateOrConnectWithoutTafseerInput[]
-    createMany?: TafseerAyahCreateManyTafseerInputEnvelope
-    connect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
-  }
-
-  export type TafseerAyahUncheckedCreateNestedManyWithoutTafseerInput = {
-    create?: XOR<TafseerAyahCreateWithoutTafseerInput, TafseerAyahUncheckedCreateWithoutTafseerInput> | TafseerAyahCreateWithoutTafseerInput[] | TafseerAyahUncheckedCreateWithoutTafseerInput[]
-    connectOrCreate?: TafseerAyahCreateOrConnectWithoutTafseerInput | TafseerAyahCreateOrConnectWithoutTafseerInput[]
-    createMany?: TafseerAyahCreateManyTafseerInputEnvelope
-    connect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
-  }
-
-  export type AuthorUpdateOneRequiredWithoutTafseersNestedInput = {
-    create?: XOR<AuthorCreateWithoutTafseersInput, AuthorUncheckedCreateWithoutTafseersInput>
-    connectOrCreate?: AuthorCreateOrConnectWithoutTafseersInput
-    upsert?: AuthorUpsertWithoutTafseersInput
-    connect?: AuthorWhereUniqueInput
-    update?: XOR<XOR<AuthorUpdateToOneWithWhereWithoutTafseersInput, AuthorUpdateWithoutTafseersInput>, AuthorUncheckedUpdateWithoutTafseersInput>
-  }
-
-  export type TafseerAyahUpdateManyWithoutTafseerNestedInput = {
-    create?: XOR<TafseerAyahCreateWithoutTafseerInput, TafseerAyahUncheckedCreateWithoutTafseerInput> | TafseerAyahCreateWithoutTafseerInput[] | TafseerAyahUncheckedCreateWithoutTafseerInput[]
-    connectOrCreate?: TafseerAyahCreateOrConnectWithoutTafseerInput | TafseerAyahCreateOrConnectWithoutTafseerInput[]
-    upsert?: TafseerAyahUpsertWithWhereUniqueWithoutTafseerInput | TafseerAyahUpsertWithWhereUniqueWithoutTafseerInput[]
-    createMany?: TafseerAyahCreateManyTafseerInputEnvelope
-    set?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
-    disconnect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
-    delete?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
-    connect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
-    update?: TafseerAyahUpdateWithWhereUniqueWithoutTafseerInput | TafseerAyahUpdateWithWhereUniqueWithoutTafseerInput[]
-    updateMany?: TafseerAyahUpdateManyWithWhereWithoutTafseerInput | TafseerAyahUpdateManyWithWhereWithoutTafseerInput[]
-    deleteMany?: TafseerAyahScalarWhereInput | TafseerAyahScalarWhereInput[]
-  }
-
-  export type TafseerAyahUncheckedUpdateManyWithoutTafseerNestedInput = {
-    create?: XOR<TafseerAyahCreateWithoutTafseerInput, TafseerAyahUncheckedCreateWithoutTafseerInput> | TafseerAyahCreateWithoutTafseerInput[] | TafseerAyahUncheckedCreateWithoutTafseerInput[]
-    connectOrCreate?: TafseerAyahCreateOrConnectWithoutTafseerInput | TafseerAyahCreateOrConnectWithoutTafseerInput[]
-    upsert?: TafseerAyahUpsertWithWhereUniqueWithoutTafseerInput | TafseerAyahUpsertWithWhereUniqueWithoutTafseerInput[]
-    createMany?: TafseerAyahCreateManyTafseerInputEnvelope
-    set?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
-    disconnect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
-    delete?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
-    connect?: TafseerAyahWhereUniqueInput | TafseerAyahWhereUniqueInput[]
-    update?: TafseerAyahUpdateWithWhereUniqueWithoutTafseerInput | TafseerAyahUpdateWithWhereUniqueWithoutTafseerInput[]
-    updateMany?: TafseerAyahUpdateManyWithWhereWithoutTafseerInput | TafseerAyahUpdateManyWithWhereWithoutTafseerInput[]
-    deleteMany?: TafseerAyahScalarWhereInput | TafseerAyahScalarWhereInput[]
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -10074,6 +10199,23 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumTafseerLanguageFilter<$PrismaModel = never> = {
+    equals?: $Enums.TafseerLanguage | EnumTafseerLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.TafseerLanguage[] | ListEnumTafseerLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TafseerLanguage[] | ListEnumTafseerLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumTafseerLanguageFilter<$PrismaModel> | $Enums.TafseerLanguage
+  }
+
+  export type NestedEnumTafseerLanguageWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TafseerLanguage | EnumTafseerLanguageFieldRefInput<$PrismaModel>
+    in?: $Enums.TafseerLanguage[] | ListEnumTafseerLanguageFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TafseerLanguage[] | ListEnumTafseerLanguageFieldRefInput<$PrismaModel>
+    not?: NestedEnumTafseerLanguageWithAggregatesFilter<$PrismaModel> | $Enums.TafseerLanguage
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTafseerLanguageFilter<$PrismaModel>
+    _max?: NestedEnumTafseerLanguageFilter<$PrismaModel>
   }
 
   export type NestedEnumSurahRevelationTypeFilter<$PrismaModel = never> = {
@@ -10202,21 +10344,25 @@ export namespace Prisma {
   export type TafseerCreateWithoutAuthorInput = {
     id?: string
     name: string
+    arabicName: string
     text: string
-    file?: string | null
+    filePath?: string | null
+    language?: $Enums.TafseerLanguage
     createdAt?: Date | string
     updatedAt?: Date | string
-    ayahs?: TafseerAyahCreateNestedManyWithoutTafseerInput
+    surah?: SurahCreateNestedManyWithoutTafseerInput
   }
 
   export type TafseerUncheckedCreateWithoutAuthorInput = {
     id?: string
     name: string
+    arabicName: string
     text: string
-    file?: string | null
+    filePath?: string | null
+    language?: $Enums.TafseerLanguage
     createdAt?: Date | string
     updatedAt?: Date | string
-    ayahs?: TafseerAyahUncheckedCreateNestedManyWithoutTafseerInput
+    surah?: SurahUncheckedCreateNestedManyWithoutTafseerInput
   }
 
   export type TafseerCreateOrConnectWithoutAuthorInput = {
@@ -10288,11 +10434,155 @@ export namespace Prisma {
     NOT?: TafseerScalarWhereInput | TafseerScalarWhereInput[]
     id?: StringFilter<"Tafseer"> | string
     name?: StringFilter<"Tafseer"> | string
+    arabicName?: StringFilter<"Tafseer"> | string
     text?: StringFilter<"Tafseer"> | string
-    file?: StringNullableFilter<"Tafseer"> | string | null
+    filePath?: StringNullableFilter<"Tafseer"> | string | null
+    language?: EnumTafseerLanguageFilter<"Tafseer"> | $Enums.TafseerLanguage
     authorId?: StringFilter<"Tafseer"> | string
     createdAt?: DateTimeFilter<"Tafseer"> | Date | string
     updatedAt?: DateTimeFilter<"Tafseer"> | Date | string
+  }
+
+  export type AuthorCreateWithoutTafseersInput = {
+    id?: string
+    country?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    user: UserCreateNestedOneWithoutAuthorInput
+  }
+
+  export type AuthorUncheckedCreateWithoutTafseersInput = {
+    id?: string
+    country?: string | null
+    userId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type AuthorCreateOrConnectWithoutTafseersInput = {
+    where: AuthorWhereUniqueInput
+    create: XOR<AuthorCreateWithoutTafseersInput, AuthorUncheckedCreateWithoutTafseersInput>
+  }
+
+  export type SurahCreateWithoutTafseerInput = {
+    id?: string
+    name: string
+    arabicName: string
+    number: number
+    totalAyahs: number
+    revelationType: $Enums.SurahRevelationType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ayahs?: AyahCreateNestedManyWithoutSurahInput
+  }
+
+  export type SurahUncheckedCreateWithoutTafseerInput = {
+    id?: string
+    name: string
+    arabicName: string
+    number: number
+    totalAyahs: number
+    revelationType: $Enums.SurahRevelationType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    ayahs?: AyahUncheckedCreateNestedManyWithoutSurahInput
+  }
+
+  export type SurahCreateOrConnectWithoutTafseerInput = {
+    where: SurahWhereUniqueInput
+    create: XOR<SurahCreateWithoutTafseerInput, SurahUncheckedCreateWithoutTafseerInput>
+  }
+
+  export type SurahCreateManyTafseerInputEnvelope = {
+    data: SurahCreateManyTafseerInput | SurahCreateManyTafseerInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AuthorUpsertWithoutTafseersInput = {
+    update: XOR<AuthorUpdateWithoutTafseersInput, AuthorUncheckedUpdateWithoutTafseersInput>
+    create: XOR<AuthorCreateWithoutTafseersInput, AuthorUncheckedCreateWithoutTafseersInput>
+    where?: AuthorWhereInput
+  }
+
+  export type AuthorUpdateToOneWithWhereWithoutTafseersInput = {
+    where?: AuthorWhereInput
+    data: XOR<AuthorUpdateWithoutTafseersInput, AuthorUncheckedUpdateWithoutTafseersInput>
+  }
+
+  export type AuthorUpdateWithoutTafseersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutAuthorNestedInput
+  }
+
+  export type AuthorUncheckedUpdateWithoutTafseersInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    country?: NullableStringFieldUpdateOperationsInput | string | null
+    userId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SurahUpsertWithWhereUniqueWithoutTafseerInput = {
+    where: SurahWhereUniqueInput
+    update: XOR<SurahUpdateWithoutTafseerInput, SurahUncheckedUpdateWithoutTafseerInput>
+    create: XOR<SurahCreateWithoutTafseerInput, SurahUncheckedCreateWithoutTafseerInput>
+  }
+
+  export type SurahUpdateWithWhereUniqueWithoutTafseerInput = {
+    where: SurahWhereUniqueInput
+    data: XOR<SurahUpdateWithoutTafseerInput, SurahUncheckedUpdateWithoutTafseerInput>
+  }
+
+  export type SurahUpdateManyWithWhereWithoutTafseerInput = {
+    where: SurahScalarWhereInput
+    data: XOR<SurahUpdateManyMutationInput, SurahUncheckedUpdateManyWithoutTafseerInput>
+  }
+
+  export type SurahScalarWhereInput = {
+    AND?: SurahScalarWhereInput | SurahScalarWhereInput[]
+    OR?: SurahScalarWhereInput[]
+    NOT?: SurahScalarWhereInput | SurahScalarWhereInput[]
+    id?: StringFilter<"Surah"> | string
+    name?: StringFilter<"Surah"> | string
+    arabicName?: StringFilter<"Surah"> | string
+    number?: IntFilter<"Surah"> | number
+    totalAyahs?: IntFilter<"Surah"> | number
+    tafseerId?: StringNullableFilter<"Surah"> | string | null
+    revelationType?: EnumSurahRevelationTypeFilter<"Surah"> | $Enums.SurahRevelationType
+    createdAt?: DateTimeFilter<"Surah"> | Date | string
+    updatedAt?: DateTimeFilter<"Surah"> | Date | string
+  }
+
+  export type TafseerCreateWithoutSurahInput = {
+    id?: string
+    name: string
+    arabicName: string
+    text: string
+    filePath?: string | null
+    language?: $Enums.TafseerLanguage
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    author: AuthorCreateNestedOneWithoutTafseersInput
+  }
+
+  export type TafseerUncheckedCreateWithoutSurahInput = {
+    id?: string
+    name: string
+    arabicName: string
+    text: string
+    filePath?: string | null
+    language?: $Enums.TafseerLanguage
+    authorId: string
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type TafseerCreateOrConnectWithoutSurahInput = {
+    where: TafseerWhereUniqueInput
+    create: XOR<TafseerCreateWithoutSurahInput, TafseerUncheckedCreateWithoutSurahInput>
   }
 
   export type AyahCreateWithoutSurahInput = {
@@ -10323,6 +10613,41 @@ export namespace Prisma {
   export type AyahCreateManySurahInputEnvelope = {
     data: AyahCreateManySurahInput | AyahCreateManySurahInput[]
     skipDuplicates?: boolean
+  }
+
+  export type TafseerUpsertWithoutSurahInput = {
+    update: XOR<TafseerUpdateWithoutSurahInput, TafseerUncheckedUpdateWithoutSurahInput>
+    create: XOR<TafseerCreateWithoutSurahInput, TafseerUncheckedCreateWithoutSurahInput>
+    where?: TafseerWhereInput
+  }
+
+  export type TafseerUpdateToOneWithWhereWithoutSurahInput = {
+    where?: TafseerWhereInput
+    data: XOR<TafseerUpdateWithoutSurahInput, TafseerUncheckedUpdateWithoutSurahInput>
+  }
+
+  export type TafseerUpdateWithoutSurahInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: EnumTafseerLanguageFieldUpdateOperationsInput | $Enums.TafseerLanguage
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    author?: AuthorUpdateOneRequiredWithoutTafseersNestedInput
+  }
+
+  export type TafseerUncheckedUpdateWithoutSurahInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
+    text?: StringFieldUpdateOperationsInput | string
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: EnumTafseerLanguageFieldUpdateOperationsInput | $Enums.TafseerLanguage
+    authorId?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AyahUpsertWithWhereUniqueWithoutSurahInput = {
@@ -10363,6 +10688,7 @@ export namespace Prisma {
     revelationType: $Enums.SurahRevelationType
     createdAt?: Date | string
     updatedAt?: Date | string
+    tafseer?: TafseerCreateNestedOneWithoutSurahInput
   }
 
   export type SurahUncheckedCreateWithoutAyahsInput = {
@@ -10371,6 +10697,7 @@ export namespace Prisma {
     arabicName: string
     number: number
     totalAyahs: number
+    tafseerId?: string | null
     revelationType: $Enums.SurahRevelationType
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -10386,7 +10713,6 @@ export namespace Prisma {
     text: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    tafseer?: TafseerCreateNestedOneWithoutAyahsInput
   }
 
   export type TafseerAyahUncheckedCreateWithoutAyahInput = {
@@ -10394,7 +10720,6 @@ export namespace Prisma {
     text: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    tafseerId?: string | null
   }
 
   export type TafseerAyahCreateOrConnectWithoutAyahInput = {
@@ -10427,6 +10752,7 @@ export namespace Prisma {
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    tafseer?: TafseerUpdateOneWithoutSurahNestedInput
   }
 
   export type SurahUncheckedUpdateWithoutAyahsInput = {
@@ -10435,6 +10761,7 @@ export namespace Prisma {
     arabicName?: StringFieldUpdateOperationsInput | string
     number?: IntFieldUpdateOperationsInput | number
     totalAyahs?: IntFieldUpdateOperationsInput | number
+    tafseerId?: NullableStringFieldUpdateOperationsInput | string | null
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10465,7 +10792,6 @@ export namespace Prisma {
     ayahId?: StringFilter<"TafseerAyah"> | string
     createdAt?: DateTimeFilter<"TafseerAyah"> | Date | string
     updatedAt?: DateTimeFilter<"TafseerAyah"> | Date | string
-    tafseerId?: StringNullableFilter<"TafseerAyah"> | string | null
   }
 
   export type AyahCreateWithoutTafseersInput = {
@@ -10491,31 +10817,6 @@ export namespace Prisma {
   export type AyahCreateOrConnectWithoutTafseersInput = {
     where: AyahWhereUniqueInput
     create: XOR<AyahCreateWithoutTafseersInput, AyahUncheckedCreateWithoutTafseersInput>
-  }
-
-  export type TafseerCreateWithoutAyahsInput = {
-    id?: string
-    name: string
-    text: string
-    file?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    author: AuthorCreateNestedOneWithoutTafseersInput
-  }
-
-  export type TafseerUncheckedCreateWithoutAyahsInput = {
-    id?: string
-    name: string
-    text: string
-    file?: string | null
-    authorId: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type TafseerCreateOrConnectWithoutAyahsInput = {
-    where: TafseerWhereUniqueInput
-    create: XOR<TafseerCreateWithoutAyahsInput, TafseerUncheckedCreateWithoutAyahsInput>
   }
 
   export type AyahUpsertWithoutTafseersInput = {
@@ -10549,132 +10850,13 @@ export namespace Prisma {
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
-  export type TafseerUpsertWithoutAyahsInput = {
-    update: XOR<TafseerUpdateWithoutAyahsInput, TafseerUncheckedUpdateWithoutAyahsInput>
-    create: XOR<TafseerCreateWithoutAyahsInput, TafseerUncheckedCreateWithoutAyahsInput>
-    where?: TafseerWhereInput
-  }
-
-  export type TafseerUpdateToOneWithWhereWithoutAyahsInput = {
-    where?: TafseerWhereInput
-    data: XOR<TafseerUpdateWithoutAyahsInput, TafseerUncheckedUpdateWithoutAyahsInput>
-  }
-
-  export type TafseerUpdateWithoutAyahsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
-    file?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    author?: AuthorUpdateOneRequiredWithoutTafseersNestedInput
-  }
-
-  export type TafseerUncheckedUpdateWithoutAyahsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
-    file?: NullableStringFieldUpdateOperationsInput | string | null
-    authorId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type AuthorCreateWithoutTafseersInput = {
-    id?: string
-    country?: string | null
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    user: UserCreateNestedOneWithoutAuthorInput
-  }
-
-  export type AuthorUncheckedCreateWithoutTafseersInput = {
-    id?: string
-    country?: string | null
-    userId: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type AuthorCreateOrConnectWithoutTafseersInput = {
-    where: AuthorWhereUniqueInput
-    create: XOR<AuthorCreateWithoutTafseersInput, AuthorUncheckedCreateWithoutTafseersInput>
-  }
-
-  export type TafseerAyahCreateWithoutTafseerInput = {
-    id?: string
-    text: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-    ayah: AyahCreateNestedOneWithoutTafseersInput
-  }
-
-  export type TafseerAyahUncheckedCreateWithoutTafseerInput = {
-    id?: string
-    text: string
-    ayahId: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type TafseerAyahCreateOrConnectWithoutTafseerInput = {
-    where: TafseerAyahWhereUniqueInput
-    create: XOR<TafseerAyahCreateWithoutTafseerInput, TafseerAyahUncheckedCreateWithoutTafseerInput>
-  }
-
-  export type TafseerAyahCreateManyTafseerInputEnvelope = {
-    data: TafseerAyahCreateManyTafseerInput | TafseerAyahCreateManyTafseerInput[]
-    skipDuplicates?: boolean
-  }
-
-  export type AuthorUpsertWithoutTafseersInput = {
-    update: XOR<AuthorUpdateWithoutTafseersInput, AuthorUncheckedUpdateWithoutTafseersInput>
-    create: XOR<AuthorCreateWithoutTafseersInput, AuthorUncheckedCreateWithoutTafseersInput>
-    where?: AuthorWhereInput
-  }
-
-  export type AuthorUpdateToOneWithWhereWithoutTafseersInput = {
-    where?: AuthorWhereInput
-    data: XOR<AuthorUpdateWithoutTafseersInput, AuthorUncheckedUpdateWithoutTafseersInput>
-  }
-
-  export type AuthorUpdateWithoutTafseersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    country?: NullableStringFieldUpdateOperationsInput | string | null
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    user?: UserUpdateOneRequiredWithoutAuthorNestedInput
-  }
-
-  export type AuthorUncheckedUpdateWithoutTafseersInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    country?: NullableStringFieldUpdateOperationsInput | string | null
-    userId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type TafseerAyahUpsertWithWhereUniqueWithoutTafseerInput = {
-    where: TafseerAyahWhereUniqueInput
-    update: XOR<TafseerAyahUpdateWithoutTafseerInput, TafseerAyahUncheckedUpdateWithoutTafseerInput>
-    create: XOR<TafseerAyahCreateWithoutTafseerInput, TafseerAyahUncheckedCreateWithoutTafseerInput>
-  }
-
-  export type TafseerAyahUpdateWithWhereUniqueWithoutTafseerInput = {
-    where: TafseerAyahWhereUniqueInput
-    data: XOR<TafseerAyahUpdateWithoutTafseerInput, TafseerAyahUncheckedUpdateWithoutTafseerInput>
-  }
-
-  export type TafseerAyahUpdateManyWithWhereWithoutTafseerInput = {
-    where: TafseerAyahScalarWhereInput
-    data: XOR<TafseerAyahUpdateManyMutationInput, TafseerAyahUncheckedUpdateManyWithoutTafseerInput>
-  }
-
   export type TafseerCreateManyAuthorInput = {
     id?: string
     name: string
+    arabicName: string
     text: string
-    file?: string | null
+    filePath?: string | null
+    language?: $Enums.TafseerLanguage
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -10682,28 +10864,80 @@ export namespace Prisma {
   export type TafseerUpdateWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
-    file?: NullableStringFieldUpdateOperationsInput | string | null
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: EnumTafseerLanguageFieldUpdateOperationsInput | $Enums.TafseerLanguage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ayahs?: TafseerAyahUpdateManyWithoutTafseerNestedInput
+    surah?: SurahUpdateManyWithoutTafseerNestedInput
   }
 
   export type TafseerUncheckedUpdateWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
-    file?: NullableStringFieldUpdateOperationsInput | string | null
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: EnumTafseerLanguageFieldUpdateOperationsInput | $Enums.TafseerLanguage
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ayahs?: TafseerAyahUncheckedUpdateManyWithoutTafseerNestedInput
+    surah?: SurahUncheckedUpdateManyWithoutTafseerNestedInput
   }
 
   export type TafseerUncheckedUpdateManyWithoutAuthorInput = {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
-    file?: NullableStringFieldUpdateOperationsInput | string | null
+    filePath?: NullableStringFieldUpdateOperationsInput | string | null
+    language?: EnumTafseerLanguageFieldUpdateOperationsInput | $Enums.TafseerLanguage
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type SurahCreateManyTafseerInput = {
+    id?: string
+    name: string
+    arabicName: string
+    number: number
+    totalAyahs: number
+    revelationType: $Enums.SurahRevelationType
+    createdAt?: Date | string
+    updatedAt?: Date | string
+  }
+
+  export type SurahUpdateWithoutTafseerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    totalAyahs?: IntFieldUpdateOperationsInput | number
+    revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ayahs?: AyahUpdateManyWithoutSurahNestedInput
+  }
+
+  export type SurahUncheckedUpdateWithoutTafseerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    totalAyahs?: IntFieldUpdateOperationsInput | number
+    revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    ayahs?: AyahUncheckedUpdateManyWithoutSurahNestedInput
+  }
+
+  export type SurahUncheckedUpdateManyWithoutTafseerInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    arabicName?: StringFieldUpdateOperationsInput | string
+    number?: IntFieldUpdateOperationsInput | number
+    totalAyahs?: IntFieldUpdateOperationsInput | number
+    revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10751,7 +10985,6 @@ export namespace Prisma {
     text: string
     createdAt?: Date | string
     updatedAt?: Date | string
-    tafseerId?: string | null
   }
 
   export type TafseerAyahUpdateWithoutAyahInput = {
@@ -10759,7 +10992,6 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    tafseer?: TafseerUpdateOneWithoutAyahsNestedInput
   }
 
   export type TafseerAyahUncheckedUpdateWithoutAyahInput = {
@@ -10767,45 +10999,11 @@ export namespace Prisma {
     text?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    tafseerId?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type TafseerAyahUncheckedUpdateManyWithoutAyahInput = {
     id?: StringFieldUpdateOperationsInput | string
     text?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    tafseerId?: NullableStringFieldUpdateOperationsInput | string | null
-  }
-
-  export type TafseerAyahCreateManyTafseerInput = {
-    id?: string
-    text: string
-    ayahId: string
-    createdAt?: Date | string
-    updatedAt?: Date | string
-  }
-
-  export type TafseerAyahUpdateWithoutTafseerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    ayah?: AyahUpdateOneRequiredWithoutTafseersNestedInput
-  }
-
-  export type TafseerAyahUncheckedUpdateWithoutTafseerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
-    ayahId?: StringFieldUpdateOperationsInput | string
-    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
-    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
-  }
-
-  export type TafseerAyahUncheckedUpdateManyWithoutTafseerInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    text?: StringFieldUpdateOperationsInput | string
-    ayahId?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

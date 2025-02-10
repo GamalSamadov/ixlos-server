@@ -6,6 +6,9 @@ import { GraphQLModule } from '@nestjs/graphql'
 import { AccountModule } from '../modules/auth/account/account.module'
 import { AuthorModule } from '../modules/auth/account/author/author.module'
 import { SessionModule } from '../modules/auth/session/session.module'
+import { AyahModule } from '../modules/tafseer/ayah/ayah.module'
+import { SurahModule } from '../modules/tafseer/surah/surah.module'
+import { TafseerAyahsModule } from '../modules/tafseer/tafseer-ayahs/tafseer-ayahs.module'
 import { TafseerModule } from '../modules/tafseer/tafseer.module'
 
 import { getGraphQLConfig } from './config/graphql.config'
@@ -25,10 +28,13 @@ import { RedisModule } from './redis/redis.module'
 		RedisModule,
 
 		AccountModule,
-		AuthorModule,
 		SessionModule,
+		AuthorModule,
 
-		TafseerModule
+		TafseerModule,
+		SurahModule,
+		AyahModule,
+		TafseerAyahsModule
 	]
 })
 export class CoreModule {}

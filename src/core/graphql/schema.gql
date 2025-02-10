@@ -11,6 +11,18 @@ type AuthorModel {
   userId: String!
 }
 
+type AyahModel {
+  arabicText: String!
+  createdAt: DateTime!
+  id: ID!
+  number: Float!
+  surah: SurahModel!
+  surahId: String!
+  tafseerAyahs: [TafseerAyahModel!]!
+  updatedAt: DateTime!
+  uzbekText: String!
+}
+
 input CreateAuthorInput {
   bio: String!
   country: String
@@ -18,6 +30,15 @@ input CreateAuthorInput {
   email: String!
   password: String!
   username: String!
+}
+
+input CreateTafseerInput {
+  arabicName: String!
+  authorId: String!
+  filePath: String
+  language: TafseerLanguage
+  name: String!
+  text: String!
 }
 
 input CreateUserInput {
@@ -54,18 +75,26 @@ input LoginInput {
 type Mutation {
   clearSessionCookie: Boolean!
   createAuthor(data: CreateAuthorInput!): Boolean!
+  createTafseer(data: CreateTafseerInput!): Boolean!
   createUser(data: CreateUserInput!): Boolean!
+  deleteAuthor(id: String!): Boolean!
+  deleteTafseer(id: String!): Boolean!
   loginUser(data: LoginInput!): UserModel!
   logoutUser: Boolean!
   removeSession(id: String!): Boolean!
-  updateAuthor(id: String!): Boolean!
+  updateAuthor(data: UpdateAuthorInput!, id: String!): Boolean!
+  updateTafseer(data: UpdateTafseerInput!, id: String!): Boolean!
 }
 
 type Query {
+  findAllSurahs: [SurahModel!]!
+  findAllTafseers: [TafseerModel!]!
   findAuthors: [AuthorModel!]!
   findCurrentSession: SessionModel!
   findProfile: UserModel!
   findSessionsByUser: [SessionModel!]!
+  findSurahById: SurahModel!
+  findTafseerById: TafseerModel!
 }
 
 enum Role {
@@ -86,6 +115,70 @@ type SessionModel {
   metadata: SessionMetadataModel!
   rights: [Role!]!
   userId: String!
+}
+
+type SurahModel {
+  arabicName: String!
+  ayahs: [AyahModel!]!
+  createdAt: DateTime!
+  id: ID!
+  name: String!
+  number: Float!
+  revelationType: SurahRevelationType!
+  tafseer: TafseerModel!
+  tafseerId: String!
+  totalAyahs: Float!
+  updatedAt: DateTime!
+}
+
+enum SurahRevelationType {
+  MECCAN
+  MEDINAN
+}
+
+type TafseerAyahModel {
+  ayah: AyahModel!
+  ayahId: String!
+  createdAt: DateTime!
+  id: ID!
+  text: String!
+  updatedAt: DateTime!
+}
+
+enum TafseerLanguage {
+  ARABIC
+  UZBEK
+}
+
+type TafseerModel {
+  arabicName: String!
+  author: AuthorModel!
+  authorId: String!
+  createdAt: DateTime!
+  filePath: String!
+  id: ID!
+  language: TafseerLanguage!
+  name: String!
+  surahs: [SurahModel!]!
+  text: String!
+  updatedAt: DateTime!
+}
+
+input UpdateAuthorInput {
+  bio: String
+  country: String
+  displayName: String
+  email: String
+  username: String
+}
+
+input UpdateTafseerInput {
+  arabicName: String
+  authorId: String
+  filePath: String
+  language: TafseerLanguage
+  name: String
+  text: String
 }
 
 type UserModel {

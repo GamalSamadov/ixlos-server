@@ -39,7 +39,7 @@ export class AuthorResolver {
 	}
 
 	@Auth([Role.ADMIN])
-	@Mutation(() => Boolean, { name: 'updateAuthor' })
+	@Mutation(() => Boolean, { name: 'deleteAuthor' })
 	public async delete(@Args('id') id: string) {
 		return this.authorService.delete(id)
 	}

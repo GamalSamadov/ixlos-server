@@ -138,12 +138,25 @@ exports.Prisma.AuthorScalarFieldEnum = {
   updatedAt: 'updatedAt'
 };
 
+exports.Prisma.TafseerScalarFieldEnum = {
+  id: 'id',
+  name: 'name',
+  arabicName: 'arabicName',
+  text: 'text',
+  filePath: 'filePath',
+  language: 'language',
+  authorId: 'authorId',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
 exports.Prisma.SurahScalarFieldEnum = {
   id: 'id',
   name: 'name',
   arabicName: 'arabicName',
   number: 'number',
   totalAyahs: 'totalAyahs',
+  tafseerId: 'tafseerId',
   revelationType: 'revelationType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -163,17 +176,6 @@ exports.Prisma.TafseerAyahScalarFieldEnum = {
   id: 'id',
   text: 'text',
   ayahId: 'ayahId',
-  createdAt: 'createdAt',
-  updatedAt: 'updatedAt',
-  tafseerId: 'tafseerId'
-};
-
-exports.Prisma.TafseerScalarFieldEnum = {
-  id: 'id',
-  name: 'name',
-  text: 'text',
-  file: 'file',
-  authorId: 'authorId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -198,6 +200,11 @@ exports.Role = exports.$Enums.Role = {
   AUTHOR: 'AUTHOR'
 };
 
+exports.TafseerLanguage = exports.$Enums.TafseerLanguage = {
+  UZBEK: 'UZBEK',
+  ARABIC: 'ARABIC'
+};
+
 exports.SurahRevelationType = exports.$Enums.SurahRevelationType = {
   MECCAN: 'MECCAN',
   MEDINAN: 'MEDINAN'
@@ -206,10 +213,10 @@ exports.SurahRevelationType = exports.$Enums.SurahRevelationType = {
 exports.Prisma.ModelName = {
   User: 'User',
   Author: 'Author',
+  Tafseer: 'Tafseer',
   Surah: 'Surah',
   Ayah: 'Ayah',
-  TafseerAyah: 'TafseerAyah',
-  Tafseer: 'Tafseer'
+  TafseerAyah: 'TafseerAyah'
 };
 
 /**

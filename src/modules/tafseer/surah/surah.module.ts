@@ -1,8 +1,9 @@
-import { Module } from '@nestjs/common';
-import { SurahService } from './surah.service';
-import { SurahResolver } from './surah.resolver';
+import { Module } from '@nestjs/common'
+
+import { SurahResolver } from './surah.resolver'
+import { SurahService } from './surah.service'
 
 @Module({
-  providers: [SurahResolver, SurahService],
+	providers: [SurahResolver, SurahService]
 })
 export class SurahModule {}

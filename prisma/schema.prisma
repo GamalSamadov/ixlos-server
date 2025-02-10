@@ -36,12 +36,30 @@ model Author {
   @@map("authors")
 }
 
+model Tafseer {
+  id         String          @id @default(uuid())
+  name       String
+  arabicName String
+  text       String
+  filePath   String?
+  language   TafseerLanguage @default(UZBEK)
+  author     Author          @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId   String          @map("author_id")
+  surah      Surah[]
+  createdAt  DateTime        @default(now()) @map("created_at")
+  updatedAt  DateTime        @updatedAt @map("updated_at")
+
+  @@map("tafseers")
+}
+
 model Surah {
   id             String              @id @default(uuid())
   name           String
   arabicName     String
   number         Int
   totalAyahs     Int                 @map("total_ayahs")
+  tafseer        Tafseer?            @relation(fields: [tafseerId], references: [id], onDelete: Cascade)
+  tafseerId      String?             @map("tafseer_id")
   revelationType SurahRevelationType @map("revelation_type")
   ayahs          Ayah[]
   createdAt      DateTime            @default(now()) @map("created_at")
@@ -71,24 +89,8 @@ model TafseerAyah {
   ayahId    String   @map("ayah_id")
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
-  tafseer   Tafseer? @relation(fields: [tafseerId], references: [id])
-  tafseerId String?
 
   @@map("tafseer_ayahs")
-}
-
-model Tafseer {
-  id        String        @id @default(uuid())
-  name      String
-  text      String
-  file      String?
-  author    Author        @relation(fields: [authorId], references: [id])
-  authorId  String        @map("author_id")
-  ayahs     TafseerAyah[]
-  createdAt DateTime      @default(now()) @map("created_at")
-  updatedAt DateTime      @updatedAt @map("updated_at")
-
-  @@map("tafseers")
 }
 
 enum Role {
@@ -100,4 +102,9 @@ enum Role {
 enum SurahRevelationType {
   MECCAN
   MEDINAN
+}
+
+enum TafseerLanguage {
+  UZBEK
+  ARABIC
 }
