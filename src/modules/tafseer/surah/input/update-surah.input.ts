@@ -1,6 +1,6 @@
 import { Field, InputType } from '@nestjs/graphql'
 import { registerEnumType } from '@nestjs/graphql'
-import { IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator'
+import { IsEnum, IsNumber, IsOptional, IsString } from 'class-validator'
 
 import { SurahRevelationType } from '@/prisma/generated'
 
@@ -9,34 +9,29 @@ registerEnumType(SurahRevelationType, {
 })
 
 @InputType()
-export class CreateSurahInput {
-	@Field(() => String)
+export class UpdateSurahInput {
+	@Field(() => String, { nullable: true })
 	@IsString()
-	@IsNotEmpty()
-	public name: string
+	@IsOptional()
+	public name?: string
 
-	@Field(() => String)
+	@Field(() => String, { nullable: true })
 	@IsString()
-	@IsNotEmpty()
-	public arabicName: string
+	@IsOptional()
+	public arabicName?: string
 
-	@Field(() => Number)
+	@Field(() => Number, { nullable: true })
 	@IsNumber()
-	@IsNotEmpty()
-	public number: number
+	@IsOptional()
+	public number?: number
 
-	@Field(() => Number)
+	@Field(() => Number, { nullable: true })
 	@IsNumber()
-	@IsNotEmpty()
-	public totalAyahs: number
+	@IsOptional()
+	public totalAyahs?: number
 
-	@Field(() => String)
-	@IsString()
-	@IsNotEmpty()
-	public tafseerId: string
-
-	@Field(() => SurahRevelationType)
+	@Field(() => SurahRevelationType, { nullable: true })
 	@IsEnum(SurahRevelationType)
-	@IsNotEmpty()
-	public revelationType: SurahRevelationType
+	@IsOptional()
+	public revelationType?: SurahRevelationType
 }

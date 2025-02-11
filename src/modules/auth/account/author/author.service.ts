@@ -2,6 +2,8 @@ import { ConflictException, Injectable } from '@nestjs/common'
 
 import { Role } from '@/prisma/generated'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
+import { PaginationInput } from '@/src/shared/pagination/inputs/pagination.input'
+import { PaginationService } from '@/src/shared/pagination/pagination.service'
 
 import { AccountService } from '../account.service'
 
@@ -12,14 +14,19 @@ import { UpdateAuthorInput } from './inputs/update-author.input'
 export class AuthorService {
 	public constructor(
 		private readonly prismaService: PrismaService,
-		private readonly accountService: AccountService
+		private readonly accountService: AccountService,
+		private readonly paginationService: PaginationService
 	) {}
 
-	public async getAll() {
+	public async getAll(input: PaginationInput) {
+		const { take, skip } = this.paginationService.getPagination(input)
+
 		const authors = await this.prismaService.author.findMany({
 			include: {
 				user: true
-			}
+			},
+			take,
+			skip
 		})
 		return authors
 	}
@@ -33,6 +40,11 @@ export class AuthorService {
 				user: true
 			}
 		})
+
+		if (!author) {
+			throw new Error('Aftor topilmadi.')
+		}
+
 		return author
 	}
 
@@ -90,7 +102,7 @@ export class AuthorService {
 			})) && username === author.user.username
 
 		if (isUsernameExist) {
-			throw new ConflictException('Bunday foydalanuvchi nomi mavjud')
+			throw new ConflictException('Foydalanuvchi nomi mavjud')
 		}
 
 		const isEmailExist =
@@ -101,7 +113,7 @@ export class AuthorService {
 			})) && email === author.user.email
 
 		if (isEmailExist) {
-			throw new ConflictException('Bunday e-pochta manzili mavjud')
+			throw new ConflictException('E-pochta mavjud')
 		}
 
 		await this.prismaService.user.update({

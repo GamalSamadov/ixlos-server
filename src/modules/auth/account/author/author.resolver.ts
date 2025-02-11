@@ -2,6 +2,7 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 
 import { Role } from '@/prisma/generated'
 import { Auth } from '@/src/shared/decorators/authorization.decorator'
+import { PaginationInput } from '@/src/shared/pagination/inputs/pagination.input'
 
 import { AuthorService } from './author.service'
 import { CreateAuthorInput } from './inputs/create-author.input'
@@ -13,13 +14,14 @@ export class AuthorResolver {
 	public constructor(private readonly authorService: AuthorService) {}
 
 	@Auth([Role.ADMIN])
-	@Query(() => [AuthorModel], { name: 'findAuthors' })
-	public async findAll() {
-		return this.authorService.getAll()
+	@Query(() => [AuthorModel], { name: 'getAllAuthors' })
+	public async getAll(@Args('pagination') input: PaginationInput) {
+		return this.authorService.getAll(input)
 	}
 
 	@Auth([Role.ADMIN, Role.AUTHOR])
-	public async findOne(@Args('id') id: string) {
+	@Query(() => AuthorModel, { name: 'getAuthorById' })
+	public async findById(@Args('id') id: string) {
 		return this.authorService.getById(id)
 	}
 

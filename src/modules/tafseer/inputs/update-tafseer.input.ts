@@ -33,9 +33,4 @@ export class UpdateTafseerInput {
 	@IsEnum(TafseerLanguage)
 	@IsOptional()
 	public language?: TafseerLanguage
-
-	@Field(() => String, { nullable: true })
-	@IsString()
-	@IsOptional()
-	public authorId?: string
 }

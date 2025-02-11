@@ -10,20 +10,30 @@ export class TafseerService {
 	public constructor(private readonly prismaService: PrismaService) {}
 
 	public async getAll() {
-		return this.prismaService.tafseer.findMany()
+		return this.prismaService.tafseer.findMany({
+			orderBy: {
+				name: 'asc'
+			},
+			include: {
+				ayahs: true,
+				author: true
+			}
+		})
 	}
 
 	public async getById(id: string) {
 		return this.prismaService.tafseer.findUnique({
 			where: {
 				id
+			},
+			include: {
+				ayahs: true,
+				author: true
 			}
 		})
 	}
 
-	public async create(input: CreateTafseerInput) {
-		const { name, arabicName, text, filePath, language, authorId } = input
-
+	public async create(authorId: string, input: CreateTafseerInput) {
 		const author = await this.prismaService.author.findUnique({
 			where: { id: authorId }
 		})
@@ -33,11 +43,7 @@ export class TafseerService {
 
 		await this.prismaService.tafseer.create({
 			data: {
-				name,
-				arabicName,
-				text,
-				filePath,
-				language,
+				...input,
 				author: {
 					connect: {
 						id: authorId
@@ -49,7 +55,11 @@ export class TafseerService {
 		return true
 	}
 
-	public async update(id: string, input: UpdateTafseerInput) {
+	public async update(
+		id: string,
+		authorId: string,
+		input: UpdateTafseerInput
+	) {
 		const tafseer = await this.prismaService.tafseer.findUnique({
 			where: {
 				id
@@ -60,28 +70,14 @@ export class TafseerService {
 			throw new Error('Tafsir topilmadi.')
 		}
 
-		const { name, arabicName, text, filePath, language, authorId } = input
-
-		// Only update author relation if authorId is provided
-		let authorUpdate = {}
-		if (authorId) {
-			const author = await this.prismaService.author.findUnique({
-				where: {
-					id: authorId
-				}
-			})
-
-			if (!author) {
-				throw new Error('Aftor topilmadi.')
+		const author = await this.prismaService.author.findUnique({
+			where: {
+				id: authorId
 			}
+		})
 
-			authorUpdate = {
-				author: {
-					connect: {
-						id: authorId
-					}
-				}
-			}
+		if (!author) {
+			throw new Error('Aftor topilmadi.')
 		}
 
 		await this.prismaService.tafseer.update({
@@ -89,12 +85,12 @@ export class TafseerService {
 				id
 			},
 			data: {
-				name: name || tafseer.name,
-				arabicName: arabicName || tafseer.arabicName,
-				text: text || tafseer.text,
-				filePath: filePath || tafseer.filePath,
-				language: language || tafseer.language,
-				...authorUpdate
+				...input,
+				author: {
+					connect: {
+						id: authorId
+					}
+				}
 			}
 		})
 

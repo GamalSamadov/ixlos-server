@@ -156,7 +156,6 @@ exports.Prisma.SurahScalarFieldEnum = {
   arabicName: 'arabicName',
   number: 'number',
   totalAyahs: 'totalAyahs',
-  tafseerId: 'tafseerId',
   revelationType: 'revelationType',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
@@ -176,6 +175,7 @@ exports.Prisma.TafseerAyahScalarFieldEnum = {
   id: 'id',
   text: 'text',
   ayahId: 'ayahId',
+  tafseerId: 'tafseerId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };

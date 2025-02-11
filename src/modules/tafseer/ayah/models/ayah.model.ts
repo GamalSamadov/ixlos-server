@@ -26,7 +26,7 @@ export class AyahModel implements Ayah {
 	public surahId: string
 
 	@Field(() => [TafseerAyahModel])
-	public tafseerAyahs: TafseerAyahModel[]
+	public tafseers: TafseerAyahModel[]
 
 	@Field(() => Date)
 	public createdAt: Date

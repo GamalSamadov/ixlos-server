@@ -2,12 +2,28 @@ import { ConflictException, Injectable } from '@nestjs/common'
 import { hash } from 'argon2'
 
 import { PrismaService } from '@/src/core/prisma/prisma.service'
+import { PaginationInput } from '@/src/shared/pagination/inputs/pagination.input'
+import { PaginationService } from '@/src/shared/pagination/pagination.service'
 
 import { CreateUserInput } from './inputs/create-user.input'
 
 @Injectable()
 export class AccountService {
-	public constructor(private readonly prismaService: PrismaService) {}
+	public constructor(
+		private readonly prismaService: PrismaService,
+		private readonly paginationService: PaginationService
+	) {}
+
+	public async getAll(input: PaginationInput) {
+		const { take, skip } = this.paginationService.getPagination(input)
+
+		const users = await this.prismaService.user.findMany({
+			take,
+			skip
+		})
+
+		return users
+	}
 
 	public async getById(id: string) {
 		const user = await this.prismaService.user.findUnique({
@@ -15,6 +31,10 @@ export class AccountService {
 				id
 			}
 		})
+
+		if (!user) {
+			throw new Error('Foydalanuvchi topilmadi.')
+		}
 
 		return user
 	}
@@ -45,7 +65,7 @@ export class AccountService {
 		})
 
 		if (isUsernameExist) {
-			throw new ConflictException('Username already exist')
+			throw new ConflictException('Foydalanuvchi nomi mavjud.')
 		}
 
 		const isEmailExist = await this.prismaService.user.findUnique({
@@ -55,7 +75,7 @@ export class AccountService {
 		})
 
 		if (isEmailExist) {
-			throw new ConflictException('Email already exist')
+			throw new ConflictException('E-pochta mavjud.')
 		}
 	}
 

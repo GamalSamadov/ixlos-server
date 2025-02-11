@@ -3,7 +3,6 @@ import { Field, ID, ObjectType, registerEnumType } from '@nestjs/graphql'
 import { type Surah, SurahRevelationType } from '@/prisma/generated'
 
 import { AyahModel } from '../../ayah/models/ayah.model'
-import { TafseerModel } from '../../model/tafseer.model'
 
 registerEnumType(SurahRevelationType, {
 	name: 'SurahRevelationType'
@@ -25,12 +24,6 @@ export class SurahModel implements Surah {
 
 	@Field(() => Number)
 	public totalAyahs: number
-
-	@Field(() => TafseerModel)
-	public tafseer: TafseerModel
-
-	@Field(() => String)
-	public tafseerId: string
 
 	@Field(() => SurahRevelationType)
 	public revelationType: SurahRevelationType

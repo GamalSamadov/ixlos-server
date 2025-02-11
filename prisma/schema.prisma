@@ -43,11 +43,13 @@ model Tafseer {
   text       String
   filePath   String?
   language   TafseerLanguage @default(UZBEK)
-  author     Author          @relation(fields: [authorId], references: [id], onDelete: Cascade)
-  authorId   String          @map("author_id")
-  surah      Surah[]
-  createdAt  DateTime        @default(now()) @map("created_at")
-  updatedAt  DateTime        @updatedAt @map("updated_at")
+
+  author   Author        @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId String        @map("author_id")
+  ayahs    TafseerAyah[]
+
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
 
   @@map("tafseers")
 }
@@ -58,8 +60,6 @@ model Surah {
   arabicName     String
   number         Int
   totalAyahs     Int                 @map("total_ayahs")
-  tafseer        Tafseer?            @relation(fields: [tafseerId], references: [id], onDelete: Cascade)
-  tafseerId      String?             @map("tafseer_id")
   revelationType SurahRevelationType @map("revelation_type")
   ayahs          Ayah[]
   createdAt      DateTime            @default(now()) @map("created_at")
@@ -83,10 +83,14 @@ model Ayah {
 }
 
 model TafseerAyah {
-  id        String   @id @default(uuid())
-  text      String
-  ayah      Ayah     @relation(fields: [ayahId], references: [id], onDelete: Cascade)
-  ayahId    String   @map("ayah_id")
+  id     String @id @default(uuid())
+  text   String
+  ayah   Ayah   @relation(fields: [ayahId], references: [id], onDelete: Cascade)
+  ayahId String @map("ayah_id")
+
+  tafseer   Tafseer @relation(fields: [tafseerId], references: [id], onDelete: Cascade)
+  tafseerId String  @map("tafseer_id")
+
   createdAt DateTime @default(now()) @map("created_at")
   updatedAt DateTime @updatedAt @map("updated_at")
 

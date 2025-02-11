@@ -10,6 +10,7 @@ import { AyahModule } from '../modules/tafseer/ayah/ayah.module'
 import { SurahModule } from '../modules/tafseer/surah/surah.module'
 import { TafseerAyahsModule } from '../modules/tafseer/tafseer-ayahs/tafseer-ayahs.module'
 import { TafseerModule } from '../modules/tafseer/tafseer.module'
+import { PaginationModule } from '../shared/pagination/pagination.module'
 
 import { getGraphQLConfig } from './config/graphql.config'
 import { PrismaModule } from './prisma/prisma.module'
@@ -30,6 +31,8 @@ import { RedisModule } from './redis/redis.module'
 		AccountModule,
 		SessionModule,
 		AuthorModule,
+
+		PaginationModule,
 
 		TafseerModule,
 		SurahModule,

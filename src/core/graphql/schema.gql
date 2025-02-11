@@ -18,7 +18,7 @@ type AyahModel {
   number: Float!
   surah: SurahModel!
   surahId: String!
-  tafseerAyahs: [TafseerAyahModel!]!
+  tafseers: [TafseerAyahModel!]!
   updatedAt: DateTime!
   uzbekText: String!
 }
@@ -32,9 +32,26 @@ input CreateAuthorInput {
   username: String!
 }
 
+input CreateAyahInput {
+  arabicText: String!
+  number: Float!
+  uzbekText: String!
+}
+
+input CreateSurahInput {
+  arabicName: String!
+  name: String!
+  number: Float!
+  revelationType: SurahRevelationType!
+  totalAyahs: Float!
+}
+
+input CreateTafseerAyahInput {
+  text: String!
+}
+
 input CreateTafseerInput {
   arabicName: String!
-  authorId: String!
   filePath: String
   language: TafseerLanguage
   name: String!
@@ -75,26 +92,46 @@ input LoginInput {
 type Mutation {
   clearSessionCookie: Boolean!
   createAuthor(data: CreateAuthorInput!): Boolean!
-  createTafseer(data: CreateTafseerInput!): Boolean!
+  createAyah(data: CreateAyahInput!, surahId: String!): Boolean!
+  createSurah(data: CreateSurahInput!): Boolean!
+  createTafseer(authorId: String!, data: CreateTafseerInput!): Boolean!
+  createTafseerAyah(ayahId: String!, data: CreateTafseerAyahInput!, tafseerId: String!): Boolean!
   createUser(data: CreateUserInput!): Boolean!
   deleteAuthor(id: String!): Boolean!
+  deleteAyah(id: String!): Boolean!
+  deleteSurah(id: String!): Boolean!
   deleteTafseer(id: String!): Boolean!
+  deleteTafseerAyah(id: String!): Boolean!
   loginUser(data: LoginInput!): UserModel!
   logoutUser: Boolean!
   removeSession(id: String!): Boolean!
   updateAuthor(data: UpdateAuthorInput!, id: String!): Boolean!
-  updateTafseer(data: UpdateTafseerInput!, id: String!): Boolean!
+  updateAyah(data: UpdateAyahInput!, id: String!, surahId: String!): Boolean!
+  updateSurah(data: UpdateSurahInput!, id: String!): Boolean!
+  updateTafseer(authorId: String!, data: UpdateTafseerInput!, id: String!): Boolean!
+  updateTafseerAyah(ayahId: String!, data: UpdateTafseerAyahInput!, id: String!, tafseerId: String!): Boolean!
+}
+
+input PaginationInput {
+  page: Float
+  take: Float
 }
 
 type Query {
-  findAllSurahs: [SurahModel!]!
-  findAllTafseers: [TafseerModel!]!
-  findAuthors: [AuthorModel!]!
   findCurrentSession: SessionModel!
-  findProfile: UserModel!
   findSessionsByUser: [SessionModel!]!
-  findSurahById: SurahModel!
-  findTafseerById: TafseerModel!
+  getAllAuthors(pagination: PaginationInput!): [AuthorModel!]!
+  getAllAyahs(pagination: PaginationInput!, surahId: String!): [AyahModel!]!
+  getAllSurahs(pagination: PaginationInput!): [SurahModel!]!
+  getAllTafseers: [TafseerModel!]!
+  getAllUsers(pagination: PaginationInput!): [UserModel!]!
+  getAuthorById(id: String!): AuthorModel!
+  getAyahById(id: String!): AyahModel!
+  getProfile: UserModel!
+  getSurahById(id: String!): SurahModel!
+  getTafseerAyahById: TafseerAyahModel!
+  getTafseerById(id: String!): TafseerModel!
+  searchAyahByText(pagination: PaginationInput!, searchTerm: String!): [AyahModel!]!
 }
 
 enum Role {
@@ -125,8 +162,6 @@ type SurahModel {
   name: String!
   number: Float!
   revelationType: SurahRevelationType!
-  tafseer: TafseerModel!
-  tafseerId: String!
   totalAyahs: Float!
   updatedAt: DateTime!
 }
@@ -141,6 +176,8 @@ type TafseerAyahModel {
   ayahId: String!
   createdAt: DateTime!
   id: ID!
+  tafseer: TafseerModel!
+  tafseerId: String!
   text: String!
   updatedAt: DateTime!
 }
@@ -172,9 +209,26 @@ input UpdateAuthorInput {
   username: String
 }
 
+input UpdateAyahInput {
+  arabicText: String
+  number: Float
+  uzbekText: String
+}
+
+input UpdateSurahInput {
+  arabicName: String
+  name: String
+  number: Float
+  revelationType: SurahRevelationType
+  totalAyahs: Float
+}
+
+input UpdateTafseerAyahInput {
+  text: String
+}
+
 input UpdateTafseerInput {
   arabicName: String
-  authorId: String
   filePath: String
   language: TafseerLanguage
   name: String

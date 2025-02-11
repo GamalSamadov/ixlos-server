@@ -33,9 +33,4 @@ export class CreateTafseerInput {
 	@IsEnum(TafseerLanguage)
 	@IsOptional()
 	public language: TafseerLanguage
-
-	@Field(() => String)
-	@IsString()
-	@IsNotEmpty()
-	public authorId: string
 }
