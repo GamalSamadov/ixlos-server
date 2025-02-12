@@ -118,8 +118,6 @@ input PaginationInput {
 }
 
 type Query {
-  findCurrentSession: SessionModel!
-  findSessionsByUser: [SessionModel!]!
   getAllAuthors(pagination: PaginationInput!): [AuthorModel!]!
   getAllAyahs(pagination: PaginationInput!, surahId: String!): [AyahModel!]!
   getAllSurahs(pagination: PaginationInput!): [SurahModel!]!
@@ -127,7 +125,9 @@ type Query {
   getAllUsers(pagination: PaginationInput!): [UserModel!]!
   getAuthorById(id: String!): AuthorModel!
   getAyahById(id: String!): AyahModel!
+  getCurrentSession: SessionModel!
   getProfile: UserModel!
+  getSessionsByUser: [SessionModel!]!
   getSurahById(id: String!): SurahModel!
   getTafseerAyahById: TafseerAyahModel!
   getTafseerById(id: String!): TafseerModel!

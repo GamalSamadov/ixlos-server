@@ -15,13 +15,13 @@ export class SessionResolver {
 	public constructor(private readonly sessionService: SessionService) {}
 
 	@Auth()
-	@Query(() => [SessionModel], { name: 'findSessionsByUser' })
+	@Query(() => [SessionModel], { name: 'getSessionsByUser' })
 	public async findByUser(@Context() { req }: GqlContext) {
 		return this.sessionService.findByUser(req)
 	}
 
 	@Auth()
-	@Query(() => SessionModel, { name: 'findCurrentSession' })
+	@Query(() => SessionModel, { name: 'getCurrentSession' })
 	public async findCurrent(@Context() { req }: GqlContext) {
 		return this.sessionService.findCurrent(req)
 	}
