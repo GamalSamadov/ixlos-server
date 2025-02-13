@@ -4,6 +4,8 @@ import { Role } from '@/prisma/generated'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 import { PaginationInput } from '@/src/shared/pagination/inputs/pagination.input'
 import { PaginationService } from '@/src/shared/pagination/pagination.service'
+import { hasMorePagination } from '@/src/shared/utils/pagination/has-more'
+import { getAuthorSearchTermFilter } from '@/src/shared/utils/search-term/getAuthorSearchTermFilter'
 
 import { AccountService } from '../account.service'
 
@@ -18,17 +20,27 @@ export class AuthorService {
 		private readonly paginationService: PaginationService
 	) {}
 
-	public async getAll(input: PaginationInput) {
+	public async getAll(searchTerm: string, input: PaginationInput) {
 		const { take, skip } = this.paginationService.getPagination(input)
 
+		const searchTermFilter = getAuthorSearchTermFilter(searchTerm)
+
 		const authors = await this.prismaService.author.findMany({
+			where: searchTermFilter,
+			take,
+			skip,
 			include: {
 				user: true
-			},
-			take,
-			skip
+			}
 		})
-		return authors
+
+		const total = await this.prismaService.author.count({
+			where: searchTermFilter
+		})
+
+		const hasMore = hasMorePagination(total, skip, take)
+
+		return { authors, hasMore }
 	}
 
 	public async getById(id: string) {

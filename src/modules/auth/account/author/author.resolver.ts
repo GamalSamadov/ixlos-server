@@ -7,6 +7,7 @@ import { PaginationInput } from '@/src/shared/pagination/inputs/pagination.input
 import { AuthorService } from './author.service'
 import { CreateAuthorInput } from './inputs/create-author.input'
 import { UpdateAuthorInput } from './inputs/update-author.input'
+import { AuthorsPaginatedModel } from './models/author-paginated.model'
 import { AuthorModel } from './models/author.model'
 
 @Resolver('Author')
@@ -14,9 +15,12 @@ export class AuthorResolver {
 	public constructor(private readonly authorService: AuthorService) {}
 
 	@Auth([Role.ADMIN])
-	@Query(() => [AuthorModel], { name: 'getAllAuthors' })
-	public async getAll(@Args('pagination') input: PaginationInput) {
-		return this.authorService.getAll(input)
+	@Query(() => AuthorsPaginatedModel, { name: 'getAllAuthors' })
+	public async getAll(
+		@Args('searchTerm') searchTerm: string,
+		@Args('pagination') input: PaginationInput
+	) {
+		return this.authorService.getAll(searchTerm, input)
 	}
 
 	@Auth([Role.ADMIN, Role.AUTHOR])

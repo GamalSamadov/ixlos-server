@@ -11,6 +11,11 @@ type AuthorModel {
   userId: String!
 }
 
+type AuthorsPaginatedModel {
+  authors: [AuthorModel!]!
+  hasMore: Boolean!
+}
+
 type AyahModel {
   arabicText: String!
   createdAt: DateTime!
@@ -118,7 +123,7 @@ input PaginationInput {
 }
 
 type Query {
-  getAllAuthors(pagination: PaginationInput!): [AuthorModel!]!
+  getAllAuthors(pagination: PaginationInput!, searchTerm: String!): AuthorsPaginatedModel!
   getAllAyahs(pagination: PaginationInput!, surahId: String!): [AyahModel!]!
   getAllSurahs(pagination: PaginationInput!): [SurahModel!]!
   getAllTafseers: [TafseerModel!]!
