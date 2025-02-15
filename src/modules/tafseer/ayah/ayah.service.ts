@@ -15,7 +15,7 @@ export class AyahService {
 	) {}
 
 	public async getAll(surahId: string, input: PaginationInput) {
-		const { take, skip } = this.paginationService.getPagination(input)
+		const { take } = this.paginationService.getPagination(input)
 		const ayahs = await this.prismaService.ayah.findMany({
 			where: {
 				surahId
@@ -23,8 +23,7 @@ export class AyahService {
 			orderBy: {
 				number: 'asc'
 			},
-			take,
-			skip
+			take
 		})
 
 		return ayahs
@@ -52,7 +51,7 @@ export class AyahService {
 	}
 
 	public async searchByText(searchTerm: string, input: PaginationInput) {
-		const { take, skip } = this.paginationService.getPagination(input)
+		const { take } = this.paginationService.getPagination(input)
 
 		return await this.prismaService.ayah.findMany({
 			where: {
@@ -72,7 +71,6 @@ export class AyahService {
 				]
 			},
 			take,
-			skip,
 			include: {
 				tafseers: {
 					include: {

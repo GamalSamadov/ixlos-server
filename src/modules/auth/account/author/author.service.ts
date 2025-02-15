@@ -1,11 +1,10 @@
 import { ConflictException, Injectable } from '@nestjs/common'
 
-import { Role } from '@/prisma/generated'
+import { Prisma, Role } from '@/prisma/generated'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 import { PaginationInput } from '@/src/shared/pagination/inputs/pagination.input'
 import { PaginationService } from '@/src/shared/pagination/pagination.service'
 import { hasMorePagination } from '@/src/shared/utils/pagination/has-more'
-import { getAuthorSearchTermFilter } from '@/src/shared/utils/search-term/getAuthorSearchTermFilter'
 
 import { AccountService } from '../account.service'
 
@@ -21,16 +20,20 @@ export class AuthorService {
 	) {}
 
 	public async getAll(searchTerm: string, input: PaginationInput) {
-		const { take, skip } = this.paginationService.getPagination(input)
+		const { take } = this.paginationService.getPagination(input)
 
-		const searchTermFilter = getAuthorSearchTermFilter(searchTerm)
+		const searchTermFilter = this.getAuthorSearchTermFilter(searchTerm)
 
 		const authors = await this.prismaService.author.findMany({
 			where: searchTermFilter,
 			take,
-			skip,
 			include: {
 				user: true
+			},
+			orderBy: {
+				user: {
+					email: 'asc'
+				}
 			}
 		})
 
@@ -38,7 +41,7 @@ export class AuthorService {
 			where: searchTermFilter
 		})
 
-		const hasMore = hasMorePagination(total, skip, take)
+		const hasMore = hasMorePagination(total, take)
 
 		return { authors, hasMore }
 	}
@@ -170,5 +173,38 @@ export class AuthorService {
 		})
 
 		return true
+	}
+
+	private getAuthorSearchTermFilter(
+		searchTerm: string
+	): Prisma.AuthorWhereInput {
+		return {
+			OR: [
+				{
+					user: {
+						displayName: {
+							contains: searchTerm,
+							mode: 'insensitive'
+						}
+					}
+				},
+				{
+					user: {
+						username: {
+							contains: searchTerm,
+							mode: 'insensitive'
+						}
+					}
+				},
+				{
+					user: {
+						email: {
+							contains: searchTerm,
+							mode: 'insensitive'
+						}
+					}
+				}
+			]
+		}
 	}
 }

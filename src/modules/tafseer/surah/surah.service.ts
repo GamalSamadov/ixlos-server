@@ -15,11 +15,10 @@ export class SurahService {
 	) {}
 
 	public async getAll(input: PaginationInput) {
-		const { take, skip } = this.paginationService.getPagination(input)
+		const { take } = this.paginationService.getPagination(input)
 
 		return this.prismaService.surah.findMany({
 			take,
-			skip,
 			orderBy: {
 				number: 'asc'
 			}

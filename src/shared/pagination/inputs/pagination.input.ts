@@ -6,10 +6,5 @@ export class PaginationInput {
 	@Field(() => Number, { nullable: true })
 	@IsNumber()
 	@IsOptional()
-	page?: number
-
-	@Field(() => Number, { nullable: true })
-	@IsNumber()
-	@IsOptional()
 	take?: number
 }

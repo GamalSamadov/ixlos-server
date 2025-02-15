@@ -118,7 +118,6 @@ type Mutation {
 }
 
 input PaginationInput {
-  page: Float
   take: Float
 }
 

@@ -1,7 +1,3 @@
-export function hasMorePagination(
-	totalCount?: number,
-	skip?: number,
-	take?: number
-) {
-	return (skip || 0) + (take || 0) < totalCount
+export function hasMorePagination(totalCount?: number, take?: number) {
+	return take < totalCount
 }

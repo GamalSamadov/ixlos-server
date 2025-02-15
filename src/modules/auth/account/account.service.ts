@@ -15,11 +15,10 @@ export class AccountService {
 	) {}
 
 	public async getAll(input: PaginationInput) {
-		const { take, skip } = this.paginationService.getPagination(input)
+		const { take } = this.paginationService.getPagination(input)
 
 		const users = await this.prismaService.user.findMany({
-			take,
-			skip
+			take
 		})
 
 		return users
