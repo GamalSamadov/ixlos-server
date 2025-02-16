@@ -111,6 +111,7 @@ type Mutation {
   logoutUser: Boolean!
   removeSession(id: String!): Boolean!
   updateAuthor(data: UpdateAuthorInput!, id: String!): Boolean!
+  updateAuthorBio(bio: String!, id: String!): Boolean!
   updateAyah(data: UpdateAyahInput!, id: String!, surahId: String!): Boolean!
   updateSurah(data: UpdateSurahInput!, id: String!): Boolean!
   updateTafseer(authorId: String!, data: UpdateTafseerInput!, id: String!): Boolean!

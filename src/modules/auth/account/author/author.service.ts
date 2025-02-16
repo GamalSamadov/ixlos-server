@@ -158,6 +158,32 @@ export class AuthorService {
 		return true
 	}
 
+	public async updateBio(id: string, bio: string) {
+		const author = await this.prismaService.author.findUnique({
+			where: {
+				id
+			},
+			include: {
+				user: true
+			}
+		})
+
+		if (!author) {
+			throw new Error('Aftor topilmadi.')
+		}
+
+		await this.prismaService.user.update({
+			where: {
+				id: author.user.id
+			},
+			data: {
+				bio
+			}
+		})
+
+		return true
+	}
+
 	public async delete(id: string) {
 		const author = await this.prismaService.author.findUnique({
 			where: {

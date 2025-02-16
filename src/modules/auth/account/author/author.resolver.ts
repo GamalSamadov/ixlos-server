@@ -44,6 +44,12 @@ export class AuthorResolver {
 		return this.authorService.update(id, input)
 	}
 
+	@Auth([Role.ADMIN, Role.AUTHOR])
+	@Mutation(() => Boolean, { name: 'updateAuthorBio' })
+	public async updateBio(@Args('id') id: string, @Args('bio') bio: string) {
+		return this.authorService.updateBio(id, bio)
+	}
+
 	@Auth([Role.ADMIN])
 	@Mutation(() => Boolean, { name: 'deleteAuthor' })
 	public async delete(@Args('id') id: string) {
