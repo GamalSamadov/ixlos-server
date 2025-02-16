@@ -14,6 +14,34 @@ export class AccountService {
 		private readonly paginationService: PaginationService
 	) {}
 
+	public async getUsernameByUsername(username: string) {
+		const user = await this.prismaService.user.findUnique({
+			where: {
+				username
+			}
+		})
+
+		if (!user) {
+			return ''
+		}
+
+		return user.username
+	}
+
+	public async getEmailByEmail(email: string) {
+		const user = await this.prismaService.user.findUnique({
+			where: {
+				email
+			}
+		})
+
+		if (!user) {
+			return ''
+		}
+
+		return user.email
+	}
+
 	public async getAll(input: PaginationInput) {
 		const { take } = this.paginationService.getPagination(input)
 

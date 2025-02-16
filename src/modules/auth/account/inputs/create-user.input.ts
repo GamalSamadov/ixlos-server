@@ -9,12 +9,17 @@ import {
 	MinLength
 } from 'class-validator'
 
+import { USERNAME_PATTERN } from '@/src/shared/libs/constans/patterns.constants'
+
 @InputType()
 export class CreateUserInput {
 	@Field(() => String)
 	@IsString()
-	@IsNotEmpty({ message: 'Foydalavunchi nomini kiriting!' })
-	@Matches(/^[a-zA-Z0-9]+(?:-[a-zA-Z0-9]+)*$/)
+	@IsNotEmpty({ message: 'Username required!' })
+	@Matches(USERNAME_PATTERN)
+	@MinLength(3, {
+		message: 'Username must be at least 3 characters'
+	})
 	public username: string
 
 	@Field(() => String, { nullable: true })
@@ -24,28 +29,26 @@ export class CreateUserInput {
 
 	@Field(() => String)
 	@IsString()
-	@IsNotEmpty({ message: 'E-pochta kiriting!' })
+	@IsNotEmpty({ message: 'Email required!' })
 	@IsEmail()
 	public email: string
 
 	@Field(() => String)
 	@IsString()
-	@IsNotEmpty({ message: 'Parol kiriting!' })
+	@IsNotEmpty({ message: 'Password required!' })
 	@MinLength(8, {
-		message: "Parol kamida 8 belgi bo'lishi kerak"
+		message: 'Password must be at least 8 characters'
 	})
 	public password: string
 
 	@Field({ nullable: true })
 	@IsString()
 	@IsOptional()
-	@MinLength(1, {
-		message:
-			"Foydalavunchi haqida bio ma'lumot kami bilan 1 belgi bo'lishi kerak"
+	@MinLength(10, {
+		message: 'Bio must be at least 10 characters'
 	})
 	@MaxLength(255, {
-		message:
-			"Foydalavunchi haqida bio ma'lumot ko'pi bilan 255 belgi bo'lishi kerak"
+		message: 'Bio must be at most 255 characters'
 	})
 	public bio?: string
 }

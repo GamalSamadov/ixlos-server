@@ -13,6 +13,16 @@ import { UserModel } from './models/user.model'
 export class AccountResolver {
 	public constructor(private readonly accountService: AccountService) {}
 
+	@Query(() => String || null, { name: 'getUsernameByUsername' })
+	public async getUsernameByUsername(@Args('username') username: string) {
+		return this.accountService.getUsernameByUsername(username)
+	}
+
+	@Query(() => String || null, { name: 'getEmailByEmail' })
+	public async getEmailByEmail(@Args('email') email: string) {
+		return this.accountService.getEmailByEmail(email)
+	}
+
 	@Auth(Role.ADMIN)
 	@Query(() => [UserModel], { name: 'getAllUsers' })
 	public async getAll(@Args('pagination') input: PaginationInput) {

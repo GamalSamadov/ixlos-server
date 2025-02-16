@@ -79,7 +79,7 @@ export class AuthorService {
 			}
 		})
 
-		await this.prismaService.author.create({
+		const author = await this.prismaService.author.create({
 			data: {
 				country,
 				user: {
@@ -87,10 +87,13 @@ export class AuthorService {
 						id: user.id
 					}
 				}
+			},
+			include: {
+				user: true
 			}
 		})
 
-		return true
+		return author
 	}
 
 	public async update(id: string, input: UpdateAuthorInput) {

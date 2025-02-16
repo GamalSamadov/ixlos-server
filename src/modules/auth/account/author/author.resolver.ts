@@ -30,7 +30,7 @@ export class AuthorResolver {
 	}
 
 	@Auth(Role.ADMIN)
-	@Mutation(() => Boolean, { name: 'createAuthor' })
+	@Mutation(() => AuthorModel, { name: 'createAuthor' })
 	public async create(@Args('data') input: CreateAuthorInput) {
 		return this.authorService.create(input)
 	}

@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 type AuthorModel {
-  country: String!
+  country: String
   createdAt: DateTime!
   id: ID!
   updatedAt: DateTime!
@@ -29,7 +29,7 @@ type AyahModel {
 }
 
 input CreateAuthorInput {
-  bio: String!
+  bio: String
   country: String
   displayName: String
   email: String!
@@ -96,7 +96,7 @@ input LoginInput {
 
 type Mutation {
   clearSessionCookie: Boolean!
-  createAuthor(data: CreateAuthorInput!): Boolean!
+  createAuthor(data: CreateAuthorInput!): AuthorModel!
   createAyah(data: CreateAyahInput!, surahId: String!): Boolean!
   createSurah(data: CreateSurahInput!): Boolean!
   createTafseer(authorId: String!, data: CreateTafseerInput!): Boolean!
@@ -130,11 +130,13 @@ type Query {
   getAuthorById(id: String!): AuthorModel!
   getAyahById(id: String!): AyahModel!
   getCurrentSession: SessionModel!
+  getEmailByEmail(email: String!): String!
   getProfile: UserModel!
   getSessionsByUser: [SessionModel!]!
   getSurahById(id: String!): SurahModel!
   getTafseerAyahById: TafseerAyahModel!
   getTafseerById(id: String!): TafseerModel!
+  getUsernameByUsername(username: String!): String!
   searchAyahByText(pagination: PaginationInput!, searchTerm: String!): [AyahModel!]!
 }
 

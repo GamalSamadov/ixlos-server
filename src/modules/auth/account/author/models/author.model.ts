@@ -9,7 +9,7 @@ export class AuthorModel implements Author {
 	@Field(() => ID)
 	public id: string
 
-	@Field(() => String)
+	@Field(() => String, { nullable: true })
 	public country: string
 
 	@Field(() => UserModel)
