@@ -1,19 +1,13 @@
 import { Field, InputType } from '@nestjs/graphql'
-import {
-	IsNotEmpty,
-	IsOptional,
-	IsString,
-	MaxLength,
-	MinLength
-} from 'class-validator'
+import { IsOptional, IsString, MaxLength, MinLength } from 'class-validator'
 
 import { CreateUserInput } from '@/src/modules/auth/account/inputs/create-user.input'
 
 @InputType()
 export class CreateAuthorInput extends CreateUserInput {
-	@Field()
+	@Field(() => String, { nullable: true })
 	@IsString()
-	@IsNotEmpty({ message: "Foydalavunchi haqida bio ma'lumotini kiriting!" })
+	@IsOptional()
 	@MinLength(1, {
 		message:
 			"Foydalavunchi haqida bio ma'lumot kamida 1 belgi bo'lishi kerak"
@@ -22,7 +16,7 @@ export class CreateAuthorInput extends CreateUserInput {
 		message:
 			"Foydalavunchi haqida bio ma'lumot ko'pi bilan 255 belgi bo'lishi kerak"
 	})
-	public bio: string
+	public bio?: string
 
 	@Field(() => String, { nullable: true })
 	@IsString()
