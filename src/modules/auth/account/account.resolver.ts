@@ -31,7 +31,12 @@ export class AccountResolver {
 
 	@Auth()
 	@Query(() => UserModel, { name: 'getProfile' })
-	public async getById(@Authorized('id') id: string) {
+	public async getCurrentProfile(@Authorized('id') id: string) {
+		return this.accountService.getById(id)
+	}
+
+	@Query(() => UserModel, { name: 'getProfileById' })
+	public async getById(@Args('id') id: string) {
 		return this.accountService.getById(id)
 	}
 

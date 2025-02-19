@@ -64,7 +64,7 @@ export class AuthorService {
 	}
 
 	public async create(input: CreateAuthorInput) {
-		const { username, email, password, displayName, bio, country } = input
+		const { username, email, password, displayName, country } = input
 
 		await this.accountService.throwIfUserExist(username, email)
 
@@ -74,8 +74,7 @@ export class AuthorService {
 				email,
 				password: await this.accountService.hashPassword(password),
 				displayName,
-				rights: [Role.USER, Role.AUTHOR],
-				bio
+				rights: [Role.USER, Role.AUTHOR]
 			}
 		})
 

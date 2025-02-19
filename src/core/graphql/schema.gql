@@ -29,7 +29,6 @@ type AyahModel {
 }
 
 input CreateAuthorInput {
-  bio: String
   country: String
   displayName: String
   email: String!
@@ -64,7 +63,6 @@ input CreateTafseerInput {
 }
 
 input CreateUserInput {
-  bio: String
   displayName: String
   email: String!
   password: String!
@@ -95,6 +93,8 @@ input LoginInput {
 }
 
 type Mutation {
+  changeProfileAvatar(avatar: Upload!): Boolean!
+  changeProfileAvatarByUserId(avatar: Upload!, userId: String!): Boolean!
   clearSessionCookie: Boolean!
   createAuthor(data: CreateAuthorInput!): AuthorModel!
   createAyah(data: CreateAyahInput!, surahId: String!): Boolean!
@@ -109,10 +109,16 @@ type Mutation {
   deleteTafseerAyah(id: String!): Boolean!
   loginUser(data: LoginInput!): UserModel!
   logoutUser: Boolean!
+  registerUser(data: CreateUserInput!): UserModel!
+  removeProfileAvatar: Boolean!
+  removeProfileAvatarByUserId(userId: String!): Boolean!
   removeSession(id: String!): Boolean!
   updateAuthor(data: UpdateAuthorInput!, id: String!): Boolean!
   updateAuthorBio(bio: String!, id: String!): Boolean!
   updateAyah(data: UpdateAyahInput!, id: String!, surahId: String!): Boolean!
+  updateBioByUserId(bio: String!, userId: String!): Boolean!
+  updatePasswordByUserId(data: UpdatePasswordInput!, userId: String!): Boolean!
+  updateProfileInfoByUserId(data: UpdateProfileInfoInput!, userId: String!): Boolean!
   updateSurah(data: UpdateSurahInput!, id: String!): Boolean!
   updateTafseer(authorId: String!, data: UpdateTafseerInput!, id: String!): Boolean!
   updateTafseerAyah(ayahId: String!, data: UpdateTafseerAyahInput!, id: String!, tafseerId: String!): Boolean!
@@ -130,9 +136,11 @@ type Query {
   getAllUsers(pagination: PaginationInput!): [UserModel!]!
   getAuthorById(id: String!): AuthorModel!
   getAyahById(id: String!): AyahModel!
+  getBioByUserId(userId: String!): String!
   getCurrentSession: SessionModel!
   getEmailByEmail(email: String!): String!
   getProfile: UserModel!
+  getProfileById(id: String!): UserModel!
   getSessionsByUser: [SessionModel!]!
   getSurahById(id: String!): SurahModel!
   getTafseerAyahById: TafseerAyahModel!
@@ -222,6 +230,18 @@ input UpdateAyahInput {
   uzbekText: String
 }
 
+input UpdatePasswordInput {
+  newPassword: String!
+  newPasswordRepeat: String!
+  oldPassword: String!
+}
+
+input UpdateProfileInfoInput {
+  displayName: String
+  email: String!
+  username: String!
+}
+
 input UpdateSurahInput {
   arabicName: String
   name: String
@@ -241,6 +261,9 @@ input UpdateTafseerInput {
   name: String
   text: String
 }
+
+"""The `Upload` scalar type represents a file upload."""
+scalar Upload
 
 type UserModel {
   avatar: String

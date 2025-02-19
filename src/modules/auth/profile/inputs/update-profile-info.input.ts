@@ -11,16 +11,7 @@ import {
 import { USERNAME_PATTERN } from '@/src/shared/libs/constans/patterns.constants'
 
 @InputType()
-export class CreateUserInput {
-	@Field(() => String)
-	@IsString()
-	@IsNotEmpty({ message: 'Username required!' })
-	@Matches(USERNAME_PATTERN)
-	@MinLength(3, {
-		message: 'Username must be at least 3 characters'
-	})
-	public username: string
-
+export class UpdateProfileInfoInput {
 	@Field(() => String, { nullable: true })
 	@IsString()
 	@IsOptional()
@@ -34,9 +25,10 @@ export class CreateUserInput {
 
 	@Field(() => String)
 	@IsString()
-	@IsNotEmpty({ message: 'Password required!' })
-	@MinLength(8, {
-		message: 'Password must be at least 8 characters'
+	@IsNotEmpty({ message: 'Username required!' })
+	@Matches(USERNAME_PATTERN)
+	@MinLength(3, {
+		message: 'Username must be at least 3 characters'
 	})
-	public password: string
+	public username: string
 }

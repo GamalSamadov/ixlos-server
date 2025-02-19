@@ -67,7 +67,7 @@ export class AccountService {
 	}
 
 	public async create(input: CreateUserInput) {
-		const { email, username, password, displayName, bio } = input
+		const { email, username, password, displayName } = input
 
 		await this.throwIfUserExist(username, email)
 
@@ -76,8 +76,7 @@ export class AccountService {
 				username,
 				email,
 				password: await this.hashPassword(password),
-				displayName: displayName ? displayName : username,
-				bio: bio ? bio : ''
+				displayName: displayName ? displayName : username
 			}
 		})
 

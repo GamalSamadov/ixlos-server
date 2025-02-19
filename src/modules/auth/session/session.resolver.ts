@@ -4,6 +4,7 @@ import { Auth } from '@/src/shared/decorators/authorization.decorator'
 import { UserAgent } from '@/src/shared/decorators/user-agent.decorator'
 import { GqlContext } from '@/src/shared/types/gql-context.types'
 
+import { CreateUserInput } from '../account/inputs/create-user.input'
 import { UserModel } from '../account/models/user.model'
 
 import { LoginInput } from './inputs/login.input'
@@ -33,6 +34,15 @@ export class SessionResolver {
 		@UserAgent() userAgent: string
 	) {
 		return this.sessionService.login(req, input, userAgent)
+	}
+
+	@Mutation(() => UserModel, { name: 'registerUser' })
+	public async register(
+		@Context() { req }: GqlContext,
+		@Args('data') input: CreateUserInput,
+		@UserAgent() userAgent: string
+	) {
+		return this.sessionService.register(req, input, userAgent)
 	}
 
 	@Auth()

@@ -6,12 +6,14 @@ import {
 	UnauthorizedException
 } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
-import { verify } from 'argon2'
+import { hash, verify } from 'argon2'
 import type { Request } from 'express'
 
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 import { RedisService } from '@/src/core/redis/redis.service'
 import { getSessionMetadata } from '@/src/shared/utils/session-metadata.util'
+
+import { CreateUserInput } from '../account/inputs/create-user.input'
 
 import { LoginInput } from './inputs/login.input'
 
@@ -98,6 +100,61 @@ export class SessionService {
 			throw new UnauthorizedException('Malumotlar xato.')
 		}
 
+		const metadata = getSessionMetadata(req, userAgent)
+
+		return new Promise((resolve, reject) => {
+			req.session.createdAt = new Date()
+			req.session.userId = user.id
+			req.session.metadata = metadata
+
+			req.session.save(err => {
+				if (err) {
+					return reject(
+						new InternalServerErrorException(
+							'Sessia yaratishda xatolik'
+						)
+					)
+				}
+				resolve(user)
+			})
+		})
+	}
+
+	public async register(
+		req: Request,
+		input: CreateUserInput,
+		userAgent: string
+	) {
+		const { username, email, password, displayName } = input
+
+		const isUsernameExist = await this.prismaService.user.findUnique({
+			where: {
+				username
+			}
+		})
+
+		if (isUsernameExist) {
+			throw new ConflictException('Foydalanuvchi nomi mavjud.')
+		}
+
+		const isEmailExist = await this.prismaService.user.findUnique({
+			where: {
+				email
+			}
+		})
+
+		if (isEmailExist) {
+			throw new ConflictException('E-pochta mavjud.')
+		}
+
+		const user = await this.prismaService.user.create({
+			data: {
+				username,
+				email,
+				password: await hash(password),
+				displayName: displayName ? displayName : username
+			}
+		})
 		const metadata = getSessionMetadata(req, userAgent)
 
 		return new Promise((resolve, reject) => {
