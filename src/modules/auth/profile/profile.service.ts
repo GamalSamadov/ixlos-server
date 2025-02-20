@@ -289,4 +289,26 @@ export class ProfileService {
 
 		return true
 	}
+
+	public async deleteUserById(userId: string) {
+		const user = await this.prismaService.user.findUnique({
+			where: {
+				id: userId
+			}
+		})
+
+		if (!user) {
+			throw new Error('Foydalanuvchi topilmadi')
+		}
+
+		await this.removeAvatarByUserId(userId)
+
+		const deletedUser = await this.prismaService.user.delete({
+			where: {
+				id: userId
+			}
+		})
+
+		return deletedUser
+	}
 }

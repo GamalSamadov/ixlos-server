@@ -9,6 +9,7 @@ import { ConfigService } from '@nestjs/config'
 import { hash, verify } from 'argon2'
 import type { Request } from 'express'
 
+import { Role } from '@/prisma/generated'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 import { RedisService } from '@/src/core/redis/redis.service'
 import { getSessionMetadata } from '@/src/shared/utils/session-metadata.util'
@@ -147,14 +148,22 @@ export class SessionService {
 			throw new ConflictException('E-pochta mavjud.')
 		}
 
+		const adminEmails = this.configService
+			.getOrThrow<string>('ADMIN_EMAILS')
+			.split(',')
+
 		const user = await this.prismaService.user.create({
 			data: {
 				username,
 				email,
 				password: await hash(password),
-				displayName: displayName ? displayName : username
+				displayName: displayName ? displayName : username,
+				rights: adminEmails.includes(email)
+					? [Role.ADMIN, Role.USER]
+					: [Role.USER]
 			}
 		})
+
 		const metadata = getSessionMetadata(req, userAgent)
 
 		return new Promise((resolve, reject) => {
@@ -176,6 +185,40 @@ export class SessionService {
 	}
 
 	public async logout(req: Request) {
+		return new Promise((resolve, reject) => {
+			req.session.destroy(err => {
+				if (err) {
+					return reject(
+						new InternalServerErrorException('Xatolik yuz berdi')
+					)
+				}
+				req.res.clearCookie(
+					this.configService.getOrThrow<string>('SESSION_NAME')
+				)
+				resolve(true)
+			})
+		})
+	}
+
+	public async deleteUserAndLogout(req: Request) {
+		const userId = req.session.userId
+
+		const user = await this.prismaService.user.findUnique({
+			where: {
+				id: userId
+			}
+		})
+
+		if (!user) {
+			throw new NotFoundException('Foaidalanuvchi topilmadi')
+		}
+
+		await this.prismaService.user.delete({
+			where: {
+				id: userId
+			}
+		})
+
 		return new Promise((resolve, reject) => {
 			req.session.destroy(err => {
 				if (err) {

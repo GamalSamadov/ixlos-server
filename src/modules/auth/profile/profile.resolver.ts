@@ -7,6 +7,8 @@ import { Auth } from '@/src/shared/decorators/authorization.decorator'
 import { Authorized } from '@/src/shared/decorators/authorized.decorator'
 import { FileValidationPipe } from '@/src/shared/pipes/file-validation.pipe'
 
+import { UserModel } from '../account/models/user.model'
+
 import { UpdatePasswordInput } from './inputs/update-password.input'
 import { UpdateProfileInfoInput } from './inputs/update-profile-info.input'
 import { ProfileService } from './profile.service'
@@ -77,5 +79,11 @@ export class ProfileResolver {
 		@Args('data') input: UpdatePasswordInput
 	) {
 		return this.profileService.updatePasswordByUserId(userId, input)
+	}
+
+	@Auth()
+	@Mutation(() => UserModel, { name: 'deleteUserById' })
+	public async deleteUserById(@Args('userId') userId: string) {
+		return this.profileService.deleteUserById(userId)
 	}
 }

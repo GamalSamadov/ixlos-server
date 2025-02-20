@@ -32,6 +32,10 @@ export class GqlAuthGuard implements CanActivate {
 			}
 		})
 
+		if (!user) {
+			throw new UnauthorizedException("Ruxsat yo'q.")
+		}
+
 		request.user = user
 
 		const roles = this.reflector.get<string[]>('roles', ctx.getHandler())

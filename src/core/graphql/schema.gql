@@ -107,6 +107,8 @@ type Mutation {
   deleteSurah(id: String!): Boolean!
   deleteTafseer(id: String!): Boolean!
   deleteTafseerAyah(id: String!): Boolean!
+  deleteUserAndLogout: Boolean!
+  deleteUserById(userId: String!): UserModel!
   loginUser(data: LoginInput!): UserModel!
   logoutUser: Boolean!
   registerUser(data: CreateUserInput!): UserModel!
