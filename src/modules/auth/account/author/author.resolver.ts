@@ -30,7 +30,7 @@ export class AuthorResolver {
 	}
 
 	@Auth(Role.ADMIN)
-	@Mutation(() => AuthorModel, { name: 'createAuthor' })
+	@Mutation(() => String, { name: 'createAuthor' })
 	public async create(@Args('data') input: CreateAuthorInput) {
 		return this.authorService.create(input)
 	}
@@ -42,12 +42,6 @@ export class AuthorResolver {
 		@Args('data') input: UpdateAuthorInput
 	) {
 		return this.authorService.update(id, input)
-	}
-
-	@Auth([Role.ADMIN, Role.AUTHOR])
-	@Mutation(() => Boolean, { name: 'updateAuthorBio' })
-	public async updateBio(@Args('id') id: string, @Args('bio') bio: string) {
-		return this.authorService.updateBio(id, bio)
 	}
 
 	@Auth([Role.ADMIN])

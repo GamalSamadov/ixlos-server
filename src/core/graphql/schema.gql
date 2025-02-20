@@ -93,10 +93,9 @@ input LoginInput {
 }
 
 type Mutation {
-  changeProfileAvatar(avatar: Upload!): Boolean!
   changeProfileAvatarByUserId(avatar: Upload!, userId: String!): Boolean!
   clearSessionCookie: Boolean!
-  createAuthor(data: CreateAuthorInput!): AuthorModel!
+  createAuthor(data: CreateAuthorInput!): String!
   createAyah(data: CreateAyahInput!, surahId: String!): Boolean!
   createSurah(data: CreateSurahInput!): Boolean!
   createTafseer(authorId: String!, data: CreateTafseerInput!): Boolean!
@@ -116,7 +115,6 @@ type Mutation {
   removeProfileAvatarByUserId(userId: String!): Boolean!
   removeSession(id: String!): Boolean!
   updateAuthor(data: UpdateAuthorInput!, id: String!): Boolean!
-  updateAuthorBio(bio: String!, id: String!): Boolean!
   updateAyah(data: UpdateAyahInput!, id: String!, surahId: String!): Boolean!
   updateBioByUserId(bio: String!, userId: String!): Boolean!
   updatePasswordByUserId(data: UpdatePasswordInput!, userId: String!): Boolean!

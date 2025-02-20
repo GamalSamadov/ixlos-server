@@ -86,13 +86,10 @@ export class AuthorService {
 						id: user.id
 					}
 				}
-			},
-			include: {
-				user: true
 			}
 		})
 
-		return user
+		return user.id
 	}
 
 	public async update(id: string, input: UpdateAuthorInput) {
@@ -151,32 +148,6 @@ export class AuthorService {
 			},
 			data: {
 				country
-			}
-		})
-
-		return true
-	}
-
-	public async updateBio(id: string, bio: string) {
-		const author = await this.prismaService.author.findUnique({
-			where: {
-				id
-			},
-			include: {
-				user: true
-			}
-		})
-
-		if (!author) {
-			throw new Error('Aftor topilmadi.')
-		}
-
-		await this.prismaService.user.update({
-			where: {
-				id: author.user.id
-			},
-			data: {
-				bio
 			}
 		})
 
