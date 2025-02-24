@@ -132,8 +132,7 @@ type Query {
   getAllAuthors(pagination: PaginationInput!, searchTerm: String!): AuthorsPaginatedModel!
   getAllAyahs(pagination: PaginationInput!, surahId: String!): [AyahModel!]!
   getAllSurahs(pagination: PaginationInput!): [SurahModel!]!
-  getAllTafseers: [TafseerModel!]!
-  getAllUsers(pagination: PaginationInput!): [UserModel!]!
+  getAllTafseers(pagination: PaginationInput!, searchTerm: String!): TafseersPaginatedModel!
   getAuthorById(id: String!): AuthorModel!
   getAyahById(id: String!): AyahModel!
   getBioByUserId(userId: String!): String!
@@ -216,6 +215,11 @@ type TafseerModel {
   updatedAt: DateTime!
 }
 
+type TafseersPaginatedModel {
+  hasMore: Boolean!
+  tafseers: [TafseerModel!]!
+}
+
 input UpdateAuthorInput {
   bio: String
   country: String
@@ -272,6 +276,7 @@ type UserModel {
   displayName: String!
   email: String!
   id: ID!
+  isActive: Boolean!
   password: String!
   rights: [Role!]!
   updatedAt: DateTime!

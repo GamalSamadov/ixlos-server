@@ -1,9 +1,7 @@
 import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 
-import { Role } from '@/prisma/generated'
 import { Auth } from '@/src/shared/decorators/authorization.decorator'
 import { Authorized } from '@/src/shared/decorators/authorized.decorator'
-import { PaginationInput } from '@/src/shared/pagination/inputs/pagination.input'
 
 import { AccountService } from './account.service'
 import { CreateUserInput } from './inputs/create-user.input'
@@ -21,12 +19,6 @@ export class AccountResolver {
 	@Query(() => String || null, { name: 'getEmailByEmail' })
 	public async getEmailByEmail(@Args('email') email: string) {
 		return this.accountService.getEmailByEmail(email)
-	}
-
-	@Auth(Role.ADMIN)
-	@Query(() => [UserModel], { name: 'getAllUsers' })
-	public async getAll(@Args('pagination') input: PaginationInput) {
-		return this.accountService.getAll(input)
 	}
 
 	@Auth()

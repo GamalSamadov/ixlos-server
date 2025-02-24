@@ -29,6 +29,9 @@ export class UserModel implements User {
 	@Field(() => String, { nullable: true })
 	public bio: string | null
 
+	@Field(() => Boolean)
+	public isActive: boolean
+
 	@Field(() => [Role])
 	public rights: Role[]
 

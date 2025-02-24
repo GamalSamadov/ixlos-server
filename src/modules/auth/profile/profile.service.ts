@@ -311,4 +311,29 @@ export class ProfileService {
 
 		return deletedUser
 	}
+
+	// TODO: implement deactivate
+	public async deactivateUserById(userId: string) {
+		const user = await this.prismaService.user.findUnique({
+			where: {
+				id: userId,
+				isActive: true
+			}
+		})
+
+		if (!user) {
+			throw new Error('Foydalanuvchi topilmadi.')
+		}
+
+		await this.prismaService.user.update({
+			where: {
+				id: userId
+			},
+			data: {
+				isActive: false
+			}
+		})
+
+		return true
+	}
 }

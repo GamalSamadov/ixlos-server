@@ -2,7 +2,6 @@ import { ConflictException, Injectable } from '@nestjs/common'
 import { hash } from 'argon2'
 
 import { PrismaService } from '@/src/core/prisma/prisma.service'
-import { PaginationInput } from '@/src/shared/pagination/inputs/pagination.input'
 import { PaginationService } from '@/src/shared/pagination/pagination.service'
 
 import { CreateUserInput } from './inputs/create-user.input'
@@ -17,7 +16,8 @@ export class AccountService {
 	public async getUsernameByUsername(username: string) {
 		const user = await this.prismaService.user.findUnique({
 			where: {
-				username
+				username,
+				isActive: true
 			}
 		})
 
@@ -31,7 +31,8 @@ export class AccountService {
 	public async getEmailByEmail(email: string) {
 		const user = await this.prismaService.user.findUnique({
 			where: {
-				email
+				email,
+				isActive: true
 			}
 		})
 
@@ -42,20 +43,11 @@ export class AccountService {
 		return user.email
 	}
 
-	public async getAll(input: PaginationInput) {
-		const { take } = this.paginationService.getPagination(input)
-
-		const users = await this.prismaService.user.findMany({
-			take
-		})
-
-		return users
-	}
-
 	public async getById(id: string) {
 		const user = await this.prismaService.user.findUnique({
 			where: {
-				id
+				id,
+				isActive: true
 			}
 		})
 

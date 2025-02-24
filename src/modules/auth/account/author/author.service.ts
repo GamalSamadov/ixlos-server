@@ -49,7 +49,10 @@ export class AuthorService {
 	public async getById(id: string) {
 		const author = await this.prismaService.author.findUnique({
 			where: {
-				id
+				id,
+				user: {
+					isActive: true
+				}
 			},
 			include: {
 				user: true
@@ -95,7 +98,10 @@ export class AuthorService {
 	public async update(id: string, input: UpdateAuthorInput) {
 		const author = await this.prismaService.author.findUnique({
 			where: {
-				id
+				id,
+				user: {
+					isActive: true
+				}
 			},
 			include: {
 				user: true
@@ -157,7 +163,10 @@ export class AuthorService {
 	public async delete(id: string) {
 		const author = await this.prismaService.author.findUnique({
 			where: {
-				id
+				id,
+				user: {
+					isActive: true
+				}
 			}
 		})
 
@@ -184,7 +193,8 @@ export class AuthorService {
 						displayName: {
 							contains: searchTerm,
 							mode: 'insensitive'
-						}
+						},
+						isActive: true
 					}
 				},
 				{
@@ -192,7 +202,8 @@ export class AuthorService {
 						username: {
 							contains: searchTerm,
 							mode: 'insensitive'
-						}
+						},
+						isActive: true
 					}
 				},
 				{
@@ -200,7 +211,8 @@ export class AuthorService {
 						email: {
 							contains: searchTerm,
 							mode: 'insensitive'
-						}
+						},
+						isActive: true
 					}
 				}
 			]

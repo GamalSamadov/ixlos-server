@@ -1,24 +1,48 @@
 import { Injectable } from '@nestjs/common'
 
+import { Prisma } from '@/prisma/generated'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
+import { PaginationInput } from '@/src/shared/pagination/inputs/pagination.input'
+import { PaginationService } from '@/src/shared/pagination/pagination.service'
+import { hasMorePagination } from '@/src/shared/utils/pagination/has-more'
 
 import { CreateTafseerInput } from './inputs/create-tafseer.input'
 import { UpdateTafseerInput } from './inputs/update-tafseer.input'
 
 @Injectable()
 export class TafseerService {
-	public constructor(private readonly prismaService: PrismaService) {}
+	public constructor(
+		private readonly prismaService: PrismaService,
+		private readonly paginationService: PaginationService
+	) {}
 
-	public async getAll() {
-		return this.prismaService.tafseer.findMany({
+	public async getAll(searchTerm: string, input: PaginationInput) {
+		const { take } = this.paginationService.getPagination(input)
+		const searchTermFilter = this.getTafseerSearchTermFilter(searchTerm)
+
+		const tafseers = await this.prismaService.tafseer.findMany({
+			where: searchTermFilter,
+			take,
 			orderBy: {
 				name: 'asc'
 			},
 			include: {
-				ayahs: true,
+				ayahs: {
+					include: {
+						tafseer: true
+					}
+				},
 				author: true
 			}
 		})
+
+		const total = await this.prismaService.tafseer.count({
+			where: searchTermFilter
+		})
+
+		const hasMore = hasMorePagination(total, take)
+
+		return { tafseers, hasMore }
 	}
 
 	public async getById(id: string) {
@@ -115,5 +139,26 @@ export class TafseerService {
 		})
 
 		return true
+	}
+
+	private getTafseerSearchTermFilter(
+		searchTerm: string
+	): Prisma.TafseerWhereInput {
+		return {
+			OR: [
+				{
+					name: {
+						contains: searchTerm,
+						mode: 'insensitive'
+					}
+				},
+				{
+					arabicName: {
+						contains: searchTerm,
+						mode: 'insensitive'
+					}
+				}
+			]
+		}
 	}
 }
