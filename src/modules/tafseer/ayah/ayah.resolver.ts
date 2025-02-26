@@ -8,6 +8,7 @@ import { AyahService } from './ayah.service'
 import { CreateAyahInput } from './inputs/create-ayah.input'
 import { UpdateAyahInput } from './inputs/update-ayah.input'
 import { AyahModel } from './models/ayah.model'
+import { AyahsPaginatedModel } from './models/ayahs-paginated.model'
 
 @Resolver('Ayah')
 export class AyahResolver {
@@ -26,7 +27,7 @@ export class AyahResolver {
 		return this.ayahService.getById(id)
 	}
 
-	@Query(() => [AyahModel], { name: 'searchAyahByText' })
+	@Query(() => AyahsPaginatedModel, { name: 'searchAyahByText' })
 	public async searchByText(
 		@Args('searchTerm') searchTerm: string,
 		@Args('pagination') pagination: PaginationInput

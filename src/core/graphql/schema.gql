@@ -28,6 +28,11 @@ type AyahModel {
   uzbekText: String!
 }
 
+type AyahsPaginatedModel {
+  ayahs: [AyahModel!]
+  hasMore: Boolean
+}
+
 input CreateAuthorInput {
   country: String
   displayName: String
@@ -131,7 +136,7 @@ input PaginationInput {
 type Query {
   getAllAuthors(pagination: PaginationInput!, searchTerm: String!): AuthorsPaginatedModel!
   getAllAyahs(pagination: PaginationInput!, surahId: String!): [AyahModel!]!
-  getAllSurahs(pagination: PaginationInput!): [SurahModel!]!
+  getAllSurahs(pagination: PaginationInput!): SurahsPaginatedModel!
   getAllTafseers(pagination: PaginationInput!, searchTerm: String!): TafseersPaginatedModel!
   getAuthorById(id: String!): AuthorModel!
   getAyahById(id: String!): AyahModel!
@@ -145,7 +150,7 @@ type Query {
   getTafseerAyahById: TafseerAyahModel!
   getTafseerById(id: String!): TafseerModel!
   getUsernameByUsername(username: String!): String!
-  searchAyahByText(pagination: PaginationInput!, searchTerm: String!): [AyahModel!]!
+  searchAyahByText(pagination: PaginationInput!, searchTerm: String!): AyahsPaginatedModel!
 }
 
 enum Role {
@@ -183,6 +188,11 @@ type SurahModel {
 enum SurahRevelationType {
   MECCAN
   MEDINAN
+}
+
+type SurahsPaginatedModel {
+  hasMore: Boolean!
+  surahs: [SurahModel!]!
 }
 
 type TafseerAyahModel {

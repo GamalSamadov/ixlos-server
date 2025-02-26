@@ -7,8 +7,8 @@ import { PaginationInput } from '@/src/shared/pagination/inputs/pagination.input
 import { AuthorService } from './author.service'
 import { CreateAuthorInput } from './inputs/create-author.input'
 import { UpdateAuthorInput } from './inputs/update-author.input'
-import { AuthorsPaginatedModel } from './models/author-paginated.model'
 import { AuthorModel } from './models/author.model'
+import { AuthorsPaginatedModel } from './models/authors-paginated.model'
 
 @Resolver('Author')
 export class AuthorResolver {

@@ -6,6 +6,7 @@ import { PaginationInput } from '@/src/shared/pagination/inputs/pagination.input
 
 import { CreateSurahInput } from './input/create-surah.input'
 import { UpdateSurahInput } from './input/update-surah.input'
+import { SurahsPaginatedModel } from './model/surah-paginated.model'
 import { SurahModel } from './model/surah.model'
 import { SurahService } from './surah.service'
 
@@ -13,7 +14,7 @@ import { SurahService } from './surah.service'
 export class SurahResolver {
 	constructor(private readonly surahService: SurahService) {}
 
-	@Query(() => [SurahModel], { name: 'getAllSurahs' })
+	@Query(() => SurahsPaginatedModel, { name: 'getAllSurahs' })
 	public async getAll(@Args('pagination') input: PaginationInput) {
 		return this.surahService.getAll(input)
 	}

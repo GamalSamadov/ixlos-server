@@ -1,8 +1,10 @@
 import { Injectable } from '@nestjs/common'
 
+import { Prisma } from '@/prisma/generated'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 import { PaginationInput } from '@/src/shared/pagination/inputs/pagination.input'
 import { PaginationService } from '@/src/shared/pagination/pagination.service'
+import { hasMorePagination } from '@/src/shared/utils/pagination/has-more'
 
 import { CreateAyahInput } from './inputs/create-ayah.input'
 import { UpdateAyahInput } from './inputs/update-ayah.input'
@@ -53,32 +55,32 @@ export class AyahService {
 	public async searchByText(searchTerm: string, input: PaginationInput) {
 		const { take } = this.paginationService.getPagination(input)
 
-		return await this.prismaService.ayah.findMany({
-			where: {
-				OR: [
-					{
-						uzbekText: {
-							contains: searchTerm,
-							mode: 'insensitive'
-						}
-					},
-					{
-						arabicText: {
-							contains: searchTerm,
-							mode: 'insensitive'
-						}
-					}
-				]
-			},
+		if (!searchTerm || searchTerm.length < 5) {
+			return []
+		}
+
+		const searchTermFilter = this.getAyahsSearchTerm(searchTerm)
+
+		const ayahs = await this.prismaService.ayah.findMany({
+			where: searchTermFilter,
 			take,
 			include: {
 				tafseers: {
 					include: {
 						tafseer: true
 					}
-				}
+				},
+				surah: true
 			}
 		})
+
+		const total = await this.prismaService.ayah.count({
+			where: searchTermFilter
+		})
+
+		const hasMore = hasMorePagination(total, take)
+
+		return { ayahs, hasMore }
 	}
 
 	public async create(surahId: string, input: CreateAyahInput) {
@@ -154,5 +156,24 @@ export class AyahService {
 		})
 
 		return true
+	}
+
+	public getAyahsSearchTerm(searchTerm: string): Prisma.AyahWhereInput {
+		return {
+			OR: [
+				{
+					uzbekText: {
+						contains: searchTerm,
+						mode: 'insensitive'
+					}
+				},
+				{
+					arabicText: {
+						contains: searchTerm,
+						mode: 'insensitive'
+					}
+				}
+			]
+		}
 	}
 }

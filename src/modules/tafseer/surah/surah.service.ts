@@ -3,6 +3,7 @@ import { Injectable } from '@nestjs/common'
 import { PrismaService } from '@/src/core/prisma/prisma.service'
 import { PaginationInput } from '@/src/shared/pagination/inputs/pagination.input'
 import { PaginationService } from '@/src/shared/pagination/pagination.service'
+import { hasMorePagination } from '@/src/shared/utils/pagination/has-more'
 
 import { CreateSurahInput } from './input/create-surah.input'
 import { UpdateSurahInput } from './input/update-surah.input'
@@ -17,12 +18,18 @@ export class SurahService {
 	public async getAll(input: PaginationInput) {
 		const { take } = this.paginationService.getPagination(input)
 
-		return this.prismaService.surah.findMany({
+		const surahs = await this.prismaService.surah.findMany({
 			take,
 			orderBy: {
 				number: 'asc'
 			}
 		})
+
+		const total = surahs.length
+
+		const hasMore = hasMorePagination(total, take)
+
+		return { surahs, hasMore }
 	}
 
 	public async getById(id: string) {
