@@ -19,6 +19,12 @@ export class SurahModel implements Surah {
 	@Field(() => String)
 	public arabicName: string
 
+	@Field(() => String)
+	public uzbekName: string
+
+	@Field(() => String)
+	public uzbekNameTranslation: string
+
 	@Field(() => Number)
 	public number: number
 

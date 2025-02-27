@@ -56,29 +56,34 @@ model Tafseer {
 }
 
 model Surah {
-  id             String              @id @default(uuid())
-  name           String
-  arabicName     String
-  number         Int
-  totalAyahs     Int                 @map("total_ayahs")
-  revelationType SurahRevelationType @map("revelation_type")
-  ayahs          Ayah[]
-  createdAt      DateTime            @default(now()) @map("created_at")
-  updatedAt      DateTime            @updatedAt @map("updated_at")
+  id                   String              @id @default(uuid())
+  name                 String              @unique
+  arabicName           String
+  uzbekName            String
+  uzbekNameTranslation String?             @map("uzbek_name_translation")
+  number               Int                 @unique
+  totalAyahs           Int                 @map("total_ayahs")
+  revelationType       SurahRevelationType @map("revelation_type")
+  ayahs                Ayah[]
+  createdAt            DateTime            @default(now()) @map("created_at")
+  updatedAt            DateTime            @updatedAt @map("updated_at")
 
   @@map("surahs")
 }
 
 model Ayah {
-  id         String        @id @default(uuid())
-  number     Int
-  arabicText String
-  uzbekText  String
-  surah      Surah         @relation(fields: [surahId], references: [id], onDelete: Cascade)
-  surahId    String        @map("surah_id")
-  tafseers   TafseerAyah[]
-  createdAt  DateTime      @default(now()) @map("created_at")
-  updatedAt  DateTime      @updatedAt @map("updated_at")
+  id                  String        @id @default(uuid())
+  number              Int
+  arabicText          String
+  uzbekTextInLatin    String
+  uzbekTextInCyrillic String
+  qcfText             String        @map("qcf_text")
+  surah               Surah         @relation(fields: [surahId], references: [id], onDelete: Cascade)
+  surahId             String        @map("surah_id")
+  pageNumber          Int           @default(0) @map("page_number")
+  tafseers            TafseerAyah[]
+  createdAt           DateTime      @default(now()) @map("created_at")
+  updatedAt           DateTime      @updatedAt @map("updated_at")
 
   @@map("ayahs")
 }

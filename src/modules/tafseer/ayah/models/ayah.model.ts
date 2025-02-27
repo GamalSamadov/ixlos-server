@@ -17,13 +17,22 @@ export class AyahModel implements Ayah {
 	public arabicText: string
 
 	@Field(() => String)
-	public uzbekText: string
+	public uzbekTextInLatin: string
+
+	@Field(() => String)
+	public uzbekTextInCyrillic: string
+
+	@Field(() => String)
+	public qcfText: string
 
 	@Field(() => SurahModel)
 	public surah: SurahModel
 
 	@Field(() => String)
 	public surahId: string
+
+	@Field(() => Number)
+	public pageNumber: number
 
 	@Field(() => [TafseerAyahModel])
 	public tafseers: TafseerAyahModel[]

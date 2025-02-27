@@ -21,11 +21,14 @@ type AyahModel {
   createdAt: DateTime!
   id: ID!
   number: Float!
+  pageNumber: Float!
+  qcfText: String!
   surah: SurahModel!
   surahId: String!
   tafseers: [TafseerAyahModel!]!
   updatedAt: DateTime!
-  uzbekText: String!
+  uzbekTextInCyrillic: String!
+  uzbekTextInLatin: String!
 }
 
 type AyahsPaginatedModel {
@@ -44,7 +47,9 @@ input CreateAuthorInput {
 input CreateAyahInput {
   arabicText: String!
   number: Float!
-  uzbekText: String!
+  qcfText: String!
+  uzbekTextInCyrillic: String!
+  uzbekTextInLatin: String!
 }
 
 input CreateSurahInput {
@@ -53,6 +58,8 @@ input CreateSurahInput {
   number: Float!
   revelationType: SurahRevelationType!
   totalAyahs: Float!
+  uzbekName: String!
+  uzbekNameTranslation: String!
 }
 
 input CreateTafseerAyahInput {
@@ -183,6 +190,8 @@ type SurahModel {
   revelationType: SurahRevelationType!
   totalAyahs: Float!
   updatedAt: DateTime!
+  uzbekName: String!
+  uzbekNameTranslation: String!
 }
 
 enum SurahRevelationType {

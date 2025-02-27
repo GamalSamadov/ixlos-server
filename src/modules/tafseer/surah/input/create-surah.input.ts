@@ -18,6 +18,16 @@ export class CreateSurahInput {
 	@Field(() => String)
 	@IsString()
 	@IsNotEmpty()
+	public uzbekName: string
+
+	@Field(() => String)
+	@IsString()
+	@IsNotEmpty()
+	public uzbekNameTranslation: string
+
+	@Field(() => String)
+	@IsString()
+	@IsNotEmpty()
 	public arabicName: string
 
 	@Field(() => Number)

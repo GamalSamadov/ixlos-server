@@ -16,5 +16,15 @@ export class CreateAyahInput {
 	@Field(() => String)
 	@IsString()
 	@IsNotEmpty()
-	public uzbekText: string
+	public uzbekTextInLatin: string
+
+	@Field(() => String)
+	@IsString()
+	@IsNotEmpty()
+	public uzbekTextInCyrillic: string
+
+	@Field(() => String)
+	@IsString()
+	@IsNotEmpty()
+	public qcfText: string
 }

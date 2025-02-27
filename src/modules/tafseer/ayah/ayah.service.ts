@@ -162,7 +162,13 @@ export class AyahService {
 		return {
 			OR: [
 				{
-					uzbekText: {
+					uzbekTextInLatin: {
+						contains: searchTerm,
+						mode: 'insensitive'
+					}
+				},
+				{
+					uzbekTextInCyrillic: {
 						contains: searchTerm,
 						mode: 'insensitive'
 					}

@@ -4877,6 +4877,8 @@ export namespace Prisma {
     id: string | null
     name: string | null
     arabicName: string | null
+    uzbekName: string | null
+    uzbekNameTranslation: string | null
     number: number | null
     totalAyahs: number | null
     revelationType: $Enums.SurahRevelationType | null
@@ -4888,6 +4890,8 @@ export namespace Prisma {
     id: string | null
     name: string | null
     arabicName: string | null
+    uzbekName: string | null
+    uzbekNameTranslation: string | null
     number: number | null
     totalAyahs: number | null
     revelationType: $Enums.SurahRevelationType | null
@@ -4899,6 +4903,8 @@ export namespace Prisma {
     id: number
     name: number
     arabicName: number
+    uzbekName: number
+    uzbekNameTranslation: number
     number: number
     totalAyahs: number
     revelationType: number
@@ -4922,6 +4928,8 @@ export namespace Prisma {
     id?: true
     name?: true
     arabicName?: true
+    uzbekName?: true
+    uzbekNameTranslation?: true
     number?: true
     totalAyahs?: true
     revelationType?: true
@@ -4933,6 +4941,8 @@ export namespace Prisma {
     id?: true
     name?: true
     arabicName?: true
+    uzbekName?: true
+    uzbekNameTranslation?: true
     number?: true
     totalAyahs?: true
     revelationType?: true
@@ -4944,6 +4954,8 @@ export namespace Prisma {
     id?: true
     name?: true
     arabicName?: true
+    uzbekName?: true
+    uzbekNameTranslation?: true
     number?: true
     totalAyahs?: true
     revelationType?: true
@@ -5042,6 +5054,8 @@ export namespace Prisma {
     id: string
     name: string
     arabicName: string
+    uzbekName: string
+    uzbekNameTranslation: string | null
     number: number
     totalAyahs: number
     revelationType: $Enums.SurahRevelationType
@@ -5072,6 +5086,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     arabicName?: boolean
+    uzbekName?: boolean
+    uzbekNameTranslation?: boolean
     number?: boolean
     totalAyahs?: boolean
     revelationType?: boolean
@@ -5085,6 +5101,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     arabicName?: boolean
+    uzbekName?: boolean
+    uzbekNameTranslation?: boolean
     number?: boolean
     totalAyahs?: boolean
     revelationType?: boolean
@@ -5096,6 +5114,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     arabicName?: boolean
+    uzbekName?: boolean
+    uzbekNameTranslation?: boolean
     number?: boolean
     totalAyahs?: boolean
     revelationType?: boolean
@@ -5107,6 +5127,8 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     arabicName?: boolean
+    uzbekName?: boolean
+    uzbekNameTranslation?: boolean
     number?: boolean
     totalAyahs?: boolean
     revelationType?: boolean
@@ -5114,7 +5136,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type SurahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "arabicName" | "number" | "totalAyahs" | "revelationType" | "createdAt" | "updatedAt", ExtArgs["result"]["surah"]>
+  export type SurahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "arabicName" | "uzbekName" | "uzbekNameTranslation" | "number" | "totalAyahs" | "revelationType" | "createdAt" | "updatedAt", ExtArgs["result"]["surah"]>
   export type SurahInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ayahs?: boolean | Surah$ayahsArgs<ExtArgs>
     _count?: boolean | SurahCountOutputTypeDefaultArgs<ExtArgs>
@@ -5131,6 +5153,8 @@ export namespace Prisma {
       id: string
       name: string
       arabicName: string
+      uzbekName: string
+      uzbekNameTranslation: string | null
       number: number
       totalAyahs: number
       revelationType: $Enums.SurahRevelationType
@@ -5563,6 +5587,8 @@ export namespace Prisma {
     readonly id: FieldRef<"Surah", 'String'>
     readonly name: FieldRef<"Surah", 'String'>
     readonly arabicName: FieldRef<"Surah", 'String'>
+    readonly uzbekName: FieldRef<"Surah", 'String'>
+    readonly uzbekNameTranslation: FieldRef<"Surah", 'String'>
     readonly number: FieldRef<"Surah", 'Int'>
     readonly totalAyahs: FieldRef<"Surah", 'Int'>
     readonly revelationType: FieldRef<"Surah", 'SurahRevelationType'>
@@ -6012,18 +6038,23 @@ export namespace Prisma {
 
   export type AyahAvgAggregateOutputType = {
     number: number | null
+    pageNumber: number | null
   }
 
   export type AyahSumAggregateOutputType = {
     number: number | null
+    pageNumber: number | null
   }
 
   export type AyahMinAggregateOutputType = {
     id: string | null
     number: number | null
     arabicText: string | null
-    uzbekText: string | null
+    uzbekTextInLatin: string | null
+    uzbekTextInCyrillic: string | null
+    qcfText: string | null
     surahId: string | null
+    pageNumber: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6032,8 +6063,11 @@ export namespace Prisma {
     id: string | null
     number: number | null
     arabicText: string | null
-    uzbekText: string | null
+    uzbekTextInLatin: string | null
+    uzbekTextInCyrillic: string | null
+    qcfText: string | null
     surahId: string | null
+    pageNumber: number | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -6042,8 +6076,11 @@ export namespace Prisma {
     id: number
     number: number
     arabicText: number
-    uzbekText: number
+    uzbekTextInLatin: number
+    uzbekTextInCyrillic: number
+    qcfText: number
     surahId: number
+    pageNumber: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -6052,18 +6089,23 @@ export namespace Prisma {
 
   export type AyahAvgAggregateInputType = {
     number?: true
+    pageNumber?: true
   }
 
   export type AyahSumAggregateInputType = {
     number?: true
+    pageNumber?: true
   }
 
   export type AyahMinAggregateInputType = {
     id?: true
     number?: true
     arabicText?: true
-    uzbekText?: true
+    uzbekTextInLatin?: true
+    uzbekTextInCyrillic?: true
+    qcfText?: true
     surahId?: true
+    pageNumber?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6072,8 +6114,11 @@ export namespace Prisma {
     id?: true
     number?: true
     arabicText?: true
-    uzbekText?: true
+    uzbekTextInLatin?: true
+    uzbekTextInCyrillic?: true
+    qcfText?: true
     surahId?: true
+    pageNumber?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -6082,8 +6127,11 @@ export namespace Prisma {
     id?: true
     number?: true
     arabicText?: true
-    uzbekText?: true
+    uzbekTextInLatin?: true
+    uzbekTextInCyrillic?: true
+    qcfText?: true
     surahId?: true
+    pageNumber?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -6179,8 +6227,11 @@ export namespace Prisma {
     id: string
     number: number
     arabicText: string
-    uzbekText: string
+    uzbekTextInLatin: string
+    uzbekTextInCyrillic: string
+    qcfText: string
     surahId: string
+    pageNumber: number
     createdAt: Date
     updatedAt: Date
     _count: AyahCountAggregateOutputType | null
@@ -6208,8 +6259,11 @@ export namespace Prisma {
     id?: boolean
     number?: boolean
     arabicText?: boolean
-    uzbekText?: boolean
+    uzbekTextInLatin?: boolean
+    uzbekTextInCyrillic?: boolean
+    qcfText?: boolean
     surahId?: boolean
+    pageNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     surah?: boolean | SurahDefaultArgs<ExtArgs>
@@ -6221,8 +6275,11 @@ export namespace Prisma {
     id?: boolean
     number?: boolean
     arabicText?: boolean
-    uzbekText?: boolean
+    uzbekTextInLatin?: boolean
+    uzbekTextInCyrillic?: boolean
+    qcfText?: boolean
     surahId?: boolean
+    pageNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     surah?: boolean | SurahDefaultArgs<ExtArgs>
@@ -6232,8 +6289,11 @@ export namespace Prisma {
     id?: boolean
     number?: boolean
     arabicText?: boolean
-    uzbekText?: boolean
+    uzbekTextInLatin?: boolean
+    uzbekTextInCyrillic?: boolean
+    qcfText?: boolean
     surahId?: boolean
+    pageNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     surah?: boolean | SurahDefaultArgs<ExtArgs>
@@ -6243,13 +6303,16 @@ export namespace Prisma {
     id?: boolean
     number?: boolean
     arabicText?: boolean
-    uzbekText?: boolean
+    uzbekTextInLatin?: boolean
+    uzbekTextInCyrillic?: boolean
+    qcfText?: boolean
     surahId?: boolean
+    pageNumber?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type AyahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "number" | "arabicText" | "uzbekText" | "surahId" | "createdAt" | "updatedAt", ExtArgs["result"]["ayah"]>
+  export type AyahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "number" | "arabicText" | "uzbekTextInLatin" | "uzbekTextInCyrillic" | "qcfText" | "surahId" | "pageNumber" | "createdAt" | "updatedAt", ExtArgs["result"]["ayah"]>
   export type AyahInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     surah?: boolean | SurahDefaultArgs<ExtArgs>
     tafseers?: boolean | Ayah$tafseersArgs<ExtArgs>
@@ -6272,8 +6335,11 @@ export namespace Prisma {
       id: string
       number: number
       arabicText: string
-      uzbekText: string
+      uzbekTextInLatin: string
+      uzbekTextInCyrillic: string
+      qcfText: string
       surahId: string
+      pageNumber: number
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["ayah"]>
@@ -6704,8 +6770,11 @@ export namespace Prisma {
     readonly id: FieldRef<"Ayah", 'String'>
     readonly number: FieldRef<"Ayah", 'Int'>
     readonly arabicText: FieldRef<"Ayah", 'String'>
-    readonly uzbekText: FieldRef<"Ayah", 'String'>
+    readonly uzbekTextInLatin: FieldRef<"Ayah", 'String'>
+    readonly uzbekTextInCyrillic: FieldRef<"Ayah", 'String'>
+    readonly qcfText: FieldRef<"Ayah", 'String'>
     readonly surahId: FieldRef<"Ayah", 'String'>
+    readonly pageNumber: FieldRef<"Ayah", 'Int'>
     readonly createdAt: FieldRef<"Ayah", 'DateTime'>
     readonly updatedAt: FieldRef<"Ayah", 'DateTime'>
   }
@@ -8286,6 +8355,8 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     arabicName: 'arabicName',
+    uzbekName: 'uzbekName',
+    uzbekNameTranslation: 'uzbekNameTranslation',
     number: 'number',
     totalAyahs: 'totalAyahs',
     revelationType: 'revelationType',
@@ -8300,8 +8371,11 @@ export namespace Prisma {
     id: 'id',
     number: 'number',
     arabicText: 'arabicText',
-    uzbekText: 'uzbekText',
+    uzbekTextInLatin: 'uzbekTextInLatin',
+    uzbekTextInCyrillic: 'uzbekTextInCyrillic',
+    qcfText: 'qcfText',
     surahId: 'surahId',
+    pageNumber: 'pageNumber',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -8686,6 +8760,8 @@ export namespace Prisma {
     id?: StringFilter<"Surah"> | string
     name?: StringFilter<"Surah"> | string
     arabicName?: StringFilter<"Surah"> | string
+    uzbekName?: StringFilter<"Surah"> | string
+    uzbekNameTranslation?: StringNullableFilter<"Surah"> | string | null
     number?: IntFilter<"Surah"> | number
     totalAyahs?: IntFilter<"Surah"> | number
     revelationType?: EnumSurahRevelationTypeFilter<"Surah"> | $Enums.SurahRevelationType
@@ -8698,6 +8774,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     arabicName?: SortOrder
+    uzbekName?: SortOrder
+    uzbekNameTranslation?: SortOrderInput | SortOrder
     number?: SortOrder
     totalAyahs?: SortOrder
     revelationType?: SortOrder
@@ -8708,23 +8786,27 @@ export namespace Prisma {
 
   export type SurahWhereUniqueInput = Prisma.AtLeast<{
     id?: string
+    name?: string
+    number?: number
     AND?: SurahWhereInput | SurahWhereInput[]
     OR?: SurahWhereInput[]
     NOT?: SurahWhereInput | SurahWhereInput[]
-    name?: StringFilter<"Surah"> | string
     arabicName?: StringFilter<"Surah"> | string
-    number?: IntFilter<"Surah"> | number
+    uzbekName?: StringFilter<"Surah"> | string
+    uzbekNameTranslation?: StringNullableFilter<"Surah"> | string | null
     totalAyahs?: IntFilter<"Surah"> | number
     revelationType?: EnumSurahRevelationTypeFilter<"Surah"> | $Enums.SurahRevelationType
     createdAt?: DateTimeFilter<"Surah"> | Date | string
     updatedAt?: DateTimeFilter<"Surah"> | Date | string
     ayahs?: AyahListRelationFilter
-  }, "id">
+  }, "id" | "name" | "number">
 
   export type SurahOrderByWithAggregationInput = {
     id?: SortOrder
     name?: SortOrder
     arabicName?: SortOrder
+    uzbekName?: SortOrder
+    uzbekNameTranslation?: SortOrderInput | SortOrder
     number?: SortOrder
     totalAyahs?: SortOrder
     revelationType?: SortOrder
@@ -8744,6 +8826,8 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Surah"> | string
     name?: StringWithAggregatesFilter<"Surah"> | string
     arabicName?: StringWithAggregatesFilter<"Surah"> | string
+    uzbekName?: StringWithAggregatesFilter<"Surah"> | string
+    uzbekNameTranslation?: StringNullableWithAggregatesFilter<"Surah"> | string | null
     number?: IntWithAggregatesFilter<"Surah"> | number
     totalAyahs?: IntWithAggregatesFilter<"Surah"> | number
     revelationType?: EnumSurahRevelationTypeWithAggregatesFilter<"Surah"> | $Enums.SurahRevelationType
@@ -8758,8 +8842,11 @@ export namespace Prisma {
     id?: StringFilter<"Ayah"> | string
     number?: IntFilter<"Ayah"> | number
     arabicText?: StringFilter<"Ayah"> | string
-    uzbekText?: StringFilter<"Ayah"> | string
+    uzbekTextInLatin?: StringFilter<"Ayah"> | string
+    uzbekTextInCyrillic?: StringFilter<"Ayah"> | string
+    qcfText?: StringFilter<"Ayah"> | string
     surahId?: StringFilter<"Ayah"> | string
+    pageNumber?: IntFilter<"Ayah"> | number
     createdAt?: DateTimeFilter<"Ayah"> | Date | string
     updatedAt?: DateTimeFilter<"Ayah"> | Date | string
     surah?: XOR<SurahScalarRelationFilter, SurahWhereInput>
@@ -8770,8 +8857,11 @@ export namespace Prisma {
     id?: SortOrder
     number?: SortOrder
     arabicText?: SortOrder
-    uzbekText?: SortOrder
+    uzbekTextInLatin?: SortOrder
+    uzbekTextInCyrillic?: SortOrder
+    qcfText?: SortOrder
     surahId?: SortOrder
+    pageNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     surah?: SurahOrderByWithRelationInput
@@ -8785,8 +8875,11 @@ export namespace Prisma {
     NOT?: AyahWhereInput | AyahWhereInput[]
     number?: IntFilter<"Ayah"> | number
     arabicText?: StringFilter<"Ayah"> | string
-    uzbekText?: StringFilter<"Ayah"> | string
+    uzbekTextInLatin?: StringFilter<"Ayah"> | string
+    uzbekTextInCyrillic?: StringFilter<"Ayah"> | string
+    qcfText?: StringFilter<"Ayah"> | string
     surahId?: StringFilter<"Ayah"> | string
+    pageNumber?: IntFilter<"Ayah"> | number
     createdAt?: DateTimeFilter<"Ayah"> | Date | string
     updatedAt?: DateTimeFilter<"Ayah"> | Date | string
     surah?: XOR<SurahScalarRelationFilter, SurahWhereInput>
@@ -8797,8 +8890,11 @@ export namespace Prisma {
     id?: SortOrder
     number?: SortOrder
     arabicText?: SortOrder
-    uzbekText?: SortOrder
+    uzbekTextInLatin?: SortOrder
+    uzbekTextInCyrillic?: SortOrder
+    qcfText?: SortOrder
     surahId?: SortOrder
+    pageNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: AyahCountOrderByAggregateInput
@@ -8815,8 +8911,11 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Ayah"> | string
     number?: IntWithAggregatesFilter<"Ayah"> | number
     arabicText?: StringWithAggregatesFilter<"Ayah"> | string
-    uzbekText?: StringWithAggregatesFilter<"Ayah"> | string
+    uzbekTextInLatin?: StringWithAggregatesFilter<"Ayah"> | string
+    uzbekTextInCyrillic?: StringWithAggregatesFilter<"Ayah"> | string
+    qcfText?: StringWithAggregatesFilter<"Ayah"> | string
     surahId?: StringWithAggregatesFilter<"Ayah"> | string
+    pageNumber?: IntWithAggregatesFilter<"Ayah"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Ayah"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Ayah"> | Date | string
   }
@@ -9136,6 +9235,8 @@ export namespace Prisma {
     id?: string
     name: string
     arabicName: string
+    uzbekName: string
+    uzbekNameTranslation?: string | null
     number: number
     totalAyahs: number
     revelationType: $Enums.SurahRevelationType
@@ -9148,6 +9249,8 @@ export namespace Prisma {
     id?: string
     name: string
     arabicName: string
+    uzbekName: string
+    uzbekNameTranslation?: string | null
     number: number
     totalAyahs: number
     revelationType: $Enums.SurahRevelationType
@@ -9160,6 +9263,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     arabicName?: StringFieldUpdateOperationsInput | string
+    uzbekName?: StringFieldUpdateOperationsInput | string
+    uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
     totalAyahs?: IntFieldUpdateOperationsInput | number
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
@@ -9172,6 +9277,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     arabicName?: StringFieldUpdateOperationsInput | string
+    uzbekName?: StringFieldUpdateOperationsInput | string
+    uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
     totalAyahs?: IntFieldUpdateOperationsInput | number
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
@@ -9184,6 +9291,8 @@ export namespace Prisma {
     id?: string
     name: string
     arabicName: string
+    uzbekName: string
+    uzbekNameTranslation?: string | null
     number: number
     totalAyahs: number
     revelationType: $Enums.SurahRevelationType
@@ -9195,6 +9304,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     arabicName?: StringFieldUpdateOperationsInput | string
+    uzbekName?: StringFieldUpdateOperationsInput | string
+    uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
     totalAyahs?: IntFieldUpdateOperationsInput | number
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
@@ -9206,6 +9317,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     arabicName?: StringFieldUpdateOperationsInput | string
+    uzbekName?: StringFieldUpdateOperationsInput | string
+    uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
     totalAyahs?: IntFieldUpdateOperationsInput | number
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
@@ -9217,7 +9330,10 @@ export namespace Prisma {
     id?: string
     number: number
     arabicText: string
-    uzbekText: string
+    uzbekTextInLatin: string
+    uzbekTextInCyrillic: string
+    qcfText: string
+    pageNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     surah: SurahCreateNestedOneWithoutAyahsInput
@@ -9228,8 +9344,11 @@ export namespace Prisma {
     id?: string
     number: number
     arabicText: string
-    uzbekText: string
+    uzbekTextInLatin: string
+    uzbekTextInCyrillic: string
+    qcfText: string
     surahId: string
+    pageNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     tafseers?: TafseerAyahUncheckedCreateNestedManyWithoutAyahInput
@@ -9239,7 +9358,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     number?: IntFieldUpdateOperationsInput | number
     arabicText?: StringFieldUpdateOperationsInput | string
-    uzbekText?: StringFieldUpdateOperationsInput | string
+    uzbekTextInLatin?: StringFieldUpdateOperationsInput | string
+    uzbekTextInCyrillic?: StringFieldUpdateOperationsInput | string
+    qcfText?: StringFieldUpdateOperationsInput | string
+    pageNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     surah?: SurahUpdateOneRequiredWithoutAyahsNestedInput
@@ -9250,8 +9372,11 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     number?: IntFieldUpdateOperationsInput | number
     arabicText?: StringFieldUpdateOperationsInput | string
-    uzbekText?: StringFieldUpdateOperationsInput | string
+    uzbekTextInLatin?: StringFieldUpdateOperationsInput | string
+    uzbekTextInCyrillic?: StringFieldUpdateOperationsInput | string
+    qcfText?: StringFieldUpdateOperationsInput | string
     surahId?: StringFieldUpdateOperationsInput | string
+    pageNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tafseers?: TafseerAyahUncheckedUpdateManyWithoutAyahNestedInput
@@ -9261,8 +9386,11 @@ export namespace Prisma {
     id?: string
     number: number
     arabicText: string
-    uzbekText: string
+    uzbekTextInLatin: string
+    uzbekTextInCyrillic: string
+    qcfText: string
     surahId: string
+    pageNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -9271,7 +9399,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     number?: IntFieldUpdateOperationsInput | number
     arabicText?: StringFieldUpdateOperationsInput | string
-    uzbekText?: StringFieldUpdateOperationsInput | string
+    uzbekTextInLatin?: StringFieldUpdateOperationsInput | string
+    uzbekTextInCyrillic?: StringFieldUpdateOperationsInput | string
+    qcfText?: StringFieldUpdateOperationsInput | string
+    pageNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9280,8 +9411,11 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     number?: IntFieldUpdateOperationsInput | number
     arabicText?: StringFieldUpdateOperationsInput | string
-    uzbekText?: StringFieldUpdateOperationsInput | string
+    uzbekTextInLatin?: StringFieldUpdateOperationsInput | string
+    uzbekTextInCyrillic?: StringFieldUpdateOperationsInput | string
+    qcfText?: StringFieldUpdateOperationsInput | string
     surahId?: StringFieldUpdateOperationsInput | string
+    pageNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -9648,6 +9782,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     arabicName?: SortOrder
+    uzbekName?: SortOrder
+    uzbekNameTranslation?: SortOrder
     number?: SortOrder
     totalAyahs?: SortOrder
     revelationType?: SortOrder
@@ -9664,6 +9800,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     arabicName?: SortOrder
+    uzbekName?: SortOrder
+    uzbekNameTranslation?: SortOrder
     number?: SortOrder
     totalAyahs?: SortOrder
     revelationType?: SortOrder
@@ -9675,6 +9813,8 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     arabicName?: SortOrder
+    uzbekName?: SortOrder
+    uzbekNameTranslation?: SortOrder
     number?: SortOrder
     totalAyahs?: SortOrder
     revelationType?: SortOrder
@@ -9722,22 +9862,29 @@ export namespace Prisma {
     id?: SortOrder
     number?: SortOrder
     arabicText?: SortOrder
-    uzbekText?: SortOrder
+    uzbekTextInLatin?: SortOrder
+    uzbekTextInCyrillic?: SortOrder
+    qcfText?: SortOrder
     surahId?: SortOrder
+    pageNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type AyahAvgOrderByAggregateInput = {
     number?: SortOrder
+    pageNumber?: SortOrder
   }
 
   export type AyahMaxOrderByAggregateInput = {
     id?: SortOrder
     number?: SortOrder
     arabicText?: SortOrder
-    uzbekText?: SortOrder
+    uzbekTextInLatin?: SortOrder
+    uzbekTextInCyrillic?: SortOrder
+    qcfText?: SortOrder
     surahId?: SortOrder
+    pageNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -9746,14 +9893,18 @@ export namespace Prisma {
     id?: SortOrder
     number?: SortOrder
     arabicText?: SortOrder
-    uzbekText?: SortOrder
+    uzbekTextInLatin?: SortOrder
+    uzbekTextInCyrillic?: SortOrder
+    qcfText?: SortOrder
     surahId?: SortOrder
+    pageNumber?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
 
   export type AyahSumOrderByAggregateInput = {
     number?: SortOrder
+    pageNumber?: SortOrder
   }
 
   export type AyahScalarRelationFilter = {
@@ -10578,7 +10729,10 @@ export namespace Prisma {
     id?: string
     number: number
     arabicText: string
-    uzbekText: string
+    uzbekTextInLatin: string
+    uzbekTextInCyrillic: string
+    qcfText: string
+    pageNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     tafseers?: TafseerAyahCreateNestedManyWithoutAyahInput
@@ -10588,7 +10742,10 @@ export namespace Prisma {
     id?: string
     number: number
     arabicText: string
-    uzbekText: string
+    uzbekTextInLatin: string
+    uzbekTextInCyrillic: string
+    qcfText: string
+    pageNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     tafseers?: TafseerAyahUncheckedCreateNestedManyWithoutAyahInput
@@ -10627,8 +10784,11 @@ export namespace Prisma {
     id?: StringFilter<"Ayah"> | string
     number?: IntFilter<"Ayah"> | number
     arabicText?: StringFilter<"Ayah"> | string
-    uzbekText?: StringFilter<"Ayah"> | string
+    uzbekTextInLatin?: StringFilter<"Ayah"> | string
+    uzbekTextInCyrillic?: StringFilter<"Ayah"> | string
+    qcfText?: StringFilter<"Ayah"> | string
     surahId?: StringFilter<"Ayah"> | string
+    pageNumber?: IntFilter<"Ayah"> | number
     createdAt?: DateTimeFilter<"Ayah"> | Date | string
     updatedAt?: DateTimeFilter<"Ayah"> | Date | string
   }
@@ -10637,6 +10797,8 @@ export namespace Prisma {
     id?: string
     name: string
     arabicName: string
+    uzbekName: string
+    uzbekNameTranslation?: string | null
     number: number
     totalAyahs: number
     revelationType: $Enums.SurahRevelationType
@@ -10648,6 +10810,8 @@ export namespace Prisma {
     id?: string
     name: string
     arabicName: string
+    uzbekName: string
+    uzbekNameTranslation?: string | null
     number: number
     totalAyahs: number
     revelationType: $Enums.SurahRevelationType
@@ -10701,6 +10865,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     arabicName?: StringFieldUpdateOperationsInput | string
+    uzbekName?: StringFieldUpdateOperationsInput | string
+    uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
     totalAyahs?: IntFieldUpdateOperationsInput | number
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
@@ -10712,6 +10878,8 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     arabicName?: StringFieldUpdateOperationsInput | string
+    uzbekName?: StringFieldUpdateOperationsInput | string
+    uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
     totalAyahs?: IntFieldUpdateOperationsInput | number
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
@@ -10739,7 +10907,10 @@ export namespace Prisma {
     id?: string
     number: number
     arabicText: string
-    uzbekText: string
+    uzbekTextInLatin: string
+    uzbekTextInCyrillic: string
+    qcfText: string
+    pageNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
     surah: SurahCreateNestedOneWithoutAyahsInput
@@ -10749,8 +10920,11 @@ export namespace Prisma {
     id?: string
     number: number
     arabicText: string
-    uzbekText: string
+    uzbekTextInLatin: string
+    uzbekTextInCyrillic: string
+    qcfText: string
     surahId: string
+    pageNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -10804,7 +10978,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     number?: IntFieldUpdateOperationsInput | number
     arabicText?: StringFieldUpdateOperationsInput | string
-    uzbekText?: StringFieldUpdateOperationsInput | string
+    uzbekTextInLatin?: StringFieldUpdateOperationsInput | string
+    uzbekTextInCyrillic?: StringFieldUpdateOperationsInput | string
+    qcfText?: StringFieldUpdateOperationsInput | string
+    pageNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     surah?: SurahUpdateOneRequiredWithoutAyahsNestedInput
@@ -10814,8 +10991,11 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     number?: IntFieldUpdateOperationsInput | number
     arabicText?: StringFieldUpdateOperationsInput | string
-    uzbekText?: StringFieldUpdateOperationsInput | string
+    uzbekTextInLatin?: StringFieldUpdateOperationsInput | string
+    uzbekTextInCyrillic?: StringFieldUpdateOperationsInput | string
+    qcfText?: StringFieldUpdateOperationsInput | string
     surahId?: StringFieldUpdateOperationsInput | string
+    pageNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -10937,7 +11117,10 @@ export namespace Prisma {
     id?: string
     number: number
     arabicText: string
-    uzbekText: string
+    uzbekTextInLatin: string
+    uzbekTextInCyrillic: string
+    qcfText: string
+    pageNumber?: number
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -10946,7 +11129,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     number?: IntFieldUpdateOperationsInput | number
     arabicText?: StringFieldUpdateOperationsInput | string
-    uzbekText?: StringFieldUpdateOperationsInput | string
+    uzbekTextInLatin?: StringFieldUpdateOperationsInput | string
+    uzbekTextInCyrillic?: StringFieldUpdateOperationsInput | string
+    qcfText?: StringFieldUpdateOperationsInput | string
+    pageNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tafseers?: TafseerAyahUpdateManyWithoutAyahNestedInput
@@ -10956,7 +11142,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     number?: IntFieldUpdateOperationsInput | number
     arabicText?: StringFieldUpdateOperationsInput | string
-    uzbekText?: StringFieldUpdateOperationsInput | string
+    uzbekTextInLatin?: StringFieldUpdateOperationsInput | string
+    uzbekTextInCyrillic?: StringFieldUpdateOperationsInput | string
+    qcfText?: StringFieldUpdateOperationsInput | string
+    pageNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     tafseers?: TafseerAyahUncheckedUpdateManyWithoutAyahNestedInput
@@ -10966,7 +11155,10 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     number?: IntFieldUpdateOperationsInput | number
     arabicText?: StringFieldUpdateOperationsInput | string
-    uzbekText?: StringFieldUpdateOperationsInput | string
+    uzbekTextInLatin?: StringFieldUpdateOperationsInput | string
+    uzbekTextInCyrillic?: StringFieldUpdateOperationsInput | string
+    qcfText?: StringFieldUpdateOperationsInput | string
+    pageNumber?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
