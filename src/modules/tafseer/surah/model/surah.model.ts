@@ -17,6 +17,9 @@ export class SurahModel implements Surah {
 	public name: string
 
 	@Field(() => String)
+	public qfcName: string
+
+	@Field(() => String)
 	public arabicName: string
 
 	@Field(() => String)

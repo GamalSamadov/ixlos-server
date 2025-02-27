@@ -56,6 +56,7 @@ input CreateSurahInput {
   arabicName: String!
   name: String!
   number: Float!
+  qfcName: String!
   revelationType: SurahRevelationType!
   totalAyahs: Float!
   uzbekName: String!
@@ -187,6 +188,7 @@ type SurahModel {
   id: ID!
   name: String!
   number: Float!
+  qfcName: String!
   revelationType: SurahRevelationType!
   totalAyahs: Float!
   updatedAt: DateTime!

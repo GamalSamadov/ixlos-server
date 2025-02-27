@@ -59,6 +59,7 @@ model Surah {
   id                   String              @id @default(uuid())
   name                 String              @unique
   arabicName           String
+  qfcName              String
   uzbekName            String
   uzbekNameTranslation String?             @map("uzbek_name_translation")
   number               Int                 @unique

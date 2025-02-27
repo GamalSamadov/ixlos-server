@@ -4877,6 +4877,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     arabicName: string | null
+    qfcName: string | null
     uzbekName: string | null
     uzbekNameTranslation: string | null
     number: number | null
@@ -4890,6 +4891,7 @@ export namespace Prisma {
     id: string | null
     name: string | null
     arabicName: string | null
+    qfcName: string | null
     uzbekName: string | null
     uzbekNameTranslation: string | null
     number: number | null
@@ -4903,6 +4905,7 @@ export namespace Prisma {
     id: number
     name: number
     arabicName: number
+    qfcName: number
     uzbekName: number
     uzbekNameTranslation: number
     number: number
@@ -4928,6 +4931,7 @@ export namespace Prisma {
     id?: true
     name?: true
     arabicName?: true
+    qfcName?: true
     uzbekName?: true
     uzbekNameTranslation?: true
     number?: true
@@ -4941,6 +4945,7 @@ export namespace Prisma {
     id?: true
     name?: true
     arabicName?: true
+    qfcName?: true
     uzbekName?: true
     uzbekNameTranslation?: true
     number?: true
@@ -4954,6 +4959,7 @@ export namespace Prisma {
     id?: true
     name?: true
     arabicName?: true
+    qfcName?: true
     uzbekName?: true
     uzbekNameTranslation?: true
     number?: true
@@ -5054,6 +5060,7 @@ export namespace Prisma {
     id: string
     name: string
     arabicName: string
+    qfcName: string
     uzbekName: string
     uzbekNameTranslation: string | null
     number: number
@@ -5086,6 +5093,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     arabicName?: boolean
+    qfcName?: boolean
     uzbekName?: boolean
     uzbekNameTranslation?: boolean
     number?: boolean
@@ -5101,6 +5109,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     arabicName?: boolean
+    qfcName?: boolean
     uzbekName?: boolean
     uzbekNameTranslation?: boolean
     number?: boolean
@@ -5114,6 +5123,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     arabicName?: boolean
+    qfcName?: boolean
     uzbekName?: boolean
     uzbekNameTranslation?: boolean
     number?: boolean
@@ -5127,6 +5137,7 @@ export namespace Prisma {
     id?: boolean
     name?: boolean
     arabicName?: boolean
+    qfcName?: boolean
     uzbekName?: boolean
     uzbekNameTranslation?: boolean
     number?: boolean
@@ -5136,7 +5147,7 @@ export namespace Prisma {
     updatedAt?: boolean
   }
 
-  export type SurahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "arabicName" | "uzbekName" | "uzbekNameTranslation" | "number" | "totalAyahs" | "revelationType" | "createdAt" | "updatedAt", ExtArgs["result"]["surah"]>
+  export type SurahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "arabicName" | "qfcName" | "uzbekName" | "uzbekNameTranslation" | "number" | "totalAyahs" | "revelationType" | "createdAt" | "updatedAt", ExtArgs["result"]["surah"]>
   export type SurahInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ayahs?: boolean | Surah$ayahsArgs<ExtArgs>
     _count?: boolean | SurahCountOutputTypeDefaultArgs<ExtArgs>
@@ -5153,6 +5164,7 @@ export namespace Prisma {
       id: string
       name: string
       arabicName: string
+      qfcName: string
       uzbekName: string
       uzbekNameTranslation: string | null
       number: number
@@ -5587,6 +5599,7 @@ export namespace Prisma {
     readonly id: FieldRef<"Surah", 'String'>
     readonly name: FieldRef<"Surah", 'String'>
     readonly arabicName: FieldRef<"Surah", 'String'>
+    readonly qfcName: FieldRef<"Surah", 'String'>
     readonly uzbekName: FieldRef<"Surah", 'String'>
     readonly uzbekNameTranslation: FieldRef<"Surah", 'String'>
     readonly number: FieldRef<"Surah", 'Int'>
@@ -8355,6 +8368,7 @@ export namespace Prisma {
     id: 'id',
     name: 'name',
     arabicName: 'arabicName',
+    qfcName: 'qfcName',
     uzbekName: 'uzbekName',
     uzbekNameTranslation: 'uzbekNameTranslation',
     number: 'number',
@@ -8760,6 +8774,7 @@ export namespace Prisma {
     id?: StringFilter<"Surah"> | string
     name?: StringFilter<"Surah"> | string
     arabicName?: StringFilter<"Surah"> | string
+    qfcName?: StringFilter<"Surah"> | string
     uzbekName?: StringFilter<"Surah"> | string
     uzbekNameTranslation?: StringNullableFilter<"Surah"> | string | null
     number?: IntFilter<"Surah"> | number
@@ -8774,6 +8789,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     arabicName?: SortOrder
+    qfcName?: SortOrder
     uzbekName?: SortOrder
     uzbekNameTranslation?: SortOrderInput | SortOrder
     number?: SortOrder
@@ -8792,6 +8808,7 @@ export namespace Prisma {
     OR?: SurahWhereInput[]
     NOT?: SurahWhereInput | SurahWhereInput[]
     arabicName?: StringFilter<"Surah"> | string
+    qfcName?: StringFilter<"Surah"> | string
     uzbekName?: StringFilter<"Surah"> | string
     uzbekNameTranslation?: StringNullableFilter<"Surah"> | string | null
     totalAyahs?: IntFilter<"Surah"> | number
@@ -8805,6 +8822,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     arabicName?: SortOrder
+    qfcName?: SortOrder
     uzbekName?: SortOrder
     uzbekNameTranslation?: SortOrderInput | SortOrder
     number?: SortOrder
@@ -8826,6 +8844,7 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Surah"> | string
     name?: StringWithAggregatesFilter<"Surah"> | string
     arabicName?: StringWithAggregatesFilter<"Surah"> | string
+    qfcName?: StringWithAggregatesFilter<"Surah"> | string
     uzbekName?: StringWithAggregatesFilter<"Surah"> | string
     uzbekNameTranslation?: StringNullableWithAggregatesFilter<"Surah"> | string | null
     number?: IntWithAggregatesFilter<"Surah"> | number
@@ -9235,6 +9254,7 @@ export namespace Prisma {
     id?: string
     name: string
     arabicName: string
+    qfcName: string
     uzbekName: string
     uzbekNameTranslation?: string | null
     number: number
@@ -9249,6 +9269,7 @@ export namespace Prisma {
     id?: string
     name: string
     arabicName: string
+    qfcName: string
     uzbekName: string
     uzbekNameTranslation?: string | null
     number: number
@@ -9263,6 +9284,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     arabicName?: StringFieldUpdateOperationsInput | string
+    qfcName?: StringFieldUpdateOperationsInput | string
     uzbekName?: StringFieldUpdateOperationsInput | string
     uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
@@ -9277,6 +9299,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     arabicName?: StringFieldUpdateOperationsInput | string
+    qfcName?: StringFieldUpdateOperationsInput | string
     uzbekName?: StringFieldUpdateOperationsInput | string
     uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
@@ -9291,6 +9314,7 @@ export namespace Prisma {
     id?: string
     name: string
     arabicName: string
+    qfcName: string
     uzbekName: string
     uzbekNameTranslation?: string | null
     number: number
@@ -9304,6 +9328,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     arabicName?: StringFieldUpdateOperationsInput | string
+    qfcName?: StringFieldUpdateOperationsInput | string
     uzbekName?: StringFieldUpdateOperationsInput | string
     uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
@@ -9317,6 +9342,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     arabicName?: StringFieldUpdateOperationsInput | string
+    qfcName?: StringFieldUpdateOperationsInput | string
     uzbekName?: StringFieldUpdateOperationsInput | string
     uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
@@ -9782,6 +9808,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     arabicName?: SortOrder
+    qfcName?: SortOrder
     uzbekName?: SortOrder
     uzbekNameTranslation?: SortOrder
     number?: SortOrder
@@ -9800,6 +9827,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     arabicName?: SortOrder
+    qfcName?: SortOrder
     uzbekName?: SortOrder
     uzbekNameTranslation?: SortOrder
     number?: SortOrder
@@ -9813,6 +9841,7 @@ export namespace Prisma {
     id?: SortOrder
     name?: SortOrder
     arabicName?: SortOrder
+    qfcName?: SortOrder
     uzbekName?: SortOrder
     uzbekNameTranslation?: SortOrder
     number?: SortOrder
@@ -10797,6 +10826,7 @@ export namespace Prisma {
     id?: string
     name: string
     arabicName: string
+    qfcName: string
     uzbekName: string
     uzbekNameTranslation?: string | null
     number: number
@@ -10810,6 +10840,7 @@ export namespace Prisma {
     id?: string
     name: string
     arabicName: string
+    qfcName: string
     uzbekName: string
     uzbekNameTranslation?: string | null
     number: number
@@ -10865,6 +10896,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     arabicName?: StringFieldUpdateOperationsInput | string
+    qfcName?: StringFieldUpdateOperationsInput | string
     uzbekName?: StringFieldUpdateOperationsInput | string
     uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
@@ -10878,6 +10910,7 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
     arabicName?: StringFieldUpdateOperationsInput | string
+    qfcName?: StringFieldUpdateOperationsInput | string
     uzbekName?: StringFieldUpdateOperationsInput | string
     uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number

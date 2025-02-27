@@ -11,7 +11,8 @@ export const SURAHS = [
 		uzbekName: 'Fotiha',
 		uzbekNameTranslation: 'Fotiha',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الفاتحة'
+		arabicName: 'الفاتحة',
+		qfcName: 'ﮍ'
 	},
 	{
 		number: 2,
@@ -20,7 +21,8 @@ export const SURAHS = [
 		uzbekName: 'Baqara',
 		uzbekNameTranslation: 'Sigir',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'البقرة'
+		arabicName: 'البقرة',
+		qfcName: 'ﮎ'
 	},
 	{
 		number: 3,
@@ -29,7 +31,8 @@ export const SURAHS = [
 		uzbekName: 'Oli Imron',
 		uzbekNameTranslation: 'Imron oilasi',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'آل عمران'
+		arabicName: 'آل عمران',
+		qfcName: 'ﮏ'
 	},
 	{
 		number: 4,
@@ -38,7 +41,8 @@ export const SURAHS = [
 		uzbekName: 'Niso',
 		uzbekNameTranslation: 'Ayollar',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'النساء'
+		arabicName: 'النساء',
+		qfcName: 'ﮐ'
 	},
 	{
 		number: 5,
@@ -47,7 +51,8 @@ export const SURAHS = [
 		uzbekName: 'Moida',
 		uzbekNameTranslation: 'Sofra',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'المائدة'
+		arabicName: 'المائدة',
+		qfcName: 'ﮑ'
 	},
 	{
 		number: 6,
@@ -56,7 +61,8 @@ export const SURAHS = [
 		uzbekName: "An'om",
 		uzbekNameTranslation: 'Chorva hayvonlar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الأنعام'
+		arabicName: 'الأنعام',
+		qfcName: 'ﮒ'
 	},
 	{
 		number: 7,
@@ -65,7 +71,8 @@ export const SURAHS = [
 		uzbekName: "A'rof",
 		uzbekNameTranslation: 'Balandliklar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الأعراف'
+		arabicName: 'الأعراف',
+		qfcName: 'ﮓ'
 	},
 	{
 		number: 8,
@@ -74,7 +81,8 @@ export const SURAHS = [
 		uzbekName: 'Anfol',
 		uzbekNameTranslation: 'Oljalar',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'الأنفال'
+		arabicName: 'الأنفال',
+		qfcName: 'ﮔ'
 	},
 	{
 		number: 9,
@@ -83,7 +91,8 @@ export const SURAHS = [
 		uzbekName: 'Tavba',
 		uzbekNameTranslation: 'Tavba',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'التوبة'
+		arabicName: 'التوبة',
+		qfcName: 'ﮕ'
 	},
 	{
 		number: 10,
@@ -92,7 +101,8 @@ export const SURAHS = [
 		uzbekName: 'Yunus',
 		uzbekNameTranslation: 'Yunus (payg‘ambar nomi)',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'يونس'
+		arabicName: 'يونس',
+		qfcName: 'ﮖ'
 	},
 	{
 		number: 11,
@@ -101,7 +111,8 @@ export const SURAHS = [
 		uzbekName: 'Hud',
 		uzbekNameTranslation: 'Hud (payg‘ambar nomi)',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'هود'
+		arabicName: 'هود',
+		qfcName: 'ﮗ'
 	},
 	{
 		number: 12,
@@ -110,7 +121,8 @@ export const SURAHS = [
 		uzbekName: 'Yusuf',
 		uzbekNameTranslation: 'Yusuf (payg‘ambar nomi)',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'يوسف'
+		arabicName: 'يوسف',
+		qfcName: 'ﮘ'
 	},
 	{
 		number: 13,
@@ -119,7 +131,8 @@ export const SURAHS = [
 		uzbekName: "Ro'd",
 		uzbekNameTranslation: 'Momaqaldiroq',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'الرعد'
+		arabicName: 'الرعد',
+		qfcName: 'ﮙ'
 	},
 	{
 		number: 14,
@@ -128,7 +141,8 @@ export const SURAHS = [
 		uzbekName: 'Ibrohim',
 		uzbekNameTranslation: 'Ibrohim (payg‘ambar nomi)',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'ابراهيم'
+		arabicName: 'ابراهيم',
+		qfcName: 'ﮚ'
 	},
 	{
 		number: 15,
@@ -137,7 +151,8 @@ export const SURAHS = [
 		uzbekName: 'Hijr',
 		uzbekNameTranslation: 'Hijr (joy nomi)',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الحجر'
+		arabicName: 'الحجر',
+		qfcName: 'ﮛ'
 	},
 	{
 		number: 16,
@@ -146,7 +161,8 @@ export const SURAHS = [
 		uzbekName: 'Nahl',
 		uzbekNameTranslation: 'Asalarilar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'النحل'
+		arabicName: 'النحل',
+		qfcName: 'ﮜ'
 	},
 	{
 		number: 17,
@@ -155,7 +171,8 @@ export const SURAHS = [
 		uzbekName: 'Isro',
 		uzbekNameTranslation: 'Isro (tungi safar)',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الإسراء'
+		arabicName: 'الإسراء',
+		qfcName: 'ﮝ'
 	},
 	{
 		number: 18,
@@ -164,7 +181,8 @@ export const SURAHS = [
 		uzbekName: 'Kahf',
 		uzbekNameTranslation: "G'or",
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الكهف'
+		arabicName: 'الكهف',
+		qfcName: 'ﮞ'
 	},
 	{
 		number: 19,
@@ -173,7 +191,8 @@ export const SURAHS = [
 		uzbekName: 'Maryam',
 		uzbekNameTranslation: 'Maryam (Iso payg‘ambar onasi)',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'مريم'
+		arabicName: 'مريم',
+		qfcName: 'ﮟ'
 	},
 	{
 		number: 20,
@@ -182,7 +201,8 @@ export const SURAHS = [
 		uzbekName: 'Toha',
 		uzbekNameTranslation: 'Toha (payg‘ambarimizga xitob)',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'طه'
+		arabicName: 'طه',
+		qfcName: 'ﮠ'
 	},
 	{
 		number: 21,
@@ -191,7 +211,8 @@ export const SURAHS = [
 		uzbekName: 'Anbiyo',
 		uzbekNameTranslation: "Payg'ambarlar",
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الأنبياء'
+		arabicName: 'الأنبياء',
+		qfcName: 'ﮡ'
 	},
 	{
 		number: 22,
@@ -200,7 +221,8 @@ export const SURAHS = [
 		uzbekName: 'Haj',
 		uzbekNameTranslation: 'Haj (ibodat)',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'الحج'
+		arabicName: 'الحج',
+		qfcName: 'ﮢ'
 	},
 	{
 		number: 23,
@@ -209,7 +231,8 @@ export const SURAHS = [
 		uzbekName: "Mo'minun",
 		uzbekNameTranslation: "Mo'minlar",
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'المؤمنون'
+		arabicName: 'المؤمنون',
+		qfcName: 'ﮣ'
 	},
 	{
 		number: 24,
@@ -218,7 +241,8 @@ export const SURAHS = [
 		uzbekName: 'Nur',
 		uzbekNameTranslation: 'Nur (yorug‘lik)',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'النور'
+		arabicName: 'النور',
+		qfcName: 'ﮤ'
 	},
 	{
 		number: 25,
@@ -227,7 +251,8 @@ export const SURAHS = [
 		uzbekName: 'Furqon',
 		uzbekNameTranslation: 'Haq bilan botilni ajratuvchi',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الفرقان'
+		arabicName: 'الفرقان',
+		qfcName: 'ﮥ'
 	},
 	{
 		number: 26,
@@ -236,7 +261,8 @@ export const SURAHS = [
 		uzbekName: 'Shuaro',
 		uzbekNameTranslation: 'Shoirlar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الشعراء'
+		arabicName: 'الشعراء',
+		qfcName: 'ﮦ'
 	},
 	{
 		number: 27,
@@ -245,7 +271,8 @@ export const SURAHS = [
 		uzbekName: 'Naml',
 		uzbekNameTranslation: 'Chumolilar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'النمل'
+		arabicName: 'النمل',
+		qfcName: 'ﮧ'
 	},
 	{
 		number: 28,
@@ -254,7 +281,8 @@ export const SURAHS = [
 		uzbekName: 'Qasos',
 		uzbekNameTranslation: 'Qissalar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'القصص'
+		arabicName: 'القصص',
+		qfcName: 'ﮨ'
 	},
 	{
 		number: 29,
@@ -263,7 +291,8 @@ export const SURAHS = [
 		uzbekName: 'Ankabut',
 		uzbekNameTranslation: "O'rgimchak",
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'العنكبوت'
+		arabicName: 'العنكبوت',
+		qfcName: 'ﮩ'
 	},
 	{
 		number: 30,
@@ -272,7 +301,8 @@ export const SURAHS = [
 		uzbekName: 'Rum',
 		uzbekNameTranslation: 'Rumliklar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الروم'
+		arabicName: 'الروم',
+		qfcName: 'ﮪ'
 	},
 	{
 		number: 31,
@@ -281,7 +311,8 @@ export const SURAHS = [
 		uzbekName: 'Luqmon',
 		uzbekNameTranslation: 'Luqmon',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'لقمان'
+		arabicName: 'لقمان',
+		qfcName: 'ﮫ'
 	},
 	{
 		number: 32,
@@ -290,7 +321,8 @@ export const SURAHS = [
 		uzbekName: 'Sajda',
 		uzbekNameTranslation: 'Sajda',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'السجدة'
+		arabicName: 'السجدة',
+		qfcName: 'ﮬ'
 	},
 	{
 		number: 33,
@@ -299,7 +331,8 @@ export const SURAHS = [
 		uzbekName: 'Ahzob',
 		uzbekNameTranslation: 'Ittifoqlar (xandaq urushi)',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'الأحزاب'
+		arabicName: 'الأحزاب',
+		qfcName: 'ﮭ'
 	},
 	{
 		number: 34,
@@ -308,7 +341,8 @@ export const SURAHS = [
 		uzbekName: 'Saba',
 		uzbekNameTranslation: 'Saba (qabilaning nomi)',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'سبإ'
+		arabicName: 'سبإ',
+		qfcName: 'ﮮ'
 	},
 	{
 		number: 35,
@@ -317,7 +351,8 @@ export const SURAHS = [
 		uzbekName: 'Fotir',
 		uzbekNameTranslation: 'Yaratguvchi',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'فاطر'
+		arabicName: 'فاطر',
+		qfcName: 'ﮯ'
 	},
 	{
 		number: 36,
@@ -326,7 +361,8 @@ export const SURAHS = [
 		uzbekName: 'Yosin',
 		uzbekNameTranslation: 'Yosin',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'يس'
+		arabicName: 'يس',
+		qfcName: 'ﮰ'
 	},
 	{
 		number: 37,
@@ -335,7 +371,8 @@ export const SURAHS = [
 		uzbekName: 'Soffat',
 		uzbekNameTranslation: 'Saf tortuvchilar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الصافات'
+		arabicName: 'الصافات',
+		qfcName: 'ﮱ'
 	},
 	{
 		number: 38,
@@ -344,7 +381,8 @@ export const SURAHS = [
 		uzbekName: 'Sod',
 		uzbekNameTranslation: 'Sod',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'ص'
+		arabicName: 'ص',
+		qfcName: 'ﯓ'
 	},
 	{
 		number: 39,
@@ -353,7 +391,8 @@ export const SURAHS = [
 		uzbekName: 'Zumar',
 		uzbekNameTranslation: 'Guruhlar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الزمر'
+		arabicName: 'الزمر',
+		qfcName: 'ﯔ'
 	},
 	{
 		number: 40,
@@ -362,7 +401,8 @@ export const SURAHS = [
 		uzbekName: "G'ofir",
 		uzbekNameTranslation: 'Gunohlarni kechiruvchi',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'غافر'
+		arabicName: 'غافر',
+		qfcName: 'ﯕ'
 	},
 	{
 		number: 41,
@@ -371,7 +411,8 @@ export const SURAHS = [
 		uzbekName: 'Fussilat',
 		uzbekNameTranslation: 'Bayon qilingan',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'فصلت'
+		arabicName: 'فصلت',
+		qfcName: 'ﯖ'
 	},
 	{
 		number: 42,
@@ -380,7 +421,8 @@ export const SURAHS = [
 		uzbekName: 'Shuro',
 		uzbekNameTranslation: 'Maslahat',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الشورى'
+		arabicName: 'الشورى',
+		qfcName: 'ﯗ'
 	},
 	{
 		number: 43,
@@ -389,7 +431,8 @@ export const SURAHS = [
 		uzbekName: 'Zuxruf',
 		uzbekNameTranslation: 'Zeb-ziynat',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الزخرف'
+		arabicName: 'الزخرف',
+		qfcName: 'ﯘ'
 	},
 	{
 		number: 44,
@@ -398,7 +441,8 @@ export const SURAHS = [
 		uzbekName: 'Duxon',
 		uzbekNameTranslation: 'Tutun',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الدخان'
+		arabicName: 'الدخان',
+		qfcName: 'ﯙ'
 	},
 	{
 		number: 45,
@@ -407,7 +451,8 @@ export const SURAHS = [
 		uzbekName: 'Josiya',
 		uzbekNameTranslation: 'Tizzalangan',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الجاثية'
+		arabicName: 'الجاثية',
+		qfcName: 'ﯚ'
 	},
 	{
 		number: 46,
@@ -416,7 +461,8 @@ export const SURAHS = [
 		uzbekName: 'Ahqof',
 		uzbekNameTranslation: 'Qum tepalari',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الأحقاف'
+		arabicName: 'الأحقاف',
+		qfcName: 'ﯛ'
 	},
 	{
 		number: 47,
@@ -425,7 +471,8 @@ export const SURAHS = [
 		uzbekName: 'Muhammad',
 		uzbekNameTranslation: 'Muhammad',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'محمد'
+		arabicName: 'محمد',
+		qfcName: 'ﯜ'
 	},
 	{
 		number: 48,
@@ -434,7 +481,8 @@ export const SURAHS = [
 		uzbekName: 'Fath',
 		uzbekNameTranslation: 'G‘alaba',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'الفتح'
+		arabicName: 'الفتح',
+		qfcName: 'ﯝ'
 	},
 	{
 		number: 49,
@@ -443,7 +491,8 @@ export const SURAHS = [
 		uzbekName: 'Hujurot',
 		uzbekNameTranslation: 'Hujralar',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'الحجرات'
+		arabicName: 'الحجرات',
+		qfcName: 'ﯞ'
 	},
 	{
 		number: 50,
@@ -452,7 +501,8 @@ export const SURAHS = [
 		uzbekName: 'Qof',
 		uzbekNameTranslation: 'Qof',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'ق'
+		arabicName: 'ق',
+		qfcName: 'ﯟ'
 	},
 	{
 		number: 51,
@@ -461,7 +511,8 @@ export const SURAHS = [
 		uzbekName: 'Zariyat',
 		uzbekNameTranslation: 'Sochuvchilar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الذاريات'
+		arabicName: 'الذاريات',
+		qfcName: 'ﯠ'
 	},
 	{
 		number: 52,
@@ -470,7 +521,8 @@ export const SURAHS = [
 		uzbekName: 'Tur',
 		uzbekNameTranslation: 'Tur',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الطور'
+		arabicName: 'الطور',
+		qfcName: 'ﯡ'
 	},
 	{
 		number: 53,
@@ -479,7 +531,8 @@ export const SURAHS = [
 		uzbekName: 'Najm',
 		uzbekNameTranslation: 'Yulduz',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'النجم'
+		arabicName: 'النجم',
+		qfcName: 'ﯢ'
 	},
 	{
 		number: 54,
@@ -488,7 +541,8 @@ export const SURAHS = [
 		uzbekName: 'Qamar',
 		uzbekNameTranslation: 'Oy',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'القمر'
+		arabicName: 'القمر',
+		qfcName: 'ﯣ'
 	},
 	{
 		number: 55,
@@ -497,7 +551,8 @@ export const SURAHS = [
 		uzbekName: 'Rahmon',
 		uzbekNameTranslation: 'Mehribon',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'الرحمن'
+		arabicName: 'الرحمن',
+		qfcName: 'ﯤ'
 	},
 	{
 		number: 56,
@@ -506,7 +561,8 @@ export const SURAHS = [
 		uzbekName: 'Vaqia',
 		uzbekNameTranslation: 'Voqea',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الواقعة'
+		arabicName: 'الواقعة',
+		qfcName: 'ﯥ'
 	},
 	{
 		number: 57,
@@ -515,7 +571,8 @@ export const SURAHS = [
 		uzbekName: 'Hadid',
 		uzbekNameTranslation: 'Temir',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'الحديد'
+		arabicName: 'الحديد',
+		qfcName: 'ﯦ'
 	},
 	{
 		number: 58,
@@ -524,7 +581,8 @@ export const SURAHS = [
 		uzbekName: 'Mujodala',
 		uzbekNameTranslation: 'Bahs qiluvchi ayol',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'المجادلة'
+		arabicName: 'المجادلة',
+		qfcName: 'ﯧ'
 	},
 	{
 		number: 59,
@@ -533,7 +591,8 @@ export const SURAHS = [
 		uzbekName: 'Hashr',
 		uzbekNameTranslation: 'Yig‘ilish',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'الحشر'
+		arabicName: 'الحشر',
+		qfcName: 'ﯨ'
 	},
 	{
 		number: 60,
@@ -542,7 +601,8 @@ export const SURAHS = [
 		uzbekName: 'Mumtahana',
 		uzbekNameTranslation: 'Imtihon qilingan ayol',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'الممتحنة'
+		arabicName: 'الممتحنة',
+		qfcName: 'ﯩ'
 	},
 	{
 		number: 61,
@@ -551,7 +611,8 @@ export const SURAHS = [
 		uzbekName: 'Saff',
 		uzbekNameTranslation: 'Saf',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'الصف'
+		arabicName: 'الصف',
+		qfcName: 'ﯪ'
 	},
 	{
 		number: 62,
@@ -560,7 +621,8 @@ export const SURAHS = [
 		uzbekName: 'Jumua',
 		uzbekNameTranslation: 'Juma',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'الجمعة'
+		arabicName: 'الجمعة',
+		qfcName: 'ﯫ'
 	},
 	{
 		number: 63,
@@ -569,7 +631,8 @@ export const SURAHS = [
 		uzbekName: 'Munofiqun',
 		uzbekNameTranslation: 'Munofiqlar',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'المنافقون'
+		arabicName: 'المنافقون',
+		qfcName: 'ﯬ'
 	},
 	{
 		number: 64,
@@ -578,7 +641,8 @@ export const SURAHS = [
 		uzbekName: 'Tagobun',
 		uzbekNameTranslation: 'Aldanish va ziyondorlik',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'التغابن'
+		arabicName: 'التغابن',
+		qfcName: 'ﯭ'
 	},
 	{
 		number: 65,
@@ -587,7 +651,8 @@ export const SURAHS = [
 		uzbekName: 'Taloq',
 		uzbekNameTranslation: 'Taloq (ajrim)',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'الطلاق'
+		arabicName: 'الطلاق',
+		qfcName: 'ﯮ'
 	},
 	{
 		number: 66,
@@ -596,7 +661,8 @@ export const SURAHS = [
 		uzbekName: 'Tahrim',
 		uzbekNameTranslation: 'Ta’qiqlash',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'التحريم'
+		arabicName: 'التحريم',
+		qfcName: 'ﯯ'
 	},
 	{
 		number: 67,
@@ -605,7 +671,8 @@ export const SURAHS = [
 		uzbekName: 'Mulk',
 		uzbekNameTranslation: 'Podshohlik',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الملك'
+		arabicName: 'الملك',
+		qfcName: 'ﯰ'
 	},
 	{
 		number: 68,
@@ -614,7 +681,8 @@ export const SURAHS = [
 		uzbekName: 'Qalam',
 		uzbekNameTranslation: 'Qalam',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'القلم'
+		arabicName: 'القلم',
+		qfcName: 'ﯱ'
 	},
 	{
 		number: 69,
@@ -623,7 +691,8 @@ export const SURAHS = [
 		uzbekName: 'Haqqo',
 		uzbekNameTranslation: 'Haqqo',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الحاقة'
+		arabicName: 'الحاقة',
+		qfcName: 'ﯲ'
 	},
 	{
 		number: 70,
@@ -632,7 +701,8 @@ export const SURAHS = [
 		uzbekName: 'Mearij',
 		uzbekNameTranslation: 'Narvonlar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'المعارج'
+		arabicName: 'المعارج',
+		qfcName: 'ﯳ'
 	},
 	{
 		number: 71,
@@ -641,7 +711,8 @@ export const SURAHS = [
 		uzbekName: 'Nuh',
 		uzbekNameTranslation: 'Nuh',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'نوح'
+		arabicName: 'نوح',
+		qfcName: 'ﯴ'
 	},
 	{
 		number: 72,
@@ -650,7 +721,8 @@ export const SURAHS = [
 		uzbekName: 'Jin',
 		uzbekNameTranslation: 'Jinlar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الجن'
+		arabicName: 'الجن',
+		qfcName: 'ﯵ'
 	},
 	{
 		number: 73,
@@ -659,7 +731,8 @@ export const SURAHS = [
 		uzbekName: 'Muzzammil',
 		uzbekNameTranslation: "O'ranib oluvchi",
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'المزمل'
+		arabicName: 'المزمل',
+		qfcName: 'ﯶ'
 	},
 	{
 		number: 74,
@@ -668,7 +741,8 @@ export const SURAHS = [
 		uzbekName: 'Muddassir',
 		uzbekNameTranslation: "O'rangan",
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'المدثر'
+		arabicName: 'المدثر',
+		qfcName: 'ﯷ'
 	},
 	{
 		number: 75,
@@ -677,7 +751,8 @@ export const SURAHS = [
 		uzbekName: 'Qiyomat',
 		uzbekNameTranslation: 'Qiyomat',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'القيامة'
+		arabicName: 'القيامة',
+		qfcName: 'ﯸ'
 	},
 	{
 		number: 76,
@@ -686,7 +761,8 @@ export const SURAHS = [
 		uzbekName: 'Inson',
 		uzbekNameTranslation: 'Inson',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'الانسان'
+		arabicName: 'الانسان',
+		qfcName: 'ﯹ'
 	},
 	{
 		number: 77,
@@ -695,7 +771,8 @@ export const SURAHS = [
 		uzbekName: 'Mursalat',
 		uzbekNameTranslation: 'Yuborilganlar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'المرسلات'
+		arabicName: 'المرسلات',
+		qfcName: 'ﯺ'
 	},
 	{
 		number: 78,
@@ -704,7 +781,8 @@ export const SURAHS = [
 		uzbekName: 'Naba',
 		uzbekNameTranslation: 'Buyuk xabar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'النبأ'
+		arabicName: 'النبأ',
+		qfcName: 'ﯻ'
 	},
 	{
 		number: 79,
@@ -713,7 +791,8 @@ export const SURAHS = [
 		uzbekName: 'Naziat',
 		uzbekNameTranslation: "Sug'urib oluvchilar",
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'النازعات'
+		arabicName: 'النازعات',
+		qfcName: 'ﯼ'
 	},
 	{
 		number: 80,
@@ -722,7 +801,8 @@ export const SURAHS = [
 		uzbekName: 'Abasa',
 		uzbekNameTranslation: 'Qosh chimirdi',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'عبس'
+		arabicName: 'عبس',
+		qfcName: 'ﯽ'
 	},
 	{
 		number: 81,
@@ -731,7 +811,8 @@ export const SURAHS = [
 		uzbekName: 'Takvir',
 		uzbekNameTranslation: "O'rash (quyoshni o'rash)",
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'التكوير'
+		arabicName: 'التكوير',
+		qfcName: 'ﯾ'
 	},
 	{
 		number: 82,
@@ -740,7 +821,8 @@ export const SURAHS = [
 		uzbekName: 'Infitar',
 		uzbekNameTranslation: 'Yarilish',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الإنفطار'
+		arabicName: 'الإنفطار',
+		qfcName: 'ﯿ'
 	},
 	{
 		number: 83,
@@ -749,7 +831,8 @@ export const SURAHS = [
 		uzbekName: 'Mutaffifin',
 		uzbekNameTranslation: 'O‘lchovda aldovchi',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'المطففين'
+		arabicName: 'المطففين',
+		qfcName: 'ﰀ'
 	},
 	{
 		number: 84,
@@ -758,7 +841,8 @@ export const SURAHS = [
 		uzbekName: 'Inshiqoq',
 		uzbekNameTranslation: "Bo'linish / Yorilish",
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الإنشقاق'
+		arabicName: 'الإنشقاق',
+		qfcName: 'ﰁ'
 	},
 	{
 		number: 85,
@@ -767,7 +851,8 @@ export const SURAHS = [
 		uzbekName: 'Buruj',
 		uzbekNameTranslation: "Qal'alar yoki Burjlar",
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'البروج'
+		arabicName: 'البروج',
+		qfcName: 'ﰂ'
 	},
 	{
 		number: 86,
@@ -776,7 +861,8 @@ export const SURAHS = [
 		uzbekName: 'Toriq',
 		uzbekNameTranslation: 'Tun yulduzi',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الطارق'
+		arabicName: 'الطارق',
+		qfcName: 'ﰃ'
 	},
 	{
 		number: 87,
@@ -785,7 +871,8 @@ export const SURAHS = [
 		uzbekName: "A'lo",
 		uzbekNameTranslation: 'Eng oliy',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الأعلى'
+		arabicName: 'الأعلى',
+		qfcName: 'ﰄ'
 	},
 	{
 		number: 88,
@@ -794,7 +881,8 @@ export const SURAHS = [
 		uzbekName: 'Ghashiya',
 		uzbekNameTranslation: 'Qamrab oluvchi (balo)',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الغاشية'
+		arabicName: 'الغاشية',
+		qfcName: 'ﰅ'
 	},
 	{
 		number: 89,
@@ -803,7 +891,8 @@ export const SURAHS = [
 		uzbekName: 'Fajr',
 		uzbekNameTranslation: 'Tong',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الفجر'
+		arabicName: 'الفجر',
+		qfcName: 'ﰆ'
 	},
 	{
 		number: 90,
@@ -812,7 +901,8 @@ export const SURAHS = [
 		uzbekName: 'Balad',
 		uzbekNameTranslation: 'Shahar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'البلد'
+		arabicName: 'البلد',
+		qfcName: 'ﰇ'
 	},
 	{
 		number: 91,
@@ -821,7 +911,8 @@ export const SURAHS = [
 		uzbekName: 'Shams',
 		uzbekNameTranslation: 'Quyosh',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الشمس'
+		arabicName: 'الشمس',
+		qfcName: 'ﰈ'
 	},
 	{
 		number: 92,
@@ -830,7 +921,8 @@ export const SURAHS = [
 		uzbekName: 'Layl',
 		uzbekNameTranslation: 'Tun',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الليل'
+		arabicName: 'الليل',
+		qfcName: 'ﰉ'
 	},
 	{
 		number: 93,
@@ -839,7 +931,8 @@ export const SURAHS = [
 		uzbekName: 'Duha',
 		uzbekNameTranslation: 'Choshgoh',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الضحى'
+		arabicName: 'الضحى',
+		qfcName: 'ﰊ'
 	},
 	{
 		number: 94,
@@ -848,7 +941,8 @@ export const SURAHS = [
 		uzbekName: 'Sharh',
 		uzbekNameTranslation: 'Sharh',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الشرح'
+		arabicName: 'الشرح',
+		qfcName: 'ﰋ'
 	},
 	{
 		number: 95,
@@ -857,7 +951,8 @@ export const SURAHS = [
 		uzbekName: 'Tin',
 		uzbekNameTranslation: 'Anjir',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'التين'
+		arabicName: 'التين',
+		qfcName: 'ﰌ'
 	},
 	{
 		number: 96,
@@ -866,7 +961,8 @@ export const SURAHS = [
 		uzbekName: 'Alaq',
 		uzbekNameTranslation: 'Embriyon / bir parcha laxta qon',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'العلق'
+		arabicName: 'العلق',
+		qfcName: 'ﰍ'
 	},
 	{
 		number: 97,
@@ -875,7 +971,8 @@ export const SURAHS = [
 		uzbekName: 'Qadr',
 		uzbekNameTranslation: "Qadr (ulug' kecha)",
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'القدر'
+		arabicName: 'القدر',
+		qfcName: 'ﰎ'
 	},
 	{
 		number: 98,
@@ -884,7 +981,8 @@ export const SURAHS = [
 		uzbekName: 'Bayyina',
 		uzbekNameTranslation: 'Aniq dalil',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'البينة'
+		arabicName: 'البينة',
+		qfcName: 'ﰏ'
 	},
 	{
 		number: 99,
@@ -893,7 +991,8 @@ export const SURAHS = [
 		uzbekName: 'Zalzala',
 		uzbekNameTranslation: 'Zilzila',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'الزلزلة'
+		arabicName: 'الزلزلة',
+		qfcName: 'ﰐ'
 	},
 	{
 		number: 100,
@@ -902,7 +1001,8 @@ export const SURAHS = [
 		uzbekName: 'Adiyat',
 		uzbekNameTranslation: 'Choparlar (tez yugurib keluvchilar)',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'العاديات'
+		arabicName: 'العاديات',
+		qfcName: 'ﰑ'
 	},
 	{
 		number: 101,
@@ -911,7 +1011,8 @@ export const SURAHS = [
 		uzbekName: "Qori'ah",
 		uzbekNameTranslation: 'Baloyi azim (qo‘rqinchli hodisa)',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'القارعة'
+		arabicName: 'القارعة',
+		qfcName: 'ﰒ'
 	},
 	{
 		number: 102,
@@ -920,7 +1021,8 @@ export const SURAHS = [
 		uzbekName: 'Takosur',
 		uzbekNameTranslation: 'Ko‘payish vasvasasi',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'التكاثر'
+		arabicName: 'التكاثر',
+		qfcName: 'ﰓ'
 	},
 	{
 		number: 103,
@@ -929,7 +1031,8 @@ export const SURAHS = [
 		uzbekName: 'Asr',
 		uzbekNameTranslation: 'Asr (davr, vaqt)',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'العصر'
+		arabicName: 'العصر',
+		qfcName: 'ﰔ'
 	},
 	{
 		number: 104,
@@ -938,7 +1041,8 @@ export const SURAHS = [
 		uzbekName: 'Humaza',
 		uzbekNameTranslation: "G'iybatchi / chaqimchi",
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الهمزة'
+		arabicName: 'الهمزة',
+		qfcName: 'ﰕ'
 	},
 	{
 		number: 105,
@@ -947,7 +1051,8 @@ export const SURAHS = [
 		uzbekName: 'Fil',
 		uzbekNameTranslation: 'Fil',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الفيل'
+		arabicName: 'الفيل',
+		qfcName: 'ﰖ'
 	},
 	{
 		number: 106,
@@ -956,7 +1061,8 @@ export const SURAHS = [
 		uzbekName: 'Quraysh',
 		uzbekNameTranslation: 'Quraysh',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'قريش'
+		arabicName: 'قريش',
+		qfcName: 'ﰗ'
 	},
 	{
 		number: 107,
@@ -965,7 +1071,8 @@ export const SURAHS = [
 		uzbekName: "Ma'un",
 		uzbekNameTranslation: 'Mayda yordam',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الماعون'
+		arabicName: 'الماعون',
+		qfcName: 'ﰘ'
 	},
 	{
 		number: 108,
@@ -974,7 +1081,8 @@ export const SURAHS = [
 		uzbekName: 'Kavsar',
 		uzbekNameTranslation: 'Kavsar (hovuz)',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الكوثر'
+		arabicName: 'الكوثر',
+		qfcName: 'ﰙ'
 	},
 	{
 		number: 109,
@@ -983,7 +1091,8 @@ export const SURAHS = [
 		uzbekName: 'Kofirun',
 		uzbekNameTranslation: 'Kofirlar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الكافرون'
+		arabicName: 'الكافرون',
+		qfcName: 'ﰚ'
 	},
 	{
 		number: 110,
@@ -992,7 +1101,8 @@ export const SURAHS = [
 		uzbekName: 'Nasr',
 		uzbekNameTranslation: 'Yordam',
 		revelationType: SurahRevelationType.MEDINAN,
-		arabicName: 'النصر'
+		arabicName: 'النصر',
+		qfcName: 'ﰛ'
 	},
 	{
 		number: 111,
@@ -1001,7 +1111,8 @@ export const SURAHS = [
 		uzbekName: 'Masad',
 		uzbekNameTranslation: 'Shih taroq',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'المسد'
+		arabicName: 'المسد',
+		qfcName: 'ﰜ'
 	},
 	{
 		number: 112,
@@ -1010,7 +1121,8 @@ export const SURAHS = [
 		uzbekName: 'Ixlos',
 		uzbekNameTranslation: 'Chin ixlos, halis e’tiqod',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الإخلاص'
+		arabicName: 'الإخلاص',
+		qfcName: 'ﰝ'
 	},
 	{
 		number: 113,
@@ -1019,7 +1131,8 @@ export const SURAHS = [
 		uzbekName: 'Falaq',
 		uzbekNameTranslation: 'Tong',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الفلق'
+		arabicName: 'الفلق',
+		qfcName: 'ﰞ'
 	},
 	{
 		number: 114,
@@ -1028,6 +1141,7 @@ export const SURAHS = [
 		uzbekName: 'Nas',
 		uzbekNameTranslation: 'Odamlar',
 		revelationType: SurahRevelationType.MECCAN,
-		arabicName: 'الناس'
+		arabicName: 'الناس',
+		qfcName: 'ﰟ'
 	}
 ]

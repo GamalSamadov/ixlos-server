@@ -3,6 +3,7 @@ import { BadRequestException, Logger } from '@nestjs/common'
 import { Prisma, PrismaClient } from '../../../../prisma/generated'
 
 import { QURAN_TEXT } from './data/ayahs.data'
+import { removeArabicDiacritics } from './data/remove-diacritics'
 import { SURAHS } from './data/surahs.data'
 import { arabicToUzbekCyrillic } from './utils/arabic-to-cyrillic'
 import { arabicToLatin } from './utils/arabic-to-latin'
@@ -38,7 +39,7 @@ async function main() {
 				const createdAyah = await prisma.ayah.create({
 					data: {
 						number: ayah.verse_number,
-						arabicText: ayah.content,
+						arabicText: removeArabicDiacritics(ayah.content),
 						uzbekTextInLatin: arabicToLatin(ayah.content),
 						uzbekTextInCyrillic: arabicToUzbekCyrillic(
 							ayah.content
