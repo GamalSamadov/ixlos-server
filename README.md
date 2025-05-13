@@ -25,14 +25,19 @@ Packed with modern tooling—Prisma ORM, Redis sessions, AWS S3 media storage, A
 
 ## 🏗️ Project Structure
 
-├── src/
-│ ├── core/ # Global modules (config, graphql, prisma, redis, etc.)
-│ ├── modules/ # Domain-driven feature modules
-│ ├── shared/ # Shared features
-│ └── main.ts # Bootstrap file
-├── test/ # e2e & unit tests
-└── prisma/
-└── migrations/ # Auto-generated DB migrations
+```text
+📂 ixlos-server
+├── src
+│   ├── core            # Global modules (config, GraphQL, Prisma, Redis, etc.)
+│   ├── modules         # Domain-driven feature modules
+│   ├── shared          # Reusable DTOs, pipes, guards, helpers
+│   └── main.ts         # Application bootstrap
+├── prisma
+│   ├── schema.prisma   # Prisma data-model
+│   └── migrations      # Auto-generated DB migrations
+├── test                # Unit & e2e tests
+└── README.md
+```
 
 ---
 
