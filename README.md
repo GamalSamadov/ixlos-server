@@ -25,7 +25,6 @@ Packed with modern tooling—Prisma ORM, Redis sessions, AWS S3 media storage, A
 
 ## 🏗️ Project Structure
 
-.
 ├── src/
 │ ├── core/ # Global modules (config, graphql, prisma, redis, etc.)
 │ ├── modules/ # Domain-driven feature modules
