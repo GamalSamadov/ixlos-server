@@ -3,11 +3,14 @@ import { BadRequestException, Logger } from '@nestjs/common'
 import { Prisma, PrismaClient } from '../../../../prisma/generated'
 
 import { QURAN_TEXT } from './data/ayahs.data'
-import { removeArabicDiacritics } from './data/remove-diacritics'
 import { SURAHS } from './data/surahs.data'
 import { arabicToUzbekCyrillic } from './utils/arabic-to-cyrillic'
 import { arabicToLatin } from './utils/arabic-to-latin'
-import { getPageNumberOrZero } from './utils/get-page-number'
+import {
+	getPageNumberBySurahNumber,
+	getPageNumberOrZero
+} from './utils/get-page-number'
+import { removeArabicDiacritics } from './utils/remove-diacritics'
 
 const prisma = new PrismaClient({
 	transactionOptions: {
@@ -25,8 +28,27 @@ async function main() {
 		await prisma.$transaction([prisma.surah.deleteMany()])
 		Logger.log('Old surahs deleted.')
 
-		await prisma.surah.createMany({
-			data: SURAHS
+		SURAHS.forEach(async surah => {
+			try {
+				await prisma.surah.create({
+					data: {
+						number: surah.number,
+						name: surah.name,
+						totalAyahs: surah.totalAyahs,
+						uzbekName: surah.uzbekName,
+						uzbekNameTranslation: surah.uzbekNameTranslation,
+						revelationType: surah.revelationType,
+						arabicName: surah.arabicName,
+						qfcName: surah.qfcName,
+						pageNumber: getPageNumberBySurahNumber(surah.number)
+					}
+				})
+			} catch (error) {
+				Logger.error(error)
+				throw new BadRequestException(
+					`Error while creating surah ${surah.name}.`
+				)
+			}
 		})
 
 		QURAN_TEXT.forEach(async ayah => {

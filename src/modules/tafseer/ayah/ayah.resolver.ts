@@ -6,9 +6,11 @@ import { PaginationInput } from '@/src/shared/pagination/inputs/pagination.input
 
 import { AyahService } from './ayah.service'
 import { CreateAyahInput } from './inputs/create-ayah.input'
+import { GetPageAyahsInput } from './inputs/get-page-ayahs.input'
 import { UpdateAyahInput } from './inputs/update-ayah.input'
 import { AyahModel } from './models/ayah.model'
 import { AyahsPaginatedModel } from './models/ayahs-paginated.model'
+import { PageAyahsModel } from './models/page-ayahs.model'
 
 @Resolver('Ayah')
 export class AyahResolver {
@@ -25,6 +27,11 @@ export class AyahResolver {
 	@Query(() => AyahModel, { name: 'getAyahById' })
 	public async getById(@Args('id') id: string) {
 		return this.ayahService.getById(id)
+	}
+
+	@Query(() => [PageAyahsModel], { name: 'getAyahsByPageNumber' })
+	public async getByPageNumber(@Args('data') input: GetPageAyahsInput) {
+		return this.ayahService.getByPageNumber(input)
 	}
 
 	@Query(() => AyahsPaginatedModel, { name: 'searchAyahByText' })

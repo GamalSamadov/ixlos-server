@@ -63,6 +63,7 @@ model Surah {
   uzbekName            String
   uzbekNameTranslation String?             @map("uzbek_name_translation")
   number               Int                 @unique
+  pageNumber           Int                 @default(0) @map("page_number")
   totalAyahs           Int                 @map("total_ayahs")
   revelationType       SurahRevelationType @map("revelation_type")
   ayahs                Ayah[]

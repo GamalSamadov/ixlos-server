@@ -780,21 +780,9 @@ const pageData = [
 	]
 ]
 
-export function getPageNumberOrZero(surahNumber, ayahNumber) {
-	const result = pageData.findIndex(subArray =>
-		subArray.some(({ surah, start, end }) => {
-			return (
-				surah === surahNumber &&
-				ayahNumber >= start &&
-				ayahNumber <= end
-			)
-		})
-	)
-	return result === -1 ? 0 : result
-}
-
-export function getPageNumberBySurahNumber(surahNumber) {
-	return pageData.findIndex(subArray =>
-		subArray.some(item => item.surah === surahNumber)
-	)
+export function getPageDetailsByNumber(pageNumber) {
+	if (pageNumber < 0 || pageNumber >= pageData.length) {
+		throw new Error(`Invalid page number: ${pageNumber}`)
+	}
+	return pageData[pageNumber]
 }

@@ -4865,11 +4865,13 @@ export namespace Prisma {
 
   export type SurahAvgAggregateOutputType = {
     number: number | null
+    pageNumber: number | null
     totalAyahs: number | null
   }
 
   export type SurahSumAggregateOutputType = {
     number: number | null
+    pageNumber: number | null
     totalAyahs: number | null
   }
 
@@ -4881,6 +4883,7 @@ export namespace Prisma {
     uzbekName: string | null
     uzbekNameTranslation: string | null
     number: number | null
+    pageNumber: number | null
     totalAyahs: number | null
     revelationType: $Enums.SurahRevelationType | null
     createdAt: Date | null
@@ -4895,6 +4898,7 @@ export namespace Prisma {
     uzbekName: string | null
     uzbekNameTranslation: string | null
     number: number | null
+    pageNumber: number | null
     totalAyahs: number | null
     revelationType: $Enums.SurahRevelationType | null
     createdAt: Date | null
@@ -4909,6 +4913,7 @@ export namespace Prisma {
     uzbekName: number
     uzbekNameTranslation: number
     number: number
+    pageNumber: number
     totalAyahs: number
     revelationType: number
     createdAt: number
@@ -4919,11 +4924,13 @@ export namespace Prisma {
 
   export type SurahAvgAggregateInputType = {
     number?: true
+    pageNumber?: true
     totalAyahs?: true
   }
 
   export type SurahSumAggregateInputType = {
     number?: true
+    pageNumber?: true
     totalAyahs?: true
   }
 
@@ -4935,6 +4942,7 @@ export namespace Prisma {
     uzbekName?: true
     uzbekNameTranslation?: true
     number?: true
+    pageNumber?: true
     totalAyahs?: true
     revelationType?: true
     createdAt?: true
@@ -4949,6 +4957,7 @@ export namespace Prisma {
     uzbekName?: true
     uzbekNameTranslation?: true
     number?: true
+    pageNumber?: true
     totalAyahs?: true
     revelationType?: true
     createdAt?: true
@@ -4963,6 +4972,7 @@ export namespace Prisma {
     uzbekName?: true
     uzbekNameTranslation?: true
     number?: true
+    pageNumber?: true
     totalAyahs?: true
     revelationType?: true
     createdAt?: true
@@ -5064,6 +5074,7 @@ export namespace Prisma {
     uzbekName: string
     uzbekNameTranslation: string | null
     number: number
+    pageNumber: number
     totalAyahs: number
     revelationType: $Enums.SurahRevelationType
     createdAt: Date
@@ -5097,6 +5108,7 @@ export namespace Prisma {
     uzbekName?: boolean
     uzbekNameTranslation?: boolean
     number?: boolean
+    pageNumber?: boolean
     totalAyahs?: boolean
     revelationType?: boolean
     createdAt?: boolean
@@ -5113,6 +5125,7 @@ export namespace Prisma {
     uzbekName?: boolean
     uzbekNameTranslation?: boolean
     number?: boolean
+    pageNumber?: boolean
     totalAyahs?: boolean
     revelationType?: boolean
     createdAt?: boolean
@@ -5127,6 +5140,7 @@ export namespace Prisma {
     uzbekName?: boolean
     uzbekNameTranslation?: boolean
     number?: boolean
+    pageNumber?: boolean
     totalAyahs?: boolean
     revelationType?: boolean
     createdAt?: boolean
@@ -5141,13 +5155,14 @@ export namespace Prisma {
     uzbekName?: boolean
     uzbekNameTranslation?: boolean
     number?: boolean
+    pageNumber?: boolean
     totalAyahs?: boolean
     revelationType?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type SurahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "arabicName" | "qfcName" | "uzbekName" | "uzbekNameTranslation" | "number" | "totalAyahs" | "revelationType" | "createdAt" | "updatedAt", ExtArgs["result"]["surah"]>
+  export type SurahOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "arabicName" | "qfcName" | "uzbekName" | "uzbekNameTranslation" | "number" | "pageNumber" | "totalAyahs" | "revelationType" | "createdAt" | "updatedAt", ExtArgs["result"]["surah"]>
   export type SurahInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     ayahs?: boolean | Surah$ayahsArgs<ExtArgs>
     _count?: boolean | SurahCountOutputTypeDefaultArgs<ExtArgs>
@@ -5168,6 +5183,7 @@ export namespace Prisma {
       uzbekName: string
       uzbekNameTranslation: string | null
       number: number
+      pageNumber: number
       totalAyahs: number
       revelationType: $Enums.SurahRevelationType
       createdAt: Date
@@ -5603,6 +5619,7 @@ export namespace Prisma {
     readonly uzbekName: FieldRef<"Surah", 'String'>
     readonly uzbekNameTranslation: FieldRef<"Surah", 'String'>
     readonly number: FieldRef<"Surah", 'Int'>
+    readonly pageNumber: FieldRef<"Surah", 'Int'>
     readonly totalAyahs: FieldRef<"Surah", 'Int'>
     readonly revelationType: FieldRef<"Surah", 'SurahRevelationType'>
     readonly createdAt: FieldRef<"Surah", 'DateTime'>
@@ -8372,6 +8389,7 @@ export namespace Prisma {
     uzbekName: 'uzbekName',
     uzbekNameTranslation: 'uzbekNameTranslation',
     number: 'number',
+    pageNumber: 'pageNumber',
     totalAyahs: 'totalAyahs',
     revelationType: 'revelationType',
     createdAt: 'createdAt',
@@ -8778,6 +8796,7 @@ export namespace Prisma {
     uzbekName?: StringFilter<"Surah"> | string
     uzbekNameTranslation?: StringNullableFilter<"Surah"> | string | null
     number?: IntFilter<"Surah"> | number
+    pageNumber?: IntFilter<"Surah"> | number
     totalAyahs?: IntFilter<"Surah"> | number
     revelationType?: EnumSurahRevelationTypeFilter<"Surah"> | $Enums.SurahRevelationType
     createdAt?: DateTimeFilter<"Surah"> | Date | string
@@ -8793,6 +8812,7 @@ export namespace Prisma {
     uzbekName?: SortOrder
     uzbekNameTranslation?: SortOrderInput | SortOrder
     number?: SortOrder
+    pageNumber?: SortOrder
     totalAyahs?: SortOrder
     revelationType?: SortOrder
     createdAt?: SortOrder
@@ -8811,6 +8831,7 @@ export namespace Prisma {
     qfcName?: StringFilter<"Surah"> | string
     uzbekName?: StringFilter<"Surah"> | string
     uzbekNameTranslation?: StringNullableFilter<"Surah"> | string | null
+    pageNumber?: IntFilter<"Surah"> | number
     totalAyahs?: IntFilter<"Surah"> | number
     revelationType?: EnumSurahRevelationTypeFilter<"Surah"> | $Enums.SurahRevelationType
     createdAt?: DateTimeFilter<"Surah"> | Date | string
@@ -8826,6 +8847,7 @@ export namespace Prisma {
     uzbekName?: SortOrder
     uzbekNameTranslation?: SortOrderInput | SortOrder
     number?: SortOrder
+    pageNumber?: SortOrder
     totalAyahs?: SortOrder
     revelationType?: SortOrder
     createdAt?: SortOrder
@@ -8848,6 +8870,7 @@ export namespace Prisma {
     uzbekName?: StringWithAggregatesFilter<"Surah"> | string
     uzbekNameTranslation?: StringNullableWithAggregatesFilter<"Surah"> | string | null
     number?: IntWithAggregatesFilter<"Surah"> | number
+    pageNumber?: IntWithAggregatesFilter<"Surah"> | number
     totalAyahs?: IntWithAggregatesFilter<"Surah"> | number
     revelationType?: EnumSurahRevelationTypeWithAggregatesFilter<"Surah"> | $Enums.SurahRevelationType
     createdAt?: DateTimeWithAggregatesFilter<"Surah"> | Date | string
@@ -9258,6 +9281,7 @@ export namespace Prisma {
     uzbekName: string
     uzbekNameTranslation?: string | null
     number: number
+    pageNumber?: number
     totalAyahs: number
     revelationType: $Enums.SurahRevelationType
     createdAt?: Date | string
@@ -9273,6 +9297,7 @@ export namespace Prisma {
     uzbekName: string
     uzbekNameTranslation?: string | null
     number: number
+    pageNumber?: number
     totalAyahs: number
     revelationType: $Enums.SurahRevelationType
     createdAt?: Date | string
@@ -9288,6 +9313,7 @@ export namespace Prisma {
     uzbekName?: StringFieldUpdateOperationsInput | string
     uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
+    pageNumber?: IntFieldUpdateOperationsInput | number
     totalAyahs?: IntFieldUpdateOperationsInput | number
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9303,6 +9329,7 @@ export namespace Prisma {
     uzbekName?: StringFieldUpdateOperationsInput | string
     uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
+    pageNumber?: IntFieldUpdateOperationsInput | number
     totalAyahs?: IntFieldUpdateOperationsInput | number
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9318,6 +9345,7 @@ export namespace Prisma {
     uzbekName: string
     uzbekNameTranslation?: string | null
     number: number
+    pageNumber?: number
     totalAyahs: number
     revelationType: $Enums.SurahRevelationType
     createdAt?: Date | string
@@ -9332,6 +9360,7 @@ export namespace Prisma {
     uzbekName?: StringFieldUpdateOperationsInput | string
     uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
+    pageNumber?: IntFieldUpdateOperationsInput | number
     totalAyahs?: IntFieldUpdateOperationsInput | number
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9346,6 +9375,7 @@ export namespace Prisma {
     uzbekName?: StringFieldUpdateOperationsInput | string
     uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
+    pageNumber?: IntFieldUpdateOperationsInput | number
     totalAyahs?: IntFieldUpdateOperationsInput | number
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -9812,6 +9842,7 @@ export namespace Prisma {
     uzbekName?: SortOrder
     uzbekNameTranslation?: SortOrder
     number?: SortOrder
+    pageNumber?: SortOrder
     totalAyahs?: SortOrder
     revelationType?: SortOrder
     createdAt?: SortOrder
@@ -9820,6 +9851,7 @@ export namespace Prisma {
 
   export type SurahAvgOrderByAggregateInput = {
     number?: SortOrder
+    pageNumber?: SortOrder
     totalAyahs?: SortOrder
   }
 
@@ -9831,6 +9863,7 @@ export namespace Prisma {
     uzbekName?: SortOrder
     uzbekNameTranslation?: SortOrder
     number?: SortOrder
+    pageNumber?: SortOrder
     totalAyahs?: SortOrder
     revelationType?: SortOrder
     createdAt?: SortOrder
@@ -9845,6 +9878,7 @@ export namespace Prisma {
     uzbekName?: SortOrder
     uzbekNameTranslation?: SortOrder
     number?: SortOrder
+    pageNumber?: SortOrder
     totalAyahs?: SortOrder
     revelationType?: SortOrder
     createdAt?: SortOrder
@@ -9853,6 +9887,7 @@ export namespace Prisma {
 
   export type SurahSumOrderByAggregateInput = {
     number?: SortOrder
+    pageNumber?: SortOrder
     totalAyahs?: SortOrder
   }
 
@@ -10830,6 +10865,7 @@ export namespace Prisma {
     uzbekName: string
     uzbekNameTranslation?: string | null
     number: number
+    pageNumber?: number
     totalAyahs: number
     revelationType: $Enums.SurahRevelationType
     createdAt?: Date | string
@@ -10844,6 +10880,7 @@ export namespace Prisma {
     uzbekName: string
     uzbekNameTranslation?: string | null
     number: number
+    pageNumber?: number
     totalAyahs: number
     revelationType: $Enums.SurahRevelationType
     createdAt?: Date | string
@@ -10900,6 +10937,7 @@ export namespace Prisma {
     uzbekName?: StringFieldUpdateOperationsInput | string
     uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
+    pageNumber?: IntFieldUpdateOperationsInput | number
     totalAyahs?: IntFieldUpdateOperationsInput | number
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -10914,6 +10952,7 @@ export namespace Prisma {
     uzbekName?: StringFieldUpdateOperationsInput | string
     uzbekNameTranslation?: NullableStringFieldUpdateOperationsInput | string | null
     number?: IntFieldUpdateOperationsInput | number
+    pageNumber?: IntFieldUpdateOperationsInput | number
     totalAyahs?: IntFieldUpdateOperationsInput | number
     revelationType?: EnumSurahRevelationTypeFieldUpdateOperationsInput | $Enums.SurahRevelationType
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string

@@ -1,15 +1,14 @@
 import { Field, ObjectType } from '@nestjs/graphql'
 
+import { SurahModel } from '../../surah/model/surah.model'
+
 import { AyahModel } from './ayah.model'
 
 @ObjectType()
-export class AyahsPaginatedModel {
+export class PageAyahsModel {
+	@Field(() => SurahModel, { nullable: true })
+	public surah: SurahModel
+
 	@Field(() => [AyahModel], { nullable: true })
 	public ayahs: AyahModel[]
-
-	@Field(() => Boolean, { nullable: true })
-	public hasMore: boolean
-
-	@Field(() => Number, { nullable: true })
-	public total: number
 }

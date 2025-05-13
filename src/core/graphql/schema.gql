@@ -34,6 +34,7 @@ type AyahModel {
 type AyahsPaginatedModel {
   ayahs: [AyahModel!]
   hasMore: Boolean
+  total: Float
 }
 
 input CreateAuthorInput {
@@ -93,6 +94,10 @@ type DeviceModel {
   type: String!
 }
 
+input GetPageAyahsInput {
+  pageNumber: Float
+}
+
 type LocationModel {
   city: String!
   country: String!
@@ -137,6 +142,11 @@ type Mutation {
   updateTafseerAyah(ayahId: String!, data: UpdateTafseerAyahInput!, id: String!, tafseerId: String!): Boolean!
 }
 
+type PageAyahsModel {
+  ayahs: [AyahModel!]
+  surah: SurahModel
+}
+
 input PaginationInput {
   take: Float
 }
@@ -144,10 +154,11 @@ input PaginationInput {
 type Query {
   getAllAuthors(pagination: PaginationInput!, searchTerm: String!): AuthorsPaginatedModel!
   getAllAyahs(pagination: PaginationInput!, surahId: String!): [AyahModel!]!
-  getAllSurahs(pagination: PaginationInput!): SurahsPaginatedModel!
+  getAllSurahs: [SurahModel!]!
   getAllTafseers(pagination: PaginationInput!, searchTerm: String!): TafseersPaginatedModel!
   getAuthorById(id: String!): AuthorModel!
   getAyahById(id: String!): AyahModel!
+  getAyahsByPageNumber(data: GetPageAyahsInput!): [PageAyahsModel!]!
   getBioByUserId(userId: String!): String!
   getCurrentSession: SessionModel!
   getEmailByEmail(email: String!): String!
@@ -188,6 +199,7 @@ type SurahModel {
   id: ID!
   name: String!
   number: Float!
+  pageNumber: Float!
   qfcName: String!
   revelationType: SurahRevelationType!
   totalAyahs: Float!
@@ -199,11 +211,6 @@ type SurahModel {
 enum SurahRevelationType {
   MECCAN
   MEDINAN
-}
-
-type SurahsPaginatedModel {
-  hasMore: Boolean!
-  surahs: [SurahModel!]!
 }
 
 type TafseerAyahModel {

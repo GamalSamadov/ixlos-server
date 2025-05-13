@@ -159,6 +159,7 @@ exports.Prisma.SurahScalarFieldEnum = {
   uzbekName: 'uzbekName',
   uzbekNameTranslation: 'uzbekNameTranslation',
   number: 'number',
+  pageNumber: 'pageNumber',
   totalAyahs: 'totalAyahs',
   revelationType: 'revelationType',
   createdAt: 'createdAt',

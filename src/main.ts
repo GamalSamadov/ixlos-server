@@ -52,10 +52,10 @@ async function bootstrap() {
 		exposedHeaders: ['set-cookie']
 	})
 
-	await app.listen(process.env.PORT ?? 4200)
+	await app.listen(process.env.PORT ?? 4201)
 
 	Logger.log(
-		`Server listening on: http://localhost:${process.env.PORT ?? 4200}`
+		`Server listening on: http://localhost:${process.env.PORT ?? 4201}`
 	)
 }
 bootstrap()

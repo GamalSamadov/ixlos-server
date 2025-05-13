@@ -34,6 +34,9 @@ export class SurahModel implements Surah {
 	@Field(() => Number)
 	public totalAyahs: number
 
+	@Field(() => Number)
+	public pageNumber: number
+
 	@Field(() => SurahRevelationType)
 	public revelationType: SurahRevelationType
 

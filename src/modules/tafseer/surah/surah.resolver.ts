@@ -2,11 +2,9 @@ import { Args, Mutation, Query, Resolver } from '@nestjs/graphql'
 
 import { Role } from '@/prisma/generated'
 import { Auth } from '@/src/shared/decorators/authorization.decorator'
-import { PaginationInput } from '@/src/shared/pagination/inputs/pagination.input'
 
 import { CreateSurahInput } from './input/create-surah.input'
 import { UpdateSurahInput } from './input/update-surah.input'
-import { SurahsPaginatedModel } from './model/surah-paginated.model'
 import { SurahModel } from './model/surah.model'
 import { SurahService } from './surah.service'
 
@@ -14,9 +12,9 @@ import { SurahService } from './surah.service'
 export class SurahResolver {
 	constructor(private readonly surahService: SurahService) {}
 
-	@Query(() => SurahsPaginatedModel, { name: 'getAllSurahs' })
-	public async getAll(@Args('pagination') input: PaginationInput) {
-		return this.surahService.getAll(input)
+	@Query(() => [SurahModel], { name: 'getAllSurahs' })
+	public async getAll() {
+		return this.surahService.getAll()
 	}
 
 	@Query(() => SurahModel, { name: 'getSurahById' })
